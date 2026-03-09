@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="The Academy & The Lyceum — A comprehensive digital archive of the complete works of Plato and Aristotle.">
+    <title>The Academy & The Lyceum — Complete Works Archive</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- LOADER -->
+    <div id="loader" class="loader" aria-hidden="true">
+        <div class="loader-inner">
+            <p class="loader-text">The Archive</p>
+            <div class="loader-bar"><div class="loader-bar-fill"></div></div>
+        </div>
+    </div>
+
+    <!-- NAVIGATION -->
+    <header class="navbar" id="navbar" role="banner">
+        <div class="nav-container">
+            <a href="index.html#hero" class="nav-logo" aria-label="Home">
+                <span class="logo-main">The Archive</span>
+                <span class="logo-sub">est. 387 bc</span>
+            </a>
+            <nav class="nav-links" id="navLinks" role="navigation" aria-label="Main navigation">
+                <a href="#plato-section" class="nav-link">Plato</a>
+                <a href="#aristotle-section" class="nav-link">Aristotle</a>
+                <a href="#timeline-section" class="nav-link">Timeline</a>
+                <a href="#about-section" class="nav-link">About</a>
+                <a href="tradition.html" class="nav-link">Tradition Map</a>
+            </nav>
+            <div class="nav-actions">
+                <button class="nav-btn search-toggle" id="searchToggle" aria-label="Toggle search">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                </button>
+                <button class="nav-btn theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                    <span class="theme-icon-dark">Moon</span>
+                    <span class="theme-icon-light">Sun</span>
+                </button>
+                <button class="nav-btn share-btn" id="shareBtn" aria-label="Share">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
+                </button>
+                <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </button>
+            </div>
+        </div>
+        <div class="mobile-search-bar" id="mobileSearchBar">
+            <input type="text" class="mobile-search-input" id="mobileSearchInput" placeholder="Search works, themes, concepts..." aria-label="Search">
+            <button class="mobile-search-close" id="mobileSearchClose" aria-label="Close search">&times;</button>
+        </div>
+    </header>
+
+    <!-- MOBILE NAV -->
+    <div class="mobile-nav-overlay" id="mobileNavOverlay" aria-hidden="true">
+        <nav class="mobile-nav-content" role="navigation" aria-label="Mobile navigation">
+            <a href="#hero" class="mobile-nav-link">
+                <span class="mobile-nav-number">00</span>
+                <span class="mobile-nav-label">Home</span>
+            </a>
+            <a href="#plato-section" class="mobile-nav-link">
+                <span class="mobile-nav-number">01</span>
+                <span class="mobile-nav-label">Plato</span>
+            </a>
+            <a href="#aristotle-section" class="mobile-nav-link">
+                <span class="mobile-nav-number">02</span>
+                <span class="mobile-nav-label">Aristotle</span>
+            </a>
+            <a href="#timeline-section" class="mobile-nav-link">
+                <span class="mobile-nav-number">03</span>
+                <span class="mobile-nav-label">Timeline</span>
+            </a>
+            <a href="#about-section" class="mobile-nav-link">
+                <span class="mobile-nav-number">04</span>
+                <span class="mobile-nav-label">About</span>
+            </a>
+            <a href="tradition.html" class="mobile-nav-link">
+                <span class="mobile-nav-number">05</span>
+                <span class="mobile-nav-label">Tradition Map</span>
+            </a>
+            <div class="mobile-nav-quote">
+                <p>"The only true wisdom is in knowing you know nothing."</p>
+                <cite>Socrates</cite>
+            </div>
+        </nav>
+    </div>
+
+    <!-- HERO -->
+    <section class="hero" id="hero" aria-label="Hero">
+        <div class="hero-content">
+            <h1 class="hero-title">
+                <span class="title-line">The Academy</span>
+                <span class="title-ampersand">&amp;</span>
+                <span class="title-line">The Lyceum</span>
+            </h1>
+            <div class="hero-rule"></div>
+            <p class="hero-subtitle">
+                A complete works archive of
+                <span class="highlight-plato">Plato</span> and
+                <span class="highlight-aristotle">Aristotle</span>
+            </p>
+            <blockquote class="hero-quote">
+                <p>"The beginning of wisdom is the definition of terms."</p>
+                <cite>Socrates, via Plato</cite>
+            </blockquote>
+            <div class="hero-actions">
+                <a href="#plato-section" class="btn btn-primary">Explore the Archive</a>
+                <a href="#timeline-section" class="btn btn-secondary">View Timeline</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- STATS -->
+    <section class="stats-section" id="stats" aria-label="Statistics">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-card" data-count="16">
+                    <div class="stat-number" id="statDialogues">16</div>
+                    <div class="stat-label">dialogues</div>
+                    <div class="stat-sub">Plato</div>
+                </div>
+                <div class="stat-card" data-count="18">
+                    <div class="stat-number" id="statTreatises">18</div>
+                    <div class="stat-label">treatises</div>
+                    <div class="stat-sub">Aristotle</div>
+                </div>
+                <div class="stat-card" data-count="2000000">
+                    <div class="stat-number" id="statWords">2M+</div>
+                    <div class="stat-label">words</div>
+                    <div class="stat-sub">combined</div>
+                </div>
+                <div class="stat-card" data-count="80">
+                    <div class="stat-number" id="statYears">80</div>
+                    <div class="stat-label">years</div>
+                    <div class="stat-sub">399 &ndash; 322 bc</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEARCH -->
+    <section class="search-section" id="searchSection" aria-label="Search">
+        <div class="container">
+            <div class="search-wrapper">
+                <div class="search-box">
+                    <input type="text" class="search-input" id="searchInput" placeholder="Search by title, theme, concept, or philosopher..." aria-label="Search the archive" autocomplete="off">
+                    <button class="search-clear" id="searchClear" aria-label="Clear" style="display:none;">&times;</button>
+                </div>
+                <div class="filter-tabs" role="tablist" aria-label="Filter by philosopher">
+                    <button class="filter-tab active" data-filter="all" role="tab" aria-selected="true">
+                        All <span class="filter-count" id="countAll">0</span>
+                    </button>
+                    <button class="filter-tab" data-filter="plato" role="tab" aria-selected="false">
+                        <span class="filter-dot plato-dot"></span>
+                        Plato <span class="filter-count" id="countPlato">0</span>
+                    </button>
+                    <button class="filter-tab" data-filter="aristotle" role="tab" aria-selected="false">
+                        <span class="filter-dot aristotle-dot"></span>
+                        Aristotle <span class="filter-count" id="countAristotle">0</span>
+                    </button>
+                </div>
+                <div class="category-filters" id="categoryFilters">
+                    <button class="category-chip active" data-category="all">All</button>
+                    <button class="category-chip" data-category="early">Early</button>
+                    <button class="category-chip" data-category="middle">Middle</button>
+                    <button class="category-chip" data-category="late">Late</button>
+                    <button class="category-chip" data-category="logic">Logic</button>
+                    <button class="category-chip" data-category="theoretical">Theoretical</button>
+                    <button class="category-chip" data-category="practical">Practical</button>
+                    <button class="category-chip" data-category="productive">Productive</button>
+                </div>
+                <div class="search-results-info" id="searchResultsInfo" style="display:none;">
+                    <span id="resultsCount">0</span> works found
+                    <button class="clear-filters-btn" id="clearFiltersBtn">Clear all</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PLATO -->
+    <section class="works-section" id="plato-section" aria-label="Plato">
+        <div class="container">
+            <div class="section-header fade-in-element">
+                <p class="section-tag plato-tag">The Academy &middot; Athens &middot; Founded 387 BC</p>
+                <h2 class="section-title">Plato's Dialogues</h2>
+                <div class="section-rule plato-rule"></div>
+                <p class="section-description">
+                    The dramatic philosophical conversations that gave birth to Western
+                    metaphysics, epistemology, and political theory.
+                </p>
+            </div>
+            <div class="works-grid" id="platoGrid" aria-label="Plato's works"></div>
+        </div>
+    </section>
+
+    <!-- ARISTOTLE -->
+    <section class="works-section" id="aristotle-section" aria-label="Aristotle">
+        <div class="container">
+            <div class="section-header fade-in-element">
+                <p class="section-tag aristotle-tag">The Lyceum &middot; Athens &middot; Founded 335 BC</p>
+                <h2 class="section-title">Aristotle's Treatises</h2>
+                <div class="section-rule aristotle-rule"></div>
+                <p class="section-description">
+                    The systematic investigations that organized all human knowledge
+                    into the foundations of every academic discipline.
+                </p>
+            </div>
+            <div class="works-grid" id="aristotleGrid" aria-label="Aristotle's works"></div>
+        </div>
+    </section>
+
+    <!-- TIMELINE -->
+    <section class="timeline-section" id="timeline-section" aria-label="Timeline">
+        <div class="container">
+            <div class="section-header fade-in-element">
+                <p class="section-tag">Chronological Survey &middot; 470 &ndash; 322 BC</p>
+                <h2 class="section-title">Timeline of the Works</h2>
+                <div class="section-rule"></div>
+                <p class="section-description">
+                    A chronological journey through the intellectual output of
+                    Athens' two greatest minds.
+                </p>
+            </div>
+            <div class="timeline-container" id="timelineContainer">
+                <div class="timeline-track" id="timelineTrack">
+                    <div class="timeline-line" aria-hidden="true"></div>
+                </div>
+            </div>
+            <div class="timeline-nav">
+                <button class="timeline-nav-btn" id="timelinePrev">&larr; Earlier</button>
+                <span class="timeline-era" id="timelineEra">Classical Athens</span>
+                <button class="timeline-nav-btn" id="timelineNext">Later &rarr;</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="about-section" id="about-section" aria-label="About">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-card fade-in-element">
+                    <h3 class="about-title">The Academy</h3>
+                    <p class="about-text">
+                        Founded by Plato around 387 BC near Athens, the Academy was
+                        the Western world's first institution of higher learning. It
+                        operated continuously for nearly 300 years until its closure
+                        by Emperor Justinian I in 529 AD.
+                    </p>
+                </div>
+                <div class="about-card fade-in-element">
+                    <h3 class="about-title">The Lyceum</h3>
+                    <p class="about-text">
+                        Founded by Aristotle in 335 BC, the Lyceum was a center of
+                        empirical research. Its members, known as the Peripatetics,
+                        studied everything from biology to the constitutions of 158
+                        Greek city-states.
+                    </p>
+                </div>
+                <div class="about-card fade-in-element">
+                    <h3 class="about-title">This Archive</h3>
+                    <p class="about-text">
+                        This digital archive catalogues the major surviving works of
+                        both philosophers, providing summaries, key concepts, and
+                        commentary from later thinkers including Aquinas, Kant,
+                        Nietzsche, Heidegger, and Arendt.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer" id="footer" role="contentinfo">
+        <div class="container">
+            <div class="footer-rule"></div>
+            <div class="footer-content">
+                <blockquote class="footer-quote">
+                    <p>"The unexamined life is not worth living."</p>
+                    <cite>Socrates, in Plato's <em>Apology</em> (38a)</cite>
+                </blockquote>
+                <div class="footer-grid">
+                    <div class="footer-col">
+                        <h4 class="footer-heading">Archive</h4>
+                        <a href="#plato-section" class="footer-link">Plato</a>
+                        <a href="#aristotle-section" class="footer-link">Aristotle</a>
+                        <a href="#timeline-section" class="footer-link">Timeline</a>
+                        <a href="#about-section" class="footer-link">About</a>
+                        <a href="tradition.html" class="footer-link">Tradition Map</a>
+                    </div>
+                    <div class="footer-col">
+                        <h4 class="footer-heading">Periods</h4>
+                        <a href="#" class="footer-link" data-filter-link="early">Early Dialogues</a>
+                        <a href="#" class="footer-link" data-filter-link="middle">Middle Dialogues</a>
+                        <a href="#" class="footer-link" data-filter-link="late">Late Dialogues</a>
+                    </div>
+                    <div class="footer-col">
+                        <h4 class="footer-heading">Categories</h4>
+                        <a href="#" class="footer-link" data-filter-link="logic">Logic</a>
+                        <a href="#" class="footer-link" data-filter-link="theoretical">Theoretical</a>
+                        <a href="#" class="footer-link" data-filter-link="practical">Practical</a>
+                        <a href="#" class="footer-link" data-filter-link="productive">Productive</a>
+                    </div>
+                    <div class="footer-col">
+                        <h4 class="footer-heading">Share</h4>
+                        <button class="footer-share-btn" id="footerShareTwitter">Share on X</button>
+                        <button class="footer-share-btn" id="footerCopyLink">Copy Link</button>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; <span id="currentYear"></span> The Academy &amp; The Lyceum Archive.</p>
+                    <p class="footer-note">All philosophical works are in the public domain.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- MODAL -->
+    <div class="modal-overlay" id="modalOverlay" aria-hidden="true" role="dialog" aria-modal="true">
+        <div class="modal" id="modal">
+            <div class="modal-header" id="modalHeader">
+                <div class="modal-header-content">
+                    <p class="modal-tag" id="modalTag"></p>
+                    <h2 class="modal-title" id="modalTitle"></h2>
+                    <p class="modal-meta" id="modalMeta"></p>
+                    <div class="modal-meta-badges" id="modalMetaBadges"></div>
+                </div>
+                <button class="modal-close" id="modalClose" aria-label="Close">&times;</button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <div class="modal-section">
+                    <h3 class="modal-section-title">Summary</h3>
+                    <div class="modal-divider"></div>
+                    <p class="modal-summary" id="modalSummary"></p>
+                </div>
+                <div class="modal-section" id="modalCharactersSection" style="display:none;">
+                    <h3 class="modal-section-title">Key Characters</h3>
+                    <div class="modal-divider"></div>
+                    <div class="modal-characters" id="modalCharacters"></div>
+                </div>
+                <div class="modal-section" id="modalThemesSection" style="display:none;">
+                    <h3 class="modal-section-title">Major Themes</h3>
+                    <div class="modal-divider"></div>
+                    <div class="modal-themes" id="modalThemes"></div>
+                </div>
+                <div class="modal-section">
+                    <h3 class="modal-section-title">Key Concepts</h3>
+                    <div class="modal-divider"></div>
+                    <div class="modal-concepts" id="modalConcepts"></div>
+                </div>
+                <div class="modal-section" id="modalStructureSection" style="display:none;">
+                    <h3 class="modal-section-title">Structure</h3>
+                    <div class="modal-divider"></div>
+                    <p class="modal-structure" id="modalStructure"></p>
+                </div>
+                <div class="modal-section">
+                    <h3 class="modal-section-title">Notable Quotations</h3>
+                    <div class="modal-divider"></div>
+                    <blockquote class="modal-quote" id="modalQuote"></blockquote>
+                    <div class="modal-extra-quotes" id="modalExtraQuotes"></div>
+                </div>
+                <div class="modal-section">
+                    <h3 class="modal-section-title">Legacy &amp; Commentary</h3>
+                    <div class="modal-divider"></div>
+                    <div class="modal-commentary" id="modalCommentary"></div>
+                </div>
+                <div class="modal-section" id="modalRelevanceSection" style="display:none;">
+                    <h3 class="modal-section-title">Modern Relevance</h3>
+                    <div class="modal-divider"></div>
+                    <p class="modal-relevance" id="modalRelevance"></p>
+                </div>
+                <div class="modal-section">
+                    <h3 class="modal-section-title">Historical Context</h3>
+                    <div class="modal-divider"></div>
+                    <p class="modal-context" id="modalContext"></p>
+                </div>
+                <div class="modal-section" id="modalRelatedSection" style="display:none;">
+                    <h3 class="modal-section-title">Related Works</h3>
+                    <div class="modal-divider"></div>
+                    <div class="modal-related" id="modalRelated"></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="modal-share-btn" id="modalShareTwitter">Share</button>
+                <button class="modal-share-btn" id="modalCopyLink">Copy Link</button>
+                <button class="modal-nav-btn" id="modalPrev">&larr; Previous</button>
+                <button class="modal-nav-btn" id="modalNext">Next &rarr;</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- TOAST -->
+    <div class="toast" id="toast" role="alert" aria-live="polite">
+        <span class="toast-message" id="toastMessage">Link copied to clipboard</span>
+    </div>
+
+    <!-- BACK TO TOP -->
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">&uarr;</button>
+
+    <!-- SCRIPTS -->
+    <script src="js/data.js"></script>
+    <script src="js/data-01.js"></script>
+    <script src="js/data-02.js"></script>
+    <script src="js/data-03.js"></script>
+    <script src="js/data-04.js"></script>
+    <script src="js/data-05.js"></script>
+    <script src="js/data-06.js"></script>
+    <script src="js/data-07.js"></script>
+    <script src="js/data-08.js"></script>
+    <script src="js/data-09.js"></script>
+    <script src="js/data-10.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,1224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timeline | The Academy &amp; The Lyceum</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=JetBrains+Mono:wght@300;400;500&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        ::selection {
+            background-color: rgba(166, 138, 76, 0.15);
+            color: #1A1A1A;
+        }
+
+        .tl-body {
+            margin: 0;
+            padding: 0;
+            background-color: #FAF8F4;
+            color: #2C2C2C;
+            font-family: 'Libre Baskerville', 'Georgia', serif;
+            font-size: 15px;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* ---- NAVIGATION ---- */
+        .tl-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 28px 40px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+        }
+
+        .tl-nav-title {
+            font-family: 'Cormorant Garamond', 'Georgia', serif;
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: #1A1A1A;
+            letter-spacing: 0.5px;
+            text-decoration: none;
+        }
+
+        .tl-nav-title:hover {
+            color: #A68A4C;
+        }
+
+        .tl-nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .tl-nav-links a {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #888;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .tl-nav-links a:hover {
+            color: #A68A4C;
+        }
+
+        .tl-nav-links a.active {
+            color: #A68A4C;
+        }
+
+        /* ---- PAGE HEADER ---- */
+        .tl-header {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 80px 40px 60px;
+            text-align: center;
+        }
+
+        .tl-header-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: #A68A4C;
+            margin-bottom: 20px;
+        }
+
+        .tl-header h1 {
+            font-family: 'Cormorant Garamond', 'Georgia', serif;
+            font-size: 2.8rem;
+            font-weight: 300;
+            color: #1A1A1A;
+            letter-spacing: 1px;
+            margin: 0 0 16px 0;
+            line-height: 1.2;
+        }
+
+        .tl-header-sub {
+            font-family: 'Libre Baskerville', 'Georgia', serif;
+            font-size: 0.95rem;
+            font-style: italic;
+            color: #777;
+            max-width: 560px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        .tl-header-line {
+            width: 60px;
+            height: 1px;
+            background-color: #A68A4C;
+            margin: 40px auto 0;
+            opacity: 0.4;
+        }
+
+        /* ---- ERA FILTER ---- */
+        .tl-filter-wrap {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 40px 40px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+        }
+
+        .tl-filter-btn {
+            background: none;
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            border-radius: 2px;
+            padding: 6px 14px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.58rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #999;
+            cursor: pointer;
+            transition: color 0.3s ease, border-color 0.3s ease,
+                        background-color 0.3s ease;
+        }
+
+        .tl-filter-btn:hover {
+            color: #A68A4C;
+            border-color: rgba(166, 138, 76, 0.3);
+        }
+
+        .tl-filter-btn.active {
+            color: #A68A4C;
+            border-color: rgba(166, 138, 76, 0.3);
+            background-color: rgba(166, 138, 76, 0.04);
+        }
+
+        /* ---- TIMELINE CONTAINER ---- */
+        .tl-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 40px 100px;
+            position: relative;
+        }
+
+        /* The vertical line */
+        .tl-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 135px;
+            width: 1px;
+            height: 100%;
+            background: linear-gradient(
+                to bottom,
+                transparent 0%,
+                rgba(166, 138, 76, 0.15) 2%,
+                rgba(166, 138, 76, 0.15) 98%,
+                transparent 100%
+            );
+        }
+
+        /* ---- ERA HEADING ---- */
+        .tl-era {
+            margin: 60px 0 32px;
+            padding-left: 160px;
+            position: relative;
+        }
+
+        .tl-era:first-child {
+            margin-top: 0;
+        }
+
+        .tl-era-dot {
+            position: absolute;
+            left: 130px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 11px;
+            height: 11px;
+            border-radius: 50%;
+            background-color: #A68A4C;
+            opacity: 0.5;
+        }
+
+        .tl-era-title {
+            font-family: 'Cormorant Garamond', 'Georgia', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #1A1A1A;
+            margin: 0 0 4px 0;
+        }
+
+        .tl-era-dates {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.62rem;
+            color: #A68A4C;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            opacity: 0.7;
+        }
+
+        /* ---- TIMELINE ENTRY ---- */
+        .tl-entry {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 4px;
+            position: relative;
+            min-height: 36px;
+            transition: opacity 0.3s ease;
+        }
+
+        .tl-entry.hidden {
+            display: none;
+        }
+
+        /* Date column */
+        .tl-date {
+            width: 120px;
+            flex-shrink: 0;
+            text-align: right;
+            padding-right: 24px;
+            padding-top: 10px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.68rem;
+            color: #999;
+            letter-spacing: 0.3px;
+            line-height: 1.4;
+        }
+
+        /* Dot on the line */
+        .tl-dot {
+            position: absolute;
+            left: 132px;
+            top: 14px;
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background-color: #D4CFC5;
+            flex-shrink: 0;
+            z-index: 1;
+            transition: background-color 0.3s ease;
+        }
+
+        .tl-entry.plato .tl-dot {
+            background-color: #6B4C9A;
+            opacity: 0.6;
+        }
+
+        .tl-entry.aristotle .tl-dot {
+            background-color: #2D7D6F;
+            opacity: 0.6;
+        }
+
+        .tl-entry.milestone .tl-dot {
+            background-color: #A68A4C;
+            opacity: 0.6;
+        }
+
+        /* Content column */
+        .tl-content {
+            padding-left: 40px;
+            padding-top: 6px;
+            padding-bottom: 14px;
+            flex: 1;
+        }
+
+        .tl-title {
+            font-family: 'Cormorant Garamond', 'Georgia', serif;
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: #1A1A1A;
+            margin: 0 0 2px 0;
+            line-height: 1.35;
+        }
+
+        .tl-entry.plato .tl-title {
+            color: #5A3D87;
+        }
+
+        .tl-entry.aristotle .tl-title {
+            color: #24685D;
+        }
+
+        .tl-desc {
+            font-family: 'Libre Baskerville', 'Georgia', serif;
+            font-size: 0.82rem;
+            color: #666;
+            line-height: 1.65;
+            margin: 0;
+        }
+
+        .tl-desc em {
+            font-style: italic;
+            color: #555;
+        }
+
+        /* Tag */
+        .tl-tag {
+            display: inline-block;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.52rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            padding: 2px 8px;
+            border-radius: 2px;
+            margin-top: 6px;
+        }
+
+        .tl-tag.tag-plato {
+            color: #6B4C9A;
+            background-color: rgba(107, 76, 154, 0.06);
+        }
+
+        .tl-tag.tag-aristotle {
+            color: #2D7D6F;
+            background-color: rgba(45, 125, 111, 0.06);
+        }
+
+        .tl-tag.tag-historical {
+            color: #999;
+            background-color: rgba(0, 0, 0, 0.03);
+        }
+
+        .tl-tag.tag-philosophy {
+            color: #A68A4C;
+            background-color: rgba(166, 138, 76, 0.06);
+        }
+
+        /* ---- LEGEND ---- */
+        .tl-legend {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 40px 60px;
+            display: flex;
+            gap: 28px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .tl-legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tl-legend-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+        }
+
+        .tl-legend-dot.dot-plato { background-color: #6B4C9A; opacity: 0.6; }
+        .tl-legend-dot.dot-aristotle { background-color: #2D7D6F; opacity: 0.6; }
+        .tl-legend-dot.dot-milestone { background-color: #A68A4C; opacity: 0.6; }
+        .tl-legend-dot.dot-event { background-color: #D4CFC5; }
+
+        .tl-legend-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.58rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #999;
+        }
+
+        /* ---- FOOTER ---- */
+        .tl-footer {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px;
+            border-top: 1px solid rgba(0, 0, 0, 0.06);
+            text-align: center;
+        }
+
+        .tl-footer p {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.65rem;
+            color: #999;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin: 0;
+        }
+
+        /* ---- BACK TO TOP ---- */
+        .tl-back-top {
+            position: fixed;
+            bottom: 36px;
+            right: 36px;
+            width: 40px;
+            height: 40px;
+            background-color: #FAF8F4;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.4s ease, visibility 0.4s ease,
+                        border-color 0.3s ease;
+            z-index: 100;
+        }
+
+        .tl-back-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .tl-back-top:hover {
+            border-color: rgba(166, 138, 76, 0.4);
+        }
+
+        .tl-back-top-arrow {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: #A68A4C;
+            line-height: 1;
+        }
+
+        /* ---- RESPONSIVE ---- */
+        @media (max-width: 768px) {
+            .tl-nav {
+                flex-direction: column;
+                gap: 16px;
+                padding: 20px 24px;
+            }
+            .tl-header {
+                padding: 50px 24px 40px;
+            }
+            .tl-header h1 {
+                font-size: 2rem;
+            }
+            .tl-container {
+                padding: 0 24px 60px;
+            }
+            .tl-container::before {
+                left: 75px;
+            }
+            .tl-date {
+                width: 62px;
+                font-size: 0.6rem;
+                padding-right: 16px;
+            }
+            .tl-dot {
+                left: 72px;
+            }
+            .tl-era {
+                padding-left: 100px;
+            }
+            .tl-era-dot {
+                left: 70px;
+            }
+            .tl-content {
+                padding-left: 28px;
+            }
+            .tl-filter-wrap,
+            .tl-legend {
+                padding-left: 24px;
+                padding-right: 24px;
+            }
+        }
+    </style>
+</head>
+<body class="tl-body">
+
+    <nav class="tl-nav">
+        <a href="index.html" class="tl-nav-title">The Academy &amp; The Lyceum</a>
+        <ul class="tl-nav-links">
+            <li><a href="index.html">Archive</a></li>
+            <li><a href="tradition.html">Tradition</a></li>
+            <li><a href="glossary.html">Glossary</a></li>
+            <li><a href="timeline.html" class="active">Timeline</a></li>
+        </ul>
+    </nav>
+
+    <header class="tl-header">
+        <div class="tl-header-label">Chronological Reference</div>
+        <h1>Timeline</h1>
+        <p class="tl-header-sub">
+            The lives of Plato and Aristotle set against the political,
+            military, and intellectual events that shaped the world in
+            which they thought.
+        </p>
+        <div class="tl-header-line"></div>
+    </header>
+
+    <div class="tl-filter-wrap">
+        <button class="tl-filter-btn active" data-filter="all">All Events</button>
+        <button class="tl-filter-btn" data-filter="plato">Plato</button>
+        <button class="tl-filter-btn" data-filter="aristotle">Aristotle</button>
+        <button class="tl-filter-btn" data-filter="milestone">Philosophical Milestones</button>
+        <button class="tl-filter-btn" data-filter="historical">Historical Context</button>
+    </div>
+
+    <div class="tl-legend">
+        <div class="tl-legend-item">
+            <div class="tl-legend-dot dot-plato"></div>
+            <span class="tl-legend-label">Plato</span>
+        </div>
+        <div class="tl-legend-item">
+            <div class="tl-legend-dot dot-aristotle"></div>
+            <span class="tl-legend-label">Aristotle</span>
+        </div>
+        <div class="tl-legend-item">
+            <div class="tl-legend-dot dot-milestone"></div>
+            <span class="tl-legend-label">Philosophical Milestone</span>
+        </div>
+        <div class="tl-legend-item">
+            <div class="tl-legend-dot dot-event"></div>
+            <span class="tl-legend-label">Historical Event</span>
+        </div>
+    </div>
+
+    <div class="tl-container" id="tlContainer">
+
+        <!-- ============ ARCHAIC PERIOD ============ -->
+        <div class="tl-era" data-era="all">
+            <div class="tl-era-dot"></div>
+            <div class="tl-era-title">The Archaic Background</div>
+            <div class="tl-era-dates">c. 776&ndash;500 BCE</div>
+        </div>
+
+        <div class="tl-entry historical" data-filter="historical">
+            <div class="tl-date">c. 776</div>
+            <div class="tl-dot"></div>
+            <div class="tl-content">
+                <div class="tl-title">First Olympic Games</div>
+                <p class="tl-desc">Traditional date of the first Olympiad at Elis, the primary chronological reference point for Greek historical reckoning.</p>
+                <span class="tl-tag tag-historical">Historical</span>
+            </div>
+        </div>
+
+        <div class="tl-entry historical" data-filter="historical">
+            <div class="tl-date">c. 750</div>
+            <div class="tl-dot"></div>
+            <div class="tl-content">
+                <div class="tl-title">Homer composes the <em>Iliad</em> and <em>Odyssey</em></div>
+                <p class="tl-desc">The foundational texts of Greek culture. Plato calls Homer &ldquo;the educator of Greece&rdquo; before subjecting his work to philosophical critique in the <em>Republic</em>.</p>
+                <span class="tl-tag tag-historical">Historical</span>
+            </div>
+        </div>
+
+        <div class="tl-entry milestone" data-filter="milestone">
+            <div class="tl-date">c. 624</div>
+            <div class="tl-dot"></div>
+            <div class="tl-content">
+                <div class="tl-title">Birth of Thales of Miletus</div>
+                <p class="tl-desc">The first natural philosopher. Aristotle regards him as the founder of the inquiry into nature (<em>Metaphysics</em> 983b). Proposed water as the <em>arche</em>.</p>
+                <span class="tl-tag tag-philosophy">Philosophy</span>
+            </div>
+        </div>
+
+        <div class="tl-entry milestone" data-filter="milestone">
+            <div class="tl-date">c. 610</div>
+            <div class="tl-dot"></div>
+            <div class="tl-content">
+                <div class="tl-title">Birth of Anaximander</div>
+                <p class="tl-desc">Proposed the <em>apeiron</em> (the boundless) as the first principle. Authored the first known work of Western philosophy. Produced the first map of the known world.</p>
+                <span class="tl-tag tag-philosophy">Philosophy</span>
+            </div>
+        </div>
+
+        <div class="tl-entry historical" data-filter="historical">
+            <div class="tl-date">585</div>
+            <div class="tl-dot"></div>
+            <div class="tl-content">
+                <div class="tl-title">Thales predicts a solar eclipse</div>
+                <p class="tl-desc">According to Herodotus, Thales predicted the eclipse that halted the battle between the Lydians and the Medes. The earliest dateable event in Greek intellectual history.</p>
+                <span class="tl-tag tag-historical">Historical</span>
+            </div>
+        </div>
+
+        <div class="tl-entry milestone" data-filter="milestone">
+            <div class="tl-date">c. 570</div>
+            <div class="tl-dot"></div>
+            <div class="tl-content">
+                <div class="tl-title">Birth of Pythagoras</div>
+                <p class="tl-desc">Born on Samos. Founded the philosophical brotherhood at Croton. Number as the principle of all things. His influence on Plato was immense.</p>
+                <span class="tl-tag tag-philosophy">Philosophy</span>
+            </div>
+        </div>
+
+        <div class="tl-entry milestone" data-filter="milestone">
+            <div class="tl-date">c. 535</div>
+            <div class="tl-dot"></div>
+            <div class="tl-content">
+                <div class="tl-title">Birth of Heraclitus</div>
+                <p class="tl-desc">Born in Ephesus. All things flow (<em>panta rhei</em>). The <em>Logos</em> as the rational principle governing the cosmos. The young Plato studied under his follower Cratylus.</p>
+                <span class="tl-tag tag-philosophy">Philosophy</span>
+            </div>
+        </div>
+
+        <div class="tl-entry milestone" data-filter="milestone">
+            <div class="tl-date">c. 515</div>
+            <div class="tl-dot"></div>
+            <div class="tl-content">
+                <div class="tl-title">Birth of Parmenides</div>
+                <p class="tl-desc">Born in Elea. Being is one, eternal, and unchanging. The most formidable challenge in Pre-Socratic philosophy. Every subsequent thinker had to answer him.</p>
+                <span class="tl-tag tag-philosophy">Philosophy</span>
+            </div>
+        </div>
+
+        <div class="tl-entry historical" data-filter="historical">
+            <div class="tl-date">508/7</div>
+            <div class="tl-dot"></div>
+            <div class="tl-content">
+                <div class="tl-title">Cleisthenes establishes Athenian democracy</div>
+                <p class="tl-desc">The constitutional reforms that created the democratic institutions within which Socrates, Plato, and Aristotle would live, teach, and think.</p>
+                <span class="tl-tag tag-historical">Historical</span>
+            </div>
+        </div>
+
+        <!-- ============ CLASSICAL PERIOD ============ -->
+        <div class="tl-era" data-era="all">
+            <div class="tl-era-dot"></div>
+            <div class="tl-era-title">The Classical Age</div>
+            <div class="tl-era-dates">c. 500&ndash;323 BCE</div>
+        </div>
+
+        <div class="tl-entry historical" data-filter="historical">
+            <div class="tl-date">490</div>
+            <div class="tl-dot"></div>
+            <div class="tl-content">
+                <div class="tl-title">Battle of Marathon</div>
+                <p class="tl-desc">Athens defeats the Persian invasion force of Darius I. The victory secures Athenian independence and inaugurates the classical period of Athenian confidence and cultural production.</p>
+                <span class="tl-tag tag-historical">Historical</span>
+            </div>
+        </div>
+
+        <div class="tl-entry historical" data-filter="historical">
+            <div class="tl-date">480</div>
+            <div class="tl-dot"></div>
+            <div class="tl-content">
+                <div class="tl-title">Battles of Thermopylae and Salamis</div>
+                <p class="tl-desc">The Greek alliance repels Xerxes&rsquo; massive invasion. Athens is sacked and burned but the Persian fleet is destroyed at Salamis. The defining moment of Greek collective identity.</p>
+                <span class="tl-tag tag-historical">Historical</span>
+            </div>
+        </div>
+
+        <div class="tl-entry milestone" data-filter="milestone">
+            <div class="tl-date">c. 470</div>
+            <div class="tl-dot"></div>
+            <div class="tl-content">
+                <div class="tl-title">Birth of Socrates</div>
+                <p class="tl-desc">Born in Athens, son of the stonemason Sophroniscus and the midwife Phaenarete. Shifted philosophy from cosmology to the examination of human life and virtue. Wrote nothing.</p>
+                <span class="tl-tag tag-philosophy">Philosophy</span>
+            </div>
+        </div>
+
+        <div class="tl-entry milestone" data-filter="milestone">
+            <div class="tl-date">c. 460</div>
+            <div class="tl-dot"></div>
+            <div class="tl-content">
+                <div class="tl-title">Birth of Democritus</div>
+                <p class="tl-desc">Born in Abdera. Together with Leucippus, developed atomism: the universe consists of indivisible particles moving through infinite void. The most prolific author of antiquity.</p>
+                <span class="tl-tag tag-philosophy">Philosophy</span>
+            </div>
+        </div>
+
+        <div class="tl-entry historical" data-filter="historical">
+            <div class="tl-date">461&ndash;429</div>
+            <div class="tl-dot"></div>
+            <div class="tl-content">
+                <div class="tl-title">Age of Pericles</div>
+                <p class="tl-desc">Pericles dominates Athenian politics. The Parthenon is built. Athens becomes the intellectual and artistic center of the Greek world. Anaxagoras, Protagoras, and other thinkers gather in the city.</p>
+                <span class="tl-tag tag-historical">Historical</span>
+            </div>
+        </div>
+
+        <div class="tl-entry historical" data-filter="historical">
+            <div class="tl-date">431&ndash;404</div>
+            <div class="tl-dot"></div>
+            <div class="tl-content">
+                <div class="tl-title">The Peloponnesian War</div>
+                <p class="tl-desc">Athens and Sparta devastate the Greek world in a generation of conflict. Plato is born during the war. It ends with Athens&rsquo; defeat, the installation of the Thirty Tyrants, and a crisis of Athenian self-confidence from which Platonic philosophy partly emerges.</p>
+                <span class="tl-tag tag-historical">Historical</span>
+            </div>
+        </div>
+
+        <div class="tl-entry plato" data-filter="plato">
+            <div class="tl-date">c. 428</div>
+            <div class="tl-dot"></div>
+            <div class="tl-content">
+                <div class="tl-title">Birth of Plato</div>
+                <p class="tl-desc">Born in Athens into one of the most distinguished aristocratic families. His mother Perictione traced her lineage to Solon. The Peloponnesian War is in its third year.</p>
+                <span class="tl-tag tag-plato">Plato</span>
+            </div>
+        </div>
+
+        <div class="tl-entry historical" data-filter="historical">
+            <div class="tl-date">423</div>
+            <div class="tl-dot"></div>
+            <div class="tl-content">
+                <div class="tl-title">Aristophanes&rsquo; <em>Clouds</em> performed</div>
+                <p class="tl-desc">The comedy portrays Socrates as a buffoonish natural philosopher running a &ldquo;Thinkery.&rdquo; Plato&rsquo;s <em>Apology</em> has Socrates cite the play as contributing to the prejudice against him.</p>
+                <span class="tl-tag tag-historical">Historical</span>
+            </div>
+        </div>
+
+        <div class="tl-entry plato" data-filter="plato">
+            <div class="tl-date">c. 408</div>
+            <div class="tl-dot"></div>
+            <div class="tl-content">
+                <div class="tl-title">Plato meets Socrates</div>
+                <p class="tl-desc">Around the age of twenty, Plato encounters Socrates&mdash;a meeting that, by his own account, redirected the entire course of his life. He reportedly burned his tragedies.</p>
+                <span class="tl-tag tag-plato">Plato</span>
+            </div>
+        </div>
+
+        <div class="tl-entry historical" data-filter="historical">
+            <div class="tl-date">404</div>
+            <div class="tl-dot"></div>
+            <div class="tl-content">
+                <div class="tl-title">Fall of Athens &mdash; The Thirty Tyrants</div>
+                <p class="tl-desc">Athens surrenders to Sparta. The oligarchic regime of the Thirty, which included Plato&rsquo;s relatives Critias and Charmides, rules by terror for eight months. The experience decisively shapes Plato&rsquo;s distrust of both democracy and tyranny.</p>
+                <span class="tl-tag tag-historical">Historical</span>
+            </div>
+        </div>
+
+        <div class="tl-entry milestone" data-filter="milestone">
+            <div class="tl-date">399</div>
+            <div class="tl-dot"></div>
+            <div class="tl-content">
+                <div class="tl-title">Trial and execution of Socrates</div>
+                <p class="tl-desc">Convicted of impiety and corrupting the youth by a jury of 501. Refuses to flee. Drinks the hemlock. The founding event of the Western philosophical tradition. Plato is 29. He departs for Megara.</p>
+                <span class="tl-tag tag-philosophy">Philosophy</span>
+            </div>
+        </div>
+
+        <div class="tl-entry plato" data-filter="plato">
+            <div class="tl-date">c. 399&ndash;387</div>
+            <div class="tl-dot"></div>
+            <div class="tl-content">
+                <div class="tl-title">Plato&rsquo;s travels</div>
+                <p class="tl-desc">After Socrates&rsquo; death, Plato travels to Megara (studying with Euclides), reportedly to Cyrene (meeting the mathematician Theodorus), and to southern Italy and Sicily (encountering the Pythagorean circle of Archytas). First Sicilian visit ends in disaster; Plato reportedly sold into slavery.</p>
+                <span class="tl-tag tag-plato">Plato</span>
+            </div>
+        </div>
+
+        <div class="tl-entry plato" data-filter="plato">
+            <div class="tl-date">c. 387</div>
+            <div class="tl-dot"></div>
+            <div class="tl-content">
+                <div class="tl-title">Plato founds the Academy</div>
+                <p class="tl-desc">Established in a grove sacred to the hero Academus, roughly a mile northwest of Athens. The first permanent institution of higher learning in the Western world. &ldquo;Let no one ignorant of geometry enter.&rdquo; It will endure for over three centuries.</p>
+                <span class="tl-tag tag-plato">Plato</span>
+            </div>
+        </div>
+
+        <div class="tl-entry aristotle" data-filter="aristotle">
+            <div class="tl-date">384</div>
+            <div class="tl-dot"></div>
+            <div class="tl-content">
+                <div class="tl-title">Birth of Aristotle</div>
+                <p class="tl-desc">Born in Stagira on the Chalcidice peninsula. His father Nicomachus serves as physician to King Amyntas III of Macedon. Orphaned young.</p>
+                <span class="tl-tag tag-aristotle">Aristotle</span>
+            </div>
+        </div>
+
+        <div class="tl-entry aristotle" data-filter="aristotle">
+            <div class="tl-date">367</div>
+            <div class="tl-dot"></div>
+            <div class="tl-content">
+                <div class="tl-title">Aristotle enters the Academy</div>
+                <p class="tl-desc">At the age of seventeen, Aristotle enrolls in Plato&rsquo;s Academy. He will remain for twenty years. Plato reportedly calls him &ldquo;the mind of the school&rdquo; and &ldquo;the reader.&rdquo;</p>
+                <span class="tl-tag tag-aristotle">Aristotle</span>
+            </div>
+        </div>
+
+        <div class="tl-entry plato" data-filter="plato">
+            <div class="tl-date">367</div>
+            <div class="tl-dot"></div>
+            <div class="tl-content">
+                <div class="tl-title">Plato&rsquo;s second Sicilian voyage</div>
+                <p class="tl-desc">Travels to Syracuse at Dion&rsquo;s invitation to educate the young tyrant Dionysius II. The attempt to realize the <em>Republic</em>&rsquo;s philosopher-ruler ideal in practice. Ends in failure and personal danger.</p>
+                <span class="tl-tag tag-plato">Plato</span>
+            </div>
+        </div>
+
+        <div class="tl-entry plato" data-filter="plato">
+            <div class="tl-date">361</div>
+            <div class="tl-dot"></div>
+            <div class="tl-content">
+                <div class="tl-title">Plato&rsquo;s third Sicilian voyage</div>
+                <p class="tl-desc">Returns to Syracuse one final time. Again ends disastrously. The experience may have tempered the <em>Republic</em>&rsquo;s idealism with the pragmatic political philosophy of the <em>Laws</em>.</p>
+                <span class="tl-tag tag-plato">Plato</span>
+            </div>
+        </div>
+
+        <div class="tl-entry historical" data-filter="historical">
+            <div class="tl-date">359</div>
+            <div class="tl-dot"></div>
+            <div class="tl-content">
+                <div class="tl-title">Philip II becomes King of Macedon</div>
+                <p class="tl-desc">Begins the military and political transformation of Macedon from a marginal kingdom into the dominant power in Greece. Father of Alexander. His rise will reshape the world in which both the Academy and the Lyceum operate.</p>
+                <span class="tl-tag tag-historical">Historical</span>
+            </div>
+        </div>
+
+        <div class="tl-entry plato" data-filter="plato">
+            <div class="tl-date">c. 348/347</div>
+            <div class="tl-dot"></div>
+            <div class="tl-content">
+                <div class="tl-title">Death of Plato</div>
+                <p class="tl-desc">Dies in Athens at approximately eighty, reportedly while attending a wedding feast. His nephew Speusippus succeeds him as head of the Academy. The <em>Laws</em>, his last work, is left unfinished. Aristotle departs Athens shortly after.</p>
+                <span class="tl-tag tag-plato">Plato</span>
+            </div>
+        </div>
+
+        <div class="tl-entry aristotle" data-filter="aristotle">
+            <div class="tl-date">347&ndash;335</div>
+            <div class="tl-dot"></div>
+            <div class="tl-content">
+                <div class="tl-title">Aristotle&rsquo;s years away from Athens</div>
+                <p class="tl-desc">Travels to Assos (studying with Hermias, marrying Pythias), then to Mytilene on Lesbos (biological fieldwork with Theophrastus). In 343, summoned by Philip II to tutor the thirteen-year-old Alexander. Prepares an annotated <em>Iliad</em> for his pupil.</p>
+                <span class="tl-tag tag-aristotle">Aristotle</span>
+            </div>
+        </div>
+
+        <div class="tl-entry historical" data-filter="historical">
+            <div class="tl-date">338</div>
+            <div class="tl-dot"></div>
+            <div class="tl-content">
+                <div class="tl-title">Battle of Chaeronea</div>
+                <p class="tl-desc">Philip II defeats the combined forces of Athens and Thebes. The eighteen-year-old Alexander commands the Macedonian left wing. The age of the independent Greek <em>polis</em> is effectively over.</p>
+                <span class="tl-tag tag-historical">Historical</span>
+            </div>
+        </div>
+
+        <div class="tl-entry aristotle" data-filter="aristotle">
+            <div class="tl-date">335</div>
+            <div class="tl-dot"></div>
+            <div class="tl-content">
+                <div class="tl-title">Aristotle founds the Lyceum</div>
+                <p class="tl-desc">Returns to Athens and establishes his school in a gymnasium dedicated to Apollo Lykeios. Its members are called Peripatetics. The Lyceum organizes systematic research across every field of knowledge. The first research institute.</p>
+                <span class="tl-tag tag-aristotle">Aristotle</span>
+            </div>
+        </div>
+
+        <div class="tl-entry historical" data-filter="historical">
+            <div class="tl-date">334&ndash;323</div>
+            <div class="tl-dot"></div>
+            <div class="tl-content">
+                <div class="tl-title">Alexander&rsquo;s conquests</div>
+                <p class="tl-desc">Alexander conquers the Persian Empire, reaching Egypt, Mesopotamia, Central Asia, and the borders of India. He founds cities bearing his name across three continents. The Hellenistic world is born. Aristotle reportedly receives biological specimens from the campaign.</p>
+                <span class="tl-tag tag-historical">Historical</span>
+            </div>
+        </div>
+
+        <div class="tl-entry aristotle" data-filter="aristotle">
+            <div class="tl-date">323</div>
+            <div class="tl-dot"></div>
+            <div class="tl-content">
+                <div class="tl-title">Death of Alexander &mdash; Aristotle flees Athens</div>
+                <p class="tl-desc">Alexander dies in Babylon at thirty-two. Anti-Macedonian sentiment surges in Athens. Aristotle withdraws to Chalcis, reportedly saying he will not allow Athens to &ldquo;sin twice against philosophy.&rdquo;</p>
+                <span class="tl-tag tag-aristotle">Aristotle</span>
+            </div>
+        </div>
+
+        <div class="tl-entry aristotle" data-filter="aristotle">
+            <div class="tl-date">322</div>
+            <div class="tl-dot"></div>
+            <div class="tl-content">
+                <div class="tl-title">Death of Aristotle</div>
+                <p class="tl-desc">Dies in Chalcis on the island of Euboea at the age of sixty-two. Theophrastus succeeds him as head of the Lyceum. His published dialogues will gradually be lost; his esoteric treatises will survive to become the most influential body of philosophical writing in history.</p>
+                <span class="tl-tag tag-aristotle">Aristotle</span>
+            </div>
+        </div>
+
+        <!-- ============ HELLENISTIC PERIOD ============ -->
+        <div class="tl-era" data-era="all">
+            <div class="tl-era-dot"></div>
+            <div class="tl-era-title">The Hellenistic World</div>
+            <div class="tl-era-dates">c. 323&ndash;31 BCE</div>
+        </div>
+
+        <div class="tl-entry milestone" data-filter="milestone">
+            <div class="tl-date">c. 306</div>
+            <div class="tl-dot"></div>
+            <div class="tl-content">
+                <div class="tl-title">Epicurus founds the Garden</div>
+                <p class="tl-desc">Establishes his school in Athens, admitting women and slaves. Atomism, the swerve, and <em>ataraxia</em>. &ldquo;Where death is, I am not.&rdquo; The third great philosophical institution of Athens.</p>
+                <span class="tl-tag tag-philosophy">Philosophy</span>
+            </div>
+        </div>
+
+        <div class="tl-entry milestone" data-filter="milestone">
+            <div class="tl-date">c. 300</div>
+            <div class="tl-dot"></div>
+            <div class="tl-content">
+                <div class="tl-title">Zeno of Citium founds the Stoa</div>
+                <p class="tl-desc">Begins teaching at the Painted Colonnade (<em>Stoa Poikile</em>) in the Athenian agora. Logic, physics, and ethics as an integrated system. Living in agreement with nature. Stoicism will become the dominant philosophy of the Hellenistic and Roman world.</p>
+                <span class="tl-tag tag-philosophy">Philosophy</span>
+            </div>
+        </div>
+
+        <div class="tl-entry milestone" data-filter="milestone">
+            <div class="tl-date">c. 268</div>
+            <div class="tl-dot"></div>
+            <div class="tl-content">
+                <div class="tl-title">Arcesilaus turns the Academy skeptical</div>
+                <p class="tl-desc">Becomes scholarch and inaugurates the systematic suspension of judgment (<em>epoche</em>). Claims to recover the authentic spirit of Socrates against Stoic dogmatism. The beginning of the &ldquo;Middle Academy.&rdquo;</p>
+                <span class="tl-tag tag-philosophy">Philosophy</span>
+            </div>
+        </div>
+
+        <div class="tl-entry milestone" data-filter="milestone">
+            <div class="tl-date">155</div>
+            <div class="tl-dot"></div>
+            <div class="tl-content">
+                <div class="tl-title">The philosophical embassy to Rome</div>
+                <p class="tl-desc">Carneades (Academic), Critolaus (Peripatetic), and Diogenes of Babylon (Stoic) are sent to Rome. Carneades speaks for and against justice on consecutive days. Cato demands their expulsion. Greek philosophy enters the Roman world.</p>
+                <span class="tl-tag tag-philosophy">Philosophy</span>
+            </div>
+        </div>
+
+        <div class="tl-entry milestone" data-filter="milestone">
+            <div class="tl-date">c. 100</div>
+            <div class="tl-dot"></div>
+            <div class="tl-content">
+                <div class="tl-title">Apellicon recovers Aristotle&rsquo;s manuscripts</div>
+                <p class="tl-desc">Purchases the deteriorated manuscripts from the heirs of Neleus at Scepsis and brings them to Athens. The texts had rotted in a cellar for nearly two centuries.</p>
+                <span class="tl-tag tag-philosophy">Philosophy</span>
+            </div>
+        </div>
+
+        <div class="tl-entry historical" data-filter="historical">
+            <div class="tl-date">86</div>
+            <div class="tl-dot"></div>
+            <div class="tl-content">
+                <div class="tl-title">Sulla sacks Athens</div>
+                <p class="tl-desc">The Roman general Sulla besieges and captures Athens. The grove of Academus is destroyed. Sulla seizes Apellicon&rsquo;s library, including the Aristotelian manuscripts, as war spoil and transports it to Rome.</p>
+                <span class="tl-tag tag-historical">Historical</span>
+            </div>
+        </div>
+
+        <div class="tl-entry milestone" data-filter="milestone">
+            <div class="tl-date">c. 60</div>
+            <div class="tl-dot"></div>
+            <div class="tl-content">
+                <div class="tl-title">Andronicus of Rhodes publishes the Aristotelian corpus</div>
+                <p class="tl-desc">Arranges the treatises in the systematic order still used today. Places the works on first philosophy &ldquo;after the Physics&rdquo;&mdash;coining the term &ldquo;metaphysics.&rdquo; Creates the Aristotle that all subsequent ages have read.</p>
+                <span class="tl-tag tag-philosophy">Philosophy</span>
+            </div>
+        </div>
+
+        <!-- ============ ROMAN PERIOD ============ -->
+        <div class="tl-era" data-era="all">
+            <div class="tl-era-dot"></div>
+            <div class="tl-era-title">The Roman &amp; Late Antique Period</div>
+            <div class="tl-era-dates">c. 31 BCE&ndash;529 CE</div>
+        </div>
+
+        <div class="tl-entry milestone" data-filter="milestone">
+            <div class="tl-date">c. 50 CE</div>
+            <div class="tl-dot"></div>
+            <div class="tl-content">
+                <div class="tl-title">Birth of Epictetus</div>
+                <p class="tl-desc">Born a slave in Hierapolis. &ldquo;Some things are within our power, while others are not.&rdquo; His <em>Enchiridion</em> becomes foundational for cognitive behavioral therapy two millennia later.</p>
+                <span class="tl-tag tag-philosophy">Philosophy</span>
+            </div>
+        </div>
+
+        <div class="tl-entry milestone" data-filter="milestone">
+            <div class="tl-date">c. 200</div>
+            <div class="tl-dot"></div>
+            <div class="tl-content">
+                <div class="tl-title">Alexander of Aphrodisias &mdash; the Commentator</div>
+                <p class="tl-desc">Holds the imperial chair of Peripatetic philosophy in Athens. His commentaries on Aristotle become the benchmark. His reading of <em>De Anima</em> III.5 shapes a millennium of debate.</p>
+                <span class="tl-tag tag-philosophy">Philosophy</span>
+            </div>
+        </div>
+
+        <div class="tl-entry milestone" data-filter="milestone">
+            <div class="tl-date">c. 244</div>
+            <div class="tl-dot"></div>
+            <div class="tl-content">
+                <div class="tl-title">Plotinus begins teaching in Rome</div>
+                <p class="tl-desc">Founds his philosophical circle. The <em>Enneads</em> reinterpret Plato as emanation from the One. The last great original philosophical system of antiquity. Neoplatonism will shape Augustine, Islamic philosophy, and the entire medieval Christian tradition.</p>
+                <span class="tl-tag tag-philosophy">Philosophy</span>
+            </div>
+        </div>
+
+        <div class="tl-entry milestone" data-filter="milestone">
+            <div class="tl-date">c. 270</div>
+            <div class="tl-dot"></div>
+            <div class="tl-content">
+                <div class="tl-title">Porphyry composes the <em>Isagoge</em></div>
+                <p class="tl-desc">His introduction to Aristotle&rsquo;s <em>Categories</em> becomes the most widely read logical text for a millennium. His deferred questions about universals catalyze the longest debate in the history of philosophy.</p>
+                <span class="tl-tag tag-philosophy">Philosophy</span>
+            </div>
+        </div>
+
+        <div class="tl-entry historical" data-filter="historical">
+            <div class="tl-date">410</div>
+            <div class="tl-dot"></div>
+            <div class="tl-content">
+                <div class="tl-title">Sack of Rome by the Visigoths</div>
+                <p class="tl-desc">Alaric&rsquo;s Visigoths sack Rome. Augustine begins composing <em>The City of God</em>, profoundly shaped by Neoplatonic philosophy, in response to the crisis.</p>
+                <span class="tl-tag tag-historical">Historical</span>
+            </div>
+        </div>
+
+        <div class="tl-entry milestone" data-filter="milestone">
+            <div class="tl-date">485</div>
+            <div class="tl-dot"></div>
+            <div class="tl-content">
+                <div class="tl-title">Death of Proclus</div>
+                <p class="tl-desc">The last great pagan philosopher. His <em>Elements of Theology</em> and Platonic commentaries represent the summit of Neoplatonism. His systematic influence will shape Islamic and Christian theology for a millennium.</p>
+                <span class="tl-tag tag-philosophy">Philosophy</span>
+            </div>
+        </div>
+
+        <div class="tl-entry milestone" data-filter="milestone">
+            <div class="tl-date">529</div>
+            <div class="tl-dot"></div>
+            <div class="tl-content">
+                <div class="tl-title">Justinian closes the philosophical schools in Athens</div>
+                <p class="tl-desc">The Emperor Justinian orders the closure of the Neoplatonic Academy, the last institutional descendant of Plato&rsquo;s original foundation. Simplicius and other philosophers reportedly travel to the Sasanian court in Persia. The continuous tradition of Greek philosophical teaching in Athens, stretching back over nine centuries to Plato, comes to an end.</p>
+                <span class="tl-tag tag-philosophy">Philosophy</span>
+            </div>
+        </div>
+
+        <!-- ============ TRANSMISSION ============ -->
+        <div class="tl-era" data-era="all">
+            <div class="tl-era-dot"></div>
+            <div class="tl-era-title">The Transmission &amp; Recovery</div>
+            <div class="tl-era-dates">c. 750&ndash;1499 CE</div>
+        </div>
+
+        <div class="tl-entry milestone" data-filter="milestone">
+            <div class="tl-date">c. 830</div>
+            <div class="tl-dot"></div>
+            <div class="tl-content">
+                <div class="tl-title">The House of Wisdom in Baghdad</div>
+                <p class="tl-desc">Under the caliph al-Ma&rsquo;mun, the <em>Bayt al-Hikma</em> undertakes the systematic translation of the Greek philosophical and scientific corpus into Arabic. Hunayn ibn Ishaq and his circle produce the standard Arabic Aristotle. The most ambitious translation project in human history.</p>
+                <span class="tl-tag tag-philosophy">Philosophy</span>
+            </div>
+        </div>
+
+        <div class="tl-entry milestone" data-filter="milestone">
+            <div class="tl-date">c. 1037</div>
+            <div class="tl-dot"></div>
+            <div class="tl-content">
+                <div class="tl-title">Death of Avicenna</div>
+                <p class="tl-desc">The most original Islamic philosopher. His distinction between essence and existence transforms Aristotelian metaphysics and is adopted by Aquinas. His <em>Canon of Medicine</em> serves as the standard medical textbook until the seventeenth century.</p>
+                <span class="tl-tag tag-philosophy">Philosophy</span>
+            </div>
+        </div>
+
+        <div class="tl-entry milestone" data-filter="milestone">
+            <div class="tl-date">c. 1150</div>
+            <div class="tl-dot"></div>
+            <div class="tl-content">
+                <div class="tl-title">The Toledo translators begin rendering Aristotle into Latin</div>
+                <p class="tl-desc">Gerard of Cremona and other scholars translate the <em>Physics</em>, <em>De Anima</em>, <em>Metaphysics</em>, and other works from Arabic into Latin. Aristotle arrives in the medieval Latin West together with the commentaries of Avicenna and Averroes.</p>
+                <span class="tl-tag tag-philosophy">Philosophy</span>
+            </div>
+        </div>
+
+        <div class="tl-entry milestone" data-filter="milestone">
+            <div class="tl-date">1198</div>
+            <div class="tl-dot"></div>
+            <div class="tl-content">
+                <div class="tl-title">Death of Averroes</div>
+                <p class="tl-desc">The greatest Aristotelian commentator since Alexander. The Latin scholastics call him simply <em>Commentator</em>. His doctrine of the unity of the intellect provokes the fiercest controversy in thirteenth-century philosophy.</p>
+                <span class="tl-tag tag-philosophy">Philosophy</span>
+            </div>
+        </div>
+
+        <div class="tl-entry historical" data-filter="historical">
+            <div class="tl-date">1210</div>
+            <div class="tl-dot"></div>
+            <div class="tl-content">
+                <div class="tl-title">Aristotle banned at the University of Paris</div>
+                <p class="tl-desc">The teaching of Aristotle&rsquo;s natural philosophy is prohibited. The ban is renewed in 1215. By 1255, the entire Aristotelian corpus is required reading. From prohibition to curriculum in forty-five years.</p>
+                <span class="tl-tag tag-historical">Historical</span>
+            </div>
+        </div>
+
+        <div class="tl-entry milestone" data-filter="milestone">
+            <div class="tl-date">1274</div>
+            <div class="tl-dot"></div>
+            <div class="tl-content">
+                <div class="tl-title">Death of Thomas Aquinas</div>
+                <p class="tl-desc">Dies at forty-nine, leaving the <em>Summa Theologiae</em> unfinished. &ldquo;All that I have written seems like straw.&rdquo; The greatest synthesis of Aristotelian philosophy and Christian theology. His work is declared the official philosophy of the Catholic Church in 1879.</p>
+                <span class="tl-tag tag-philosophy">Philosophy</span>
+            </div>
+        </div>
+
+        <div class="tl-entry milestone" data-filter="milestone">
+            <div class="tl-date">1417</div>
+            <div class="tl-dot"></div>
+            <div class="tl-content">
+                <div class="tl-title">Poggio Bracciolini rediscovers Lucretius</div>
+                <p class="tl-desc">The Italian humanist finds a manuscript of <em>De Rerum Natura</em> in a German monastery. Lost for over a thousand years, the Epicurean poem re-enters Western culture. Stephen Greenblatt has argued it helped lay the conceptual foundations of modernity.</p>
+                <span class="tl-tag tag-philosophy">Philosophy</span>
+            </div>
+        </div>
+
+        <div class="tl-entry milestone" data-filter="milestone">
+            <div class="tl-date">1438&ndash;39</div>
+            <div class="tl-dot"></div>
+            <div class="tl-content">
+                <div class="tl-title">Gemistos Plethon lectures in Florence</div>
+                <p class="tl-desc">The Byzantine philosopher arrives for the Council of Ferrara-Florence. His lectures on the superiority of Plato over Aristotle electrify the Italian intellectual elite. He directly inspires Cosimo de&rsquo; Medici to establish a new Platonic Academy.</p>
+                <span class="tl-tag tag-philosophy">Philosophy</span>
+            </div>
+        </div>
+
+        <div class="tl-entry milestone" data-filter="milestone">
+            <div class="tl-date">1462&ndash;69</div>
+            <div class="tl-dot"></div>
+            <div class="tl-content">
+                <div class="tl-title">Marsilio Ficino translates the complete Plato into Latin</div>
+                <p class="tl-desc">The first integral translation of all thirty-six dialogues. Plato becomes fully available to Western readers for the first time in over a thousand years. Ficino coins the term &ldquo;Platonic love&rdquo; (<em>amor platonicus</em>). His translations remain standard until the nineteenth century.</p>
+                <span class="tl-tag tag-philosophy">Philosophy</span>
+            </div>
+        </div>
+
+        <div class="tl-entry milestone" data-filter="milestone">
+            <div class="tl-date">1486</div>
+            <div class="tl-dot"></div>
+            <div class="tl-content">
+                <div class="tl-title">Pico della Mirandola composes the 900 Theses</div>
+                <p class="tl-desc">At twenty-three, Pico draws on every philosophical and theological tradition and offers to defend all 900 theses in public disputation. The Pope suppresses the event. The prefatory <em>Oration on the Dignity of Man</em> becomes the manifesto of Renaissance humanism.</p>
+                <span class="tl-tag tag-philosophy">Philosophy</span>
+            </div>
+        </div>
+
+    </div>
+
+    <a href="#" class="tl-back-top" id="backToTop" aria-label="Back to top">
+        <span class="tl-back-top-arrow">&uarr;</span>
+    </a>
+
+    <footer class="tl-footer">
+        <p>The Academy &amp; The Lyceum &middot; Complete Works Archive</p>
+    </footer>
+
+    <script>
+        // Era filter
+        (function() {
+            var buttons = document.querySelectorAll('.tl-filter-btn');
+            var entries = document.querySelectorAll('.tl-entry');
+            var eras = document.querySelectorAll('.tl-era');
+
+            buttons.forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    var filter = this.getAttribute('data-filter');
+
+                    // Update active button
+                    buttons.forEach(function(b) { b.classList.remove('active'); });
+                    this.classList.add('active');
+
+                    // Filter entries
+                    entries.forEach(function(entry) {
+                        if (filter === 'all') {
+                            entry.classList.remove('hidden');
+                        } else {
+                            var entryFilter = entry.getAttribute('data-filter');
+                            if (entryFilter === filter) {
+                                entry.classList.remove('hidden');
+                            } else {
+                                entry.classList.add('hidden');
+                            }
+                        }
+                    });
+
+                    // Always show era headings
+                    eras.forEach(function(era) {
+                        era.style.display = '';
+                    });
+                });
+            });
+        })();
+
+        // Back to top
+        (function() {
+            var backBtn = document.getElementById('backToTop');
+            if (!backBtn) return;
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 400) {
+                    backBtn.classList.add('visible');
+                } else {
+                    backBtn.classList.remove('visible');
+                }
+            });
+        })();
+    </script>
+
+</body>
+</html>

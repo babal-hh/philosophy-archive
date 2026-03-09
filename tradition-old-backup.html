@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tradition Map — The Academy &amp; The Lyceum</title>
+    <meta name="description" content="A structured overview of the philosophical tradition surrounding Plato and Aristotle.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+    <!-- Reuse main site typography and palette -->
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .tradition-page { padding: 80px var(--pad) 60px; }
+        .tradition-container { width: 100%; max-width: 960px; margin: 0 auto; }
+        .tradition-header { text-align: center; margin-bottom: 40px; }
+        .tradition-title { font-family: var(--font-heading); font-size: clamp(2.1rem, 4vw, 3rem); font-weight: 400; margin-bottom: 10px; }
+        .tradition-subtitle { font-family: var(--font-body); font-size: 0.97rem; color: var(--text-secondary); max-width: 55ch; margin: 0 auto; }
+        .tradition-rule { width: 60px; height: 1px; background: var(--gold); margin: 22px auto 0; opacity: 0.7; }
+        .tradition-grid { display: grid; grid-template-columns: 1.1fr 1.9fr; gap: 28px; margin-top: 40px; }
+        .tradition-section-title { font-family: var(--font-heading); font-size: 1.4rem; margin-bottom: 10px; }
+        .tradition-section-sub { font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 16px; }
+        .tradition-list { border-top: 1px solid var(--border); padding-top: 16px; }
+        .tradition-block { margin-bottom: 24px; }
+        .tradition-era { font-family: var(--font-heading); font-size: 1.15rem; font-weight: 600; margin-bottom: 6px; }
+        .tradition-era-note { font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 6px; }
+        .tradition-ul { list-style: none; padding-left: 0; }
+        .tradition-ul li { font-size: 0.92rem; color: var(--text-secondary); margin-bottom: 12px; line-height: 1.6; }
+        .tradition-ul span { font-family: var(--font-heading); font-weight: 600; color: var(--text); }
+        .tradition-note { font-size: 0.85rem; color: var(--text-muted); margin-top: 12px; }
+        .tradition-mainline { border-top: 1px solid var(--border); padding-top: 16px; margin-bottom: 28px; }
+        .tradition-mainline-item { font-size: 0.95rem; margin-bottom: 4px; }
+        .tradition-mainline-item span { font-family: var(--font-heading); font-weight: 600; }
+        @media (max-width: 900px) { .tradition-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+
+    <!-- SAME NAVIGATION AS INDEX.HTML -->
+    <header class="navbar" id="navbar" role="banner">
+        <div class="nav-container">
+            <a href="index.html#hero" class="nav-logo" aria-label="Home">
+                <span class="logo-main">The Archive</span>
+                <span class="logo-sub">est. 387 bc</span>
+            </a>
+            <nav class="nav-links" id="navLinks" role="navigation" aria-label="Main navigation">
+                <a href="index.html#plato-section" class="nav-link">Plato</a>
+                <a href="index.html#aristotle-section" class="nav-link">Aristotle</a>
+                <a href="index.html#timeline-section" class="nav-link">Timeline</a>
+                <a href="index.html#about-section" class="nav-link">About</a>
+                <a href="tradition.html" class="nav-link">Tradition Map</a>
+            </nav>
+            <div class="nav-actions">
+                <button class="nav-btn theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                    <span class="theme-icon-dark">Moon</span>
+                    <span class="theme-icon-light">Sun</span>
+                </button>
+                <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- MOBILE NAV OVERLAY -->
+    <div class="mobile-nav-overlay" id="mobileNavOverlay" aria-hidden="true">
+        <nav class="mobile-nav-content" role="navigation" aria-label="Mobile navigation">
+            <a href="index.html#hero" class="mobile-nav-link">
+                <span class="mobile-nav-number">00</span>
+                <span class="mobile-nav-label">Home</span>
+            </a>
+            <a href="index.html#plato-section" class="mobile-nav-link">
+                <span class="mobile-nav-number">01</span>
+                <span class="mobile-nav-label">Plato</span>
+            </a>
+            <a href="index.html#aristotle-section" class="mobile-nav-link">
+                <span class="mobile-nav-number">02</span>
+                <span class="mobile-nav-label">Aristotle</span>
+            </a>
+            <a href="index.html#timeline-section" class="mobile-nav-link">
+                <span class="mobile-nav-number">03</span>
+                <span class="mobile-nav-label">Timeline</span>
+            </a>
+            <a href="index.html#about-section" class="mobile-nav-link">
+                <span class="mobile-nav-number">04</span>
+                <span class="mobile-nav-label">About</span>
+            </a>
+            <a href="tradition.html" class="mobile-nav-link">
+                <span class="mobile-nav-number">05</span>
+                <span class="mobile-nav-label">Tradition Map</span>
+            </a>
+        </nav>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <main class="tradition-page">
+        <div class="tradition-container">
+            <header class="tradition-header">
+                <h1 class="tradition-title">Tradition Map</h1>
+                <p class="tradition-subtitle">
+                    A structured overview of the philosophical traditions surrounding
+                    Plato and Aristotle &mdash; from their predecessors, through their schools,
+                    into late antiquity, the medieval world, and modern philosophy.
+                </p>
+                <div class="tradition-rule"></div>
+            </header>
+
+            <section class="tradition-grid">
+                <!-- Left: Main Line -->
+                <div>
+                    <h2 class="tradition-section-title">Main Lineage</h2>
+                    <p class="tradition-section-sub">From Socrates to late antiquity</p>
+                    <div class="tradition-mainline">
+                        <div class="tradition-mainline-item"><span>Pre-Socratics</span> &mdash; Thales, Parmenides, Heraclitus, Pythagoreans</div>
+                        <div class="tradition-mainline-item"><span>Socrates</span> (469&ndash;399 BC) &mdash; ethical inquiry, elenchus, examined life</div>
+                        <div class="tradition-mainline-item"><span>Plato</span> (427&ndash;347 BC) &mdash; Academy, dialogues, Forms, Republic, Symposium</div>
+                        <div class="tradition-mainline-item"><span>Aristotle</span> (384&ndash;322 BC) &mdash; Lyceum, treatises, categories, logic, ethics, politics</div>
+                    </div>
+                    <div class="tradition-list">
+                        <div class="tradition-block">
+                            <div class="tradition-era">The Academy (Plato's School)</div>
+                            <div class="tradition-era-note">Ancient Platonism</div>
+                            <ul class="tradition-ul">
+                                <li><span>Speusippus</span> &mdash; Plato's nephew and successor at the Academy.</li>
+                                <li><span>Xenocrates</span> &mdash; Develops Platonic metaphysics and theology.</li>
+                                <li><span>Arcesilaus</span> &mdash; Turns the Academy toward skepticism; suspension of judgment.</li>
+                                <li><span>Carneades</span> &mdash; New Academy; sophisticated skeptical critiques of Stoic dogmatism.</li>
+                            </ul>
+                        </div>
+                        <div class="tradition-block">
+                            <div class="tradition-era">The Lyceum (Aristotle's School)</div>
+                            <div class="tradition-era-note">Peripatetic tradition</div>
+                            <ul class="tradition-ul">
+                                <li><span>Theophrastus</span> &mdash; Aristotle's successor; expands botanical and ethical studies.</li>
+                                <li><span>Strato of Lampsacus</span> &mdash; Emphasizes natural science; more mechanistic leanings.</li>
+                                <li><span>Later Peripatetics</span> &mdash; Andronicus of Rhodes edits and arranges Aristotle's corpus.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Branches -->
+                <div>
+                    <h2 class="tradition-section-title">Branches &amp; Reception</h2>
+                    <p class="tradition-section-sub">Hellenistic, Medieval, and Modern</p>
+                    <div class="tradition-list">
+                        <div class="tradition-block">
+                            <div class="tradition-era">Hellenistic Schools</div>
+                            <div class="tradition-era-note">4th &ndash; 1st c. BC</div>
+                            <ul class="tradition-ul">
+                                <li><span>Stoics</span> (Zeno, Chrysippus) &mdash; Adopt Socratic ethics, dialogue with Plato/Aristotle.</li>
+                                <li><span>Epicureans</span> (Epicurus, Lucretius) &mdash; Counter teleology with atomism and hedonism.</li>
+                            </ul>
+                        </div>
+                        <div class="tradition-block">
+                            <div class="tradition-era">Late Antique Platonism</div>
+                            <div class="tradition-era-note">3rd &ndash; 6th c. AD</div>
+                            <ul class="tradition-ul">
+                                <li><span>Plotinus</span> &mdash; Neoplatonism; grand metaphysical system around the One.</li>
+                                <li><span>Porphyry</span> &mdash; Introduces Aristotle through the Isagoge.</li>
+                                <li><span>Proclus</span> &mdash; Systematic commentator; synthesizes Platonism into theology.</li>
+                                <li><span>Simplicius</span> &mdash; Preserves Greek philosophy within a Neoplatonic framework.</li>
+                            </ul>
+                        </div>
+                        <div class="tradition-block">
+                            <div class="tradition-era">Medieval Traditions</div>
+                            <div class="tradition-era-note">Latin, Islamic, Jewish</div>
+                            <ul class="tradition-ul">
+                                <li><span>Augustine</span> &mdash; Christian Platonist; reads Plato into Christian theology.</li>
+                                <li><span>Avicenna</span> &mdash; Islamic Aristotelian; essence-existence distinction.</li>
+                                <li><span>Averroes</span> &mdash; The great Commentator on Aristotle.</li>
+                                <li><span>Maimonides</span> &mdash; Jewish Aristotelian; blends metaphysics with biblical religion.</li>
+                                <li><span>Thomas Aquinas</span> &mdash; Synthesizes Aristotle with Christian doctrine.</li>
+                            </ul>
+                        </div>
+                        <div class="tradition-block">
+                            <div class="tradition-era">Modern Era</div>
+                            <div class="tradition-era-note">17th &ndash; 20th c.</div>
+                            <ul class="tradition-ul">
+                                <li><span>Descartes</span> &mdash; Breaks from scholastic physics; revives Platonic rationalism.</li>
+                                <li><span>Kant</span> &mdash; Reworks Aristotle's categories into a critical philosophy.</li>
+                                <li><span>Hegel</span> &mdash; Reads history of philosophy as unfolding of Spirit.</li>
+                                <li><span>Nietzsche</span> &mdash; Radical critique of Platonism and its otherworldly values.</li>
+                                <li><span>Heidegger</span> &mdash; Re-reads Greek concepts of physis, being, and truth.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Tradition Map | The Academy &amp; The Lyceum</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=JetBrains+Mono:wght@300;400;500&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        ::selection {
+            background-color: rgba(166, 138, 76, 0.15);
+            color: #1A1A1A;
+        }
+
+        .tradition-body {
+            margin: 0;
+            padding: 0;
+            background-color: #FAF8F4;
+            color: #2C2C2C;
+            font-family: 'Libre Baskerville', 'Georgia', serif;
+            font-size: 15px;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .tradition-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 28px 40px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+        }
+
+        .tradition-nav-title {
+            font-family: 'Cormorant Garamond', 'Georgia', serif;
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: #1A1A1A;
+            letter-spacing: 0.5px;
+            text-decoration: none;
+        }
+
+        .tradition-nav-title:hover {
+            color: #A68A4C;
+        }
+
+        .tradition-nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .tradition-nav-links a {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #888;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .tradition-nav-links a:hover {
+            color: #A68A4C;
+        }
+
+        .tradition-nav-links a.active {
+            color: #A68A4C;
+        }
+
+        .tradition-header {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 40px 60px;
+            text-align: center;
+        }
+
+        .tradition-header-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: #A68A4C;
+            margin-bottom: 20px;
+        }
+
+        .tradition-header h1 {
+            font-family: 'Cormorant Garamond', 'Georgia', serif;
+            font-size: 2.8rem;
+            font-weight: 300;
+            color: #1A1A1A;
+            letter-spacing: 1px;
+            margin: 0 0 16px 0;
+            line-height: 1.2;
+        }
+
+        .tradition-header-sub {
+            font-family: 'Libre Baskerville', 'Georgia', serif;
+            font-size: 0.95rem;
+            font-style: italic;
+            color: #777;
+            max-width: 620px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        .tradition-header-line {
+            width: 60px;
+            height: 1px;
+            background-color: #A68A4C;
+            margin: 40px auto 0;
+            opacity: 0.4;
+        }
+
+        .tradition-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 40px 100px;
+        }
+
+        .tradition-column-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: #999;
+            margin-bottom: 40px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+        }
+
+        .tradition-part-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 3.5px;
+            color: #A68A4C;
+            margin-bottom: 30px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(166, 138, 76, 0.15);
+        }
+
+        .tradition-toggle-row {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 24px;
+        }
+
+        .tradition-toggle-btn {
+            background: none;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            border-radius: 2px;
+            padding: 6px 14px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #999;
+            cursor: pointer;
+            transition: color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .tradition-toggle-btn:hover {
+            color: #A68A4C;
+            border-color: rgba(166, 138, 76, 0.3);
+        }
+
+        details.tradition-block {
+            margin-bottom: 16px;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            border-radius: 2px;
+            transition: border-color 0.3s ease;
+        }
+
+        details.tradition-block:hover {
+            border-color: rgba(166, 138, 76, 0.25);
+        }
+
+        details.tradition-block[open] {
+            margin-bottom: 32px;
+            border-color: rgba(166, 138, 76, 0.2);
+        }
+
+        details.tradition-block summary {
+            padding: 20px 24px;
+            cursor: pointer;
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            gap: 0;
+            position: relative;
+            user-select: none;
+        }
+
+        details.tradition-block summary::-webkit-details-marker {
+            display: none;
+        }
+
+        details.tradition-block summary::after {
+            content: '+';
+            position: absolute;
+            right: 24px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            font-weight: 300;
+            color: #A68A4C;
+            opacity: 0.5;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        details.tradition-block[open] summary::after {
+            content: '\d7';
+            opacity: 0.8;
+        }
+
+        details.tradition-block summary .tradition-era {
+            font-family: 'Cormorant Garamond', 'Georgia', serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #1A1A1A;
+            width: 100%;
+            margin-bottom: 2px;
+            padding-right: 40px;
+        }
+
+        details.tradition-block summary .tradition-era-note {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.68rem;
+            color: #999;
+            letter-spacing: 0.5px;
+            width: 100%;
+        }
+
+        .tradition-block-content {
+            padding: 8px 24px 28px;
+            border-top: 1px solid rgba(0, 0, 0, 0.04);
+            overflow: hidden;
+            animation: slideDown 0.3s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                max-height: 0;
+                padding-top: 0;
+                padding-bottom: 0;
+            }
+            to {
+                opacity: 1;
+                max-height: 4000px;
+                padding-top: 8px;
+                padding-bottom: 28px;
+            }
+        }
+
+        .tradition-ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .tradition-ul li {
+            margin-bottom: 12px;
+            line-height: 1.6;
+            font-size: 0.9rem;
+            color: #3D3D3D;
+        }
+
+        .tradition-ul li:last-child {
+            margin-bottom: 0;
+        }
+
+        .tradition-ul li span {
+            font-weight: 700;
+            color: #1A1A1A;
+        }
+
+        .tradition-ul li em {
+            font-style: italic;
+            color: #555;
+        }
+
+        .tradition-back-top {
+            position: fixed;
+            bottom: 36px;
+            right: 36px;
+            width: 40px;
+            height: 40px;
+            background-color: #FAF8F4;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.4s ease, visibility 0.4s ease,
+                        border-color 0.3s ease;
+            z-index: 100;
+        }
+
+        .tradition-back-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .tradition-back-top:hover {
+            border-color: rgba(166, 138, 76, 0.4);
+        }
+
+        .tradition-back-top-arrow {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: #A68A4C;
+            line-height: 1;
+        }
+
+        .tradition-colophon {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 80px 40px 20px;
+            text-align: center;
+        }
+
+        .tradition-colophon-rule {
+            width: 40px;
+            height: 1px;
+            background-color: #A68A4C;
+            margin: 0 auto 40px;
+            opacity: 0.3;
+        }
+
+        .tradition-colophon-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: #A68A4C;
+            margin-bottom: 24px;
+            opacity: 0.7;
+        }
+
+        .tradition-colophon p {
+            font-family: 'Libre Baskerville', 'Georgia', serif;
+            font-size: 0.82rem;
+            color: #888;
+            line-height: 1.8;
+            margin: 0 0 16px 0;
+        }
+
+        .tradition-colophon p:last-child {
+            margin-bottom: 0;
+        }
+
+        .tradition-colophon em {
+            font-style: italic;
+            color: #777;
+        }
+
+        .tradition-colophon-sources {
+            margin-top: 32px;
+            padding-top: 24px;
+            border-top: 1px solid rgba(0, 0, 0, 0.04);
+        }
+
+        .tradition-colophon-sources p {
+            font-size: 0.75rem;
+            color: #AAA;
+        }
+
+        .tradition-footer {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px;
+            border-top: 1px solid rgba(0, 0, 0, 0.06);
+            text-align: center;
+        }
+
+        .tradition-footer p {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.65rem;
+            color: #999;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin: 0;
+        }
+
+        @media (max-width: 768px) {
+            .tradition-nav {
+                flex-direction: column;
+                gap: 16px;
+                padding: 20px 24px;
+            }
+            .tradition-header {
+                padding: 50px 24px 40px;
+            }
+            .tradition-header h1 {
+                font-size: 2rem;
+            }
+            .tradition-grid {
+                grid-template-columns: 1fr;
+                gap: 60px;
+                padding: 20px 24px 60px;
+            }
+        }
+    </style>
+</head>
+<body class="tradition-body">
+
+    <nav class="tradition-nav">
+        <a href="index.html" class="tradition-nav-title">The Academy &amp; The Lyceum</a>
+        <ul class="tradition-nav-links">
+            <li><a href="index.html">Archive</a></li>
+            <li><a href="tradition.html" class="active"> Tradition</a></li>
+            <li><a href="glossary.html">Glossary</a></li>
+            <li><a href="timeline.html">Timeline</a></li>
+        </ul>
+    </nav>
+
+    <header class="tradition-header">
+        <div class="tradition-header-label">Philosophical Lineage</div>
+        <h1>The Tradition Map</h1>
+        <p class="tradition-header-sub">
+            From the first cosmologists of Miletus to the closing of
+            the schools in late antiquity&mdash;the intellectual lineage
+            that produced, sustained, and transformed the works of
+            Plato and Aristotle.
+        </p>
+        <div class="tradition-header-line"></div>
+    </header>
+
+    <main class="tradition-grid">
+
+        <!-- ========== LEFT COLUMN ========== -->
+        <div class="tradition-column tradition-column-left">
+            <div class="tradition-column-label">Main Lineage</div>
+
+            <div class="tradition-toggle-row">
+                <button class="tradition-toggle-btn" onclick="toggleAll(this)">Expand All</button>
+            </div>
+
+            <div class="tradition-part-label">Part I &middot; The Roots</div>
+
+            <!-- MILESIANS -->
+            <details class="tradition-block">
+                <summary>
+                    <div class="tradition-era">The Milesians</div>
+                    <div class="tradition-era-note">c. 624&ndash;546 BCE &middot; Miletus, Ionia</div>
+                </summary>
+                <div class="tradition-block-content">
+                    <ul class="tradition-ul">
+                        <li><span>Thales of Miletus</span> &mdash; Regarded by Aristotle as the founder of natural philosophy (<em>Metaphysics</em> 983b). Proposed that water (<em>hydor</em>) is the fundamental substance, the <em>arche</em>, underlying all things. Credited with predicting the solar eclipse of 585 BCE and with the earliest attempts to explain natural phenomena without recourse to mythological narrative. His significance lies less in the specific claim about water than in the revolutionary gesture of seeking a single, rational principle behind the apparent diversity of nature. Ancient tradition also ascribes to him the earliest geometrical proofs, the measurement of the Egyptian pyramids by shadow-reckoning, and practical engineering feats including the diversion of the river Halys for King Croesus of Lydia. Whether or not all such attributions are historical, they reflect the ancient understanding of Thales as a figure who united theoretical insight with practical mastery&mdash;a prototype of the philosopher as both contemplative and man of affairs.</li>
+                        <li><span>Anaximander</span> &mdash; Student and intellectual successor of Thales. Made the decisive conceptual advance of proposing an abstract principle as the <em>arche</em>: the <em>apeiron</em> (the boundless, the indefinite)&mdash;not a perceivable substance like water or air, but something prior to all determinate qualities. Authored what may be the first written work of Western philosophy. Advanced an early theory of cosmic justice in which things come into being and pass away &ldquo;according to necessity, for they pay penalty and retribution to each other for their injustice according to the assessment of time&rdquo; (DK 12 B1). He also produced the first known map of the inhabited world and proposed a remarkable proto-evolutionary account of human origins: humans originally developed inside fish-like creatures in the sea, since human infants are too helpless to survive on their own. His thinking represents the first sustained attempt to construct a rational cosmology&mdash;an account of the origin, structure, and governing principles of the universe as a whole.</li>
+                        <li><span>Anaximenes</span> &mdash; Proposed air (<em>aer</em>) as the <em>arche</em>, but his true contribution was methodological: he introduced the mechanism of condensation and rarefaction to explain how a single substance generates qualitative diversity. Air, when rarefied, becomes fire; when condensed, it becomes wind, then cloud, then water, then earth, then stone. This represented an early attempt at reductive physical explanation&mdash;a move toward mechanism that would echo through subsequent natural philosophy. His model provided what the theories of Thales and Anaximander lacked: a specific, observable physical process by which one substance transforms into another. In this sense, Anaximenes completed the Milesian project by showing not merely <em>what</em> the fundamental substance is, but <em>how</em> it produces the world we perceive.</li>
+                    </ul>
+                </div>
+            </details>
+
+            <!-- PYTHAGOREANS -->
+            <details class="tradition-block">
+                <summary>
+                    <div class="tradition-era">The Pythagoreans</div>
+                    <div class="tradition-era-note">c. 570&ndash;350 BCE &middot; Croton &amp; Magna Graecia</div>
+                </summary>
+                <div class="tradition-block-content">
+                    <ul class="tradition-ul">
+                        <li><span>Pythagoras of Samos</span> &mdash; Founded a philosophical and religious brotherhood at Croton in southern Italy. Held that number (<em>arithmos</em>) is the principle of all things and that reality is fundamentally mathematical in structure&mdash;a conviction born from the discovery of the numerical ratios underlying musical harmony: the octave (2:1), the fifth (3:2), and the fourth (4:3). These ratios demonstrated that qualitative beauty (musical consonance) rests on quantitative structure (numerical proportion)&mdash;a revelation whose philosophical implications cannot be overstated. Taught the transmigration of souls (<em>metempsychosis</em>) and the ethical purification of the soul through intellectual contemplation, ritual observance, and communal discipline. The brotherhood observed strict rules of conduct, dietary restrictions (most famously the prohibition on beans, the reason for which was much debated in antiquity), and a hierarchy of initiates. Wrote nothing himself; his doctrines were preserved through oral tradition and the work of later followers, giving rise to the enduring difficulty of separating the historical Pythagoras from the mythology that accreted around him. His influence on Plato was immense, particularly on the theory of Forms, the mathematical cosmology of the <em>Timaeus</em>, and the conception of philosophy as a way of life oriented toward the eternal and divine.</li>
+                        <li><span>Philolaus of Croton</span> &mdash; The first Pythagorean to commit the school&rsquo;s doctrines to writing, thereby making them available to a wider philosophical audience for the first time. Argued that all things in nature are composed of two fundamental categories: <em>perainonta</em> (limiters) and <em>apeira</em> (unlimiteds), bound together by <em>harmonia</em> (fitting-together). His cosmology was audaciously non-geocentric, placing a Central Fire&mdash;not the earth, not the sun&mdash;at the center of the universe, with the earth, sun, moon, five planets, and a counter-earth (<em>antichthon</em>) all revolving around it. Plato likely acquired Pythagorean texts through Philolaus&rsquo;s circle during his travels to Sicily and southern Italy, and the cosmological scheme of the <em>Timaeus</em>&mdash;in which a divine craftsman constructs the world-soul according to mathematical harmonies&mdash;is deeply indebted to the Pythagorean tradition Philolaus transmitted.</li>
+                        <li><span>Archytas of Tarentum</span> &mdash; A Pythagorean philosopher, mathematician, and statesman who served as elected general (<em>strategos</em>) of Tarentum seven times. He was a personal friend of Plato and is thought to have been instrumental in arranging Plato&rsquo;s second and third voyages to Syracuse. His mathematical work included the first known solution to the problem of doubling the cube, achieved through an elegant three-dimensional construction involving the intersection of a cylinder, a cone, and a torus. He also contributed to the theory of musical harmonics, distinguishing three types of mathematical mean (arithmetic, geometric, and harmonic) that became foundational in both music theory and mathematics. He represents the Pythagorean ideal of the philosopher who unites theoretical insight with practical governance&mdash;an ideal that deeply informed Plato&rsquo;s vision of the philosopher-ruler in the <em>Republic</em>.</li>
+                    </ul>
+                </div>
+            </details>
+
+            <!-- HERACLITUS -->
+            <details class="tradition-block">
+                <summary>
+                    <div class="tradition-era">Heraclitus of Ephesus</div>
+                    <div class="tradition-era-note">c. 535&ndash;475 BCE &middot; Ephesus, Ionia</div>
+                </summary>
+                <div class="tradition-block-content">
+                    <ul class="tradition-ul">
+                        <li><span>Heraclitus</span> &mdash; Known in antiquity as &ldquo;the Obscure&rdquo; (<em>ho Skoteinos</em>) for his deliberately oracular and aphoristic prose. Born into the hereditary priestly aristocracy of Ephesus, he reportedly renounced his hereditary privileges in favor of his brother and withdrew into a life of philosophical solitude. Taught that all things are in ceaseless flux (<em>panta rhei</em>), governed by an underlying rational structure he called the <em>Logos</em>&mdash;a principle of measure, proportion, and intelligible order immanent in the world itself. Fire serves as both the primary element and the master symbol of perpetual transformation: &ldquo;This world-order, the same for all, no god or man made, but it always was and is and shall be: an ever-living fire, kindling in measures and going out in measures&rdquo; (DK 22 B30). Central to his thought is the unity of opposites: &ldquo;The road up and the road down are one and the same&rdquo; (DK 22 B60). Day and night, summer and winter, war and peace, hunger and satiety are not genuinely opposed but are aspects of a single, dynamic, self-regulating process. The apparent stability of the world is not stasis but equilibrium&mdash;like the tension of a drawn bow or the back-turning harmony of a lyre. He deposited his book in the temple of Artemis at Ephesus, reportedly making it deliberately difficult as a filter against the unworthy. His vision of the sensible world as perpetual becoming profoundly shaped Plato&mdash;Aristotle reports that the young Plato studied under the Heraclitean Cratylus before encountering Socrates&mdash;and the doctrine that the physical world is never fully real, that it is always becoming and never simply is, finds its metaphysical completion in Plato&rsquo;s distinction between the intelligible Forms and the sensible world of the <em>Timaeus</em>. His <em>Logos</em> doctrine became foundational for the Stoics three centuries later, who identified it with the rational, providential fire that pervades and governs the cosmos.</li>
+                    </ul>
+                </div>
+            </details>
+
+            <!-- ELEATICS -->
+            <details class="tradition-block">
+                <summary>
+                    <div class="tradition-era">The Eleatics</div>
+                    <div class="tradition-era-note">c. 515&ndash;430 BCE &middot; Elea, Magna Graecia</div>
+                </summary>
+                <div class="tradition-block-content">
+                    <ul class="tradition-ul">
+                        <li><span>Parmenides of Elea</span> &mdash; Composed a philosophical poem in Homeric hexameter, structured as a divine revelation in which a goddess guides the philosopher along two paths: the Way of Truth (<em>aletheia</em>) and the Way of Opinion (<em>doxa</em>). Along the first path, rigorous deductive argument establishes that Being (<em>to eon</em>) is one, eternal, unchanging, complete, and indivisible&mdash;that generation, destruction, and plurality are logically impossible, for &ldquo;what is not&rdquo; can be neither thought nor spoken. The argument is breathtaking in its severity: if you attempt to think of nothing, you are already thinking of something (namely &ldquo;nothing&rdquo;); therefore non-being is inconceivable, and since change requires something to come from non-being (what was not) into being (what is), change itself is impossible. This radical monism posed the most formidable challenge in all of Pre-Socratic philosophy: if Parmenides is right, the entire world of change and multiplicity is an illusion. Every subsequent Greek philosopher was compelled to answer him. Empedocles, Anaxagoras, and Democritus all framed their pluralist theories as explicit responses to the Eleatic challenge. Plato devoted an entire dialogue, the <em>Parmenides</em>, to wrestling with his arguments, and the theory of Forms can itself be read as an attempt to secure a domain of Parmenidean permanence (the eternal, unchanging Forms) alongside the Heraclitean flux of the sensible world. Aristotle&rsquo;s distinction between potentiality and actuality can likewise be understood as an attempt to make change logically intelligible in the face of Parmenides&rsquo; prohibition.</li>
+                        <li><span>Zeno of Elea</span> &mdash; Student and defender of Parmenides. Devised a celebrated series of paradoxes&mdash;Achilles and the Tortoise, the Dichotomy, the Arrow, the Stadium&mdash;designed not to prove Parmenides&rsquo; thesis directly, but to demonstrate that the rival hypotheses of plurality and motion lead to equally devastating logical absurdities. In the Dichotomy: before you can traverse any distance, you must traverse half of it; before you can traverse that half, you must traverse half of that; and so on to infinity. Since an infinite number of tasks cannot be completed in finite time, motion is impossible. In Achilles and the Tortoise: the swift Achilles can never overtake the slow tortoise, because each time he reaches the point where the tortoise was, the tortoise has moved slightly ahead, generating a new gap, ad infinitum. Aristotle called Zeno the inventor of dialectic (<em>dialogike</em>). His paradoxes anticipated fundamental problems in the philosophy of infinity, continuity, and the foundations of mathematics that were not rigorously addressed until the work of Cauchy, Weierstrass, and Dedekind in the nineteenth century, and they remain topics of active philosophical discussion in the philosophy of physics and the philosophy of mathematics today.</li>
+                    </ul>
+                </div>
+            </details>
+
+            <!-- PLURALISTS & ATOMISTS -->
+            <details class="tradition-block">
+                <summary>
+                    <div class="tradition-era">The Pluralists &amp; Atomists</div>
+                    <div class="tradition-era-note">c. 494&ndash;370 BCE &middot; Sicily, Ionia, &amp; Thrace</div>
+                </summary>
+                <div class="tradition-block-content">
+                    <ul class="tradition-ul">
+                        <li><span>Empedocles of Acragas</span> &mdash; Sought to reconcile Parmenidean permanence with the manifest reality of change by positing four eternal, indestructible roots (<em>rhizomata</em>)&mdash;earth, water, air, and fire&mdash;combined and separated by two cosmic forces: Love (<em>Philia</em>), which unites, and Strife (<em>Neikos</em>), which divides. Nothing truly comes into being or perishes; there is only the mixing and unmixing of what already and always exists. The cosmic cycle alternates between a state of perfect unity under Love (the Sphere, <em>Sphairos</em>) and a state of complete separation under Strife, with our world existing at an intermediate stage. He also advanced a theory of natural selection avant la lettre: in the early stages of the cosmic cycle, random combinations of limbs and organs produced monstrous creatures; only those combinations capable of surviving and reproducing persisted. His four-element framework dominated Western natural philosophy for over two thousand years, passing through Aristotle and into the medieval period virtually unchallenged. He composed his philosophy in epic hexameter verse of considerable literary power, and ancient tradition surrounded him with legends of miracle-working&mdash;controlling winds, reviving the dead&mdash;culminating in the story that he leaped into the crater of Mount Etna to prove his divinity, leaving behind only a single bronze sandal.</li>
+                        <li><span>Anaxagoras of Clazomenae</span> &mdash; Held that all things contain a portion of everything (&ldquo;in everything there is a share of everything&rdquo;), and that the cosmos was set into motion and ordered by <em>Nous</em> (Mind)&mdash;a principle of pure, unmixed intelligence, &ldquo;the finest and purest of all things,&rdquo; separate from the material mixture it governs. <em>Nous</em> initiated the cosmic rotation that separated the originally undifferentiated mixture into the differentiated world we perceive, but having set the process in motion, it did not intervene further to direct particular outcomes. Socrates, as reported in the <em>Phaedo</em> (97b&ndash;99d), was initially inspired by this doctrine but ultimately disappointed that Anaxagoras failed to employ <em>Nous</em> as a genuinely teleological explanation&mdash;that is, to show <em>why</em> the arrangement of things is for the best, not merely <em>how</em> the physical process works. This disappointment shaped Plato&rsquo;s own turn toward the Good as a first principle of intelligibility. Anaxagoras was the first philosopher to take up residence in Athens, where he became closely associated with Pericles. He was prosecuted for impiety for teaching that the sun is a white-hot stone larger than the Peloponnese rather than a god&mdash;the first recorded conflict between scientific inquiry and religious orthodoxy in Western history.</li>
+                        <li><span>Democritus of Abdera</span> &mdash; Together with his teacher Leucippus, developed the theory of atomism: the universe consists of an infinite number of indivisible, indestructible, qualitatively identical particles (<em>atoma</em>, &ldquo;the uncuttables&rdquo;) moving through an infinite void (<em>kenon</em>). The atoms differ only in shape, arrangement, and position; all macroscopic qualities&mdash;color, taste, warmth&mdash;are mere convention (<em>nomoi</em>); atoms and void alone exist in truth (<em>physei</em>). The cosmos we inhabit is one of infinitely many, formed by the chance collisions and entanglements of atoms swirling through infinite space. A thoroughgoing materialism and mechanism that Aristotle engaged with extensively and opposed at nearly every turn, particularly in the <em>Physics</em>, <em>On Generation and Corruption</em>, and the <em>Metaphysics</em>. Yet Democritus was far more than a physicist: he wrote on ethics (advocating a cheerful tranquility, <em>euthymia</em>, as the goal of life), epistemology (developing a sophisticated account of the relationship between sensory appearance and atomic reality), mathematics, music, and literary criticism. He was reportedly the most prolific author of antiquity; almost nothing survives intact, one of the great losses of ancient literature.</li>
+                    </ul>
+                </div>
+            </details>
+
+            <!-- SOPHISTS -->
+            <details class="tradition-block">
+                <summary>
+                    <div class="tradition-era">The Sophists</div>
+                    <div class="tradition-era-note">c. 490&ndash;380 BCE &middot; Athens &amp; the Greek World</div>
+                </summary>
+                <div class="tradition-block-content">
+                    <ul class="tradition-ul">
+                        <li><span>Protagoras of Abdera</span> &mdash; The most prominent of the Sophists&mdash;itinerant professional teachers of rhetoric, argumentation, and civic excellence (<em>arete</em>) who flourished in the democratic culture of fifth-century Athens. Advanced the famous &ldquo;measure doctrine&rdquo;: &ldquo;Of all things the measure is man, of the things that are that they are, and of the things that are not that they are not&rdquo; (DK 80 B1)&mdash;a form of relativism about truth and perception that Plato treated as a central philosophical target in the <em>Theaetetus</em>. He also taught the method of <em>antilogiai</em> (opposing arguments): on every question, two contradictory arguments of equal force can be constructed&mdash;a technique fundamental to rhetorical training and to the development of dialectical reasoning. He reportedly charged enormous fees for his instruction and was welcomed by the political elite of Athens, including Pericles, who commissioned him to draft the legal code for the colony of Thurii. The Platonic dialogue <em>Protagoras</em> presents a more sympathetic portrait than might be expected, staging a sustained and genuinely searching debate on whether virtue can be taught in which Protagoras defends a position of considerable sophistication.</li>
+                        <li><span>Gorgias of Leontini</span> &mdash; Master rhetorician who elevated persuasive speech (<em>logos</em>) to an almost metaphysical power, calling it &ldquo;a great lord&rdquo; that with the smallest and most invisible body accomplishes the most divine works: it can &ldquo;stop fear and remove grief and instill joy and increase pity.&rdquo; His treatise <em>On Non-Being</em> (or <em>On Nature</em>) advanced three deliberately provocative theses: nothing exists; if something exists, it cannot be known; if it can be known, it cannot be communicated to another. Whether this constituted sincere nihilism, a parody of Eleatic reasoning, or a virtuosic demonstration of rhetoric&rsquo;s power to argue any position remains a matter of scholarly debate. He arrived in Athens as an ambassador from Leontini in 427 BCE and dazzled the Athenians with his ornate rhetorical style, reportedly introducing antithesis, balanced clauses, and rhyming prose endings (<em>homoioteleuton</em>) to Greek literary prose. Plato&rsquo;s <em>Gorgias</em> uses him as the point of departure for a searching examination of rhetoric, power, justice, and the good life. He reportedly lived to the age of 108.</li>
+                        <li><span>Prodicus of Ceos</span> &mdash; Known for his rigorous distinctions between near-synonyms&mdash;a practice that anticipated the analytic philosophy of language and that Socrates playfully praised, calling himself a student of Prodicus on multiple occasions in the dialogues. His careful differentiation between terms like &ldquo;wish&rdquo; and &ldquo;desire,&rdquo; &ldquo;courage&rdquo; and &ldquo;boldness,&rdquo; &ldquo;pleasure&rdquo; and &ldquo;enjoyment&rdquo; contributed to the development of precise philosophical vocabulary. Also credited with the &ldquo;Choice of Heracles,&rdquo; an influential moral allegory in which the young hero stands at a crossroads and must choose between the broad, easy path of Vice (who offers pleasure, wealth, and ease) and the steep, arduous path of Virtue (who offers lasting honor through toil). The allegory was widely cited in antiquity and became a foundational text of moral pedagogy, later adapted by Cicero, Xenophon, and the Church Fathers. Prodicus also advanced a naturalistic theory of the origins of religion, arguing that early humans divinized the natural forces and agricultural products on which their survival depended&mdash;bread became Demeter, wine became Dionysus&mdash;a hypothesis of considerable anthropological sophistication.</li>
+                        <li><span>Thrasymachus of Chalcedon</span> &mdash; Appears in Book I of Plato&rsquo;s <em>Republic</em>, delivering the blunt and provocative thesis that justice (<em>dikaiosyne</em>) is &ldquo;nothing other than the advantage of the stronger&rdquo;&mdash;a position of political realism and moral skepticism so forceful that Plato devotes the remaining nine books of the dialogue to its systematic refutation. Thrasymachus argues that in every regime, the ruling class defines &ldquo;justice&rdquo; as whatever serves its own interests; the unjust person who can get away with it is better off than the just person who cannot; and the height of injustice is tyranny, which enslaves others and calls itself blessed. His challenge strikes at the foundations of conventional morality and demands a philosophical justification for justice that does not merely appeal to social convention or divine authority. Whether Thrasymachus himself held these views as sincere convictions or advanced them as a rhetorical exercise remains debated, but the philosophical problem he poses is genuine and enduring.</li>
+                        <li><span>Hippias of Elis</span> &mdash; The most flamboyantly polymathic of the Sophists. He boasted of his expertise in astronomy, geometry, arithmetic, grammar, poetry, music, history, politics, and handicrafts&mdash;he reportedly appeared at the Olympic Games wearing clothing and accessories he had made entirely himself, from his ring to his shoes. He developed mnemonic techniques for retaining vast amounts of information and is credited with the discovery of the curve known as the quadratrix, which provided a means of trisecting angles and squaring the circle. Plato portrays him in two dialogues, the <em>Hippias Major</em> and <em>Hippias Minor</em>, as genial, confident, and intellectually shallow&mdash;a foil to Socratic depth. His doctrine of <em>physis</em> (nature) versus <em>nomos</em> (convention) was influential: he argued that natural law binds all human beings together and that conventional distinctions of citizenship and social rank are artificial impositions.</li>
+                        <li><span>Antiphon the Sophist</span> &mdash; Author of treatises <em>On Truth</em> and <em>On Concord</em>, fragments of which survive on papyrus. He advanced one of the most radical doctrines of the Sophistic movement: the laws of nature and the laws of the city are fundamentally opposed. The laws of the city are matters of agreement and convention, and obedience to them is advantageous only when one is being observed; the laws of nature, by contrast, are binding regardless of observation. He argued that the distinctions between Greeks and barbarians, free and slave, noble and common are not natural but conventional&mdash;a position of remarkable egalitarianism for the fifth century BCE that anticipates the Stoic and Cynic doctrine of universal human kinship.</li>
+                    </ul>
+                </div>
+            </details>
+
+            <!-- SOCRATES -->
+            <details class="tradition-block">
+                <summary>
+                    <div class="tradition-era">Socrates</div>
+                    <div class="tradition-era-note">c. 470&ndash;399 BCE &middot; Athens</div>
+                </summary>
+                <div class="tradition-block-content">
+                    <ul class="tradition-ul">
+                        <li><span>Socrates, son of Sophroniscus</span> &mdash; Wrote nothing. Known exclusively through the testimony of others&mdash;principally Plato, Xenophon, Aristophanes, and later Aristotle&mdash;giving rise to the enduring &ldquo;Socratic problem&rdquo; of disentangling the historical figure from his literary representations. His father was a stonemason (or sculptor), his mother Phaenarete a midwife&mdash;a profession Socrates invoked as a metaphor for his own philosophical method, which he described as intellectual midwifery (<em>maieutike</em>): he helped others give birth to ideas they already carried within them, without himself producing any. He served with distinction as a hoplite in the campaigns at Potidaea, Delium, and Amphipolis, displaying remarkable physical endurance and courage under fire. He held public office once, serving as president of the Assembly on the day of the trial of the generals after the battle of Arginusae in 406 BCE, where he alone refused to put an illegal collective motion to the vote, risking his own safety to uphold the law.</li>
+                        <li>He shifted the center of philosophical inquiry from cosmological speculation to the examination of human life, virtue, and the soul (<em>psyche</em>). Developed the elenctic method (<em>elenchus</em>): a rigorous form of cross-examination in which an interlocutor&rsquo;s confident claims about justice, courage, piety, or knowledge are tested for internal consistency and, invariably, found wanting. The aim was not to humiliate but to induce a productive state of <em>aporia</em>&mdash;genuine perplexity&mdash;that clears the ground for authentic understanding. He professed a characteristic &ldquo;learned ignorance,&rdquo; claiming to know only that he did not know, and insisting that &ldquo;the unexamined life is not worth living for a human being&rdquo; (<em>Apology</em> 38a). He identified virtue with knowledge (no one does wrong willingly; all wrongdoing is a form of ignorance) and maintained that the care of the soul is the highest human obligation, taking priority over wealth, reputation, and political power.</li>
+                        <li>Convicted by an Athenian jury of five hundred and one citizens on charges of impiety (<em>asebeia</em>) and corrupting the youth in 399 BCE; chose to drink the hemlock rather than flee or compromise his philosophical vocation. In his trial defense, as Plato presents it in the <em>Apology</em>, he described himself as a gadfly placed on the great horse of Athens by the god, stinging the city into wakefulness; he compared his mission to a divine command that he could not abandon without betraying the god who appointed him. His trial and death, immortalized in Plato&rsquo;s <em>Apology</em>, <em>Crito</em>, and <em>Phaedo</em>, became the founding narrative of Western philosophy&mdash;the moment at which the philosophical life was shown to be worth more than life itself. Every subsequent school&mdash;the Academy, the Lyceum, the Cynics, the Cyrenaics, the Stoics, the Skeptics&mdash;claimed him as an intellectual ancestor, each drawing different lessons from his example.</li>
+                    </ul>
+                </div>
+            </details>
+
+            <!-- PART II -->
+            <div class="tradition-part-label">Part II &middot; The Academy</div>
+
+            <details class="tradition-block">
+                <summary>
+                    <div class="tradition-era">Plato &amp; the Founding of the Academy</div>
+                    <div class="tradition-era-note">c. 428&ndash;347 BCE &middot; Athens</div>
+                </summary>
+                <div class="tradition-block-content">
+                    <ul class="tradition-ul">
+                        <li><span>Plato, son of Ariston</span> &mdash; Born into one of the most distinguished aristocratic families in Athens. His mother, Perictione, traced her lineage to Solon; his stepfather, Pyrilampes, was an associate of Pericles. The young Plato reportedly studied under the Heraclitean Cratylus before encountering Socrates around the age of twenty&mdash;a meeting that, by his own account, redirected the entire course of his life. He was present at Socrates&rsquo; trial in 399 BCE but absent, due to illness, at the execution described in the <em>Phaedo</em>. After the death of his teacher, he traveled extensively: to Megara, where he studied with the Socratic Euclides; reportedly to Cyrene, where he encountered the mathematician Theodorus; and to southern Italy and Sicily, where he formed lasting connections with the Pythagorean circle of Archytas of Tarentum and with Dion of Syracuse. Ancient tradition holds that his first Sicilian visit ended disastrously, with Plato sold into slavery on Aegina and ransomed by Anniceris the Cyrenaic.</li>
+                        <li>Upon returning to Athens around 387 BCE, Plato founded the Academy in a grove and gymnasium sacred to the hero Academus, located roughly a mile northwest of the Dipylon Gate. It was the first permanent institution of higher learning in the Western world. The Academy was not a university in the modern sense but a community of inquiry: members engaged in sustained dialectical investigation, mathematical research (a famous though perhaps apocryphal inscription above the entrance read &ldquo;Let no one ignorant of geometry enter&rdquo;), and the philosophical training of future legislators and statesmen. Aristotle entered the Academy at the age of seventeen and remained for twenty years, until Plato&rsquo;s death. Other notable members included Eudoxus of Cnidus, Speusippus, Xenocrates, Heraclides of Pontus, and the mathematician Theaetetus.</li>
+                        <li>Plato made two further voyages to Syracuse&mdash;in 367 and again in 361&mdash;at the invitation of Dion, in the ultimately futile attempt to educate the young tyrant Dionysius II and realize the philosophical ideal of the <em>Republic</em>: that political power and philosophical wisdom might converge in a single ruler. Both visits ended in failure and personal danger. The experience may have tempered the idealism of the <em>Republic</em> with the more pragmatic political philosophy of the <em>Laws</em>, his last and longest work, left unfinished at his death.</li>
+                        <li>His philosophical achievement is without parallel in scope and literary power. Across some thirty-six dialogues and thirteen letters (the authenticity of several remains debated), he developed the theory of Forms (<em>eide</em>)&mdash;the thesis that the sensible world of change and particularity participates in, and is made intelligible by, a transcendent realm of eternal, immutable, purely intelligible realities: the Beautiful itself, the Just itself, the Good itself. He advanced the doctrine of recollection (<em>anamnesis</em>), arguing that learning is the soul&rsquo;s recovery of knowledge it possessed before incarnation. He articulated the tripartite division of the soul&mdash;rational, spirited, and appetitive&mdash;and mapped it onto both the structure of the just city and the hierarchy of human virtues. He transformed the Socratic <em>elenchus</em> into the method of collection and division (<em>synagoge</em> and <em>diairesis</em>), and he employed myth, allegory, dramatic irony, and deliberate self-critique (the <em>Parmenides</em>) as instruments of philosophical investigation without equal in the Western tradition. Alfred North Whitehead&rsquo;s remark that all of Western philosophy is &ldquo;a series of footnotes to Plato&rdquo; is an exaggeration, but a pardonable one. He died in Athens around 348/347 BCE. The Academy endured for centuries after him.</li>
+                    </ul>
+                </div>
+            </details>
+
+            <details class="tradition-block">
+                <summary>
+                    <div class="tradition-era">The Old Academy</div>
+                    <div class="tradition-era-note">c. 347&ndash;268 BCE &middot; Athens</div>
+                </summary>
+                <div class="tradition-block-content">
+                    <ul class="tradition-ul">
+                        <li><span>Speusippus</span> &mdash; Plato&rsquo;s nephew, the son of his sister Potone. Elected to succeed Plato as scholarch in 347 BCE&mdash;a choice that reportedly disappointed Aristotle. He departed significantly from his uncle&rsquo;s metaphysics: rejected the theory of Forms as traditionally understood, denied that the One is identical with the Good, and developed an elaborate ontological system grounded in mathematical principles. He distinguished multiple levels of reality&mdash;numbers, magnitudes, and soul&mdash;each governed by its own first principles. He also undertook extensive work in empirical classification. Led the Academy until his death in 339/338 BCE.</li>
+                        <li><span>Xenocrates of Chalcedon</span> &mdash; Succeeded Speusippus in 339 BCE. He was the great systematizer of early Platonic philosophy: he formalized the division of philosophy into physics, ethics, and logic&mdash;a tripartite structure the Stoics adopted as canonical. He identified the Forms with mathematical numbers, defined the soul as a &ldquo;self-moving number,&rdquo; and elaborated an influential demonology. Known in antiquity for his austere moral character: when Alexander the Great sent him fifty talents, Xenocrates returned the gift.</li>
+                        <li><span>Eudoxus of Cnidus</span> &mdash; Though not a scholarch, Eudoxus was among the most brilliant Academy members. He developed the theory of proportion preserved in Book V of Euclid&rsquo;s <em>Elements</em>, anticipated integral calculus with his method of exhaustion, and constructed the first mathematically rigorous astronomical model in Western history&mdash;a system of concentric rotating spheres. His presence exemplifies Plato&rsquo;s conviction that mathematical training is the essential preparation for philosophical dialectic.</li>
+                        <li><span>Polemon of Athens</span> &mdash; Succeeded Xenocrates around 314 BCE. Ancient sources describe a dramatic conversion: as a dissolute youth, he stumbled into one of Xenocrates&rsquo; lectures on temperance and devoted his remaining life to philosophy. He shifted the Academy toward practical ethics, teaching that the goal of life is &ldquo;living according to nature&rdquo; (<em>kata physin zen</em>)&mdash;a formulation adopted and transformed by Zeno of Citium, who attended Polemon&rsquo;s lectures and went on to found Stoicism.</li>
+                        <li><span>Crantor of Soli</span> &mdash; Composed the earliest known commentary on Plato&rsquo;s <em>Timaeus</em>, inaugurating a tradition of Platonic exegesis that continued for over a thousand years. His consolation treatise <em>On Grief</em> became the foundational model for the literary genre of <em>consolatio</em>, directly influencing Cicero, Seneca, Plutarch, and Boethius.</li>
+                    </ul>
+                </div>
+            </details>
+
+            <details class="tradition-block">
+                <summary>
+                    <div class="tradition-era">The Skeptical Academy</div>
+                    <div class="tradition-era-note">c. 268&ndash;129 BCE &middot; Athens</div>
+                </summary>
+                <div class="tradition-block-content">
+                    <ul class="tradition-ul">
+                        <li><span>Arcesilaus of Pitane</span> &mdash; Became scholarch around 268 BCE and inaugurated the most radical reorientation in the Academy&rsquo;s history. He argued that Plato&rsquo;s own aporetic practice&mdash;the dialogues that end in perplexity rather than positive doctrine&mdash;implied the systematic suspension of judgment (<em>epoche</em>) on all matters. He claimed to be recovering the authentic spirit of Socrates against the dogmatic systems the Old Academy and the Stoics had constructed. His primary target was the Stoic &ldquo;cataleptic impression&rdquo; (<em>phantasia kataleptike</em>)&mdash;the claim that certain sense-impressions carry an intrinsic guarantee of truth. Arcesilaus countered that for every supposedly cataleptic impression, a qualitatively indistinguishable false impression could be produced. Like Socrates, he wrote nothing; his arguments are known through Cicero, Sextus Empiricus, and Numenius.</li>
+                        <li><span>Carneades of Cyrene</span> &mdash; Scholarch from roughly 167 to 137 BCE and the most formidable dialectician of the ancient world. His most celebrated performance occurred during the Athenian philosophical embassy to Rome in 155 BCE: on the first day he delivered a brilliant speech in praise of justice; on the second day he delivered an equally brilliant speech demonstrating that justice is merely conventional. Cato the Elder, scandalized, demanded the philosophers&rsquo; expulsion. Carneades&rsquo; constructive contribution was the doctrine of the <em>pithanon</em> (the persuasive, the probable): in the absence of certain knowledge, the wise person acts on impressions that are persuasive, internally consistent, and thoroughly examined&mdash;a graduated probabilism that anticipated modern fallibilist epistemology. Like Socrates and Arcesilaus, he wrote nothing; his student Clitomachus preserved his arguments in over four hundred books.</li>
+                    </ul>
+                </div>
+            </details>
+
+            <details class="tradition-block">
+                <summary>
+                    <div class="tradition-era">The Late Academy &amp; the End of an Era</div>
+                    <div class="tradition-era-note">c. 110&ndash;68 BCE &middot; Athens &amp; Rome</div>
+                </summary>
+                <div class="tradition-block-content">
+                    <ul class="tradition-ul">
+                        <li><span>Philo of Larissa</span> &mdash; The last undisputed scholarch of the Academy. He attempted to moderate the radical skepticism of Arcesilaus and Carneades, arguing in his controversial &ldquo;Roman Books&rdquo; that things are apprehensible &ldquo;by their own nature&rdquo; even if not by the Stoic criterion. He further claimed there had never been &ldquo;two Academies&rdquo;&mdash;that the skeptical and dogmatic strands formed a single tradition. In Rome, he taught the young Cicero, whose dialogues&mdash;<em>Academica</em>, <em>De Natura Deorum</em>, <em>De Finibus</em>, <em>Tusculan Disputations</em>&mdash;became the principal vehicle through which Academic philosophy reached the Latin West and, through it, all of subsequent European thought. Philo&rsquo;s departure from Athens in 88 BCE effectively ended the Academy as a continuous institution. The grove of Academus was devastated by Sulla&rsquo;s siege in 86 BCE.</li>
+                        <li><span>Antiochus of Ascalon</span> &mdash; Student of Philo who broke dramatically with his teacher and the entire skeptical tradition. He argued that the Skeptical Academy had betrayed Plato&rsquo;s authentic teachings and that the &ldquo;true&rdquo; Old Academic philosophy was in fundamental agreement with Aristotle and the Stoics. He thus inaugurated the syncretic tendency that would characterize much of later ancient philosophy: the effort to harmonize Plato and Aristotle into a single coherent system. His students included Cicero, Marcus Brutus, and Varro. His philosophical syncretism laid the groundwork for Middle Platonism and, through it, for the Neoplatonic synthesis of Plotinus. With Antiochus, the Academy&rsquo;s history as a unified school effectively closes; what follows is the vast, diffuse afterlife of Platonism as an intellectual tradition&mdash;a tradition that proved to be immortal.</li>
+                    </ul>
+                </div>
+            </details>
+
+            <!-- PART III -->
+            <div class="tradition-part-label">Part III &middot; The Lyceum</div>
+
+            <details class="tradition-block">
+                <summary>
+                    <div class="tradition-era">Aristotle &amp; the Founding of the Lyceum</div>
+                    <div class="tradition-era-note">384&ndash;322 BCE &middot; Stagira, Athens, &amp; Chalcis</div>
+                </summary>
+                <div class="tradition-block-content">
+                    <ul class="tradition-ul">
+                        <li><span>Aristotle, son of Nicomachus</span> &mdash; Born in Stagira, a small Greek colony on the Thracian peninsula of Chalcidice, in 384 BCE. His father served as personal physician to King Amyntas III of Macedon. Orphaned young, he was sent to Athens at seventeen and enrolled in Plato&rsquo;s Academy, where he remained for twenty years. Plato reportedly called him &ldquo;the mind of the school&rdquo; (<em>nous tes diatribes</em>) and &ldquo;the reader&rdquo; (<em>ho anagnostes</em>).</li>
+                        <li>When Plato died in 348/347 BCE and the scholarchship passed to Speusippus, Aristotle left Athens. He traveled to Assos in the Troad, where the ruler Hermias had established a philosophical community. After Hermias was executed by the Persians, Aristotle moved to Mytilene on Lesbos, where he and Theophrastus conducted the biological field research preserved in the <em>History of Animals</em>, <em>Parts of Animals</em>, and <em>Generation of Animals</em>&mdash;works Darwin described as the achievement of a mind to which his own was &ldquo;a mere schoolboy&rdquo; in comparison.</li>
+                        <li>In 343 BCE, Philip II summoned Aristotle to tutor the thirteen-year-old Alexander. He reportedly prepared an annotated edition of the <em>Iliad</em> for Alexander (the &ldquo;casket copy&rdquo; kept under his pillow alongside a dagger). The relationship between the philosopher who theorized the <em>polis</em> as the natural horizon of human flourishing and the conqueror who rendered the <em>polis</em> obsolete remains one of the great ironies of Western history.</li>
+                        <li>He returned to Athens in 335 BCE and founded the Lyceum in a gymnasium dedicated to Apollo Lykeios. Its members were called Peripatetics (<em>peripatetikoi</em>), from the covered walkway (<em>peripatos</em>) where Aristotle taught. The Lyceum organized systematic empirical research: constitutions of 158 city-states, records of dramatic performances, specimens for zoological study. It was the first research institute.</li>
+                        <li>His surviving works&mdash;the esoteric treatises, not the polished dialogues (all lost)&mdash;constitute the most comprehensive intellectual achievement of any individual in antiquity. He created or shaped logic (<em>Organon</em>), metaphysics (<em>Metaphysics</em>), natural philosophy (<em>Physics</em>), biology, psychology (<em>De Anima</em>), ethics (<em>Nicomachean Ethics</em>, <em>Eudemian Ethics</em>), political theory (<em>Politics</em>), rhetoric, and poetics. His metaphysics analyzes substance (<em>ousia</em>) through matter (<em>hyle</em>) and form (<em>morphe</em>), potentiality (<em>dynamis</em>) and actuality (<em>energeia</em>), the four causes. At the summit stands the Unmoved Mover&mdash;pure actuality, thought thinking itself (<em>noesis noeseos noesis</em>)&mdash;which moves the cosmos &ldquo;as being loved&rdquo; (<em>Metaphysics</em> 1072b3).</li>
+                        <li>Upon Alexander&rsquo;s death in 323 BCE, anti-Macedonian feeling surged. Aristotle withdrew to Chalcis, reportedly saying he would not allow Athens to &ldquo;sin twice against philosophy.&rdquo; He died there in 322 BCE, at sixty-two.</li>
+                    </ul>
+                </div>
+            </details>
+
+            <details class="tradition-block">
+                <summary>
+                    <div class="tradition-era">The Early Peripatetics</div>
+                    <div class="tradition-era-note">c. 322&ndash;269 BCE &middot; Athens &amp; the Greek World</div>
+                </summary>
+                <div class="tradition-block-content">
+                    <ul class="tradition-ul">
+                        <li><span>Theophrastus of Eresus</span> &mdash; Aristotle&rsquo;s closest collaborator, companion on Lesbos, and chosen successor. Born Tyrtamus; Aristotle renamed him Theophrastus (&ldquo;divinely speaking&rdquo;). Led the school for thirty-six years (c. 322&ndash;287 BCE), during which enrollment reportedly reached two thousand. His botanical works&mdash;<em>Enquiry into Plants</em> and <em>Causes of Plants</em>&mdash;earned him the title &ldquo;father of botany&rdquo; and remained authoritative until the Renaissance. His <em>Characters</em>, thirty brief moral sketches of recognizable human types, founded character writing as a literary genre, influencing La Bruy&egrave;re and the English essayists. In metaphysics, he raised searching difficulties about Aristotle&rsquo;s central doctrines: the scope of teleological explanation, the relationship between celestial and sublunary realms, the connection between the Unmoved Mover and celestial motion. These were signs of a living tradition capable of internal criticism.</li>
+                        <li><span>Eudemus of Rhodes</span> &mdash; Composed histories of arithmetic, geometry, and astronomy&mdash;the earliest known works of their kind&mdash;now lost but extensively cited by later authors and invaluable for reconstructing pre-Euclidean mathematics. Considered the &ldquo;most faithful&rdquo; Peripatetic. The <em>Eudemian Ethics</em> may bear his name as dedicatee or editor.</li>
+                        <li><span>Aristoxenus of Tarentum</span> &mdash; His <em>Elements of Harmonics</em> is the most important surviving work of ancient music theory. He rejected the Pythagorean reduction of music to numerical ratios, arguing that the ear and musical perception&mdash;not abstract mathematics&mdash;are the proper criteria for harmonic analysis. This empiricist stance aligned with the broader Peripatetic commitment to grounding knowledge in sensory experience. He also wrote influential biographies of Pythagoras, Socrates, and Plato.</li>
+                        <li><span>Dicaearchus of Messana</span> &mdash; His <em>Life of Greece</em> traced the development of Greek civilization from primitive golden age through pastoralism and agriculture to urban life&mdash;an early theory of the stages of social development. He denied the separability of the soul, arguing it is a &ldquo;harmony&rdquo; of the body&rsquo;s elements&mdash;a position Plato had examined and rejected in the <em>Phaedo</em>. His geographical writings included measurements of mountain heights and an early estimate of the earth&rsquo;s circumference.</li>
+                    </ul>
+                </div>
+            </details>
+
+            <details class="tradition-block">
+                <summary>
+                    <div class="tradition-era">The Middle Peripatetics</div>
+                    <div class="tradition-era-note">c. 287&ndash;110 BCE &middot; Athens &amp; Alexandria</div>
+                </summary>
+                <div class="tradition-block-content">
+                    <ul class="tradition-ul">
+                        <li><span>Strato of Lampsacus</span> &mdash; Known as &ldquo;the Physicist&rdquo; (<em>ho Physikos</em>). Succeeded Theophrastus as third scholarch around 287 BCE. He rejected the Unmoved Mover, holding that natural capacities inherent in matter are sufficient to explain all phenomena&mdash;a thoroughgoing naturalism. He modified the theory of the void, arguing for micro-voids interspersed throughout matter. He demonstrated that falling objects accelerate&mdash;an observation not systematically investigated again until Galileo. He reportedly tutored Ptolemy II Philadelphus in Alexandria before assuming the scholarchship, and his influence on Alexandrian science may have been considerable.</li>
+                        <li><span>Lyco of Troas</span> &mdash; Fourth scholarch, led the Lyceum for approximately forty-four years (c. 269&ndash;225 BCE). Ancient sources praise his eloquence and skill with children but note undistinguished philosophical writings. His tenure marks the beginning of the Lyceum&rsquo;s decline, coinciding with the rise of Stoicism and Epicureanism.</li>
+                        <li><span>Critolaus of Phaselis</span> &mdash; Participated alongside Carneades (Academic) and Diogenes of Babylon (Stoic) in the philosophical embassy to Rome in 155 BCE&mdash;the event that introduced Greek philosophy to the Roman world. He defended the Aristotelian position that virtue alone is insufficient for happiness; bodily and external goods are also required&mdash;in direct opposition to the Stoic thesis of the sufficiency of virtue.</li>
+                    </ul>
+                </div>
+            </details>
+
+            <details class="tradition-block">
+                <summary>
+                    <div class="tradition-era">The Lost Library &amp; the Recovery of Aristotle</div>
+                    <div class="tradition-era-note">c. 287 BCE&ndash;60 BCE &middot; Athens, Scepsis, &amp; Rome</div>
+                </summary>
+                <div class="tradition-block-content">
+                    <ul class="tradition-ul">
+                        <li><span>The Fate of the Library</span> &mdash; One of the most consequential episodes in intellectual history. According to Strabo (<em>Geography</em> 13.1.54), Theophrastus bequeathed the combined libraries to his student Neleus of Scepsis. Neleus carried the manuscripts home to Scepsis in the Troad, where his heirs&mdash;&ldquo;ordinary people&rdquo; with no philosophical interests&mdash;stored them in a cellar to prevent confiscation by the Attalid kings of Pergamon. There they remained for nearly two centuries, deteriorating from damp and insects. The school in Athens, deprived of its founder&rsquo;s manuscripts, was reduced to general philosophizing without its intellectual foundation. This, more than any other factor, explains the Peripatetic decline during the third and second centuries BCE.</li>
+                        <li><span>Apellicon of Teos</span> &mdash; A wealthy bibliophile who around 100 BCE purchased the deteriorated manuscripts and brought them to Athens. He attempted restoration, producing copies marred by errors where he filled lacunae with incorrect conjectures. When Sulla conquered Athens in 86 BCE, he seized Apellicon&rsquo;s library as war spoil&mdash;the same campaign that devastated the grove of Plato&rsquo;s Academy.</li>
+                        <li><span>Tyrannion &amp; Andronicus of Rhodes</span> &mdash; In Rome, the grammarian Tyrannion organized and copied the manuscripts. Andronicus of Rhodes&mdash;the last known scholarch, active around 60 BCE&mdash;accomplished the decisive editorial achievement: he arranged the corpus in the systematic order still used today. He placed the treatises on first philosophy &ldquo;after the Physics&rdquo; (<em>ta meta ta physika</em>)&mdash;the arrangement from which &ldquo;metaphysics&rdquo; derives. His edition did not merely preserve Aristotle; it effectively created the &ldquo;Aristotle&rdquo; that all subsequent ages have read. The renewed availability of the treatises catalyzed the great revival of Aristotelianism and inaugurated the monumental commentatorial tradition that sustained Aristotelian philosophy for two thousand years.</li>
+                    </ul>
+                </div>
+            </details>
+
+            <details class="tradition-block">
+                <summary>
+                    <div class="tradition-era">The Great Commentators</div>
+                    <div class="tradition-era-note">c. 50 BCE&ndash;550 CE &middot; Athens, Rome, &amp; Alexandria</div>
+                </summary>
+                <div class="tradition-block-content">
+                    <ul class="tradition-ul">
+                        <li><span>Alexander of Aphrodisias</span> &mdash; Active around 200 CE, he held an imperial chair of Peripatetic philosophy in Athens endowed by Marcus Aurelius. The most important ancient commentator on Aristotle, known as &ldquo;the Commentator&rdquo; (<em>ho Exegetes</em>) before that title passed to Averroes. His commentaries on the <em>Metaphysics</em>, <em>Topics</em>, <em>Prior Analytics</em>, and <em>Meteorology</em> are monuments of philosophical scholarship. His independent <em>De Anima</em> advanced the controversial thesis that the individual intellect perishes with the body and only the universal &ldquo;agent intellect&rdquo; is eternal&mdash;a reading that generated fierce debate among Islamic, Jewish, and Christian philosophers for over a millennium.</li>
+                        <li><span>Themistius</span> &mdash; A fourth-century rhetorician and senator who served as advisor to multiple emperors. His paraphrases of the <em>Posterior Analytics</em>, <em>Physics</em>, <em>De Anima</em>, and <em>Metaphysics</em> 12 were translated into Arabic, Hebrew, and Latin and served for centuries as introductions to Aristotelian thought. He defended a mediating position on the intellect that influenced both Avicenna and Aquinas.</li>
+                        <li><span>Simplicius of Cilicia</span> &mdash; A sixth-century Neoplatonist whose commentaries on the <em>Categories</em>, <em>Physics</em>, and <em>De Caelo</em> are of incalculable value because they are the single most important source for Pre-Socratic fragments. He quoted extensively from Parmenides, Zeno, Empedocles, Anaxagoras, and Diogenes of Apollonia&mdash;texts subsequently lost. Without Simplicius, our knowledge of early Greek philosophy would be drastically diminished. He was among the last pagan philosophers; when Justinian closed the schools in 529 CE, Simplicius reportedly traveled to Persia.</li>
+                        <li><span>John Philoponus</span> &mdash; Active in sixth-century Alexandria. A Christian Aristotelian who broke decisively with tradition. Against the entire Greek consensus, he argued the world is not eternal but created. He developed a revolutionary critique of Aristotle&rsquo;s projectile motion, proposing an incorporeal motive force (<em>energeia akinetos</em>)&mdash;remarkably anticipatory of the medieval impetus theory and, through it, of inertia. He argued from observation that bodies of different weights fall at nearly the same speed&mdash;an argument strikingly similar to Galileo&rsquo;s a thousand years later. Philoponus represents the moment the Aristotelian tradition began generating the conceptual tools that would eventually supersede it.</li>
+                    </ul>
+                </div>
+            </details>
+
+            <!-- PART IV -->
+            <div class="tradition-part-label">Part IV &middot; The Transmission</div>
+
+            <details class="tradition-block">
+                <summary>
+                    <div class="tradition-era">The Neoplatonists</div>
+                    <div class="tradition-era-note">c. 204&ndash;529 CE &middot; Rome, Athens, &amp; Alexandria</div>
+                </summary>
+                <div class="tradition-block-content">
+                    <ul class="tradition-ul">
+                        <li><span>Plotinus</span> &mdash; Born in Roman Egypt in 204/5 CE. Studied under Ammonius Saccas in Alexandria for eleven years. Established a philosophical circle in Rome around 244 CE. His <em>Enneads</em> (arranged posthumously by Porphyry into six groups of nine) are the founding documents of Neoplatonism&mdash;the last great original philosophical system of antiquity. He reinterpreted Plato&rsquo;s metaphysics as hierarchical emanation from the One (<em>to Hen</em>)&mdash;absolutely simple, beyond Being and thought. From the One emanates Intellect (<em>Nous</em>), containing the Forms; from Intellect emanates Soul (<em>Psyche</em>). The material cosmos is the lowest overflow of the One&rsquo;s productive power. Philosophy is the soul&rsquo;s return (<em>epistrophe</em>) to its source, culminating in mystical union. His synthesis shaped Augustine, Boethius, the pseudo-Dionysius, Eriugena, Meister Eckhart, and the entire tradition of Christian mystical theology.</li>
+                        <li><span>Porphyry of Tyre</span> &mdash; Plotinus&rsquo;s most devoted student, editor, and biographer. His <em>Isagoge</em>&mdash;explaining the five predicables as preliminary to the <em>Categories</em>&mdash;became the most widely read logical text for over a millennium. Every medieval student from Baghdad to Paris began with it. His deferred questions about universals catalyzed one of the longest debates in the history of philosophy, engaging Boethius, Abelard, Aquinas, Scotus, and Ockham. He also composed <em>Against the Christians</em>, the most formidable philosophical critique of Christianity in antiquity, surviving only in fragments.</li>
+                        <li><span>Iamblichus of Chalcis</span> &mdash; Transformed Neoplatonism from a primarily philosophical system into a comprehensive theological and ritual framework. He multiplied the metaphysical levels into an elaborate hierarchy and insisted on the indispensable role of theurgic ritual (<em>theurgia</em>) for the soul&rsquo;s ascent, arguing that contemplation alone was insufficient. His reinterpretation profoundly shaped the Athenian school of Proclus and, through it, the pseudo-Dionysian synthesis foundational for both Byzantine and Western medieval theology.</li>
+                        <li><span>Proclus Diadochus</span> &mdash; Head of the Athenian Neoplatonic school in the fifth century CE. His <em>Elements of Theology</em>&mdash;211 rigorously demonstrated propositions&mdash;unfolds the complete Neoplatonic metaphysics from the One through every level of reality. His massive commentaries on the <em>Timaeus</em>, <em>Republic</em>, <em>Parmenides</em>, <em>Alcibiades</em>, and <em>Cratylus</em> represent the summit of the ancient commentatorial tradition on Plato. His influence shaped the pseudo-Dionysian writings, the <em>Liber de Causis</em>, and the metaphysical architecture of figures from Eriugena to Hegel. He died in Athens in 485 CE; forty-four years later, Justinian closed the school.</li>
+                    </ul>
+                </div>
+            </details>
+
+            <details class="tradition-block">
+                <summary>
+                    <div class="tradition-era">The Syriac Bridge</div>
+                    <div class="tradition-era-note">c. 370&ndash;650 CE &middot; Edessa, Nisibis, &amp; Jundishapur</div>
+                </summary>
+                <div class="tradition-block-content">
+                    <ul class="tradition-ul">
+                        <li><span>The East Syriac Tradition</span> &mdash; The transmission of Greek philosophy to the Islamic world did not occur directly from Greek to Arabic. It passed through a crucial Syriac intermediary. Christian scholars of the Eastern churches, writing in Syriac (a dialect of Aramaic), began translating Greek philosophical and scientific texts as early as the fourth century CE. The theological school at Edessa (modern Urfa in southeastern Turkey) became a center for the study of Aristotle&rsquo;s logical works, essential for Christological and Trinitarian debate. When closed by imperial decree in 489 CE, its scholars migrated to Nisibis and later Jundishapur, carrying manuscripts and traditions with them. Sergius of Resh&rsquo;aina (d. 536) translated the <em>Categories</em>, <em>De Interpretatione</em>, and portions of Galen into Syriac, producing some of the earliest philosophical translations into any Semitic language. By the time of the Arab conquests, a substantial body of Aristotelian logic, Galenic medicine, and Neoplatonic metaphysics already existed in Syriac, ready to be rendered into Arabic.</li>
+                    </ul>
+                </div>
+            </details>
+
+            <details class="tradition-block">
+                <summary>
+                    <div class="tradition-era">The Arabic Translators &amp; the House of Wisdom</div>
+                    <div class="tradition-era-note">c. 750&ndash;1000 CE &middot; Baghdad</div>
+                </summary>
+                <div class="tradition-block-content">
+                    <ul class="tradition-ul">
+                        <li><span>The Translation Movement</span> &mdash; Under the Abbasid Caliphate, particularly during the reigns of Harun al-Rashid and al-Ma&rsquo;mun, Baghdad became the site of the most ambitious translation project in human history. The <em>Bayt al-Hikma</em> (House of Wisdom) served as the center of a systematic, state-funded effort to render the entire Greek philosophical, scientific, and medical corpus into Arabic. The translators were predominantly Syriac-speaking Christians. Within approximately two centuries, virtually the entirety of Aristotle, major works of Plato, the medical writings of Galen, the mathematics of Euclid and Archimedes, and substantial Neoplatonic texts were made available in Arabic. Without this effort, much of Greek thought would have been permanently lost.</li>
+                        <li><span>Hunayn ibn Ishaq</span> &mdash; The greatest of the Baghdad translators (808&ndash;873 CE), a Nestorian Christian who established the gold standard for translation methodology. Where earlier translators had worked word by word, Hunayn developed a sense-for-sense method: he mastered the complete argument of a passage, then recomposed it in natural, idiomatic Arabic, preserving precision without sacrificing clarity. His circle&mdash;including his son Ishaq ibn Hunayn and nephew Hubaysh&mdash;translated over one hundred works of Galen and produced the standard Arabic versions of Aristotle&rsquo;s <em>Categories</em>, <em>De Interpretatione</em>, <em>Physics</em>, <em>De Anima</em>, and <em>Metaphysics</em>. Their labor ensured that the philosophical inheritance of Athens survived the collapse of its own civilization and reached both the Islamic East and, eventually, the Latin West.</li>
+                    </ul>
+                </div>
+            </details>
+
+            <details class="tradition-block">
+                <summary>
+                    <div class="tradition-era">The Islamic Philosophers</div>
+                    <div class="tradition-era-note">c. 801&ndash;1198 CE &middot; Baghdad, Bukhara, &amp; C&oacute;rdoba</div>
+                </summary>
+                <div class="tradition-block-content">
+                    <ul class="tradition-ul">
+                        <li><span>Al-Kindi</span> &mdash; &ldquo;The Philosopher of the Arabs&rdquo; (c. 801&ndash;873 CE). The first to systematically engage with Greek philosophy from within the Arabic-Islamic tradition. He supervised translations of Aristotle and Plotinus (the latter misattributed as the <em>Theology of Aristotle</em>, with profound consequences). He argued philosophy and revelation are complementary paths. His <em>On First Philosophy</em> represents the first attempt to integrate Aristotelian metaphysics with Islamic monotheism. He composed over 260 works across philosophy, mathematics, optics, music, and cryptography.</li>
+                        <li><span>Al-Farabi</span> &mdash; &ldquo;The Second Teacher&rdquo; (c. 870&ndash;950 CE). The greatest logician and political philosopher of the Islamic world. His commentaries on the <em>Organon</em> extended and refined Aristotle&rsquo;s logic. His <em>Virtuous City</em> reconceived Plato&rsquo;s <em>Republic</em> within an emanationist framework: the virtuous city mirrors the cosmos, with the philosopher-prophet-ruler corresponding to the First Intellect. By fusing Platonic politics with Aristotelian logic and Neoplatonic metaphysics, he created the synthesis Avicenna and Averroes would inherit.</li>
+                        <li><span>Avicenna (Ibn Sina)</span> &mdash; (c. 980&ndash;1037 CE). Born near Bukhara, the most original thinker of the Islamic tradition. His <em>Book of Healing</em> covers logic, natural philosophy, mathematics, and metaphysics. His central innovation: the distinction between essence (<em>mahiya</em>) and existence (<em>wujud</em>)&mdash;in all beings except God, what a thing is differs from the fact that it is. Existence is bestowed by the Necessary Existent (<em>Wajib al-Wujud</em>), in whom alone essence and existence are identical. This distinction was adopted by Aquinas and became foundational to the entire subsequent tradition. His <em>Canon of Medicine</em> served as the standard medical textbook in both the Islamic world and Europe until the seventeenth century.</li>
+                        <li><span>Averroes (Ibn Rushd)</span> &mdash; (1126&ndash;1198 CE). Born in C&oacute;rdoba. The greatest Aristotelian commentator since Alexander of Aphrodisias. The Latin scholastics called him simply <em>Commentator</em>. He composed three levels of commentary on nearly every Aristotelian treatise. His ambition was to recover authentic Aristotle from Neoplatonic accretions. Against Avicenna, he denied the real distinction between essence and existence. Against al-Ghazali&rsquo;s <em>Incoherence of the Philosophers</em>, he composed the <em>Incoherence of the Incoherence</em>&mdash;one of the great documents of intellectual courage. His doctrine of the unity of the material intellect provoked the fiercest controversy in thirteenth-century Latin philosophy. Aquinas devoted an entire treatise to refuting it; the Bishop of Paris condemned 219 associated theses in 1277. Ironically, his influence was far greater in the Christian and Jewish worlds than in the Islamic world.</li>
+                    </ul>
+                </div>
+            </details>
+
+            <details class="tradition-block">
+                <summary>
+                    <div class="tradition-era">The Latin Recovery</div>
+                    <div class="tradition-era-note">c. 1120&ndash;1274 CE &middot; Toledo, Paris, &amp; Cologne</div>
+                </summary>
+                <div class="tradition-block-content">
+                    <ul class="tradition-ul">
+                        <li><span>The Toledo Translators</span> &mdash; The recovery of Aristotle by the Latin West is one of the decisive intellectual events of European history. In the twelfth century, scholars such as Gerard of Cremona (credited with over seventy translations) rendered the <em>Physics</em>, <em>De Anima</em>, <em>Metaphysics</em>, <em>De Caelo</em>, and <em>Posterior Analytics</em> into Latin from Arabic. These arrived in Paris together with the commentaries of Avicenna and Averroes, producing an intellectual earthquake: a comprehensive system that appeared to explain the natural world without Christian revelation. The University of Paris banned Aristotle&rsquo;s natural philosophy in 1210 and again in 1215; by 1255, the entire corpus was required reading. The trajectory from prohibition to curriculum in forty-five years is the most dramatic testimony to the irresistible force of Aristotle&rsquo;s thought.</li>
+                        <li><span>William of Moerbeke</span> &mdash; A Flemish Dominican (c. 1215&ndash;1286) who translated nearly the entire Aristotelian corpus directly from the Greek for the first time, bypassing the Arabic intermediary. He also translated Proclus, Archimedes, and the Greek commentators&mdash;making the full depth of the commentatorial tradition available to Latin readers. His translations were produced in collaboration with Aquinas, who required accurate Greek-based texts for his philosophical project.</li>
+                        <li><span>Albertus Magnus</span> &mdash; <em>Doctor Universalis</em> (c. 1200&ndash;1280). He set himself the task of making &ldquo;all parts of Aristotelian philosophy intelligible to the Latins&rdquo; and produced paraphrases and commentaries covering the full range. His own zoological and botanical observations reflect a genuinely Aristotelian commitment to empirical inquiry rare among medieval scholastics. He was the teacher of Thomas Aquinas, and it was Albertus who first recognized and nurtured the genius that would produce the greatest synthesis of Aristotelian philosophy and Christian theology.</li>
+                        <li><span>Thomas Aquinas</span> &mdash; <em>Doctor Angelicus</em> (1225&ndash;1274). His achievement was to demonstrate that Aristotelian philosophy, properly understood, provides the indispensable rational foundation for Christian theology. His <em>Summa Theologiae</em> (over 2,600 articles) and <em>Summa Contra Gentiles</em> represent the most sustained integration ever attempted. His line-by-line commentaries on the <em>Physics</em>, <em>Metaphysics</em>, <em>Nicomachean Ethics</em>, <em>Politics</em>, <em>De Anima</em>, and <em>Posterior Analytics</em> remain among the most philosophically penetrating ever written. His metaphysics centered on the real distinction between <em>esse</em> (the act of existing) and <em>essentia</em> (essence), and on God as <em>Ipsum Esse Subsistens</em>, Subsistent Being Itself. He died at forty-nine, leaving the <em>Summa Theologiae</em> unfinished, reportedly telling his companion Reginald: &ldquo;All that I have written seems like straw compared to what has now been revealed to me.&rdquo;</li>
+                    </ul>
+                </div>
+            </details>
+
+            <details class="tradition-block">
+                <summary>
+                    <div class="tradition-era">The Renaissance of Plato</div>
+                    <div class="tradition-era-note">c. 1438&ndash;1499 CE &middot; Florence &amp; Rome</div>
+                </summary>
+                <div class="tradition-block-content">
+                    <ul class="tradition-ul">
+                        <li><span>Gemistos Plethon</span> &mdash; (c. 1355&ndash;1454). A Byzantine philosopher who arrived in Florence in 1438&ndash;1439 for the Council of Ferrara-Florence. His lectures on the differences between Plato and Aristotle electrified the Florentine intellectual elite, who had known philosophy almost exclusively through its Aristotelian forms. His private commitments went beyond Christian Platonism: his <em>Nomoi</em>, composed in imitation of Plato&rsquo;s <em>Laws</em>, proposed a comprehensive revision of religion along pagan Neoplatonic lines. It was burned after his death by the Patriarch Gennadius. His most consequential legacy was inspiring Cosimo de&rsquo; Medici to establish a new Platonic Academy in Florence.</li>
+                        <li><span>Marsilio Ficino</span> &mdash; (1433&ndash;1499). The most important translator and interpreter of Plato since antiquity. Cosimo de&rsquo; Medici provided him with a villa, manuscripts, and a monumental commission: translate all of Plato into Latin. He completed this between 1462 and 1469&mdash;the first integral translation of all thirty-six dialogues, making Plato fully available to Western readers for the first time in over a thousand years. He subsequently translated Plotinus, Proclus, Porphyry, Iamblichus, and the Hermetic corpus. His <em>Theologia Platonica</em> argued that Platonic philosophy and Christian theology form a single <em>prisca theologia</em>. His circle at the Villa Careggi&mdash;including Pico della Mirandola, Poliziano, and Lorenzo de&rsquo; Medici&mdash;celebrated Plato&rsquo;s birthday with a banquet modeled on the <em>Symposium</em>. He coined the term &ldquo;Platonic love&rdquo; (<em>amor platonicus</em>), which entered European literature through Castiglione, Bembo, Spenser, and Sidney. His Neoplatonic aesthetics shaped the art theory of Leonardo, Michelangelo, and Raphael. His translations remained the standard Latin Plato until the nineteenth century.</li>
+                        <li><span>Giovanni Pico della Mirandola</span> &mdash; (1463&ndash;1494). At twenty-three, he composed 900 theses drawn from every philosophical and theological tradition&mdash;Platonic, Aristotelian, Stoic, Epicurean, Neoplatonic, Hermetic, Kabbalistic, Chaldean, and Islamic&mdash;and offered to defend them in public disputation. The disputation was suppressed by Pope Innocent VIII. His prefatory <em>Oration on the Dignity of Man</em> has been called the manifesto of Renaissance humanism: God addresses Adam with the words &ldquo;We have given you no fixed abode, no form of your own&rdquo;&mdash;the human being is defined not by a fixed nature but by the radical freedom to shape itself. He sought the ultimate philosophical concordance: the demonstration that Plato and Aristotle teach the same fundamental truths. He died at thirty-one, leaving behind a body of work that permanently expanded the horizons of European philosophy.</li>
+                    </ul>
+                </div>
+            </details>
+
+        </div>
+
+        <!-- ========== RIGHT COLUMN ========== -->
+        <div class="tradition-column tradition-column-right">
+            <div class="tradition-column-label">Parallel Traditions</div>
+
+            <div class="tradition-toggle-row">
+                <button class="tradition-toggle-btn" onclick="toggleAll(this)">Expand All</button>
+            </div>
+
+            <div class="tradition-part-label">The Socratic Schools</div>
+
+            <details class="tradition-block">
+                <summary>
+                    <div class="tradition-era">The Cynics</div>
+                    <div class="tradition-era-note">c. 445&ndash;c. 120 BCE &middot; Athens &amp; the Greek World</div>
+                </summary>
+                <div class="tradition-block-content">
+                    <ul class="tradition-ul">
+                        <li><span>Antisthenes of Athens</span> &mdash; A devoted follower of Socrates who reportedly walked five miles from Piraeus to Athens daily to hear him. He studied rhetoric under Gorgias before encountering Socrates. He drew a radical ethical conclusion: virtue (<em>arete</em>) is sufficient for happiness and consists entirely in action, not theoretical knowledge. He rejected the Forms outright: &ldquo;I can see a horse, Plato, but I cannot see horseness.&rdquo; He advocated rigorous self-sufficiency (<em>autarkeia</em>), indifference to pleasure and reputation, and deliberate simplicity.</li>
+                        <li><span>Diogenes of Sinope</span> &mdash; The most famous and radical Cynic. Exiled from Sinope (reportedly for debasing the coinage&mdash;a charge he transformed into a philosophical metaphor: the Cynic&rsquo;s task is to &ldquo;deface the currency&rdquo; of convention). He lived in a ceramic jar (<em>pithos</em>) in the Athenian marketplace, carrying a single cloak, staff, and wallet. He performed every human function in public, deliberately violating norms of shame. This was a rigorous program: the systematic exposure and rejection of <em>nomos</em> (convention) in favor of <em>physis</em> (nature). He called himself a &ldquo;citizen of the world&rdquo; (<em>kosmopolites</em>)&mdash;the first recorded use of the term. To Alexander the Great: &ldquo;Stand out of my sunlight.&rdquo; Alexander: &ldquo;If I were not Alexander, I would wish to be Diogenes.&rdquo; Plato: &ldquo;Socrates gone mad.&rdquo; His philosophy was enacted rather than written&mdash;a life conceived as a public performance of philosophical truth.</li>
+                        <li><span>Crates of Thebes</span> &mdash; A wealthy Theban who renounced his fortune upon encountering Diogenes. Gentler and more sociable than his teacher, known for philosophical poetry (parodies of Homer and Solon). His marriage to Hipparchia of Maroneia&mdash;one of the few women philosophers of antiquity, who insisted on sharing the Cynic life against family objection&mdash;was itself a philosophical act. Crates is of particular historical significance because he was the teacher of Zeno of Citium. Stoicism can be understood as a philosophical domestication of Cynic asceticism: Zeno retained the commitment to virtue as sufficient and to living according to nature, but embedded it within a comprehensive physics, logic, and cosmology that Diogenes and Crates had deliberately refused to construct.</li>
+                    </ul>
+                </div>
+            </details>
+
+            <details class="tradition-block">
+                <summary>
+                    <div class="tradition-era">The Cyrenaics</div>
+                    <div class="tradition-era-note">c. 435&ndash;275 BCE &middot; Cyrene &amp; Athens</div>
+                </summary>
+                <div class="tradition-block-content">
+                    <ul class="tradition-ul">
+                        <li><span>Aristippus of Cyrene</span> &mdash; Drew from Socrates a conclusion diametrically opposed to the Cynics. Where Antisthenes identified the Socratic lesson with renunciation, Aristippus identified it with mastery of pleasure: the wise person enjoys without being enslaved. He taught that bodily pleasure (<em>hedone</em>) is the only intrinsic good&mdash;a hedonism more radical than the Epicurean version that followed. He charged fees, maintained a luxurious lifestyle, and when criticized for associating with the courtesan La&iuml;s, replied: &ldquo;I possess La&iuml;s; she does not possess me.&rdquo; He was equally at ease in any circumstance because his principle was adaptation to the present moment rather than resistance. His legacy was carried by his daughter Arete of Cyrene (who reportedly authored forty books) and his grandson Aristippus the Younger, who systematized the doctrine.</li>
+                        <li><span>Hegesias &amp; Anniceris</span> &mdash; Later Cyrenaics who developed the school divergently. Hegesias, called <em>Peisithanatos</em> (&ldquo;the Death-Persuader&rdquo;), concluded that since sustained pleasure is unattainable, the wise person&rsquo;s goal becomes merely avoiding pain, and death is rationally preferable to frustrated desire. His Alexandria lectures were so persuasive that Ptolemy II banned him, fearing an epidemic of suicides. Anniceris moderated the hedonism, admitting friendship, gratitude, and civic loyalty as genuine goods. He is the same Anniceris whom tradition credits with ransoming Plato from slavery after the first Sicilian voyage&mdash;connecting the Cyrenaic and Academic lineages at their origins.</li>
+                    </ul>
+                </div>
+            </details>
+
+            <details class="tradition-block">
+                <summary>
+                    <div class="tradition-era">The Megarian School</div>
+                    <div class="tradition-era-note">c. 435&ndash;275 BCE &middot; Megara &amp; Athens</div>
+                </summary>
+                <div class="tradition-block-content">
+                    <ul class="tradition-ul">
+                        <li><span>Euclides of Megara</span> &mdash; Not the mathematician. A devoted Socratic who combined Socratic ethics with Eleatic metaphysics: the Good is one, unchanging, and alone truly real; whatever opposes it is simply non-existent. Plato reportedly took refuge with him in Megara immediately after Socrates&rsquo; execution in 399 BCE. The Megarian school became famous for dialectical argument and logical paradox, anticipating Stoic propositional logic.</li>
+                        <li><span>Eubulides of Miletus</span> &mdash; Student of Euclides and inventor of logical paradoxes that remain philosophically significant today. The Liar Paradox (&ldquo;I am lying&rdquo;&mdash;if true, then false; if false, then true) and the Sorites Paradox (if removing one grain from a heap still leaves a heap, when does it cease to be one?) anticipated problems in the philosophy of language, truth theory, and the logic of vagueness that remain active in contemporary analytic philosophy. He was reportedly a fierce critic of Aristotle.</li>
+                        <li><span>Diodorus Cronus</span> &mdash; A dialectician of extraordinary acuity. He developed the &ldquo;Master Argument&rdquo; (<em>ho Kyrieuon Logos</em>), proving that nothing is possible which neither is nor will be true&mdash;a form of logical determinism that provoked responses from the Stoics (Chrysippus devoted a treatise to refuting it), Epicureans, and Megarian-Dialectical school for generations. Every philosopher was forced to choose which of its three jointly inconsistent premises to reject. He also developed a temporal theory of modality: the possible is what either is or will be the case. His student Philo the Dialectician formulated the first material conditional in the history of logic&mdash;a direct ancestor of the modern truth-functional conditional.</li>
+                        <li><span>Stilpo of Megara</span> &mdash; The last major Megarian. A teacher of remarkable charisma who attracted students from every other school. His circle included future founders: Zeno studied with Stilpo before founding Stoicism. When Demetrius Poliorcetes sacked Megara and offered compensation, Stilpo replied: &ldquo;No one has carried away my knowledge&rdquo;&mdash;a response Seneca later praised as perfect Stoic apatheia before Stoicism formally existed. The school dissolved after Stilpo, but its logical innovations and dialectical spirit passed into both Stoic logic and Pyrrhonian argumentation.</li>
+                    </ul>
+                </div>
+            </details>
+
+            <div class="tradition-part-label">The Hellenistic Systems</div>
+
+            <details class="tradition-block">
+                <summary>
+                    <div class="tradition-era">The Stoics</div>
+                    <div class="tradition-era-note">c. 334 BCE&ndash;180 CE &middot; Athens &amp; Rome</div>
+                </summary>
+                <div class="tradition-block-content">
+                    <ul class="tradition-ul">
+                        <li><span>Zeno of Citium</span> &mdash; Born on Cyprus around 334 BCE. Came to Athens reportedly as a merchant, was shipwrecked, wandered into a bookshop, read Xenophon&rsquo;s <em>Memorabilia</em>, and asked where such men as Socrates could be found. The bookseller pointed to Crates the Cynic passing by. Zeno studied under Crates, then Stilpo, then the Academic Polemon, absorbing elements from each. Around 300 BCE he began teaching at the <em>Stoa Poikile</em> (Painted Colonnade). He constructed a comprehensive system divided into logic, physics, and ethics. The Stoic universe is a living, rational, material continuum permeated by <em>Logos</em>, <em>Pneuma</em>, God, Nature, Providence, or Fate. Ethics follows from physics: the goal of life is &ldquo;living in agreement with nature&rdquo; (<em>homologoumenos te physei zen</em>).</li>
+                        <li><span>Cleanthes of Assos</span> &mdash; A former boxer who worked as a water-carrier at night. His <em>Hymn to Zeus</em> addresses Zeus as the rational principle governing the cosmos: &ldquo;Most glorious of immortals, many-named, almighty forever, Zeus, ruler of nature, guiding all things by your law.&rdquo; He emphasized the role of will and emotional commitment in philosophical life more than his predecessor.</li>
+                        <li><span>Chrysippus of Soli</span> &mdash; Third scholarch (c. 230&ndash;207 BCE). Over 700 works (none survive intact). He developed Stoic propositional logic into a rigorous system based on five &ldquo;indemonstrables&rdquo;&mdash;fundamentally different from Aristotle&rsquo;s syllogistic and anticipatory of modern propositional calculus. He refined the &ldquo;cataleptic impression&rdquo; as the criterion of knowledge. He elaborated Stoic determinism with extraordinary subtlety, defending a compatibilist position. &ldquo;If Chrysippus had not existed, the Stoa would not have existed.&rdquo;</li>
+                        <li><span>Seneca</span> &mdash; (c. 4 BCE&ndash;65 CE). Roman statesman, dramatist, tutor and advisor to Nero. His <em>Letters to Lucilius</em> (124 letters) compose an informal curriculum of Stoic self-formation. His <em>Moral Essays</em> treat anger, the brevity of life, tranquility, and the constancy of the wise. His pointed, epigrammatic Latin made Stoic ethics vivid and personal. Forced to commit suicide by Nero in 65 CE, he met his death, as Tacitus describes, with the composure his philosophy had rehearsed.</li>
+                        <li><span>Epictetus</span> &mdash; Born a slave in Hierapolis (c. 50&ndash;135 CE). Studied under Musonius Rufus. Like Socrates, wrote nothing. His student Arrian recorded his teachings in the <em>Discourses</em> and <em>Enchiridion</em>. The opening sentence: &ldquo;Some things are within our power, while others are not.&rdquo; Within our power: judgments, desires, intentions. Beyond: body, possessions, reputation, office. Freedom consists exclusively in the proper use of what is within our power. His philosophy is the most psychologically acute form of Stoic ethics; the founders of cognitive behavioral therapy (Ellis and Beck) explicitly acknowledged their debt to him.</li>
+                        <li><span>Marcus Aurelius</span> &mdash; Emperor 161&ndash;180 CE. His <em>Meditations</em> (<em>Ta Eis Heauton</em>, &ldquo;To Himself&rdquo;) were never intended for publication: a private journal written during Danube campaigns in which the most powerful man in the Western world subjects himself to Socratic self-examination. The entries return obsessively to transience (&ldquo;Soon you will have forgotten everything; soon everything will have forgotten you&rdquo;), the obligation to act justly, the discipline of assent, and cosmic perspective&mdash;the view from above in which all of history is a brief disturbance on the surface of eternity. The final masterpiece of ancient Stoicism and the most intimate document of the classical world. With his death, Stoicism ceased as an active school, but its ethical core passed into Christianity, early modern philosophy through Lipsius and Descartes, and the contemporary world through cognitive science.</li>
+                    </ul>
+                </div>
+            </details>
+
+            <details class="tradition-block">
+                <summary>
+                    <div class="tradition-era">The Epicureans</div>
+                    <div class="tradition-era-note">c. 341 BCE&ndash;c. 300 CE &middot; Athens &amp; Rome</div>
+                </summary>
+                <div class="tradition-block-content">
+                    <ul class="tradition-ul">
+                        <li><span>Epicurus of Samos</span> &mdash; Born 341 BCE. In 306 BCE he established the Garden (<em>Kepos</em>)&mdash;the third great institution of Athens alongside the Academy and Lyceum. Revolutionary in admitting women and slaves. He adopted Democritean atomism: atoms and void, infinite worlds, no providence. He added the &ldquo;swerve&rdquo; (<em>clinamen</em>)&mdash;a minute, uncaused deviation in the fall of atoms that breaks determinism and provides the physical basis for free will. Epistemology: all knowledge derives from sensation; all sensations are true; error arises only in judgment. Ethics: the goal is <em>ataraxia</em> (tranquility) and <em>aponia</em> (absence of pain). Pleasure is the sole good, but Epicurean pleasure is the simple absence of pain, achieved through rational management of desire, cultivation of friendship (valued more highly than by any other ancient philosopher), and elimination of the fears of gods (who exist but take no interest) and death (&ldquo;Where death is, I am not; where I am, death is not&rdquo;). He reportedly composed over 300 scrolls; only three letters and a collection of maxims survive.</li>
+                        <li><span>Lucretius</span> &mdash; Titus Lucretius Carus (c. 99&ndash;55 BCE). About his life, almost nothing is known. His <em>De Rerum Natura</em> (On the Nature of Things), 7,400 lines of Latin hexameter, is the most complete surviving exposition of Epicurean philosophy and one of the supreme achievements of Latin literature. In six books: the atomic theory, the mortality of the soul, the development of civilization, the nature of sensation, celestial mechanics, and the causes of disease&mdash;all serving Epicurus&rsquo;s therapeutic mission: to free the mind from superstitious terror. The poem was lost to the Middle Ages and rediscovered in a German monastery by Poggio Bracciolini in 1417&mdash;an event whose consequences Stephen Greenblatt has argued were the conceptual foundations of modernity: the infinity of the universe, the materiality of the soul, the rejection of providence, and the possibility of naturalistic ethics.</li>
+                        <li><span>Philodemus of Gadara</span> &mdash; (c. 110&ndash;40 BCE). His works were preserved in carbonized papyrus scrolls buried by Vesuvius in 79 CE in the Villa of the Papyri at Herculaneum&mdash;the private library of Julius Caesar&rsquo;s father-in-law. The ongoing decipherment, using multispectral imaging and artificial intelligence, continues to reveal previously unknown texts on ethics, aesthetics, rhetoric, theology, and the history of the schools. His circle included Virgil and Horace. The Herculaneum papyri remain one of the most tantalizing prospects in classical scholarship; thousands of scrolls have yet to be fully read.</li>
+                    </ul>
+                </div>
+            </details>
+
+            <details class="tradition-block">
+                <summary>
+                    <div class="tradition-era">The Pyrrhonian Skeptics</div>
+                    <div class="tradition-era-note">c. 365 BCE&ndash;c. 200 CE &middot; Elis, Athens, &amp; Alexandria</div>
+                </summary>
+                <div class="tradition-block-content">
+                    <ul class="tradition-ul">
+                        <li><span>Pyrrho of Elis</span> &mdash; Accompanied Alexander&rsquo;s expedition to India, where he encountered the <em>gymnosophistai</em> (naked philosophers)&mdash;possibly Buddhist or Jain ascetics&mdash;whose radical detachment reportedly impressed him deeply. Upon returning, he refused to affirm or deny any proposition about the nature of things (<em>ta pragmata</em>), on the grounds that our sensations and judgments reveal only how things appear, never how they are in themselves. From this suspension of judgment (<em>epoche</em>) he achieved profound tranquility (<em>ataraxia</em>). He wrote nothing. His philosophy was transmitted by his student Timon of Phlius, a satirical poet whose <em>Silloi</em> (Lampoons) mocked every dogmatic philosopher, sparing only Pyrrho and Xenophanes.</li>
+                        <li><span>Aenesidemus of Cnossus</span> &mdash; Active in the first century BCE, he revived Pyrrhonian skepticism and directed it against the Academic skeptics, whom he accused of having become &ldquo;Stoics fighting with Stoics&rdquo;&mdash;of adopting covert dogmatic commitments. He systematized the arguments into ten &ldquo;modes&rdquo; (<em>tropoi</em>): differences among species, among individuals, among the senses, in circumstance, in position, due to admixture, in quantity, arising from relation, in frequency, and in customs and beliefs. The cumulative force: for every appearance or judgment, an equally compelling contrary can be produced, leaving no rational basis for preference and compelling suspension of judgment.</li>
+                        <li><span>Sextus Empiricus</span> &mdash; Active around 200 CE. A physician of the Empiricist school (which refused to theorize about hidden causes&mdash;a medical analogue to Pyrrhonian suspension). His <em>Outlines of Pyrrhonism</em> and <em>Against the Mathematicians</em> are the most complete surviving account of any ancient philosophical position. The skeptic is not a nihilist but an inquirer (<em>skeptikos</em>, &ldquo;one who investigates&rdquo;) who, finding equally balanced arguments on every question, suspends judgment and discovers that tranquility follows &ldquo;as a shadow follows a body.&rdquo; <em>Against the Mathematicians</em> subjects every branch of dogmatic philosophy to devastating critique while preserving the arguments of every school as targets. Rediscovered in the sixteenth century, his works produced an intellectual upheaval: Montaigne, Descartes (whose method of radical doubt is structurally indebted to the Pyrrhonian modes), Hume, and the entire modern epistemological tradition drew on him. Richard Popkin&rsquo;s <em>The History of Scepticism</em> demonstrated that the recovery of Sextus was one of the decisive events in the formation of modern philosophy. The Pyrrhonian tradition is the ancient school whose influence on modernity is most underestimated: through Sextus, the arguments first forged by Pyrrho became the solvent that dissolved scholastic certainties and compelled entirely new epistemological foundations.</li>
+                    </ul>
+                </div>
+            </details>
+
+        </div>
+
+    </main>
+
+    <section class="tradition-colophon">
+        <div class="tradition-colophon-rule"></div>
+        <div class="tradition-colophon-label">A Note on Sources</div>
+        <p>
+            This tradition map draws on the ancient doxographic and
+            biographical sources&mdash;principally Diogenes
+            La&euml;rtius, <em>Lives of the Eminent Philosophers</em>;
+            Aristotle, <em>Metaphysics</em> Book I; Cicero,
+            <em>Academica</em> and <em>De Finibus</em>; and Sextus
+            Empiricus, <em>Outlines of Pyrrhonism</em>&mdash;as well
+            as the modern scholarly tradition, including W. K. C.
+            Guthrie, <em>A History of Greek Philosophy</em> (6 vols.);
+            A. A. Long and D. N. Sedley, <em>The Hellenistic
+            Philosophers</em> (2 vols.); Richard Sorabji, ed.,
+            <em>Aristotle Transformed</em>; Dimitri Gutas, <em>Greek
+            Thought, Arabic Culture</em>; and James Hankins, <em>Plato
+            in the Italian Renaissance</em> (2 vols.).
+        </p>
+        <p>
+            Dates follow the standard scholarly conventions and are
+            approximate where the ancient evidence is uncertain.
+            Fragment references use the Diels-Kranz (DK) numbering
+            system for the Pre-Socratics and the Stoicorum Veterum
+            Fragmenta (SVF) for the early Stoics.
+        </p>
+        <div class="tradition-colophon-sources">
+            <p>
+                Compiled for <em>The Academy &amp; The Lyceum:
+                Complete Works Archive</em>. This page is a
+                scholarly reference and does not claim original
+                historical research. All interpretive summaries
+                reflect the broad consensus of contemporary
+                classical scholarship.
+            </p>
+        </div>
+    </section>
+
+    <a href="#" class="tradition-back-top" id="backToTop" aria-label="Back to top">
+        <span class="tradition-back-top-arrow">&uarr;</span>
+    </a>
+
+    <footer class="tradition-footer">
+        <p>The Academy &amp; The Lyceum &middot; Complete Works Archive</p>
+    </footer>
+
+    <script>
+        function toggleAll(btn) {
+            var column = btn.closest('.tradition-column');
+            var details = column.querySelectorAll('details.tradition-block');
+            var allOpen = true;
+            for (var i = 0; i < details.length; i++) {
+                if (!details[i].open) {
+                    allOpen = false;
+                    break;
+                }
+            }
+            for (var j = 0; j < details.length; j++) {
+                details[j].open = !allOpen;
+            }
+            btn.textContent = allOpen ? 'Expand All' : 'Collapse All';
+        }
+
+        (function() {
+            var backBtn = document.getElementById('backToTop');
+            if (!backBtn) return;
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 600) {
+                    backBtn.classList.add('visible');
+                } else {
+                    backBtn.classList.remove('visible');
+                }
+            });
+        })();
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,1100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glossary of Terms | The Academy &amp; The Lyceum</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=JetBrains+Mono:wght@300;400;500&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        ::selection {
+            background-color: rgba(166, 138, 76, 0.15);
+            color: #1A1A1A;
+        }
+
+        .gloss-body {
+            margin: 0;
+            padding: 0;
+            background-color: #FAF8F4;
+            color: #2C2C2C;
+            font-family: 'Libre Baskerville', 'Georgia', serif;
+            font-size: 15px;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* ---- NAVIGATION ---- */
+        .gloss-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 28px 40px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+        }
+
+        .gloss-nav-title {
+            font-family: 'Cormorant Garamond', 'Georgia', serif;
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: #1A1A1A;
+            letter-spacing: 0.5px;
+            text-decoration: none;
+        }
+
+        .gloss-nav-title:hover {
+            color: #A68A4C;
+        }
+
+        .gloss-nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .gloss-nav-links a {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #888;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .gloss-nav-links a:hover {
+            color: #A68A4C;
+        }
+
+        .gloss-nav-links a.active {
+            color: #A68A4C;
+        }
+
+        /* ---- PAGE HEADER ---- */
+        .gloss-header {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 80px 40px 60px;
+            text-align: center;
+        }
+
+        .gloss-header-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: #A68A4C;
+            margin-bottom: 20px;
+        }
+
+        .gloss-header h1 {
+            font-family: 'Cormorant Garamond', 'Georgia', serif;
+            font-size: 2.8rem;
+            font-weight: 300;
+            color: #1A1A1A;
+            letter-spacing: 1px;
+            margin: 0 0 16px 0;
+            line-height: 1.2;
+        }
+
+        .gloss-header-sub {
+            font-family: 'Libre Baskerville', 'Georgia', serif;
+            font-size: 0.95rem;
+            font-style: italic;
+            color: #777;
+            max-width: 580px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        .gloss-header-line {
+            width: 60px;
+            height: 1px;
+            background-color: #A68A4C;
+            margin: 40px auto 0;
+            opacity: 0.4;
+        }
+
+        /* ---- SEARCH ---- */
+        .gloss-search-wrap {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 0 40px 40px;
+        }
+
+        .gloss-search {
+            width: 100%;
+            padding: 14px 20px;
+            font-family: 'Libre Baskerville', 'Georgia', serif;
+            font-size: 0.9rem;
+            color: #2C2C2C;
+            background-color: #FFFFFF;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            border-radius: 2px;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        .gloss-search::placeholder {
+            color: #BBB;
+            font-style: italic;
+        }
+
+        .gloss-search:focus {
+            border-color: rgba(166, 138, 76, 0.4);
+        }
+
+        /* ---- LETTER INDEX ---- */
+        .gloss-letter-index {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 0 40px 32px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            justify-content: center;
+        }
+
+        .gloss-letter-link {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.65rem;
+            letter-spacing: 1px;
+            color: #999;
+            text-decoration: none;
+            padding: 4px 8px;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            border-radius: 2px;
+            transition: color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .gloss-letter-link:hover {
+            color: #A68A4C;
+            border-color: rgba(166, 138, 76, 0.3);
+        }
+
+        /* ---- MAIN CONTENT ---- */
+        .gloss-content {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 0 40px 80px;
+        }
+
+        /* ---- LETTER SECTION ---- */
+        .gloss-letter-section {
+            margin-bottom: 48px;
+        }
+
+        .gloss-letter-heading {
+            font-family: 'Cormorant Garamond', 'Georgia', serif;
+            font-size: 2.4rem;
+            font-weight: 300;
+            color: #A68A4C;
+            opacity: 0.35;
+            margin: 0 0 20px 0;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(166, 138, 76, 0.1);
+        }
+
+        /* ---- TERM ENTRY ---- */
+        details.gloss-entry {
+            margin-bottom: 8px;
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            border-radius: 2px;
+            transition: border-color 0.3s ease;
+        }
+
+        details.gloss-entry:hover {
+            border-color: rgba(166, 138, 76, 0.2);
+        }
+
+        details.gloss-entry[open] {
+            margin-bottom: 20px;
+            border-color: rgba(166, 138, 76, 0.15);
+        }
+
+        details.gloss-entry summary {
+            padding: 16px 20px;
+            cursor: pointer;
+            list-style: none;
+            display: flex;
+            align-items: baseline;
+            gap: 16px;
+            position: relative;
+            user-select: none;
+        }
+
+        details.gloss-entry summary::-webkit-details-marker {
+            display: none;
+        }
+
+        details.gloss-entry summary::after {
+            content: '+';
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            font-weight: 300;
+            color: #A68A4C;
+            opacity: 0.4;
+        }
+
+        details.gloss-entry[open] summary::after {
+            content: '\d7';
+            opacity: 0.7;
+        }
+
+        .gloss-term {
+            font-family: 'Cormorant Garamond', 'Georgia', serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #1A1A1A;
+            letter-spacing: 0.3px;
+        }
+
+        .gloss-translation {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.65rem;
+            color: #999;
+            letter-spacing: 0.5px;
+            padding-right: 30px;
+        }
+
+        .gloss-entry-content {
+            padding: 4px 20px 20px;
+            border-top: 1px solid rgba(0, 0, 0, 0.03);
+            overflow: hidden;
+            animation: glossSlide 0.25s ease;
+        }
+
+        @keyframes glossSlide {
+            from { opacity: 0; max-height: 0; }
+            to { opacity: 1; max-height: 2000px; }
+        }
+
+        .gloss-entry-content p {
+            font-size: 0.88rem;
+            line-height: 1.7;
+            color: #3D3D3D;
+            margin: 10px 0 0 0;
+        }
+
+        .gloss-entry-content p em {
+            font-style: italic;
+            color: #555;
+        }
+
+        .gloss-entry-content p:first-child {
+            margin-top: 6px;
+        }
+
+        .gloss-associated {
+            margin-top: 12px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.62rem;
+            color: #AAA;
+            letter-spacing: 0.5px;
+        }
+
+        .gloss-associated strong {
+            color: #999;
+            font-weight: 500;
+        }
+
+        /* ---- ENTRY COUNT ---- */
+        .gloss-count {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 0 40px 20px;
+            text-align: right;
+        }
+
+        .gloss-count span {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.6rem;
+            color: #BBB;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        /* ---- FOOTER ---- */
+        .gloss-footer {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 40px;
+            border-top: 1px solid rgba(0, 0, 0, 0.06);
+            text-align: center;
+        }
+
+        .gloss-footer p {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.65rem;
+            color: #999;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin: 0;
+        }
+
+        /* ---- BACK TO TOP ---- */
+        .gloss-back-top {
+            position: fixed;
+            bottom: 36px;
+            right: 36px;
+            width: 40px;
+            height: 40px;
+            background-color: #FAF8F4;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.4s ease, visibility 0.4s ease,
+                        border-color 0.3s ease;
+            z-index: 100;
+        }
+
+        .gloss-back-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .gloss-back-top:hover {
+            border-color: rgba(166, 138, 76, 0.4);
+        }
+
+        .gloss-back-top-arrow {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: #A68A4C;
+            line-height: 1;
+        }
+
+        /* ---- NO RESULTS ---- */
+        .gloss-no-results {
+            display: none;
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .gloss-no-results p {
+            font-family: 'Libre Baskerville', 'Georgia', serif;
+            font-size: 0.9rem;
+            font-style: italic;
+            color: #BBB;
+        }
+
+        /* ---- RESPONSIVE ---- */
+        @media (max-width: 768px) {
+            .gloss-nav {
+                flex-direction: column;
+                gap: 16px;
+                padding: 20px 24px;
+            }
+            .gloss-header {
+                padding: 50px 24px 40px;
+            }
+            .gloss-header h1 {
+                font-size: 2rem;
+            }
+            .gloss-search-wrap,
+            .gloss-letter-index,
+            .gloss-content,
+            .gloss-count {
+                padding-left: 24px;
+                padding-right: 24px;
+            }
+        }
+    </style>
+</head>
+<body class="gloss-body">
+
+    <nav class="gloss-nav">
+        <a href="index.html" class="gloss-nav-title">The Academy &amp; The Lyceum</a>
+        <ul class="gloss-nav-links">
+            <li><a href="index.html">Archive</a></li>
+            <li><a href="tradition.html">Tradition</a></li>
+            <li><a href="glossary.html" class="active">Glossary</a></li>
+            <li><a href="timeline.html">Timeline</a></li>
+        </ul>
+    </nav>
+
+    <header class="gloss-header">
+        <div class="gloss-header-label">Philosophical Lexicon</div>
+        <h1>Glossary of Terms</h1>
+        <p class="gloss-header-sub">
+            The essential vocabulary of ancient Greek philosophy&mdash;the
+            terms in which Plato and Aristotle thought, argued, and
+            constructed their understanding of reality.
+        </p>
+        <div class="gloss-header-line"></div>
+    </header>
+
+    <div class="gloss-search-wrap">
+        <input type="text" class="gloss-search" id="glossSearch"
+               placeholder="Search terms, translations, or descriptions...">
+    </div>
+
+    <div class="gloss-letter-index" id="letterIndex">
+        <a href="#letter-A" class="gloss-letter-link">A</a>
+        <a href="#letter-D" class="gloss-letter-link">D</a>
+        <a href="#letter-E" class="gloss-letter-link">E</a>
+        <a href="#letter-H" class="gloss-letter-link">H</a>
+        <a href="#letter-K" class="gloss-letter-link">K</a>
+        <a href="#letter-L" class="gloss-letter-link">L</a>
+        <a href="#letter-M" class="gloss-letter-link">M</a>
+        <a href="#letter-N" class="gloss-letter-link">N</a>
+        <a href="#letter-O" class="gloss-letter-link">O</a>
+        <a href="#letter-P" class="gloss-letter-link">P</a>
+        <a href="#letter-S" class="gloss-letter-link">S</a>
+        <a href="#letter-T" class="gloss-letter-link">T</a>
+    </div>
+
+    <div class="gloss-count">
+        <span id="entryCount">50 entries</span>
+    </div>
+
+    <main class="gloss-content" id="glossContent">
+
+        <div class="gloss-no-results" id="noResults">
+            <p>No terms match your search.</p>
+        </div>
+
+        <!-- ======== A ======== -->
+        <div class="gloss-letter-section" id="letter-A">
+            <div class="gloss-letter-heading">A</div>
+
+            <details class="gloss-entry" data-terms="agathon good to agathon form of the good plato republic">
+                <summary>
+                    <span class="gloss-term">Agathon (to Agathon)</span>
+                    <span class="gloss-translation">&ldquo;The Good&rdquo;</span>
+                </summary>
+                <div class="gloss-entry-content">
+                    <p>The supreme principle in Plato&rsquo;s metaphysics. In the <em>Republic</em> (505a&ndash;509b), the Form of the Good occupies the highest position in the hierarchy of Forms, analogous to the sun in the visible world: as the sun provides both the light by which objects are seen and the energy by which they grow, the Good provides both the intelligibility by which the Forms are known and the being by which they exist. It is thus &ldquo;beyond being&rdquo; (<em>epekeina tes ousias</em>) in dignity and power&mdash;a formulation that profoundly influenced Plotinus&rsquo;s conception of the One. In Aristotle, <em>agathon</em> is not a single transcendent Form but is &ldquo;said in many ways&rdquo; (<em>Nicomachean Ethics</em> 1096a); the practical good for human beings is <em>eudaimonia</em>, activity of the soul in accordance with virtue.</p>
+                    <div class="gloss-associated"><strong>Associated:</strong> Plato, <em>Republic</em> VI&ndash;VII; Aristotle, <em>Nicomachean Ethics</em> I; Plotinus, <em>Enneads</em> V&ndash;VI</div>
+                </div>
+            </details>
+
+            <details class="gloss-entry" data-terms="aisthesis sensation perception sense empiricism aristotle plato">
+                <summary>
+                    <span class="gloss-term">Aisthesis</span>
+                    <span class="gloss-translation">&ldquo;Sense-perception&rdquo;</span>
+                </summary>
+                <div class="gloss-entry-content">
+                    <p>The faculty and act of sense-perception. For Plato, <em>aisthesis</em> grasps only the changing, particular world of becoming and can never yield genuine knowledge (<em>episteme</em>), which is reserved for the intellect&rsquo;s apprehension of the eternal Forms. In the <em>Theaetetus</em> (151d&ndash;186e), Plato systematically refutes the identification of knowledge with perception. For Aristotle, by contrast, <em>aisthesis</em> is the indispensable starting point of all knowledge: &ldquo;All men by nature desire to know. An indication of this is the delight we take in our senses&rdquo; (<em>Metaphysics</em> 980a). Sensation receives the form of the perceived object without its matter, as wax receives the impression of a signet ring (<em>De Anima</em> 424a). The Stoics held that all impressions (<em>phantasiai</em>) derive from <em>aisthesis</em>, with the &ldquo;cataleptic impression&rdquo; providing the criterion of truth. The Epicureans went further, maintaining that all sensations are true; error arises only in the judgment applied to them.</p>
+                    <div class="gloss-associated"><strong>Associated:</strong> Plato, <em>Theaetetus</em>; Aristotle, <em>De Anima</em> II&ndash;III; Epicurus, <em>Letter to Herodotus</em></div>
+                </div>
+            </details>
+
+            <details class="gloss-entry" data-terms="aitia cause causes four aristotle material formal efficient final">
+                <summary>
+                    <span class="gloss-term">Aitia (Aition)</span>
+                    <span class="gloss-translation">&ldquo;Cause,&rdquo; &ldquo;explanation&rdquo;</span>
+                </summary>
+                <div class="gloss-entry-content">
+                    <p>Aristotle&rsquo;s doctrine of the four causes (<em>Physics</em> 194b&ndash;195a) is one of the most influential explanatory frameworks in the history of philosophy. To fully explain any natural object or process, one must identify: (1) the <em>material cause</em> (<em>hyle</em>)&mdash;the matter out of which something is made (the bronze of a statue); (2) the <em>formal cause</em> (<em>eidos</em>, <em>morphe</em>)&mdash;the form, pattern, or definition that makes it what it is (the shape of the statue); (3) the <em>efficient cause</em> (<em>to hothen he kinesis</em>)&mdash;the agent or source of change that brings it into being (the sculptor); and (4) the <em>final cause</em> (<em>telos</em>)&mdash;the end, purpose, or &ldquo;that for the sake of which&rdquo; (the statue&rsquo;s function as a dedication or ornament). Aristotle criticized his predecessors for recognizing only some of these causes: the Milesians identified only material causes, the Pythagoreans formal causes, Empedocles efficient causes. The final cause is, for Aristotle, primary: nature acts for an end, and teleological explanation is the deepest form of understanding.</p>
+                    <div class="gloss-associated"><strong>Associated:</strong> Aristotle, <em>Physics</em> II; <em>Metaphysics</em> I, V</div>
+                </div>
+            </details>
+
+            <details class="gloss-entry" data-terms="aletheia truth unconcealment heidegger parmenides plato">
+                <summary>
+                    <span class="gloss-term">Aletheia</span>
+                    <span class="gloss-translation">&ldquo;Truth,&rdquo; &ldquo;unconcealment&rdquo;</span>
+                </summary>
+                <div class="gloss-entry-content">
+                    <p>Literally &ldquo;un-forgetting&rdquo; or &ldquo;un-concealment&rdquo; (from <em>a-</em>, &ldquo;not,&rdquo; and <em>lethe</em>, &ldquo;forgetting, concealment&rdquo;). In Parmenides&rsquo; poem, the goddess guides the philosopher along the &ldquo;Way of Truth&rdquo; (<em>hodos aletheies</em>), which reveals that Being is one, unchanging, and complete. For Plato, <em>aletheia</em> is what the philosopher grasps when the soul ascends from the shadowy world of appearance to the sunlit realm of the Forms; the Allegory of the Cave (<em>Republic</em> 514a&ndash;520a) dramatizes this ascent from darkness (<em>doxa</em>) to light (<em>aletheia</em>). For Aristotle, truth consists in saying of what is that it is, and of what is not that it is not (<em>Metaphysics</em> 1011b); this &ldquo;correspondence&rdquo; conception became foundational for Western epistemology. In the twentieth century, Heidegger reinterpreted <em>aletheia</em> as the primordial &ldquo;unconcealment&rdquo; of Being, prior to and more fundamental than propositional truth&mdash;a reading that, though controversial among classicists, profoundly influenced continental philosophy.</p>
+                    <div class="gloss-associated"><strong>Associated:</strong> Parmenides, DK 28 B1&ndash;B8; Plato, <em>Republic</em> VII; Aristotle, <em>Metaphysics</em> IV</div>
+                </div>
+            </details>
+
+            <details class="gloss-entry" data-terms="anamnesis recollection learning meno phaedo plato forms immortality">
+                <summary>
+                    <span class="gloss-term">Anamnesis</span>
+                    <span class="gloss-translation">&ldquo;Recollection&rdquo;</span>
+                </summary>
+                <div class="gloss-entry-content">
+                    <p>Plato&rsquo;s doctrine that all learning is recollection of knowledge the soul possessed before its incarnation in a body. In the <em>Meno</em> (81a&ndash;86b), Socrates demonstrates this by eliciting geometrical knowledge from an uneducated slave boy through questioning alone, without teaching him anything&mdash;the boy &ldquo;recovers&rdquo; the knowledge from within himself. In the <em>Phaedo</em> (72e&ndash;77a), the argument is extended: our ability to recognize imperfect sensible instances as imperfect (two sticks that are &ldquo;approximately equal&rdquo; but not perfectly so) presupposes prior acquaintance with the Form of Equality itself, which we must have known before birth. The doctrine serves multiple philosophical functions: it resolves Meno&rsquo;s paradox (how can you search for what you do not know?), it provides evidence for the soul&rsquo;s pre-existence and immortality, and it establishes the epistemological priority of the Forms over sensible particulars. Aristotle rejected <em>anamnesis</em>, arguing that knowledge arises through abstraction from sensory experience (<em>Posterior Analytics</em> II.19).</p>
+                    <div class="gloss-associated"><strong>Associated:</strong> Plato, <em>Meno</em>, <em>Phaedo</em>, <em>Phaedrus</em></div>
+                </div>
+            </details>
+
+            <details class="gloss-entry" data-terms="apeiron boundless unlimited indefinite anaximander">
+                <summary>
+                    <span class="gloss-term">Apeiron</span>
+                    <span class="gloss-translation">&ldquo;The boundless,&rdquo; &ldquo;the indefinite&rdquo;</span>
+                </summary>
+                <div class="gloss-entry-content">
+                    <p>Anaximander&rsquo;s proposed <em>arche</em>&mdash;the first principle from which all things arise and into which all things dissolve. Unlike Thales&rsquo; water or Anaximenes&rsquo; air, the <em>apeiron</em> is not any determinate substance but something prior to all qualitative determination: boundless in extent, indefinite in character, and eternal in duration. Aristotle interprets it as that which has no limit or boundary (<em>peras</em>), and discusses it extensively in the <em>Physics</em> (III.4&ndash;8), where he distinguishes between the potential infinite (which he accepts: a line can always be further divided) and the actual infinite (which he rejects: no actually infinite magnitude or number exists). The <em>apeiron</em> also appears in Pythagorean philosophy as one member of the fundamental pair of limiters (<em>perainonta</em>) and unlimiteds (<em>apeira</em>) that Philolaus identified as the constituents of all things.</p>
+                    <div class="gloss-associated"><strong>Associated:</strong> Anaximander, DK 12 B1; Aristotle, <em>Physics</em> III; Philolaus</div>
+                </div>
+            </details>
+
+            <details class="gloss-entry" data-terms="aporia perplexity puzzlement socrates dialectic elenchus">
+                <summary>
+                    <span class="gloss-term">Aporia</span>
+                    <span class="gloss-translation">&ldquo;Perplexity,&rdquo; &ldquo;impasse&rdquo;</span>
+                </summary>
+                <div class="gloss-entry-content">
+                    <p>Literally &ldquo;without passage&rdquo; or &ldquo;without way through&rdquo;&mdash;the state of genuine intellectual puzzlement that results when confident assumptions are shown to be inconsistent. In the Socratic dialogues, <em>aporia</em> is the characteristic outcome of the <em>elenchus</em>: the interlocutor who began with a confident definition of justice, courage, or piety discovers that his beliefs are contradictory, and is left in a state of productive bewilderment. Far from being a failure, <em>aporia</em> is for Socrates the necessary precondition of genuine philosophical inquiry&mdash;it clears away false certainty and opens the soul to authentic understanding. Aristotle preserves the term in a somewhat different sense: in the <em>Metaphysics</em> (III.1, 995a24&ndash;995b4), he systematically catalogues the <em>aporiai</em> (puzzles, difficulties) that any adequate metaphysical theory must resolve, treating them as the starting point of philosophical investigation rather than its terminus.</p>
+                    <div class="gloss-associated"><strong>Associated:</strong> Plato, <em>Meno</em>, <em>Laches</em>, <em>Euthyphro</em>; Aristotle, <em>Metaphysics</em> III</div>
+                </div>
+            </details>
+
+            <details class="gloss-entry" data-terms="arche principle first cause origin beginning milesians">
+                <summary>
+                    <span class="gloss-term">Arche</span>
+                    <span class="gloss-translation">&ldquo;Beginning,&rdquo; &ldquo;principle,&rdquo; &ldquo;first cause&rdquo;</span>
+                </summary>
+                <div class="gloss-entry-content">
+                    <p>The fundamental principle, origin, or source from which all things derive. The search for the <em>arche</em> defines the Milesian project: Thales proposed water, Anaximander the <em>apeiron</em>, Anaximenes air. In Aristotle&rsquo;s reconstruction (<em>Metaphysics</em> I), the history of Pre-Socratic philosophy is essentially the history of successive proposals for the <em>arche</em>. For Aristotle himself, an <em>arche</em> is that from which something first comes to be, or through which something is first known, or by which something is first governed (<em>Metaphysics</em> 1013a). The term carries a double sense of temporal origin and logical ground: the <em>arche</em> is both that from which things historically arose and that which makes them rationally intelligible. In Neoplatonism, the <em>arche</em> becomes the One, the ultimate principle that is the source of all being but is itself beyond all predication.</p>
+                    <div class="gloss-associated"><strong>Associated:</strong> Thales, Anaximander, Anaximenes; Aristotle, <em>Metaphysics</em> I, V; Plotinus</div>
+                </div>
+            </details>
+
+            <details class="gloss-entry" data-terms="arete virtue excellence moral plato aristotle ethics">
+                <summary>
+                    <span class="gloss-term">Arete</span>
+                    <span class="gloss-translation">&ldquo;Virtue,&rdquo; &ldquo;excellence&rdquo;</span>
+                </summary>
+                <div class="gloss-entry-content">
+                    <p>The excellence or optimal functioning of any thing according to its nature. A knife has <em>arete</em> when it cuts well; a horse when it runs well; a human being when it lives well. The term carries no exclusively moral connotation in Greek; it encompasses any form of excellence, from athletic prowess to intellectual brilliance to moral integrity. The Homeric heroes possess <em>arete</em> as martial valor and noble bearing. The Sophists claimed to teach <em>arete</em> as civic and rhetorical competence. Socrates asked the revolutionary question: what is <em>arete</em> as such, and can it be taught? He identified it with knowledge: no one who truly understands the good would willingly choose evil. Plato elaborated this into the doctrine of the four cardinal virtues: wisdom (<em>sophia</em>), courage (<em>andreia</em>), temperance (<em>sophrosyne</em>), and justice (<em>dikaiosyne</em>), each corresponding to a part of the soul and a class in the ideal city. Aristotle distinguished intellectual virtues (acquired through teaching) from moral virtues (acquired through habituation, <em>ethismos</em>), and defined moral <em>arete</em> as a stable disposition (<em>hexis</em>) to choose the mean between excess and deficiency relative to the agent and the situation (<em>Nicomachean Ethics</em> 1106b&ndash;1107a).</p>
+                    <div class="gloss-associated"><strong>Associated:</strong> Homer; the Sophists; Socrates; Plato, <em>Republic</em> IV; Aristotle, <em>Nicomachean Ethics</em> II</div>
+                </div>
+            </details>
+
+            <details class="gloss-entry" data-terms="ataraxia tranquility peace disturbance epicurus pyrrho stoics skeptics">
+                <summary>
+                    <span class="gloss-term">Ataraxia</span>
+                    <span class="gloss-translation">&ldquo;Tranquility,&rdquo; &ldquo;freedom from disturbance&rdquo;</span>
+                </summary>
+                <div class="gloss-entry-content">
+                    <p>The undisturbed condition of the soul, free from anxiety, fear, and emotional turbulence. <em>Ataraxia</em> is the highest goal of Epicurean and Pyrrhonian ethics, though achieved by very different means. For Epicurus, <em>ataraxia</em> results from the rational elimination of the fears that torment the soul: the fear of the gods (who exist but take no interest in human affairs), the fear of death (&ldquo;where death is, I am not&rdquo;), and the fear of unattainable desires. For the Pyrrhonian skeptic, <em>ataraxia</em> follows unexpectedly from the suspension of judgment (<em>epoche</em>): having found equally balanced arguments on every question, the skeptic ceases to dogmatize and discovers that tranquility follows &ldquo;as a shadow follows a body&rdquo; (Sextus Empiricus, <em>Outlines of Pyrrhonism</em> I.29). The Stoics pursued a related but distinct state, <em>apatheia</em>&mdash;freedom from irrational passions (<em>pathe</em>)&mdash;achieved through the disciplined exercise of rational judgment and the recognition that only virtue is truly good.</p>
+                    <div class="gloss-associated"><strong>Associated:</strong> Epicurus; Pyrrho; Sextus Empiricus, <em>Outlines</em> I; Stoics</div>
+                </div>
+            </details>
+
+        </div>
+
+        <!-- ======== D ======== -->
+        <div class="gloss-letter-section" id="letter-D">
+            <div class="gloss-letter-heading">D</div>
+
+            <details class="gloss-entry" data-terms="daimonion divine sign socrates inner voice apology">
+                <summary>
+                    <span class="gloss-term">Daimonion</span>
+                    <span class="gloss-translation">&ldquo;Divine sign&rdquo;</span>
+                </summary>
+                <div class="gloss-entry-content">
+                    <p>The mysterious inner voice or &ldquo;divine something&rdquo; (<em>to daimonion</em>) that Socrates reported experiencing throughout his life. It never told him what to do, only what <em>not</em> to do&mdash;it intervened as a prohibitive check, dissuading him from particular courses of action without providing positive guidance. In the <em>Apology</em> (31c&ndash;d), Socrates describes it as beginning in childhood and explains that it was the <em>daimonion</em> that prevented him from entering politics: had he done so, he says, he would long since have been killed and would have been of no use to Athens or to himself. The nature of the <em>daimonion</em> was one of the charges brought against him at trial (introducing &ldquo;new divine things,&rdquo; <em>kaina daimonia</em>). It has been variously interpreted as conscience, moral intuition, a genuine religious experience, a literary device of Plato&rsquo;s, or (by modern commentators of a clinical bent) as a form of auditory hallucination&mdash;interpretations that reveal as much about the interpreters as about Socrates.</p>
+                    <div class="gloss-associated"><strong>Associated:</strong> Plato, <em>Apology</em>, <em>Phaedrus</em>, <em>Theaetetus</em>; Xenophon, <em>Memorabilia</em></div>
+                </div>
+            </details>
+
+            <details class="gloss-entry" data-terms="diairesis division collection method plato sophist statesman phaedrus">
+                <summary>
+                    <span class="gloss-term">Diairesis</span>
+                    <span class="gloss-translation">&ldquo;Division&rdquo;</span>
+                </summary>
+                <div class="gloss-entry-content">
+                    <p>The method of systematic division, paired with <em>synagoge</em> (collection), that Plato developed in his later dialogues as a refinement of the Socratic <em>elenchus</em>. The procedure is to begin with a broad genus, divide it into two species by identifying a relevant differentia, select the species that contains the target concept, and divide again, continuing until one arrives at the indivisible species that constitutes the sought-for definition. In the <em>Sophist</em> (218b&ndash;221c), the Eleatic Stranger famously demonstrates the method by first defining the angler (as a practitioner of the art of acquisition, by capture, by hunting, of water animals, by striking, with a hook, from below), then applies it to the far more philosophically significant task of defining the sophist. In the <em>Phaedrus</em> (265d&ndash;266c), Socrates describes the complementary operations: collection (<em>synagoge</em>) gathers scattered particulars under a single Form, while division carves the Form &ldquo;at its natural joints, like a good butcher.&rdquo; Aristotle adopted and transformed <em>diairesis</em> into his biological classification method, which organizes species by genus and differentia&mdash;the system that underwrites his zoological treatises and, ultimately, the entire Linnaean taxonomy.</p>
+                    <div class="gloss-associated"><strong>Associated:</strong> Plato, <em>Sophist</em>, <em>Statesman</em>, <em>Phaedrus</em>; Aristotle, <em>Parts of Animals</em> I</div>
+                </div>
+            </details>
+
+            <details class="gloss-entry" data-terms="dikaiosyne justice plato republic aristotle ethics political">
+                <summary>
+                    <span class="gloss-term">Dikaiosyne</span>
+                    <span class="gloss-translation">&ldquo;Justice,&rdquo; &ldquo;righteousness&rdquo;</span>
+                </summary>
+                <div class="gloss-entry-content">
+                    <p>The central concept of Plato&rsquo;s <em>Republic</em> and one of the most debated terms in ancient ethics. The dialogue begins with the question &ldquo;What is justice?&rdquo; and proceeds through increasingly sophisticated answers: justice as telling the truth and paying debts (Cephalus), as helping friends and harming enemies (Polemarchus), as the advantage of the stronger (Thrasymachus). Plato&rsquo;s own answer, developed through the analogy between soul and city, defines justice as the harmonious ordering in which each part performs its proper function: in the soul, reason rules, spirit supports, and appetite obeys; in the city, the philosopher-rulers govern, the guardians defend, and the producers provide. Justice is thus not an external constraint but the internal health of the soul, valuable in itself regardless of its consequences. For Aristotle (<em>Nicomachean Ethics</em> V), <em>dikaiosyne</em> is the broadest of the virtues&mdash;&ldquo;complete virtue in relation to others&rdquo;&mdash;and encompasses both distributive justice (the fair allocation of goods according to merit) and corrective justice (the rectification of wrongs in voluntary and involuntary transactions).</p>
+                    <div class="gloss-associated"><strong>Associated:</strong> Plato, <em>Republic</em> I&ndash;IV; Aristotle, <em>Nicomachean Ethics</em> V</div>
+                </div>
+            </details>
+
+            <details class="gloss-entry" data-terms="doxa opinion belief knowledge plato parmenides republic">
+                <summary>
+                    <span class="gloss-term">Doxa</span>
+                    <span class="gloss-translation">&ldquo;Opinion,&rdquo; &ldquo;belief,&rdquo; &ldquo;appearance&rdquo;</span>
+                </summary>
+                <div class="gloss-entry-content">
+                    <p>Opinion or belief, systematically distinguished from knowledge (<em>episteme</em>) throughout Greek philosophy. In Parmenides&rsquo; poem, the &ldquo;Way of Opinion&rdquo; (<em>hodos doxes</em>) is the unreliable path of mortal belief, contrasted with the &ldquo;Way of Truth&rdquo; (<em>hodos aletheies</em>). Plato develops this distinction architecturally in the <em>Republic</em> (509d&ndash;511e): the Divided Line assigns <em>doxa</em> to the lower portion, which grasps the sensible world of becoming (images and physical objects), while <em>episteme</em> occupies the upper portion, grasping the intelligible world of being (mathematical objects and the Forms). <em>Doxa</em> can be true or false, but even true opinion is inferior to knowledge because it lacks the rational account (<em>logos</em>) that secures it. In the <em>Meno</em> (97a&ndash;98b), Socrates illustrates this with the metaphor of the statues of Daedalus: true opinions are like untethered statues that wander away unless they are &ldquo;tied down&rdquo; by reasoning into knowledge. The Platonic depreciation of <em>doxa</em> stands in sharp contrast to the Sophistic and later Skeptical views, which treated opinion as the inescapable condition of human cognition.</p>
+                    <div class="gloss-associated"><strong>Associated:</strong> Parmenides; Plato, <em>Republic</em> V&ndash;VII, <em>Meno</em>, <em>Theaetetus</em></div>
+                </div>
+            </details>
+
+            <details class="gloss-entry" data-terms="dynamis potentiality power capacity actuality aristotle metaphysics">
+                <summary>
+                    <span class="gloss-term">Dynamis</span>
+                    <span class="gloss-translation">&ldquo;Potentiality,&rdquo; &ldquo;power,&rdquo; &ldquo;capacity&rdquo;</span>
+                </summary>
+                <div class="gloss-entry-content">
+                    <p>One of Aristotle&rsquo;s most important and original metaphysical concepts, paired with <em>energeia</em> (actuality). <em>Dynamis</em> is the capacity or potential for a thing to be or become something other than what it currently is: the acorn has the <em>dynamis</em> to become an oak, the block of marble the <em>dynamis</em> to become a statue, the student the <em>dynamis</em> to become a knower. Aristotle introduces the distinction in <em>Metaphysics</em> IX to solve the problem bequeathed by the Megarians, who argued that a thing can only do what it is actually doing (a builder can only build when actually building). Aristotle counters that <em>dynamis</em> is a real feature of the world: the builder retains the capacity to build even while sleeping. The relationship between <em>dynamis</em> and <em>energeia</em> is one of ontological priority: actuality is always prior to potentiality, both logically (you must know what an oak is to understand the acorn&rsquo;s potential) and temporally (an actual oak always precedes the acorn). This principle culminates in the Unmoved Mover, which is pure <em>energeia</em> without any <em>dynamis</em>&mdash;pure actuality with no unrealized potential.</p>
+                    <div class="gloss-associated"><strong>Associated:</strong> Aristotle, <em>Metaphysics</em> V, IX; <em>Physics</em> III</div>
+                </div>
+            </details>
+
+        </div>
+
+        <!-- ======== E ======== -->
+        <div class="gloss-letter-section" id="letter-E">
+            <div class="gloss-letter-heading">E</div>
+
+            <details class="gloss-entry" data-terms="eidos form idea plato aristotle species shape look">
+                <summary>
+                    <span class="gloss-term">Eidos</span>
+                    <span class="gloss-translation">&ldquo;Form,&rdquo; &ldquo;Idea,&rdquo; &ldquo;species&rdquo;</span>
+                </summary>
+                <div class="gloss-entry-content">
+                    <p>The most important and most contested term in the Platonic-Aristotelian tradition. Etymologically related to the verb &ldquo;to see&rdquo; (<em>idein</em>), it originally meant &ldquo;visible form&rdquo; or &ldquo;shape.&rdquo; Plato transformed it into a technical metaphysical term: the <em>eidos</em> (or <em>idea</em>) is the eternal, unchanging, purely intelligible reality in which particular sensible things &ldquo;participate&rdquo; (<em>methexis</em>) or which they &ldquo;imitate&rdquo; (<em>mimesis</em>). The Form of Beauty is that by virtue of which all beautiful things are beautiful; the Form of Justice is that by which all just acts are just. The Forms exist independently of the sensible world and are known by the intellect alone, not by the senses. Aristotle retained the term but relocated the form: it is not a separate, transcendent entity but the intrinsic organizing principle of each substance&mdash;the form (<em>eidos</em> or <em>morphe</em>) that makes a thing what it is, inseparable from the matter (<em>hyle</em>) it informs except in thought. &ldquo;The form is the what-it-was-to-be-that-thing&rdquo; (<em>to ti en einai</em>), the essence grasped in definition. This disagreement between Plato and Aristotle about the status of form&mdash;transcendent versus immanent, separate versus inherent&mdash;is arguably the central philosophical debate of antiquity.</p>
+                    <div class="gloss-associated"><strong>Associated:</strong> Plato, <em>Phaedo</em>, <em>Republic</em>, <em>Parmenides</em>; Aristotle, <em>Metaphysics</em> VII; <em>Categories</em></div>
+                </div>
+            </details>
+
+            <details class="gloss-entry" data-terms="elenchus refutation cross-examination socrates dialectic method">
+                <summary>
+                    <span class="gloss-term">Elenchus</span>
+                    <span class="gloss-translation">&ldquo;Refutation,&rdquo; &ldquo;cross-examination&rdquo;</span>
+                </summary>
+                <div class="gloss-entry-content">
+                    <p>The Socratic method of philosophical inquiry as practiced in Plato&rsquo;s early dialogues. The procedure has a consistent structure: (1) the interlocutor proposes a definition of a virtue (e.g., &ldquo;courage is standing firm in battle&rdquo;); (2) Socrates elicits from the interlocutor additional beliefs that seem obviously true; (3) Socrates demonstrates that these additional beliefs logically contradict the original definition; (4) the interlocutor is forced to retract or modify his claim; (5) the cycle repeats with revised definitions, typically ending in <em>aporia</em>. The philosophical significance of the <em>elenchus</em> is debated: does it merely expose inconsistency in the interlocutor&rsquo;s beliefs (a negative, destructive function), or does it somehow point toward the truth (a positive, constructive function)? Gregory Vlastos argued influentially that Socrates treats the <em>elenchus</em> as a test of truth, not merely of consistency&mdash;that the beliefs that survive elenctic testing are, for Socrates, thereby established as true. This interpretation remains controversial but has defined the terms of scholarly debate. The <em>elenchus</em> is the ancestor of all dialectical methods in Western philosophy, from Aristotle&rsquo;s dialectic through Hegel&rsquo;s to the Socratic method still used in legal education today.</p>
+                    <div class="gloss-associated"><strong>Associated:</strong> Plato, <em>Euthyphro</em>, <em>Laches</em>, <em>Charmides</em>, <em>Protagoras</em></div>
+                </div>
+            </details>
+
+            <details class="gloss-entry" data-terms="energeia actuality activity aristotle metaphysics potentiality dynamis">
+                <summary>
+                    <span class="gloss-term">Energeia</span>
+                    <span class="gloss-translation">&ldquo;Actuality,&rdquo; &ldquo;activity,&rdquo; &ldquo;being-at-work&rdquo;</span>
+                </summary>
+                <div class="gloss-entry-content">
+                    <p>Aristotle&rsquo;s term for the fully realized state of a thing&rsquo;s nature, the complement of <em>dynamis</em> (potentiality). The word is Aristotle&rsquo;s own coinage, derived from <em>ergon</em> (work, function): <em>energeia</em> is literally &ldquo;being-at-work,&rdquo; the active exercise of a capacity. Seeing is the <em>energeia</em> of the eye; contemplation is the <em>energeia</em> of the intellect; living well is the <em>energeia</em> of the human being as a whole. Aristotle also uses the closely related term <em>entelecheia</em> (&ldquo;having-its-end-within&rdquo;), sometimes interchangeably, sometimes with subtle distinctions that scholars debate. The Unmoved Mover is pure <em>energeia</em>&mdash;&ldquo;thought thinking itself&rdquo; (<em>noesis noeseos noesis</em>)&mdash;with no unrealized potentiality. The concept transforms the entire structure of Aristotle&rsquo;s metaphysics, biology, and ethics: the soul is the <em>energeia</em> of the body; <em>eudaimonia</em> is the <em>energeia</em> of the soul in accordance with virtue; the cosmos itself is kept in motion by its desire to imitate the pure <em>energeia</em> of the divine.</p>
+                    <div class="gloss-associated"><strong>Associated:</strong> Aristotle, <em>Metaphysics</em> IX, XII; <em>De Anima</em> II; <em>Nicomachean Ethics</em> I, X</div>
+                </div>
+            </details>
+
+            <details class="gloss-entry" data-terms="epoche suspension judgment skepticism pyrrho arcesilaus sextus">
+                <summary>
+                    <span class="gloss-term">Epoche</span>
+                    <span class="gloss-translation">&ldquo;Suspension of judgment&rdquo;</span>
+                </summary>
+                <div class="gloss-entry-content">
+                    <p>The deliberate withholding of assent to any non-evident proposition, the defining practice of both Academic and Pyrrhonian skepticism. Arcesilaus introduced <em>epoche</em> into the Academy as the proper response to the Stoic claim that &ldquo;cataleptic impressions&rdquo; provide an infallible criterion of truth: since no impression can be shown to be certainly true, the wise person suspends judgment on all matters. The Pyrrhonists made <em>epoche</em> the cornerstone of their entire way of life: Sextus Empiricus describes the skeptic as one who, having investigated a question and found equally balanced arguments on both sides (<em>isostheneia</em>), suspends judgment and discovers that tranquility (<em>ataraxia</em>) follows spontaneously. Crucially, <em>epoche</em> applies only to theoretical propositions about the hidden nature of things, not to the appearances themselves: the skeptic freely reports how things appear (the honey appears sweet) but refuses to affirm how things are in their nature (the honey is sweet). Husserl later adopted the term <em>epoche</em> for his phenomenological &ldquo;bracketing&rdquo; of the natural attitude, a debt he explicitly acknowledged.</p>
+                    <div class="gloss-associated"><strong>Associated:</strong> Arcesilaus; Sextus Empiricus, <em>Outlines of Pyrrhonism</em> I; Husserl</div>
+                </div>
+            </details>
+
+            <details class="gloss-entry" data-terms="episteme knowledge science understanding plato aristotle theaetetus">
+                <summary>
+                    <span class="gloss-term">Episteme</span>
+                    <span class="gloss-translation">&ldquo;Knowledge,&rdquo; &ldquo;science,&rdquo; &ldquo;understanding&rdquo;</span>
+                </summary>
+                <div class="gloss-entry-content">
+                    <p>Genuine, secure, rationally grounded knowledge, systematically distinguished from <em>doxa</em> (opinion). For Plato, <em>episteme</em> is the soul&rsquo;s apprehension of the eternal, unchanging Forms; it is infallible, always true, and accompanied by a rational account (<em>logos</em>) that can explain why the thing known is as it is. The <em>Theaetetus</em> examines three proposed definitions of knowledge&mdash;perception, true judgment, and true judgment with an account&mdash;and finds all three wanting, leaving the question unresolved (aporetic). For Aristotle, <em>episteme</em> in the strict sense is demonstrative knowledge: to know something scientifically is to know it through its causes, to know that it cannot be otherwise, and to derive it by valid syllogistic reasoning from necessarily true first principles (<em>Posterior Analytics</em> 71b9&ndash;72a5). This conception of knowledge as demonstrative, causal, and necessary dominated Western epistemology through the early modern period and was the standard against which Descartes, Hume, and Kant measured their own theories of knowledge.</p>
+                    <div class="gloss-associated"><strong>Associated:</strong> Plato, <em>Theaetetus</em>, <em>Republic</em> V&ndash;VII; Aristotle, <em>Posterior Analytics</em> I</div>
+                </div>
+            </details>
+
+            <details class="gloss-entry" data-terms="eros love desire beauty symposium phaedrus plato">
+                <summary>
+                    <span class="gloss-term">Eros</span>
+                    <span class="gloss-translation">&ldquo;Love,&rdquo; &ldquo;desire,&rdquo; &ldquo;longing&rdquo;</span>
+                </summary>
+                <div class="gloss-entry-content">
+                    <p>In Plato&rsquo;s <em>Symposium</em>, <em>eros</em> is philosophically transformed from sexual desire into the soul&rsquo;s fundamental drive toward beauty, truth, and the eternal. In Diotima&rsquo;s speech (201d&ndash;212b), Socrates recounts the teachings of a wise woman who described <em>eros</em> as a <em>daimon</em>&mdash;an intermediary between mortal and divine&mdash;born of Poverty (<em>Penia</em>) and Resource (<em>Poros</em>). <em>Eros</em> is neither beautiful nor ugly, neither wise nor ignorant, but always striving, always &ldquo;in between.&rdquo; The &ldquo;Ladder of Love&rdquo; (<em>scala amoris</em>) describes the soul&rsquo;s ascent: from love of one beautiful body, to love of all beautiful bodies, to love of beautiful souls, to love of beautiful practices and laws, to love of beautiful knowledge, and finally to the sudden vision of Beauty itself (<em>auto to kalon</em>)&mdash;eternal, absolute, unmixed, the Form of Beauty. In the <em>Phaedrus</em> (244a&ndash;257b), <em>eros</em> is a form of divine madness that recollects the soul&rsquo;s pre-natal vision of the Forms: the lover sees in the beloved a reflection of the eternal Beauty and is drawn upward through philosophical conversation toward the Forms themselves. Ficino&rsquo;s fifteenth-century commentary on the <em>Symposium</em> coined the term <em>amor platonicus</em>, &ldquo;Platonic love,&rdquo; which entered European literature and has shaped Western conceptions of love ever since.</p>
+                    <div class="gloss-associated"><strong>Associated:</strong> Plato, <em>Symposium</em>, <em>Phaedrus</em>; Ficino, <em>De Amore</em></div>
+                </div>
+            </details>
+
+            <details class="gloss-entry" data-terms="eudaimonia happiness flourishing well-being aristotle ethics virtue">
+                <summary>
+                    <span class="gloss-term">Eudaimonia</span>
+                    <span class="gloss-translation">&ldquo;Happiness,&rdquo; &ldquo;flourishing,&rdquo; &ldquo;well-being&rdquo;</span>
+                </summary>
+                <div class="gloss-entry-content">
+                    <p>The central concept of Greek ethical theory, literally &ldquo;having a good <em>daimon</em>&rdquo; (guiding spirit). All ancient schools agreed that <em>eudaimonia</em> is the highest good and the ultimate goal of human life; they disagreed profoundly about what it consists in. For Aristotle, <em>eudaimonia</em> is &ldquo;activity of the soul in accordance with virtue, and if there are several virtues, in accordance with the best and most complete, in a complete life&rdquo; (<em>Nicomachean Ethics</em> 1098a16&ndash;18). It is not a feeling or a subjective state but an objective condition of living well and doing well (<em>eu zen kai eu prattein</em>). It requires not only virtue but also external goods (health, wealth, friends, good fortune)&mdash;a position that distinguishes Aristotle from the Stoics, who held that virtue is sufficient for <em>eudaimonia</em> regardless of external circumstances. For Epicurus, <em>eudaimonia</em> consists in pleasure (understood as the absence of pain and disturbance). For the Skeptics, it is <em>ataraxia</em> (tranquility) achieved through suspension of judgment. The contemporary revival of virtue ethics, led by Elizabeth Anscombe, Philippa Foot, and Alasdair MacIntyre, has returned <em>eudaimonia</em> to the center of moral philosophy, arguing that modern ethical theories (Kantian and utilitarian) lost something essential by abandoning the ancient framework of human flourishing.</p>
+                    <div class="gloss-associated"><strong>Associated:</strong> Aristotle, <em>Nicomachean Ethics</em> I, X; Plato, <em>Republic</em>; Epicurus; the Stoics</div>
+                </div>
+            </details>
+
+        </div>
+
+        <!-- ======== H ======== -->
+        <div class="gloss-letter-section" id="letter-H">
+            <div class="gloss-letter-heading">H</div>
+
+            <details class="gloss-entry" data-terms="hexis disposition habit state character virtue aristotle ethics">
+                <summary>
+                    <span class="gloss-term">Hexis</span>
+                    <span class="gloss-translation">&ldquo;Disposition,&rdquo; &ldquo;stable state,&rdquo; &ldquo;habit&rdquo;</span>
+                </summary>
+                <div class="gloss-entry-content">
+                    <p>A settled condition or stable disposition of the soul, acquired through repeated practice rather than innate endowment. In Aristotle&rsquo;s ethics, moral virtue (<em>arete</em>) is defined as a <em>hexis prohairetike</em>&mdash;a &ldquo;dispositional state concerned with choice&rdquo;&mdash;that aims at the mean between excess and deficiency (<em>Nicomachean Ethics</em> 1106b36). Just as a person becomes a builder by building and a harpist by playing the harp, one becomes courageous by performing courageous acts and temperate by practicing temperance. The emphasis on <em>hexis</em> makes Aristotle&rsquo;s ethics fundamentally a theory of character formation through habituation (<em>ethismos</em>): moral education is not primarily about learning rules or principles but about developing stable dispositions to feel the right emotions, at the right time, toward the right objects, in the right way. This insight has been central to the contemporary revival of virtue ethics and to its dialogue with moral psychology and cognitive science.</p>
+                    <div class="gloss-associated"><strong>Associated:</strong> Aristotle, <em>Nicomachean Ethics</em> II; <em>Categories</em> 8</div>
+                </div>
+            </details>
+
+            <details class="gloss-entry" data-terms="hyle matter material substance aristotle physics metaphysics form">
+                <summary>
+                    <span class="gloss-term">Hyle</span>
+                    <span class="gloss-translation">&ldquo;Matter,&rdquo; &ldquo;material&rdquo;</span>
+                </summary>
+                <div class="gloss-entry-content">
+                    <p>Originally &ldquo;wood&rdquo; or &ldquo;timber,&rdquo; Aristotle adopted the term as a technical designation for the material substratum that, together with form (<em>eidos</em>, <em>morphe</em>), constitutes every natural substance. The bronze is the <em>hyle</em> of the statue; the letters are the <em>hyle</em> of the syllable; the bodily organs are the <em>hyle</em> of the living animal. <em>Hyle</em> is that which is potentially something but actually nothing determinate until informed by form: &ldquo;prime matter&rdquo; (<em>prote hyle</em>), the ultimate material substratum, is pure potentiality without any actual characteristics of its own&mdash;a concept that generated enormous debate among Aristotle&rsquo;s ancient and medieval commentators (is prime matter a genuine entity or merely an abstraction?). The form-matter composite (<em>synolon</em>) is the primary substance in the physical world: neither form nor matter exists independently in nature; they are always found together, distinguishable in thought but inseparable in reality. This &ldquo;hylomorphic&rdquo; analysis (a term coined by later scholars from <em>hyle</em> + <em>morphe</em>) became the dominant framework of natural philosophy from Aristotle through the scholastic period.</p>
+                    <div class="gloss-associated"><strong>Associated:</strong> Aristotle, <em>Physics</em> I&ndash;II; <em>Metaphysics</em> VII&ndash;IX</div>
+                </div>
+            </details>
+
+        </div>
+
+        <!-- ======== K ======== -->
+        <div class="gloss-letter-section" id="letter-K">
+            <div class="gloss-letter-heading">K</div>
+
+            <details class="gloss-entry" data-terms="katharsis purification purgation tragedy aristotle poetics">
+                <summary>
+                    <span class="gloss-term">Katharsis</span>
+                    <span class="gloss-translation">&ldquo;Purification,&rdquo; &ldquo;purgation,&rdquo; &ldquo;clarification&rdquo;</span>
+                </summary>
+                <div class="gloss-entry-content">
+                    <p>One of the most famous and most disputed terms in all of Aristotle. In the <em>Poetics</em> (1449b24&ndash;28), Aristotle defines tragedy as &ldquo;the imitation of an action that is serious, complete, and of a certain magnitude,&rdquo; which &ldquo;through pity and fear achieves the <em>katharsis</em> of such emotions.&rdquo; The precise meaning of <em>katharsis</em> here has been debated for centuries: does it mean the <em>purgation</em> of pity and fear (a medical metaphor: tragedy drains off an excess of dangerous emotion, providing therapeutic relief)? Or the <em>purification</em> of pity and fear (a religious metaphor: tragedy refines and educates the emotions, teaching the audience to feel appropriately)? Or the <em>intellectual clarification</em> of the events that arouse pity and fear (a cognitive interpretation: tragedy helps the audience understand the human condition)? The debate is complicated by the fact that Aristotle promised a fuller discussion of <em>katharsis</em> in a lost second book of the <em>Poetics</em> (possibly treating comedy), which does not survive. The term also appears in Plato&rsquo;s <em>Phaedo</em> (67c) in a philosophical-religious sense: philosophy is the &ldquo;purification&rdquo; of the soul from the body and its desires, preparing the soul for the vision of truth after death.</p>
+                    <div class="gloss-associated"><strong>Associated:</strong> Aristotle, <em>Poetics</em>; Plato, <em>Phaedo</em>; <em>Politics</em> VIII</div>
+                </div>
+            </details>
+
+            <details class="gloss-entry" data-terms="kosmos order world universe harmony pythagoreans heraclitus">
+                <summary>
+                    <span class="gloss-term">Kosmos</span>
+                    <span class="gloss-translation">&ldquo;Order,&rdquo; &ldquo;world-order,&rdquo; &ldquo;universe&rdquo;</span>
+                </summary>
+                <div class="gloss-entry-content">
+                    <p>Originally meaning &ldquo;order,&rdquo; &ldquo;arrangement,&rdquo; or &ldquo;adornment&rdquo; (English &ldquo;cosmetic&rdquo; derives from the same root), the term was applied to the universe as a whole by the Pythagoreans, who held that the world-order is a harmonious, mathematically structured whole&mdash;a <em>kosmos</em> rather than a chaos. Heraclitus used the term in his famous fragment: &ldquo;This <em>kosmos</em>, the same for all, no god or man made, but it always was and is and shall be: an ever-living fire, kindling in measures and going out in measures&rdquo; (DK 22 B30). For Plato, the <em>kosmos</em> is the product of a divine craftsman (<em>demiurgos</em>) who shapes pre-existing matter according to the model of the eternal Forms, producing &ldquo;a living creature endowed with soul and reason&rdquo; (<em>Timaeus</em> 30b)&mdash;the universe as a single, ensouled, rational organism. For Aristotle, the <em>kosmos</em> is eternal and uncreated, a finite sphere with the earth at its center, organized into concentric celestial spheres whose circular motions are sustained by their desire to imitate the perfection of the Unmoved Mover. The Stoics identified the <em>kosmos</em> with God: the universe is a living, rational, providential whole, permeated by the divine <em>Logos</em>. The Epicureans alone rejected cosmic order: their universe is infinite, purposeless, and composed of atoms falling through void.</p>
+                    <div class="gloss-associated"><strong>Associated:</strong> Pythagoras; Heraclitus; Plato, <em>Timaeus</em>; Aristotle, <em>De Caelo</em>; Stoics; Epicurus</div>
+                </div>
+            </details>
+
+        </div>
+
+        <!-- ======== L ======== -->
+        <div class="gloss-letter-section" id="letter-L">
+            <div class="gloss-letter-heading">L</div>
+
+            <details class="gloss-entry" data-terms="logos reason word speech account argument heraclitus stoics aristotle">
+                <summary>
+                    <span class="gloss-term">Logos</span>
+                    <span class="gloss-translation">&ldquo;Reason,&rdquo; &ldquo;word,&rdquo; &ldquo;account,&rdquo; &ldquo;argument&rdquo;</span>
+                </summary>
+                <div class="gloss-entry-content">
+                    <p>Perhaps the richest and most untranslatable term in the Greek philosophical vocabulary. Its semantic range includes: word, speech, statement, argument, reason, rational principle, proportion, definition, account, explanation, and discourse. In Heraclitus, the <em>Logos</em> is the rational principle governing the cosmos, the hidden structure of reality that most people fail to grasp: &ldquo;Of this <em>Logos</em> which is always, men prove to be uncomprehending, both before they hear and after they have heard it&rdquo; (DK 22 B1). In Plato, <em>logos</em> appears in multiple senses: as reasoned argument (the medium of dialectic), as rational account (the <em>logos</em> that distinguishes knowledge from true opinion in the <em>Theaetetus</em> and <em>Meno</em>), and as the rational part of the soul (<em>to logistikon</em>) that should rule the other parts. In Aristotle, <em>logos</em> is the defining capacity of the human being: the <em>zoon logon echon</em>, the &ldquo;living being having <em>logos</em>&rdquo;&mdash;commonly translated as &ldquo;rational animal.&rdquo; In the <em>Politics</em> (1253a), Aristotle distinguishes human <em>logos</em> from animal <em>phone</em> (voice): while animals can signal pleasure and pain, only <em>logos</em> enables discourse about justice and injustice, good and evil. The Stoics identified the <em>Logos</em> with God, Nature, Fate, and Providence&mdash;the rational, fiery breath (<em>pneuma</em>) that pervades and governs all things. In early Christianity, the Gospel of John opens: &ldquo;In the beginning was the <em>Logos</em>, and the <em>Logos</em> was with God, and the <em>Logos</em> was God&rdquo;&mdash;a passage whose philosophical resonance with the Heraclitean and Stoic traditions was recognized by the earliest Church Fathers.</p>
+                    <div class="gloss-associated"><strong>Associated:</strong> Heraclitus; Plato, <em>Theaetetus</em>, <em>Republic</em>; Aristotle, <em>Politics</em> I; Stoics; Gospel of John</div>
+                </div>
+            </details>
+
+        </div>
+
+        <!-- ======== M ======== -->
+        <div class="gloss-letter-section" id="letter-M">
+            <div class="gloss-letter-heading">M</div>
+
+            <details class="gloss-entry" data-terms="methexis participation partaking forms plato parmenides">
+                <summary>
+                    <span class="gloss-term">Methexis</span>
+                    <span class="gloss-translation">&ldquo;Participation,&rdquo; &ldquo;partaking&rdquo;</span>
+                </summary>
+                <div class="gloss-entry-content">
+                    <p>The relationship by which sensible particulars are connected to the Platonic Forms. A beautiful thing is beautiful by &ldquo;participating in&rdquo; or &ldquo;partaking of&rdquo; the Form of Beauty; a just act is just by participating in the Form of Justice. The precise nature of this relationship is the most persistent problem in Plato&rsquo;s metaphysics. In the <em>Phaedo</em> (100c&ndash;101c), Socrates states that things are beautiful &ldquo;by the Beautiful&rdquo; but confesses uncertainty about whether this means by participation, by presence, or by communion. In the <em>Parmenides</em> (130a&ndash;135c), the young Socrates faces devastating criticism from the elder Parmenides: if the Form is wholly present in each particular, it is divided against itself; if only a part is present, the Form is fragmented. The &ldquo;Third Man Argument&rdquo; (132a&ndash;133a) shows that explaining the resemblance between particulars and their Form requires postulating a second Form, which in turn requires a third, generating an infinite regress. Whether Plato considered these objections fatal or resolvable remains one of the central interpretive questions of Platonic scholarship. Aristotle took them as decisive refutations, arguing that form must be immanent in substance rather than separate from it.</p>
+                    <div class="gloss-associated"><strong>Associated:</strong> Plato, <em>Phaedo</em>, <em>Parmenides</em>, <em>Republic</em>; Aristotle, <em>Metaphysics</em> I, VII</div>
+                </div>
+            </details>
+
+            <details class="gloss-entry" data-terms="mimesis imitation representation art poetry plato aristotle poetics republic">
+                <summary>
+                    <span class="gloss-term">Mimesis</span>
+                    <span class="gloss-translation">&ldquo;Imitation,&rdquo; &ldquo;representation&rdquo;</span>
+                </summary>
+                <div class="gloss-entry-content">
+                    <p>The concept of imitation or representation, central to both metaphysics and aesthetics. In Plato&rsquo;s <em>Republic</em> (X, 595a&ndash;608b), <em>mimesis</em> is deployed as a critique of art: the painter who depicts a bed produces an image of an image&mdash;a copy of the particular bed, which is itself a copy of the Form of Bed. Art is thus &ldquo;at three removes from the truth&rdquo; and, by appealing to the irrational, emotional part of the soul, potentially dangerous to the moral health of the city. This leads to the notorious proposal to banish most poets from the ideal state. Aristotle&rsquo;s <em>Poetics</em> responds with a radically different valuation: <em>mimesis</em> is not a deficiency but a fundamental human capacity. &ldquo;The instinct of imitation is implanted in man from childhood; he differs from other animals in being the most imitative&rdquo; (<em>Poetics</em> 1448b5). Poetry is &ldquo;more philosophical and more serious than history,&rdquo; because history tells what happened while poetry tells what might happen&mdash;it deals with universals, not particulars (1451b5&ndash;7). The transformation of <em>mimesis</em> from Platonic suspicion to Aristotelian celebration is one of the pivotal moments in the history of Western aesthetics.</p>
+                    <div class="gloss-associated"><strong>Associated:</strong> Plato, <em>Republic</em> III, X; Aristotle, <em>Poetics</em></div>
+                </div>
+            </details>
+
+        </div>
+
+        <!-- ======== N ======== -->
+        <div class="gloss-letter-section" id="letter-N">
+            <div class="gloss-letter-heading">N</div>
+
+            <details class="gloss-entry" data-terms="nous mind intellect reason aristotle plato anaxagoras plotinus">
+                <summary>
+                    <span class="gloss-term">Nous</span>
+                    <span class="gloss-translation">&ldquo;Mind,&rdquo; &ldquo;intellect,&rdquo; &ldquo;reason&rdquo;</span>
+                </summary>
+                <div class="gloss-entry-content">
+                    <p>The highest cognitive faculty, the capacity for intellectual intuition of first principles. In Anaxagoras, <em>Nous</em> is the cosmic Mind that initiated the rotation of the primordial mixture and ordered the cosmos&mdash;the first explicit principle of intelligence in Greek philosophy. In Plato, <em>nous</em> is the soul&rsquo;s capacity for direct apprehension of the Forms, the highest segment of the Divided Line (<em>Republic</em> 511d&ndash;e), where the soul grasps the first principles of reality without reliance on sensory images or hypotheses. In Aristotle, <em>nous</em> is the faculty by which we grasp the indemonstrable first principles of scientific knowledge (<em>Posterior Analytics</em> II.19)&mdash;the axioms and definitions that cannot themselves be demonstrated but are the starting points from which all demonstration proceeds. In the <em>De Anima</em> (III.5), Aristotle introduces the famous and deeply obscure distinction between passive intellect (<em>nous pathetikos</em>), which receives intelligible forms, and agent intellect (<em>nous poietikos</em>), which &ldquo;makes all things&rdquo; as light makes potential colors actual. The agent intellect is described as separate, impassible, and immortal. The interpretation of this passage generated over two millennia of debate: Alexander of Aphrodisias identified the agent intellect with God; Averroes argued for a single shared intellect for all humanity; Aquinas maintained that each individual possesses a personal agent intellect. In Plotinus, <em>Nous</em> is the second hypostasis, the divine Intellect that emanates from the One and contains within itself the totality of the Platonic Forms.</p>
+                    <div class="gloss-associated"><strong>Associated:</strong> Anaxagoras; Plato, <em>Republic</em> VI&ndash;VII; Aristotle, <em>De Anima</em> III, <em>Posterior Analytics</em> II.19; Plotinus, <em>Enneads</em> V</div>
+                </div>
+            </details>
+
+        </div>
+
+        <!-- ======== O ======== -->
+        <div class="gloss-letter-section" id="letter-O">
+            <div class="gloss-letter-heading">O</div>
+
+            <details class="gloss-entry" data-terms="ousia substance being essence aristotle categories metaphysics plato">
+                <summary>
+                    <span class="gloss-term">Ousia</span>
+                    <span class="gloss-translation">&ldquo;Substance,&rdquo; &ldquo;being,&rdquo; &ldquo;essence&rdquo;</span>
+                </summary>
+                <div class="gloss-entry-content">
+                    <p>The central term of Aristotle&rsquo;s metaphysics and arguably the most important concept in the history of Western ontology. Derived from the participle of the verb &ldquo;to be&rdquo; (<em>einai</em>), <em>ousia</em> literally means &ldquo;being-ness.&rdquo; Plato uses it to refer to the true being of the Forms, the &ldquo;really real&rdquo; as opposed to the shadowy becoming of the sensible world. Aristotle transforms it into the concept of substance: the primary existent, the individual thing that is the subject of all predication but is itself predicated of nothing. In the <em>Categories</em> (2a11&ndash;14), primary <em>ousia</em> is the individual (this particular man, this particular horse); secondary <em>ousia</em> is the species and genus (man, animal). In the <em>Metaphysics</em> (VII&ndash;IX), the question &ldquo;What is <em>ousia</em>?&rdquo; becomes &ldquo;the question that was asked of old, is asked now, and will always be asked&rdquo; (1028b2&ndash;4), and Aristotle explores multiple candidates: the substratum (<em>hypokeimenon</em>), the essence (<em>to ti en einai</em>), the universal, and the genus, ultimately arguing that form (<em>eidos</em>) is substance in the primary sense. The Nicene Creed&rsquo;s declaration that the Son is <em>homoousios</em> (&ldquo;of one substance&rdquo;) with the Father shows how deeply <em>ousia</em> penetrated Christian theology.</p>
+                    <div class="gloss-associated"><strong>Associated:</strong> Aristotle, <em>Categories</em>, <em>Metaphysics</em> VII&ndash;IX; Plato; Nicene Creed</div>
+                </div>
+            </details>
+
+        </div>
+
+        <!-- ======== P ======== -->
+        <div class="gloss-letter-section" id="letter-P">
+            <div class="gloss-letter-heading">P</div>
+
+            <details class="gloss-entry" data-terms="paideia education culture formation plato republic greek">
+                <summary>
+                    <span class="gloss-term">Paideia</span>
+                    <span class="gloss-translation">&ldquo;Education,&rdquo; &ldquo;culture,&rdquo; &ldquo;formation&rdquo;</span>
+                </summary>
+                <div class="gloss-entry-content">
+                    <p>The comprehensive process of cultural and intellectual formation through which a human being achieves full humanity. More than mere instruction or schooling, <em>paideia</em> encompasses the total development of mind, character, and civic capacity. Werner Jaeger&rsquo;s monumental study <em>Paideia: The Ideals of Greek Culture</em> (3 vols., 1933&ndash;1947) traced the evolution of the concept from the Homeric aristocratic ideal of the warrior-hero through the Sophistic teaching of rhetorical and political competence to the Platonic and Aristotelian vision of philosophical education as the formation of the soul. In Plato&rsquo;s <em>Republic</em>, the education of the philosopher-rulers is the centerpiece of the political program: beginning with gymnastics and music in childhood, progressing through mathematics and dialectic in young adulthood, and culminating in the vision of the Form of the Good after years of philosophical training. The Allegory of the Cave is itself a parable of <em>paideia</em>: the prisoner&rsquo;s painful ascent from darkness to light is the soul&rsquo;s journey from ignorance to knowledge. For Aristotle, <em>paideia</em> is inseparable from the life of the <em>polis</em>: &ldquo;It is clear that education must be one and the same for all, and its provision a matter of public, not private, action&rdquo; (<em>Politics</em> 1337a).</p>
+                    <div class="gloss-associated"><strong>Associated:</strong> Plato, <em>Republic</em> II&ndash;VII; Aristotle, <em>Politics</em> VIII; Jaeger, <em>Paideia</em></div>
+                </div>
+            </details>
+
+            <details class="gloss-entry" data-terms="phronesis practical wisdom prudence judgment aristotle ethics">
+                <summary>
+                    <span class="gloss-term">Phronesis</span>
+                    <span class="gloss-translation">&ldquo;Practical wisdom,&rdquo; &ldquo;prudence&rdquo;</span>
+                </summary>
+                <div class="gloss-entry-content">
+                    <p>The intellectual virtue that governs practical reasoning and moral judgment. In Aristotle&rsquo;s <em>Nicomachean Ethics</em> (VI.5, 1140a24&ndash;1140b30), <em>phronesis</em> is distinguished from theoretical wisdom (<em>sophia</em>), which contemplates eternal truths, and from <em>techne</em> (craft knowledge), which produces external products. <em>Phronesis</em> is the ability to deliberate well about what is good for oneself and for human beings in general&mdash;not in the abstract, but in the concrete circumstances of action, where universal principles must be applied to particular situations. The <em>phronimos</em> (the practically wise person) perceives the morally salient features of a situation, weighs competing considerations, and acts rightly. Aristotle&rsquo;s paradigmatic example is Pericles: a man of practical judgment who could discern what is good in particular circumstances. <em>Phronesis</em> cannot be reduced to a set of rules or a decision procedure; it requires experience, emotional maturity, and a kind of moral perception that develops only through years of practice. This concept has been foundational for the contemporary revival of virtue ethics, particularly in the work of Martha Nussbaum and John McDowell, and for Hans-Georg Gadamer&rsquo;s philosophical hermeneutics, which takes <em>phronesis</em> as the model for all interpretive understanding.</p>
+                    <div class="gloss-associated"><strong>Associated:</strong> Aristotle, <em>Nicomachean Ethics</em> VI; Gadamer, <em>Truth and Method</em></div>
+                </div>
+            </details>
+
+            <details class="gloss-entry" data-terms="physis nature growth natural aristotle physics pre-socratics nomos">
+                <summary>
+                    <span class="gloss-term">Physis</span>
+                    <span class="gloss-translation">&ldquo;Nature,&rdquo; &ldquo;growth,&rdquo; &ldquo;the natural&rdquo;</span>
+                </summary>
+                <div class="gloss-entry-content">
+                    <p>The nature or essence of a thing; more broadly, the natural world as a whole, as opposed to convention, custom, or human artifice (<em>nomos</em>, <em>techne</em>). The Pre-Socratic inquiry was called <em>peri physeos historia</em> (&ldquo;investigation concerning nature&rdquo;), and many early philosophical works bore the title <em>Peri Physeos</em> (On Nature). For Aristotle, <em>physis</em> is the internal principle of motion and rest that belongs to natural beings as such (<em>Physics</em> 192b21&ndash;23): a stone falls downward and fire rises upward by <em>physis</em>; a bed does not sprout because its motion is imposed by <em>techne</em>, not by its own nature. Aristotle distinguishes between <em>physis</em> as matter (the material from which a thing is made) and <em>physis</em> as form (the structure or essence that makes it what it is), arguing that form is <em>physis</em> in the primary sense. The <em>physis</em>/<em>nomos</em> distinction was a central topic of Sophistic debate: is morality natural or conventional? Are social hierarchies grounded in nature or imposed by custom? Hippias and Antiphon argued for the primacy of <em>physis</em>; Protagoras and the democratic tradition emphasized <em>nomos</em>. The Stoics later unified the two: the moral law is the law of nature, and living virtuously is living in accordance with <em>physis</em>.</p>
+                    <div class="gloss-associated"><strong>Associated:</strong> Pre-Socratics; Aristotle, <em>Physics</em> II; the Sophists; Stoics</div>
+                </div>
+            </details>
+
+            <details class="gloss-entry" data-terms="polis city city-state political community aristotle politics plato republic">
+                <summary>
+                    <span class="gloss-term">Polis</span>
+                    <span class="gloss-translation">&ldquo;City,&rdquo; &ldquo;city-state,&rdquo; &ldquo;political community&rdquo;</span>
+                </summary>
+                <div class="gloss-entry-content">
+                    <p>The self-governing city-state, the fundamental unit of Greek political life and the natural horizon of human flourishing in both Plato&rsquo;s and Aristotle&rsquo;s political thought. In the <em>Republic</em>, Plato constructs the ideal <em>polis</em> as an analogy for the soul: its three classes (rulers, guardians, producers) correspond to the three parts of the soul (reason, spirit, appetite), and justice in the city consists in each class performing its proper function. In the <em>Politics</em> (1253a1&ndash;4), Aristotle makes the celebrated claim that &ldquo;man is by nature a political animal&rdquo; (<em>zoon politikon</em>)&mdash;human beings are naturally constituted for life in a political community, and anyone who lives outside the <em>polis</em> by nature (not by misfortune) is either a beast or a god. The <em>polis</em> exists not merely for the sake of life (security and economic exchange) but for the sake of the good life (<em>eu zen</em>)&mdash;the life of virtue, friendship, and intellectual activity that constitutes <em>eudaimonia</em>. The Greek <em>polis</em> was small enough (typically 1,000 to 50,000 citizens) that direct participation in governance was possible, giving the concept of citizenship a concreteness and intensity that modern representative democracy lacks. Alexander&rsquo;s conquests effectively ended the era of the independent <em>polis</em>, inaugurating the Hellenistic period in which philosophy shifted from political engagement to individual ethics&mdash;a shift reflected in the Stoic, Epicurean, and Skeptical movements.</p>
+                    <div class="gloss-associated"><strong>Associated:</strong> Plato, <em>Republic</em>, <em>Laws</em>; Aristotle, <em>Politics</em> I, III</div>
+                </div>
+            </details>
+
+            <details class="gloss-entry" data-terms="psyche soul mind life plato phaedo republic aristotle de anima">
+                <summary>
+                    <span class="gloss-term">Psyche</span>
+                    <span class="gloss-translation">&ldquo;Soul,&rdquo; &ldquo;mind,&rdquo; &ldquo;life-principle&rdquo;</span>
+                </summary>
+                <div class="gloss-entry-content">
+                    <p>The animating principle of living things, one of the most important and most variously interpreted concepts in ancient philosophy. In Homer, <em>psyche</em> is the shade that departs the body at death and persists as a feeble, witless ghost in Hades. The Pythagoreans and Orphics transformed it into an immortal, transmigrating entity whose true home is the divine realm and whose incarnation in a body is a punishment or trial. Plato synthesized and elevated these traditions: in the <em>Phaedo</em>, the <em>psyche</em> is immortal, rational, and kin to the Forms; in the <em>Republic</em> (435a&ndash;441c), it is divided into three parts&mdash;rational (<em>logistikon</em>), spirited (<em>thumoeides</em>), and appetitive (<em>epithumetikon</em>)&mdash;whose harmonious ordering constitutes justice in the individual. In the <em>Phaedrus</em> (246a&ndash;249d), the soul is likened to a winged charioteer driving two horses, one noble and one unruly, toward the vision of the Forms. Aristotle radically reconceived the <em>psyche</em>: it is not a separate substance imprisoned in a body but the form (<em>eidos</em>) of a natural body that has life potentially&mdash;&ldquo;the first actuality of a natural body that has organs&rdquo; (<em>De Anima</em> 412a27&ndash;28). The soul is to the body as sight is to the eye: the functional organization that makes the living organism what it is. This definition applies to all living things: plants have a nutritive soul, animals a sensitive soul, humans a rational soul. Whether the rational soul (or some part of it) survives the death of the body remains one of the most debated questions in Aristotelian scholarship.</p>
+                    <div class="gloss-associated"><strong>Associated:</strong> Plato, <em>Phaedo</em>, <em>Republic</em> IV, <em>Phaedrus</em>; Aristotle, <em>De Anima</em> II&ndash;III</div>
+                </div>
+            </details>
+
+        </div>
+
+        <!-- ======== S ======== -->
+        <div class="gloss-letter-section" id="letter-S">
+            <div class="gloss-letter-heading">S</div>
+
+            <details class="gloss-entry" data-terms="sophia wisdom theoretical philosophy aristotle plato metaphysics">
+                <summary>
+                    <span class="gloss-term">Sophia</span>
+                    <span class="gloss-translation">&ldquo;Wisdom&rdquo;</span>
+                </summary>
+                <div class="gloss-entry-content">
+                    <p>The highest form of knowledge, directed toward the most fundamental and universal truths. In ordinary Greek usage, <em>sophia</em> could denote any form of expertise or skill (a carpenter or navigator could be called <em>sophos</em>). The philosophers claimed the term for knowledge of the highest and most universal kind: the principles and causes of all things. The word &ldquo;philosophy&rdquo; (<em>philosophia</em>) means literally &ldquo;love of <em>sophia</em>&rdquo;&mdash;a term tradition attributes to Pythagoras, who reportedly said that no human being possesses <em>sophia</em> (which belongs to the gods alone), but can only aspire to it as a lover aspires to the beloved. Aristotle distinguishes <em>sophia</em> from <em>phronesis</em> (practical wisdom) in <em>Nicomachean Ethics</em> VI: <em>sophia</em> is the combination of <em>nous</em> (intuitive grasp of first principles) and <em>episteme</em> (demonstrative knowledge derived from them), directed toward eternal, necessary truths. It is the highest virtue of the theoretical intellect and the activity in which human <em>eudaimonia</em> is most fully realized (<em>Nicomachean Ethics</em> X.7&ndash;8).</p>
+                    <div class="gloss-associated"><strong>Associated:</strong> Pythagoras; Plato, <em>Republic</em> VI&ndash;VII; Aristotle, <em>Nicomachean Ethics</em> VI, X; <em>Metaphysics</em> I</div>
+                </div>
+            </details>
+
+            <details class="gloss-entry" data-terms="sophrosyne temperance moderation self-control plato charmides republic">
+                <summary>
+                    <span class="gloss-term">Sophrosyne</span>
+                    <span class="gloss-translation">&ldquo;Temperance,&rdquo; &ldquo;moderation,&rdquo; &ldquo;self-knowledge&rdquo;</span>
+                </summary>
+                <div class="gloss-entry-content">
+                    <p>One of the four cardinal virtues in the Greek ethical tradition, associated with the Delphic maxim &ldquo;Know thyself&rdquo; (<em>gnothi seauton</em>). Its semantic field is extraordinarily rich: it encompasses self-control, moderation, soundness of mind, sanity, chastity, and the quiet inner order of a person who is master of his or her desires. In Plato&rsquo;s <em>Charmides</em>, the dialogue attempts (inconclusively) to define <em>sophrosyne</em>, considering proposals including &ldquo;doing one&rsquo;s own business quietly,&rdquo; &ldquo;a sense of shame,&rdquo; and &ldquo;self-knowledge.&rdquo; In the <em>Republic</em> (430d&ndash;432a), <em>sophrosyne</em> is the virtue of the appetitive part of the soul and the productive class of the city: it consists in the harmonious agreement of all parts about which should rule (reason) and which should be ruled (appetite). For Aristotle, <em>sophrosyne</em> is the virtue concerned specifically with bodily pleasures of touch and taste (<em>Nicomachean Ethics</em> III.10&ndash;12)&mdash;a significantly narrower scope than Plato&rsquo;s use. Helen North&rsquo;s landmark study <em>Sophrosyne: Self-Knowledge and Self-Restraint in Greek Literature</em> traces the concept&rsquo;s evolution from Homer through the classical period, demonstrating its centrality to Greek ethical and political thought.</p>
+                    <div class="gloss-associated"><strong>Associated:</strong> Plato, <em>Charmides</em>, <em>Republic</em> IV; Aristotle, <em>Nicomachean Ethics</em> III</div>
+                </div>
+            </details>
+
+        </div>
+
+        <!-- ======== T ======== -->
+        <div class="gloss-letter-section" id="letter-T">
+            <div class="gloss-letter-heading">T</div>
+
+            <details class="gloss-entry" data-terms="techne art craft skill knowledge production aristotle plato">
+                <summary>
+                    <span class="gloss-term">Techne</span>
+                    <span class="gloss-translation">&ldquo;Art,&rdquo; &ldquo;craft,&rdquo; &ldquo;skill&rdquo;</span>
+                </summary>
+                <div class="gloss-entry-content">
+                    <p>A systematic, rational capacity for making or producing, distinguished from both theoretical knowledge (<em>episteme</em>) and practical wisdom (<em>phronesis</em>). The Socratic dialogues frequently explore the analogy between <em>techne</em> and virtue: just as the cobbler knows how to make shoes and the navigator knows how to steer a ship, the virtuous person should know how to live well. The analogy creates a persistent difficulty: if virtue is a <em>techne</em>, it should be teachable (as the Sophists claimed); but Socrates consistently fails to identify either the product it creates or the expert teachers who transmit it. For Aristotle, <em>techne</em> is a form of knowledge (<em>Nicomachean Ethics</em> VI.4, 1140a1&ndash;23): the person with <em>techne</em> knows not only how to produce something but why&mdash;he can give a rational account (<em>logos</em>) of the process. This distinguishes <em>techne</em> from mere experience (<em>empeiria</em>): the experienced doctor knows that a certain remedy works; the doctor with <em>techne</em> knows why it works. <em>Techne</em> belongs to the sphere of the contingent (what can be otherwise), unlike <em>episteme</em>, which deals with the necessary. From <em>techne</em> derives &ldquo;technology,&rdquo; though the ancient concept encompasses far more than machinery: it includes medicine, rhetoric, music, architecture, and all forms of skilled production.</p>
+                    <div class="gloss-associated"><strong>Associated:</strong> Plato, <em>Gorgias</em>, <em>Ion</em>; Aristotle, <em>Nicomachean Ethics</em> VI; <em>Metaphysics</em> I</div>
+                </div>
+            </details>
+
+            <details class="gloss-entry" data-terms="telos end goal purpose final cause teleology aristotle">
+                <summary>
+                    <span class="gloss-term">Telos</span>
+                    <span class="gloss-translation">&ldquo;End,&rdquo; &ldquo;goal,&rdquo; &ldquo;purpose&rdquo;</span>
+                </summary>
+                <div class="gloss-entry-content">
+                    <p>The end, completion, or purpose toward which a process is directed. For Aristotle, <em>telos</em> is the most important of the four causes: it is &ldquo;that for the sake of which&rdquo; a thing exists or a process occurs. The <em>telos</em> of the acorn is the oak tree; the <em>telos</em> of the eye is seeing; the <em>telos</em> of the human being is <em>eudaimonia</em>. Aristotle&rsquo;s natural philosophy is pervasively teleological: nature acts for an end, and the end is the form in its fully realized state. &ldquo;Nature does nothing in vain&rdquo; is a principle he invokes repeatedly in his biological works. This teleological worldview was the most distinctive and the most contested feature of Aristotelian natural philosophy. The mechanical philosophy of the seventeenth century (Descartes, Hobbes, Boyle) explicitly rejected teleological explanation in physics, and Darwin&rsquo;s theory of natural selection provided a non-teleological account of the apparent purposiveness of biological structures. Whether Aristotle&rsquo;s teleology is genuinely committed to cosmic purpose or is merely a heuristic for understanding functional organization in living systems remains a topic of active scholarly debate. In ethics, <em>telos</em> is the concept that organizes all value: the good for each thing is its <em>telos</em>, and the supreme good for human beings is the <em>telos</em> of human life as a whole.</p>
+                    <div class="gloss-associated"><strong>Associated:</strong> Aristotle, <em>Physics</em> II; <em>Metaphysics</em> V; <em>Nicomachean Ethics</em> I; <em>Parts of Animals</em> I</div>
+                </div>
+            </details>
+
+            <details class="gloss-entry" data-terms="theoria contemplation intellectual vision seeing aristotle plato">
+                <summary>
+                    <span class="gloss-term">Theoria</span>
+                    <span class="gloss-translation">&ldquo;Contemplation,&rdquo; &ldquo;theoretical inquiry&rdquo;</span>
+                </summary>
+                <div class="gloss-entry-content">
+                    <p>The activity of the intellect directed toward understanding for its own sake, without practical or productive aim. Etymologically related to <em>thea</em> (&ldquo;a viewing, a spectacle&rdquo;) and <em>theoros</em> (&ldquo;a spectator&rdquo;), <em>theoria</em> carries the connotation of pure, disinterested seeing&mdash;the mind&rsquo;s contemplation of reality as it is. Aristotle assigns <em>theoria</em> the highest place in his hierarchy of human activities: theoretical knowledge (<em>episteme theoretike</em>) is superior to practical and productive knowledge because it is pursued for its own sake, deals with eternal and necessary truths, and exercises the highest human faculty (<em>nous</em>). In <em>Nicomachean Ethics</em> X.7&ndash;8 (1177a12&ndash;1178a8), Aristotle argues that the contemplative life (<em>bios theoretikos</em>) is the most complete <em>eudaimonia</em>: it is the most continuous, most self-sufficient, most pleasant, and most divine of all human activities, for &ldquo;the activity of God, which surpasses all others in blessedness, must be contemplative.&rdquo; The tension between the contemplative life and the active, political life (<em>bios politikos</em>)&mdash;a tension already present in Plato&rsquo;s Cave Allegory, where the philosopher who has seen the light is compelled to return to the cave and govern&mdash;has been one of the enduring questions of Western ethical and political thought.</p>
+                    <div class="gloss-associated"><strong>Associated:</strong> Aristotle, <em>Nicomachean Ethics</em> X; <em>Metaphysics</em> I, XII; Plato, <em>Republic</em> VII</div>
+                </div>
+            </details>
+
+            <details class="gloss-entry" data-terms="to kalon beautiful noble fine beauty aesthetics ethics plato aristotle">
+                <summary>
+                    <span class="gloss-term">To Kalon</span>
+                    <span class="gloss-translation">&ldquo;The beautiful,&rdquo; &ldquo;the noble,&rdquo; &ldquo;the fine&rdquo;</span>
+                </summary>
+                <div class="gloss-entry-content">
+                    <p>A concept that unites aesthetic and moral value in a way that has no exact English equivalent. <em>Kalon</em> means simultaneously &ldquo;beautiful&rdquo; (in the aesthetic sense: a beautiful painting, a beautiful body) and &ldquo;noble&rdquo; or &ldquo;fine&rdquo; (in the moral sense: a noble deed, a fine character). This fusion of beauty and goodness is fundamental to Greek ethical thought: the virtuous act is not merely right but <em>kalon</em>&mdash;beautiful, admirable, worthy of praise. In Plato&rsquo;s <em>Symposium</em> (210a&ndash;212a), the ascent of <em>eros</em> leads from beautiful bodies to beautiful souls to beautiful practices to &ldquo;the Beautiful itself&rdquo; (<em>auto to kalon</em>)&mdash;the Form of Beauty, eternal, absolute, and unmixed with anything corporeal. In Aristotle, <em>to kalon</em> is the proper object of virtuous action: the courageous person acts for the sake of <em>to kalon</em> (<em>Nicomachean Ethics</em> 1115b12), choosing the noble deed because it is noble, not because it is advantageous. The concept implies that moral goodness has an intrinsic radiance or attractiveness&mdash;that virtue is not merely dutiful but genuinely beautiful.</p>
+                    <div class="gloss-associated"><strong>Associated:</strong> Plato, <em>Symposium</em>, <em>Hippias Major</em>; Aristotle, <em>Nicomachean Ethics</em> III&ndash;IV; <em>Poetics</em></div>
+                </div>
+            </details>
+
+        </div>
+
+    </main>
+
+    <a href="#" class="gloss-back-top" id="backToTop" aria-label="Back to top">
+        <span class="gloss-back-top-arrow">&uarr;</span>
+    </a>
+
+    <footer class="gloss-footer">
+        <p>The Academy &amp; The Lyceum &middot; Complete Works Archive</p>
+    </footer>
+
+    <script>
+        // Search functionality
+        (function() {
+            var searchInput = document.getElementById('glossSearch');
+            var entries = document.querySelectorAll('.gloss-entry');
+            var sections = document.querySelectorAll('.gloss-letter-section');
+            var noResults = document.getElementById('noResults');
+            var countEl = document.getElementById('entryCount');
+            var totalEntries = entries.length;
+
+            countEl.textContent = totalEntries + ' entries';
+
+            if (!searchInput) return;
+
+            searchInput.addEventListener('input', function() {
+                var query = this.value.toLowerCase().trim();
+                var visibleCount = 0;
+
+                entries.forEach(function(entry) {
+                    var terms = entry.getAttribute('data-terms') || '';
+                    var summary = entry.querySelector('summary');
+                    var content = entry.querySelector('.gloss-entry-content');
+                    var text = (summary ? summary.textContent : '') +
+                               (content ? content.textContent : '') +
+                               terms;
+                    text = text.toLowerCase();
+
+                    if (query === '' || text.indexOf(query) !== -1) {
+                        entry.style.display = '';
+                        visibleCount++;
+                    } else {
+                        entry.style.display = 'none';
+                        entry.removeAttribute('open');
+                    }
+                });
+
+                // Hide empty letter sections
+                sections.forEach(function(section) {
+                    var visibleEntries = section.querySelectorAll('.gloss-entry');
+                    var anyVisible = false;
+                    visibleEntries.forEach(function(e) {
+                        if (e.style.display !== 'none') anyVisible = true;
+                    });
+                    section.style.display = anyVisible ? '' : 'none';
+                });
+
+                // Show/hide no results message
+                if (visibleCount === 0 && query !== '') {
+                    noResults.style.display = 'block';
+                } else {
+                    noResults.style.display = 'none';
+                }
+
+                // Update count
+                if (query === '') {
+                    countEl.textContent = totalEntries + ' entries';
+                } else {
+                    countEl.textContent = visibleCount + ' of ' + totalEntries + ' entries';
+                }
+            });
+        })();
+
+        // Back to Top
+        (function() {
+            var backBtn = document.getElementById('backToTop');
+            if (!backBtn) return;
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 400) {
+                    backBtn.classList.add('visible');
+                } else {
+                    backBtn.classList.remove('visible');
+                }
+            });
+        })();
+    </script>
+
+</body>
+</html>
