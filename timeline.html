@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A chronological timeline of key events in the lives of Plato and Aristotle and the history of their schools.">
     <title>Timeline | The Academy &amp; The Lyceum</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1217,6 +1218,12 @@
                     backBtn.classList.remove('visible');
                 }
             });
+        })();
+
+        // Theme persistence across pages
+        (function() {
+            var saved = localStorage.getItem('theme');
+            if (saved) document.documentElement.setAttribute('data-theme', saved);
         })();
     </script>
 
