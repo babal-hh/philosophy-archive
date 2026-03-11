@@ -1877,3 +1877,50 @@ button{font-family:var(--font-body);cursor:pointer;border:none;background:none;c
 .spinoza-node .timeline-dot{background:var(--spinoza)}
 .spinoza-node:hover .timeline-dot{box-shadow:0 0 0 4px var(--spinoza-bg)}
 .spinoza-node .timeline-author{color:var(--spinoza)}
+
+/* ================================================================
+   LEIBNIZ — append to end of style.css
+   ================================================================ */
+
+:root{
+    --leibniz:#7B2D5E;
+    --leibniz-light:#F5EAF0;
+    --leibniz-mid:#B06090;
+    --leibniz-pale:#FAF2F7;
+    --leibniz-border:rgba(123,45,94,0.2);
+    --leibniz-bg:rgba(123,45,94,0.04);
+}
+[data-theme="dark"]{
+    --leibniz:#C47AAA;
+    --leibniz-light:#2E1225;
+    --leibniz-mid:#D898BE;
+    --leibniz-pale:#1E0B18;
+    --leibniz-border:rgba(196,122,170,0.22);
+    --leibniz-bg:rgba(196,122,170,0.06);
+}
+
+.leibniz-tag{color:var(--leibniz-mid)}
+.leibniz-rule{background:var(--leibniz);opacity:0.6}
+.leibniz-dot{background:var(--leibniz)}
+
+.filter-tab[data-filter="leibniz"].active{
+    color:var(--text);border-bottom-color:var(--leibniz);
+}
+.filter-tab[data-filter="leibniz"]:hover:not(.active){color:var(--leibniz)}
+
+.leibniz-card .card-dot{background:var(--leibniz)}
+.leibniz-card .card-category{color:var(--leibniz-mid)}
+.leibniz-card::before{background:var(--leibniz)}
+.leibniz-card:hover{box-shadow:var(--shadow-md),0 0 0 1px var(--leibniz-border)}
+.leibniz-card:hover .card-title{color:var(--leibniz)}
+
+.leibniz-modal-header{border-top:2px solid var(--leibniz)}
+.leibniz-modal-tag{color:var(--leibniz)}
+.modal-concept-chip.leibniz-concept{
+    border-color:var(--leibniz-border);
+    color:var(--leibniz);
+}
+
+.leibniz-node .timeline-dot{background:var(--leibniz)}
+.leibniz-node:hover .timeline-dot{box-shadow:0 0 0 4px var(--leibniz-bg)}
+.leibniz-node .timeline-author{color:var(--leibniz)}
