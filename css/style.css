@@ -1830,3 +1830,50 @@ button{font-family:var(--font-body);cursor:pointer;border:none;background:none;c
 .descartes-node .timeline-dot{background:var(--descartes)}
 .descartes-node:hover .timeline-dot{box-shadow:0 0 0 4px var(--descartes-bg)}
 .descartes-node .timeline-author{color:var(--descartes)}
+
+/* ================================================================
+   SPINOZA — append to end of style.css
+   ================================================================ */
+
+:root{
+    --spinoza:#2D6A4F;
+    --spinoza-light:#E8F4EE;
+    --spinoza-mid:#52A07A;
+    --spinoza-pale:#F0F8F4;
+    --spinoza-border:rgba(45,106,79,0.2);
+    --spinoza-bg:rgba(45,106,79,0.04);
+}
+[data-theme="dark"]{
+    --spinoza:#52A07A;
+    --spinoza-light:#1A3328;
+    --spinoza-mid:#74BF9A;
+    --spinoza-pale:#111F18;
+    --spinoza-border:rgba(82,160,122,0.22);
+    --spinoza-bg:rgba(82,160,122,0.06);
+}
+
+.spinoza-tag{color:var(--spinoza-mid)}
+.spinoza-rule{background:var(--spinoza);opacity:0.6}
+.spinoza-dot{background:var(--spinoza)}
+
+.filter-tab[data-filter="spinoza"].active{
+    color:var(--text);border-bottom-color:var(--spinoza);
+}
+.filter-tab[data-filter="spinoza"]:hover:not(.active){color:var(--spinoza)}
+
+.spinoza-card .card-dot{background:var(--spinoza)}
+.spinoza-card .card-category{color:var(--spinoza-mid)}
+.spinoza-card::before{background:var(--spinoza)}
+.spinoza-card:hover{box-shadow:var(--shadow-md),0 0 0 1px var(--spinoza-border)}
+.spinoza-card:hover .card-title{color:var(--spinoza)}
+
+.spinoza-modal-header{border-top:2px solid var(--spinoza)}
+.spinoza-modal-tag{color:var(--spinoza)}
+.modal-concept-chip.spinoza-concept{
+    border-color:var(--spinoza-border);
+    color:var(--spinoza);
+}
+
+.spinoza-node .timeline-dot{background:var(--spinoza)}
+.spinoza-node:hover .timeline-dot{box-shadow:0 0 0 4px var(--spinoza-bg)}
+.spinoza-node .timeline-author{color:var(--spinoza)}
