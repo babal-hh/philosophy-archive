@@ -15,7 +15,7 @@
     <!-- NAVIGATION -->
     <header class="navbar" id="navbar" role="banner">
         <div class="nav-container">
-            <a href="index.html#top" class="nav-logo" aria-label="Home">
+            <a href="index.html#hero" class="nav-logo" aria-label="Home">
                 <span class="logo-main">The Archive</span>
                 <span class="logo-sub">est. 387 bc</span>
             </a>
@@ -23,6 +23,7 @@
                 <a href="#plato-section" class="nav-link">Plato</a>
                 <a href="#aristotle-section" class="nav-link">Aristotle</a>
                 <a href="#descartes-section" class="nav-link">Descartes</a>
+                <a href="#spinoza-section" class="nav-link">Spinoza</a>
                 <a href="#timeline-section" class="nav-link">Timeline</a>
                 <a href="#about-section" class="nav-link">About</a>
                 <a href="tradition.html" class="nav-link">Tradition Map</a>
@@ -54,7 +55,7 @@
     <!-- MOBILE NAV -->
     <div class="mobile-nav-overlay" id="mobileNavOverlay" aria-hidden="true">
         <nav class="mobile-nav-content" role="navigation" aria-label="Mobile navigation">
-            <a href="#top" class="mobile-nav-link">
+            <a href="#hero" class="mobile-nav-link">
                 <span class="mobile-nav-number">00</span>
                 <span class="mobile-nav-label">Home</span>
             </a>
@@ -70,16 +71,20 @@
                 <span class="mobile-nav-number">03</span>
                 <span class="mobile-nav-label">Descartes</span>
             </a>
-            <a href="#timeline-section" class="mobile-nav-link">
+            <a href="#spinoza-section" class="mobile-nav-link">
                 <span class="mobile-nav-number">04</span>
+                <span class="mobile-nav-label">Spinoza</span>
+            </a>
+            <a href="#timeline-section" class="mobile-nav-link">
+                <span class="mobile-nav-number">05</span>
                 <span class="mobile-nav-label">Timeline</span>
             </a>
             <a href="#about-section" class="mobile-nav-link">
-                <span class="mobile-nav-number">05</span>
+                <span class="mobile-nav-number">06</span>
                 <span class="mobile-nav-label">About</span>
             </a>
             <a href="tradition.html" class="mobile-nav-link">
-                <span class="mobile-nav-number">06</span>
+                <span class="mobile-nav-number">07</span>
                 <span class="mobile-nav-label">Tradition Map</span>
             </a>
             <div class="mobile-nav-quote">
@@ -112,6 +117,10 @@
                     <button class="filter-tab" data-filter="descartes" role="tab" aria-selected="false">
                         <span class="filter-dot descartes-dot"></span>
                         Descartes <span class="filter-count" id="countDescartes">0</span>
+                    </button>
+                    <button class="filter-tab" data-filter="spinoza" role="tab" aria-selected="false">
+                        <span class="filter-dot spinoza-dot"></span>
+                        Spinoza <span class="filter-count" id="countSpinoza">0</span>
                     </button>
                 </div>
                 <div class="category-filters" id="categoryFilters">
@@ -192,8 +201,25 @@
         </div>
     </section>
 
-    <!-- TIMELINE -->
-    <section class="timeline-section" id="timeline-section" aria-label="Timeline">
+    <!-- SPINOZA -->
+    <section class="works-section" id="spinoza-section" aria-label="Spinoza">
+        <div class="container">
+            <div class="section-header fade-in-element">
+                <p class="section-tag spinoza-tag">Rationalism &middot; Netherlands &middot; 1632 &ndash; 1677</p>
+                <h2 class="section-title">Spinoza's Works</h2>
+                <div class="section-rule spinoza-rule"></div>
+                <p class="section-description">
+                    The most radical philosopher of the seventeenth century. Excommunicated,
+                    banned, and denounced as the prince of atheists — Spinoza identified God
+                    with Nature itself and demonstrated human freedom through the geometric
+                    method of Euclid.
+                </p>
+            </div>
+            <div class="works-grid" id="spinozaGrid" aria-label="Spinoza's works"></div>
+        </div>
+    </section>
+
+    <!-- TIMELINE -->    <section class="timeline-section" id="timeline-section" aria-label="Timeline">
         <div class="container">
             <div class="section-header fade-in-element">
                 <p class="section-tag">Chronological Survey &middot; 470 BC &ndash; 1650 AD</p>
@@ -267,6 +293,7 @@
                         <a href="#plato-section" class="footer-link">Plato</a>
                         <a href="#aristotle-section" class="footer-link">Aristotle</a>
                         <a href="#descartes-section" class="footer-link">Descartes</a>
+                        <a href="#spinoza-section" class="footer-link">Spinoza</a>
                         <a href="#timeline-section" class="footer-link">Timeline</a>
                         <a href="#about-section" class="footer-link">About</a>
                         <a href="tradition.html" class="footer-link">Tradition Map</a>
@@ -397,6 +424,9 @@
     <script src="js/data-11a.js"></script>
     <script src="js/data-11b.js"></script>
     <script src="js/data-11c.js"></script>
+    <script src="js/data-12a.js"></script>
+    <script src="js/data-12b.js"></script>
+    <script src="js/data-12c.js"></script>
     <script src="js/script.js"></script>
 </body>
 </html>
