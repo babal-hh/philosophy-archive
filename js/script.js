@@ -1,6 +1,6 @@
 /* ================================================================
    THE ACADEMY & THE LYCEUM
-   Application Logic - Clean typographic version
+   Application Logic — Dynamic multi-philosopher version
    Reads from window.WORKS global array
    ================================================================ */
 
@@ -36,6 +36,7 @@
         resultsCount: $('#resultsCount'),
         clearFiltersBtn: $('#clearFiltersBtn'),
         countAll: $('#countAll'),
+        /* Legacy direct references kept for backward compat */
         countPlato: $('#countPlato'),
         countAristotle: $('#countAristotle'),
         platoGrid: $('#platoGrid'),
@@ -95,6 +96,50 @@
 
 
     /* ══════════════════════════════════════
+       PHILOSOPHER REGISTRY
+       Add new philosophers here as we expand
+    ══════════════════════════════════════ */
+
+    var PHILOSOPHER_NAMES = {
+        'plato':        'Plato',
+        'aristotle':    'Aristotle',
+        'descartes':    'Descartes',
+        'spinoza':      'Spinoza',
+        'leibniz':      'Leibniz',
+        'locke':        'Locke',
+        'hume':         'Hume',
+        'berkeley':     'Berkeley',
+        'kant':         'Kant',
+        'fichte':       'Fichte',
+        'schelling':    'Schelling',
+        'hegel':        'Hegel',
+        'schopenhauer': 'Schopenhauer',
+        'nietzsche':    'Nietzsche',
+        'kierkegaard':  'Kierkegaard',
+        'marx':         'Marx',
+        'engels':       'Engels'
+    };
+
+    function philosopherName(id) {
+        return PHILOSOPHER_NAMES[id] ||
+            (id ? id.charAt(0).toUpperCase() + id.slice(1) : 'Unknown');
+    }
+
+    /* Returns all unique philosopher IDs present in WORKS */
+    function allPhilosopherIds() {
+        var seen = {};
+        var ids = [];
+        W().forEach(function (w) {
+            if (w.philosopher && !seen[w.philosopher]) {
+                seen[w.philosopher] = true;
+                ids.push(w.philosopher);
+            }
+        });
+        return ids;
+    }
+
+
+    /* ══════════════════════════════════════
        INIT
     ══════════════════════════════════════ */
 
@@ -135,7 +180,8 @@
     ══════════════════════════════════════ */
 
     function cardHTML(work, idx) {
-        var pc = work.philosopher === 'plato' ? 'plato-card' : 'aristotle-card';
+        /* Dynamic philosopher class — works for any philosopher id */
+        var pc = work.philosopher + '-card';
 
         var themes = '';
         if (work.themes && work.themes.length > 0) {
@@ -170,19 +216,16 @@
 
     function renderCards() {
         var all = getFiltered();
-        var plato = all.filter(function (w) { return w.philosopher === 'plato'; });
-        var aris = all.filter(function (w) { return w.philosopher === 'aristotle'; });
 
-        if (D.platoGrid) {
-            D.platoGrid.innerHTML = plato.length > 0
-                ? plato.map(function (w) { return cardHTML(w, W().indexOf(w)); }).join('')
-                : noResults('Plato');
-        }
-        if (D.aristotleGrid) {
-            D.aristotleGrid.innerHTML = aris.length > 0
-                ? aris.map(function (w) { return cardHTML(w, W().indexOf(w)); }).join('')
-                : noResults('Aristotle');
-        }
+        /* Dynamically render every philosopher grid that exists in the DOM */
+        allPhilosopherIds().forEach(function (philId) {
+            var grid = document.getElementById(philId + 'Grid');
+            if (!grid) return;
+            var works = all.filter(function (w) { return w.philosopher === philId; });
+            grid.innerHTML = works.length > 0
+                ? works.map(function (w) { return cardHTML(w, W().indexOf(w)); }).join('')
+                : noResults(philosopherName(philId));
+        });
 
         requestAnimationFrame(function () {
             $$('.work-card').forEach(function (c, i) {
@@ -294,8 +337,15 @@
     function updateCounts() {
         var w = W();
         if (D.countAll) D.countAll.textContent = w.length;
-        if (D.countPlato) D.countPlato.textContent = w.filter(function (x) { return x.philosopher === 'plato'; }).length;
-        if (D.countAristotle) D.countAristotle.textContent = w.filter(function (x) { return x.philosopher === 'aristotle'; }).length;
+
+        /* Dynamic per-philosopher count badges */
+        allPhilosopherIds().forEach(function (philId) {
+            var capId = philId.charAt(0).toUpperCase() + philId.slice(1);
+            var el = document.getElementById('count' + capId);
+            if (el) {
+                el.textContent = w.filter(function (x) { return x.philosopher === philId; }).length;
+            }
+        });
     }
 
     function updateResultsInfo() {
@@ -314,12 +364,12 @@
         if (!work) return;
         S.modalIdx = idx;
         S.modalOpen = true;
-        var ip = work.philosopher === 'plato';
+        var phil = work.philosopher;
 
-        /* Header */
-        D.modalHeader.className = 'modal-header ' + (ip ? 'plato-modal-header' : 'aristotle-modal-header');
-        D.modalTag.className = 'modal-tag ' + (ip ? 'plato-modal-tag' : 'aristotle-modal-tag');
-        D.modalTag.textContent = (ip ? 'Plato' : 'Aristotle') + ' \u00b7 ' + work.categoryLabel;
+        /* Header — dynamic philosopher class */
+        D.modalHeader.className = 'modal-header ' + phil + '-modal-header';
+        D.modalTag.className = 'modal-tag ' + phil + '-modal-tag';
+        D.modalTag.textContent = philosopherName(phil) + ' \u00b7 ' + work.categoryLabel;
         D.modalTitle.textContent = work.title;
         D.modalMeta.innerHTML = '<em>' + work.greekTitle + '</em> \u00b7 ' + work.date;
 
@@ -362,8 +412,8 @@
             D.modalThemesSection.style.display = 'none';
         }
 
-        /* Concepts */
-        var cc = ip ? 'plato-concept' : 'aristotle-concept';
+        /* Concepts — dynamic philosopher class */
+        var cc = phil + '-concept';
         D.modalConcepts.innerHTML = (work.concepts || []).map(function (c) {
             return '<span class="modal-concept-chip ' + cc + '">' + c + '</span>';
         }).join('');
@@ -478,8 +528,8 @@
 
         sorted.forEach(function (work) {
             var node = document.createElement('div');
-            var cls = work.philosopher === 'plato' ? 'plato-node' : 'aristotle-node';
-            node.className = 'timeline-node ' + cls;
+            /* Dynamic philosopher node class */
+            node.className = 'timeline-node ' + work.philosopher + '-node';
             var gi = W().indexOf(work);
             node.setAttribute('role', 'button');
             node.setAttribute('tabindex', '0');
@@ -487,7 +537,7 @@
                 '<span class="timeline-date">' + work.date + '</span>' +
                 '<div class="timeline-dot"></div>' +
                 '<span class="timeline-title">' + work.title + '</span>' +
-                '<span class="timeline-author">' + (work.philosopher === 'plato' ? 'Plato' : 'Aristotle') + '</span>';
+                '<span class="timeline-author">' + philosopherName(work.philosopher) + '</span>';
             node.addEventListener('click', function () { openModal(gi); });
             node.addEventListener('keydown', function (e) {
                 if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openModal(gi); }
@@ -550,7 +600,7 @@
     }
 
     function shareTwitter(text) {
-        var t = text || 'The Academy & The Lyceum \u2014 a complete works archive of Plato and Aristotle.';
+        var t = text || 'The Academy & The Lyceum \u2014 a complete works archive of Plato, Aristotle, and the great philosophers.';
         var url = 'https://twitter.com/intent/tweet?text=' +
             encodeURIComponent(t) + '&url=' + encodeURIComponent(window.location.href);
         window.open(url, '_blank', 'width=550,height=420');
@@ -560,7 +610,7 @@
         if (navigator.share) {
             navigator.share({
                 title: 'The Academy & The Lyceum',
-                text: 'A complete works archive of Plato and Aristotle.',
+                text: 'A complete works archive of Plato, Aristotle, and the great philosophers.',
                 url: window.location.href
             }).catch(function () {});
         } else {
@@ -666,7 +716,7 @@
             D.modalShareTwitter.addEventListener('click', function () {
                 var w = W()[S.modalIdx];
                 if (w) {
-                    shareTwitter(w.title + ' by ' + (w.philosopher === 'plato' ? 'Plato' : 'Aristotle') + ' — The Academy & The Lyceum.');
+                    shareTwitter(w.title + ' by ' + philosopherName(w.philosopher) + ' — The Academy & The Lyceum.');
                 }
             });
         }

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="The Academy & The Lyceum — A comprehensive digital archive of the complete works of Plato and Aristotle.">
+    <meta name="description" content="The Academy & The Lyceum — A comprehensive digital archive of the complete works of Plato, Aristotle, Descartes, and the great philosophers.">
     <title>The Academy & The Lyceum — Complete Works Archive</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -30,6 +30,7 @@
             <nav class="nav-links" id="navLinks" role="navigation" aria-label="Main navigation">
                 <a href="#plato-section" class="nav-link">Plato</a>
                 <a href="#aristotle-section" class="nav-link">Aristotle</a>
+                <a href="#descartes-section" class="nav-link">Descartes</a>
                 <a href="#timeline-section" class="nav-link">Timeline</a>
                 <a href="#about-section" class="nav-link">About</a>
                 <a href="tradition.html" class="nav-link">Tradition Map</a>
@@ -73,16 +74,20 @@
                 <span class="mobile-nav-number">02</span>
                 <span class="mobile-nav-label">Aristotle</span>
             </a>
-            <a href="#timeline-section" class="mobile-nav-link">
+            <a href="#descartes-section" class="mobile-nav-link">
                 <span class="mobile-nav-number">03</span>
+                <span class="mobile-nav-label">Descartes</span>
+            </a>
+            <a href="#timeline-section" class="mobile-nav-link">
+                <span class="mobile-nav-number">04</span>
                 <span class="mobile-nav-label">Timeline</span>
             </a>
             <a href="#about-section" class="mobile-nav-link">
-                <span class="mobile-nav-number">04</span>
+                <span class="mobile-nav-number">05</span>
                 <span class="mobile-nav-label">About</span>
             </a>
             <a href="tradition.html" class="mobile-nav-link">
-                <span class="mobile-nav-number">05</span>
+                <span class="mobile-nav-number">06</span>
                 <span class="mobile-nav-label">Tradition Map</span>
             </a>
             <div class="mobile-nav-quote">
@@ -95,53 +100,10 @@
     <!-- HERO -->
     <section class="hero" id="hero" aria-label="Hero">
         <div class="hero-content">
-            <h1 class="hero-title">
-                <span class="title-line">The Academy</span>
-                <span class="title-ampersand">&amp;</span>
-                <span class="title-line">The Lyceum</span>
-            </h1>
-            <div class="hero-rule"></div>
-            <p class="hero-subtitle">
-                A complete works archive of
-                <span class="highlight-plato">Plato</span> and
-                <span class="highlight-aristotle">Aristotle</span>
-            </p>
             <blockquote class="hero-quote">
                 <p>"Wonder is the feeling of a philosopher, and philosophy begins in wonder."</p>
-                <cite>Socrates, in Plato's <em>Theaetetus</em> (155d)</cite>
+                <cite>Plato, <em>Theaetetus</em> (155d)</cite>
             </blockquote>
-            <div class="hero-actions">
-                <a href="#plato-section" class="btn btn-primary">Explore the Archive</a>
-                <a href="#timeline-section" class="btn btn-secondary">View Timeline</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- STATS -->
-    <section class="stats-section" id="stats" aria-label="Statistics">
-        <div class="container">
-            <div class="stats-grid">
-                <div class="stat-card" data-count="16">
-                    <div class="stat-number" id="statDialogues">16</div>
-                    <div class="stat-label">dialogues</div>
-                    <div class="stat-sub">Plato</div>
-                </div>
-                <div class="stat-card" data-count="18">
-                    <div class="stat-number" id="statTreatises">18</div>
-                    <div class="stat-label">treatises</div>
-                    <div class="stat-sub">Aristotle</div>
-                </div>
-                <div class="stat-card" data-count="2000000">
-                    <div class="stat-number" id="statWords">2M+</div>
-                    <div class="stat-label">words</div>
-                    <div class="stat-sub">combined</div>
-                </div>
-                <div class="stat-card" data-count="77">
-                    <div class="stat-number" id="statYears">77</div>
-                    <div class="stat-label">years</div>
-                    <div class="stat-sub">399 &ndash; 322 bc</div>
-                </div>
-            </div>
         </div>
     </section>
 
@@ -165,6 +127,10 @@
                         <span class="filter-dot aristotle-dot"></span>
                         Aristotle <span class="filter-count" id="countAristotle">0</span>
                     </button>
+                    <button class="filter-tab" data-filter="descartes" role="tab" aria-selected="false">
+                        <span class="filter-dot descartes-dot"></span>
+                        Descartes <span class="filter-count" id="countDescartes">0</span>
+                    </button>
                 </div>
                 <div class="category-filters" id="categoryFilters">
                     <button class="category-chip active" data-category="all">All</button>
@@ -175,6 +141,10 @@
                     <button class="category-chip" data-category="theoretical">Theoretical</button>
                     <button class="category-chip" data-category="practical">Practical</button>
                     <button class="category-chip" data-category="productive">Productive</button>
+                    <button class="category-chip" data-category="metaphysics">Metaphysics</button>
+                    <button class="category-chip" data-category="method">Method</button>
+                    <button class="category-chip" data-category="natural-philosophy">Natural Phil.</button>
+                    <button class="category-chip" data-category="psychology">Psychology</button>
                 </div>
                 <div class="search-results-info" id="searchResultsInfo" style="display:none;">
                     <span id="resultsCount">0</span> works found
@@ -216,16 +186,40 @@
         </div>
     </section>
 
+    <!-- ERA DIVIDER -->
+    <div class="era-divider fade-in-element">
+        <div class="era-divider-line"></div>
+        <span class="era-divider-label">Modern Philosophy</span>
+        <div class="era-divider-line"></div>
+    </div>
+
+    <!-- DESCARTES -->
+    <section class="works-section" id="descartes-section" aria-label="Descartes">
+        <div class="container">
+            <div class="section-header fade-in-element">
+                <p class="section-tag descartes-tag">Rationalism &middot; France &middot; 1596 &ndash; 1650</p>
+                <h2 class="section-title">Descartes' Works</h2>
+                <div class="section-rule descartes-rule"></div>
+                <p class="section-description">
+                    The founder of modern philosophy and father of analytic geometry.
+                    Descartes demolished scholastic tradition through radical doubt and
+                    rebuilt all knowledge on a single foundation: the thinking self.
+                </p>
+            </div>
+            <div class="works-grid" id="descartesGrid" aria-label="Descartes' works"></div>
+        </div>
+    </section>
+
     <!-- TIMELINE -->
     <section class="timeline-section" id="timeline-section" aria-label="Timeline">
         <div class="container">
             <div class="section-header fade-in-element">
-                <p class="section-tag">Chronological Survey &middot; 470 &ndash; 322 BC</p>
+                <p class="section-tag">Chronological Survey &middot; 470 BC &ndash; 1650 AD</p>
                 <h2 class="section-title">Timeline of the Works</h2>
                 <div class="section-rule"></div>
                 <p class="section-description">
                     A chronological journey through the intellectual output of
-                    Athens' two greatest minds.
+                    philosophy's greatest minds.
                 </p>
             </div>
             <div class="timeline-container" id="timelineContainer">
@@ -267,9 +261,9 @@
                     <h3 class="about-title">This Archive</h3>
                     <p class="about-text">
                         This digital archive catalogues the major surviving works of
-                        both philosophers, providing summaries, key concepts, and
-                        commentary from later thinkers including Aquinas, Kant,
-                        Nietzsche, Heidegger, and Arendt.
+                        history's greatest philosophers, providing summaries, key concepts,
+                        and commentary from thinkers including Kant, Hegel, Nietzsche,
+                        Heidegger, and Arendt.
                     </p>
                 </div>
             </div>
@@ -290,22 +284,25 @@
                         <h4 class="footer-heading">Archive</h4>
                         <a href="#plato-section" class="footer-link">Plato</a>
                         <a href="#aristotle-section" class="footer-link">Aristotle</a>
+                        <a href="#descartes-section" class="footer-link">Descartes</a>
                         <a href="#timeline-section" class="footer-link">Timeline</a>
                         <a href="#about-section" class="footer-link">About</a>
                         <a href="tradition.html" class="footer-link">Tradition Map</a>
                     </div>
                     <div class="footer-col">
-                        <h4 class="footer-heading">Periods</h4>
+                        <h4 class="footer-heading">Ancient</h4>
                         <a href="#" class="footer-link" data-filter-link="early">Early Dialogues</a>
                         <a href="#" class="footer-link" data-filter-link="middle">Middle Dialogues</a>
                         <a href="#" class="footer-link" data-filter-link="late">Late Dialogues</a>
+                        <a href="#" class="footer-link" data-filter-link="logic">Logic</a>
+                        <a href="#" class="footer-link" data-filter-link="practical">Practical</a>
                     </div>
                     <div class="footer-col">
-                        <h4 class="footer-heading">Categories</h4>
-                        <a href="#" class="footer-link" data-filter-link="logic">Logic</a>
-                        <a href="#" class="footer-link" data-filter-link="theoretical">Theoretical</a>
-                        <a href="#" class="footer-link" data-filter-link="practical">Practical</a>
-                        <a href="#" class="footer-link" data-filter-link="productive">Productive</a>
+                        <h4 class="footer-heading">Modern</h4>
+                        <a href="#" class="footer-link" data-filter-link="metaphysics">Metaphysics</a>
+                        <a href="#" class="footer-link" data-filter-link="method">Method</a>
+                        <a href="#" class="footer-link" data-filter-link="natural-philosophy">Natural Phil.</a>
+                        <a href="#" class="footer-link" data-filter-link="psychology">Psychology</a>
                     </div>
                     <div class="footer-col">
                         <h4 class="footer-heading">Share</h4>
@@ -415,6 +412,9 @@
     <script src="js/data-08.js"></script>
     <script src="js/data-09.js"></script>
     <script src="js/data-10.js"></script>
+    <script src="js/data-11a.js"></script>
+    <script src="js/data-11b.js"></script>
+    <script src="js/data-11c.js"></script>
     <script src="js/script.js"></script>
 </body>
 </html>

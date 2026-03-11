@@ -1693,3 +1693,140 @@ button{font-family:var(--font-body);cursor:pointer;border:none;background:none;c
     body{background:#fff;color:#000}
     .work-card{break-inside:avoid;box-shadow:none;border:1px solid #ccc}
 }
+/* ================================================================
+   DESCARTES — COLOR SYSTEM
+================================================================ */
+
+:root {
+    --descartes:       #2B4C8C;
+    --descartes-light: #E6ECF7;
+    --descartes-mid:   #6B87BF;
+    --descartes-pale:  #F0F3FB;
+}
+
+[data-theme="dark"] {
+    --descartes-light: #1A2844;
+    --descartes-pale:  #141D33;
+}
+
+.descartes-tag  { color: var(--descartes-mid); }
+.descartes-rule { background: var(--descartes); opacity: 0.6; }
+.descartes-dot  { background: var(--descartes); }
+
+.descartes-card .card-dot      { background: var(--descartes); }
+.descartes-card .card-category { color: var(--descartes-mid); }
+.descartes-card:hover          { border-color: var(--descartes-mid); }
+.descartes-card::before        { background: var(--descartes); }
+
+.filter-tab[data-filter="descartes"].active {
+    color: #fff;
+    background: var(--descartes);
+    border-bottom-color: var(--descartes);
+}
+.filter-tab[data-filter="descartes"]:hover:not(.active) {
+    color: var(--descartes);
+}
+
+.descartes-modal-header { border-top: 2px solid var(--descartes); }
+.descartes-modal-tag    { color: var(--descartes-mid); }
+
+.descartes-concept {
+    border-color: var(--descartes-light);
+    color: var(--descartes);
+}
+
+.descartes-node .timeline-dot        { background: var(--descartes); }
+.descartes-node .timeline-author     { color: var(--descartes); }
+.descartes-node:hover .timeline-dot  { box-shadow: 0 0 0 4px var(--descartes-light); }
+
+.era-divider {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    padding: 60px 28px;
+    max-width: 1240px;
+    margin: 0 auto;
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.45s ease, transform 0.45s ease;
+}
+.era-divider.visible     { opacity: 1; transform: none; }
+.era-divider-line        { flex: 1; height: 1px; background: var(--border-dark); opacity: 0.4; }
+.era-divider-label {
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    white-space: nowrap;
+}
+
+/* ================================================================
+   DESCARTES & ERA DIVIDER — append to end of style.css
+   ================================================================ */
+
+/* ── Era Divider ── */
+.era-divider{
+    display:flex;align-items:center;gap:20px;
+    padding:48px 28px;
+    max-width:var(--max-w);
+    margin:0 auto;
+    opacity:0;transform:translateY(16px);
+    transition:opacity 0.6s var(--ease-out),transform 0.6s var(--ease-out);
+}
+.era-divider.visible{opacity:1;transform:none}
+.era-divider-line{flex:1;height:1px;background:var(--rule-gold);opacity:0.4}
+.era-divider-label{
+    font-family:var(--font-mono);font-size:0.6rem;
+    letter-spacing:0.25em;text-transform:uppercase;
+    color:var(--gold);white-space:nowrap;opacity:0.8;
+}
+
+/* ── Descartes colour tokens ── */
+:root{
+    --descartes:#2B4C8C;
+    --descartes-light:#E6ECF7;
+    --descartes-mid:#6B87BF;
+    --descartes-pale:#F0F3FB;
+    --descartes-border:rgba(43,76,140,0.2);
+    --descartes-bg:rgba(43,76,140,0.04);
+}
+[data-theme="dark"]{
+    --descartes:#7090C8;
+    --descartes-light:#1A2844;
+    --descartes-mid:#8AAAD8;
+    --descartes-pale:#141D33;
+    --descartes-border:rgba(112,144,200,0.22);
+    --descartes-bg:rgba(112,144,200,0.06);
+}
+
+/* ── Section tag & rule ── */
+.descartes-tag{color:var(--descartes-mid)}
+.descartes-rule{background:var(--descartes);opacity:0.6}
+
+/* ── Filter tab ── */
+.descartes-dot{background:var(--descartes)}
+.filter-tab[data-filter="descartes"].active{
+    color:var(--text);border-bottom-color:var(--descartes);
+}
+.filter-tab[data-filter="descartes"]:hover:not(.active){color:var(--descartes)}
+
+/* ── Cards ── */
+.descartes-card .card-dot{background:var(--descartes)}
+.descartes-card .card-category{color:var(--descartes-mid)}
+.descartes-card::before{background:var(--descartes)}
+.descartes-card:hover{box-shadow:var(--shadow-md),0 0 0 1px var(--descartes-border)}
+.descartes-card:hover .card-title{color:var(--descartes)}
+
+/* ── Modal ── */
+.descartes-modal-header{border-top:2px solid var(--descartes)}
+.descartes-modal-tag{color:var(--descartes)}
+.modal-concept-chip.descartes-concept{
+    border-color:var(--descartes-border);
+    color:var(--descartes);
+}
+
+/* ── Timeline node ── */
+.descartes-node .timeline-dot{background:var(--descartes)}
+.descartes-node:hover .timeline-dot{box-shadow:0 0 0 4px var(--descartes-bg)}
+.descartes-node .timeline-author{color:var(--descartes)}
