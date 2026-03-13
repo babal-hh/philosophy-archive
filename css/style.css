@@ -1924,3 +1924,55 @@ button{font-family:var(--font-body);cursor:pointer;border:none;background:none;c
 .leibniz-node .timeline-dot{background:var(--leibniz)}
 .leibniz-node:hover .timeline-dot{box-shadow:0 0 0 4px var(--leibniz-bg)}
 .leibniz-node .timeline-author{color:var(--leibniz)}
+
+
+/* ================================================================
+   LOCKE — colour tokens and component rules
+   ================================================================ */
+
+/* ── colour tokens ── */
+:root {
+    --locke: #8B6520;
+    --locke-light: #F5EDD8;
+    --locke-mid: #B8892A;
+    --locke-pale: #FAF6EC;
+    --locke-border: rgba(139,101,32,0.2);
+    --locke-bg: rgba(139,101,32,0.04);
+}
+[data-theme="dark"] {
+    --locke: #C9A84C;
+    --locke-light: #2A2010;
+    --locke-mid: #D4B870;
+    --locke-pale: #1E1808;
+    --locke-border: rgba(201,168,76,0.22);
+    --locke-bg: rgba(201,168,76,0.06);
+}
+
+/* ── section tag & rule ── */
+.locke-tag  { color: var(--locke-mid) }
+.locke-rule { background: var(--locke); opacity: 0.6 }
+
+/* ── filter tab ── */
+.locke-dot { background: var(--locke) }
+.filter-tab[data-filter="locke"].active       { color: var(--text); border-bottom-color: var(--locke) }
+.filter-tab[data-filter="locke"]:hover:not(.active) { color: var(--locke) }
+
+/* ── cards ── */
+.locke-card .card-dot       { background: var(--locke) }
+.locke-card .card-category  { color: var(--locke-mid) }
+.locke-card::before         { background: var(--locke) }
+.locke-card:hover           { box-shadow: var(--shadow-md), 0 0 0 1px var(--locke-border) }
+.locke-card:hover .card-title { color: var(--locke) }
+
+/* ── modal ── */
+.locke-modal-header         { border-top: 2px solid var(--locke) }
+.locke-modal-tag            { color: var(--locke) }
+.modal-concept-chip.locke-concept {
+    border-color: var(--locke-border);
+    color: var(--locke);
+}
+
+/* ── timeline node ── */
+.locke-node .timeline-dot   { background: var(--locke) }
+.locke-node:hover .timeline-dot { box-shadow: 0 0 0 4px var(--locke-bg) }
+.locke-node .timeline-author { color: var(--locke) }
