@@ -1,131 +1,139 @@
+/* ================================================================
+   DATA PART 13c — Theodicy + New System of Nature (Leibniz)
+   ================================================================ */
+
 window.WORKS.push(
 
+/* ──────────────────────────────────────
+   1. THEODICY
+────────────────────────────────────── */
 {
-    id: 'correspondence-clarke',
-    title: 'Correspondence with Clarke',
-    greekTitle: 'Leibniz-Clarke Correspondence',
+    id: 'theodicy',
+    title: 'Theodicy',
+    greekTitle: "Essais de Théodicée sur la bonté de Dieu, la liberté de l'homme et l'origine du mal",
     philosopher: 'leibniz',
-    category: 'natural-philosophy',
-    categoryLabel: 'Natural Philosophy',
-    date: '1715–1716 AD',
-    dateSort: 1716,
-    emoji: '🌌',
+    category: 'practical',
+    categoryLabel: 'Theology & Ethics',
+    date: '1710 AD',
+    dateSort: 1710,
+    emoji: '⚡',
     cardSize: 'normal',
-    readingDifficulty: 4,
-    estimatedWordCount: 35000,
-    shortDesc: 'The most consequential scientific-philosophical debate of the eighteenth century — Leibniz against Newton on the nature of space, time, and God\'s relation to the universe.',
-    summary: 'The correspondence between Leibniz and Samuel Clarke — Newton\'s spokesman and defender — conducted between November 1715 and October 1716, is the most important philosophical debate about the foundations of physics before Kant. Leibniz died on 14 November 1716 before he could reply to Clarke\'s fifth letter; the correspondence therefore ends asymmetrically, Clarke having the last word in a dispute that Leibniz was winning on most of the central questions.\n\nThe debate opens with a letter from Leibniz to Caroline, Princess of Wales, in which he complains that Newton\'s philosophy is undermining natural religion in England. Newton and Clarke, he argues, are committed to an absolute space and time — a vast receptacle or container that exists independently of the things in it — and this commits them to making God\'s omnipresence a matter of his occupying an infinite spatial void, which is absurd. More fundamentally, Newton\'s God is a bad clockmaker: he must intervene periodically in the universe to correct its running, because the Newtonian laws of motion do not conserve the total quantity of force. Leibniz\'s God created a perfect machine that runs without intervention.\n\nThe Newtonian absolute space becomes the crux of the debate. Leibniz argues against it with his most powerful philosophical weapon: the principle of sufficient reason. If space is absolute — if there is a real distinction between different regions of empty space that contains nothing — then there is no reason why God should have placed the universe here rather than there, or oriented it in this direction rather than that. Since God always has sufficient reason for his acts, and since there could be no sufficient reason to prefer one empty location over another, absolute space cannot exist. Space is nothing but the order of coexisting things; time is nothing but the order of successive things. This relational theory of space and time directly contradicts Newton\'s Principia, and the debate between them has structured philosophy of space and time ever since.\n\nThe correspondence also addresses the nature of miracles and natural law, the principle of sufficient reason as a constraint on God\'s action, the nature of atoms, the void, the soul\'s relation to the body, and the question of whether God could have created two indiscernible things — to which Leibniz says no, on the grounds of the identity of indiscernibles, and Clarke says yes, on the grounds of God\'s absolute freedom.',
-    themes: ['absolute vs relational space and time', 'principle of sufficient reason', 'God as clockmaker vs interventionist', 'natural law and miracles', 'identity of indiscernibles', 'the void and atoms', 'foundations of Newtonian physics'],
+    readingDifficulty: 'Advanced',
+    estimatedWordCount: 160000,
+
+    shortDesc: 'The only book Leibniz published under his own name — a systematic defence of divine goodness against the problem of evil that invented the word "theodicy" and gave Voltaire his target in Candide.',
+
+    summary: 'The Theodicy is the only book-length work Leibniz published in his own name during his lifetime, and it is the most ambitious attempt in the history of philosophy to reconcile the existence of evil with the goodness, power, and knowledge of God. The word "theodicy" — justification of God — was coined by Leibniz for this work, and it has named a genre of philosophical theology ever since. The work grew out of conversations with Queen Sophie Charlotte of Prussia, who had been disturbed by the arguments of Pierre Bayle, who had argued in his Dictionnaire that the existence of evil is rationally irreconcilable with a good and omnipotent God — and that faith therefore requires a complete surrender of reason.\n\nLeibniz\'s response is systematic and multi-fronted. Against Bayle\'s fideism he argues that reason and faith cannot genuinely conflict, because God is the author of both the natural order and revelation. Against the logical problem of evil he distinguishes three kinds of evil — metaphysical evil (the necessary imperfection of finite creatures), physical evil (pain and suffering), and moral evil (sin) — and argues that each kind can be reconciled with divine perfection. God permits physical and moral evil because the best possible world, by its own internal logic, requires certain imperfections as conditions of greater goods. A world without the possibility of sin would be a world without genuine freedom; a world without physical suffering might be a world with less beauty, less courage, less moral development.\n\nThe Theodicy concludes with a retelling of Valla\'s dialogue on free will and fate, framed within the fiction of a visit to the palace of destinies — one of the most beautiful literary passages Leibniz ever wrote — in which the mortal Sextus Tarquinius visits God\'s palace and sees all possible versions of his own life laid out before the moment of creation.',
+
+    themes: ['The Problem of Evil', 'Divine Goodness and Omnipotence', 'Human Freedom and Divine Foreknowledge', 'The Best Possible World', 'Sin and Divine Permission', 'Faith and Reason', 'Metaphysical Necessity', 'Theodicy as Philosophical Genre'],
+
     keyCharacters: [
-        { name: 'Samuel Clarke', role: 'Newton\'s designated philosophical spokesman — a theologian and philosopher who had translated Newton\'s Opticks and who defended Newtonian absolute space with rigour and considerable philosophical skill' },
-        { name: 'Caroline, Princess of Wales', role: 'The intermediary through whom the correspondence was conducted — herself philosophically serious and deeply interested in the theological stakes of the Newton-Leibniz dispute' },
-        { name: 'Isaac Newton', role: 'The silent presence behind Clarke\'s letters — manuscripts show Newton drafted some of Clarke\'s replies and was directing the Newtonian side of the debate' }
+        { name: 'Pierre Bayle', role: 'The principal antagonist — Leibniz engages throughout with his skeptical arguments from the Dictionnaire historique et critique that evil is rationally irreconcilable with a good God' },
+        { name: 'Queen Sophie Charlotte', role: 'The interlocutor in the conversations that gave rise to the Theodicy; her philosophical seriousness prompted Leibniz to develop the arguments at full length' },
+        { name: 'Sextus Tarquinius', role: 'The protagonist of the closing myth of Theodorus — who visits the palace of destinies and sees all possible versions of his own life laid out in God\'s mind before creation' }
     ],
+
     concepts: [
-        'Absolute space — Newton\'s infinite, homogeneous container existing independently of its contents',
-        'Relational space — Leibniz\'s position: space as nothing but the system of spatial relations among existing things',
-        'Relational time — time as nothing but the order of successive events, not a container',
-        'Principle of sufficient reason applied to cosmology — no sufficient reason to place the universe here vs there',
-        'God as clockmaker — Leibniz\'s insistence that God\'s perfection requires a self-sustaining universe',
-        'The identity of indiscernibles in physics — no two distinct things can share all properties, therefore no two indistinguishable spatial points exist',
-        'Sensorium of God — Newton\'s suggestion that space is God\'s organ of perception, which Leibniz attacks as materialist and absurd'
+        'Theodicy — justification of God\'s goodness in the face of evil; a term Leibniz coined that has since named the entire genre',
+        'Three kinds of evil — metaphysical evil (necessary imperfection of finite things), physical evil (suffering), moral evil (sin); each reconcilable with divine perfection on different grounds',
+        'Antecedent vs consequent will — God wills the good of each creature antecedently but wills the best world overall consequently, even if that world contains some suffering',
+        'Permissive will — God permits evil without directly willing it, because preventing it would require a less perfect world',
+        'Middle knowledge (scientia media) — God\'s knowledge of what free creatures would do in any possible situation, prior to any decision about which creatures to create',
+        'The palace of destinies — the fictional space in God\'s mind where all possible worlds exist before creation; the literary climax of the Theodicy'
     ],
-    structure: 'Leibniz\'s first letter: general complaint about Newtonian natural religion\nClarke\'s first reply: defence of Newton\'s theological credentials\nLeibniz\'s second letter: absolute space and sufficient reason\nClarke\'s second reply: defence of absolute space; miracles\nLeibniz\'s third letter: full statement of relational theory; identity of indiscernibles\nClarke\'s third reply: space as independent reality; God\'s freedom\nLeibniz\'s fourth letter: on atoms, the void, and force\nClarke\'s fourth reply\nLeibniz\'s fifth letter (his longest and most systematic)\nClarke\'s fifth reply (unanswered — Leibniz died)',
-    quote: 'Space is something absolutely uniform; and, without the things placed in it, one point of space does not absolutely differ in any respect whatsoever from another point. Now from hence it follows, supposing space to be something in itself besides the order of bodies among themselves, that it is impossible there should be a reason why God, preserving the same situations of bodies among themselves, should have placed them in space after one certain particular manner, and not otherwise.',
+
+    structure: 'Preliminary dissertation: On the conformity of faith with reason\nPart I: On divine goodness and the origin of evil (against Bayle\'s fideism)\nPart II: On the goodness of God and the freedom of man\nPart III: On the permission of evil and divine foreknowledge\nAppendix: The Cause of God; Remarks on King; The Myth of Theodorus',
+
+    quote: 'God has chosen the best of all possible worlds; but this does not make the world necessary. The world could have been otherwise — an infinity of other worlds were possible in the divine understanding. But none was better. The evil we observe is the price of a greater good that a different arrangement would have sacrificed.',
+
     additionalQuotes: [
-        { text: 'I hold space to be something merely relative, as time is; that I hold it to be an order of coexistences, as time is an order of successions.', source: 'Leibniz\'s Third Letter §4' },
-        { text: 'Sir Isaac Newton says, that space is the sensorium of God. But if space is the organ by which God perceives things, then God perceives things by an organ — that is to say, God himself must be somewhere.', source: 'Leibniz\'s Third Letter §15' }
+        { text: 'Metaphysical evil consists simply in imperfection, physical evil in suffering, and moral evil in sin.', citation: 'Theodicy §21' },
+        { text: 'Those who are not satisfied with the conduct of God are like the soldiers who murmur against their general without knowing his plans.', citation: 'Theodicy §134' },
+        { text: 'If God had wished to do only things of the highest perfection, he would not have created the world at all, since nothing created can equal him.', citation: 'Theodicy §31' }
     ],
+
     commentary: [
-        { philosopher: 'Kant', text: 'The Leibniz-Clarke correspondence forced me to see that both were right and both wrong. Space and time are neither Newtonian containers nor Leibnizian relational orders among things in themselves — they are forms of our intuition, the conditions under which any object can appear to us at all.' },
-        { philosopher: 'Mach', text: 'Leibniz was right against Newton: space is nothing but the system of relations among bodies. Newton\'s absolute space is empirically empty and philosophically incoherent.' },
-        { philosopher: 'Einstein', text: 'The theory of relativity vindicates Leibniz against Newton. There is no absolute space, no absolute simultaneity. Space and time are relational, as Leibniz insisted — though the relations are more complex than he imagined.' }
+        {
+            philosopher: 'Voltaire',
+            text: 'Voltaire\'s Candide (1759) is the most consequential literary response to any philosophical work in the Western tradition. Published in the wake of the Lisbon earthquake of 1755 — which killed between 30,000 and 60,000 people on All Saints Day while the faithful were at mass — Candide devastated the Theodicy\'s popular reputation by reducing "the best of all possible worlds" to a catchphrase of absurd complacency. Dr. Pangloss — the perpetually optimistic Leibnizian philosopher who maintains, through every disaster, that all is for the best in the best of all possible worlds — became one of the most recognizable comic characters in European literature, and Leibniz became synonymous with rationalist evasion of obvious suffering. Voltaire\'s philosophical critique was less subtle than his satire: he essentially argued that the Lisbon earthquake refuted the Theodicy by direct empirical counterexample. Most Leibniz scholars regard this as a misreading — the Theodicy does not claim that this world contains no evil, only that it contains less evil than any alternative — but Voltaire\'s demolition was culturally decisive.'
+        },
+        {
+            philosopher: 'G.W.F. Hegel',
+            text: 'Hegel\'s response to Voltaire\'s demolition of the Theodicy was characteristically dialectical: Leibniz\'s theodicy is, despite the mockery, the most serious philosophical attempt to think the rationality of history. That the real is rational is not an optimistic prejudice but a metaphysical claim about the structure of existence. What the Theodicy gets right is the demand that philosophy justify the ways of the world — that the apparent irrationality of suffering, injustice, and evil be comprehended within a rational framework rather than simply lamented. What it gets wrong is the framework itself: the best of all possible worlds is a static conception, a world selected from a menu of alternatives rather than a world that develops through the dialectical negation of its own limitations. Hegel\'s own philosophy of history — in which the Cunning of Reason works through human passions and historical catastrophe toward the realization of freedom — is his answer to the same problem the Theodicy attempted to solve.'
+        },
+        {
+            philosopher: 'Susan Neiman',
+            text: 'Neiman\'s Evil in Modern Thought: An Alternative History of Philosophy (2002) placed the Theodicy at the watershed of modern intellectual history. The Lisbon earthquake of 1755 did not just kill tens of thousands; it destroyed the Leibnizian framework within which educated Europeans had understood evil. Before Lisbon, natural evil and moral evil could be integrated into a single providential narrative: suffering was punishment, trial, or occasion for moral growth. After Lisbon — and after Auschwitz — this integration became intolerable. The Theodicy was the last serious attempt to read both natural and moral evil within a single rational-theological framework, and its destruction by the earthquake marks the beginning of the modern experience of evil as genuinely inexplicable: not a problem to be solved but a reality to be confronted.'
+        },
+        {
+            philosopher: 'Alvin Plantinga',
+            text: 'Plantinga\'s free will defense — the most influential analytic response to the logical problem of evil — is explicitly built on Leibnizian foundations. Plantinga saw the logical structure of the problem of evil more clearly than anyone before him. His three-fold distinction between kinds of evil and his recognition that a perfect God need not create a world without evil — because no such world may be achievable without sacrificing greater goods, including genuine creaturely freedom — remain the starting points for contemporary analytic theodicy. Plantinga\'s key technical contribution was formalizing Leibniz\'s insight: it may not be within God\'s power to create free creatures who always choose rightly; even an omnipotent God cannot actualize a possible world that is both populated by genuinely free creatures and wholly free of moral evil, because the freedom of creatures is partly outside God\'s control.'
+        }
     ],
-    modernRelevance: 'The Leibniz-Clarke debate maps almost perfectly onto the contemporary debate between substantivalism (space is a real entity) and relationalism (space is just a system of relations) in philosophy of physics. Einstein\'s general theory of relativity is widely interpreted as a vindication of Leibniz\'s relational view, though the details remain contested. Julian Barbour\'s relational mechanics, Carlo Rovelli\'s relational quantum mechanics, and Lee Smolin\'s work on background-independent physics all cite the Leibniz-Clarke correspondence as a foundational document. The exchange is now standard reading in both philosophy of physics and the history of science.',
-    context: 'Leibniz initiated the correspondence in November 1715, knowing he was in poor health and that his time for major philosophical work was limited. The exchange was conducted through Caroline, Princess of Wales — later Queen of England as wife of George II — who was a genuine philosophical enthusiast and who had corresponded with both Leibniz and the Newtonians for years. Newton\'s involvement behind Clarke\'s letters was suspected by Leibniz and is now confirmed by manuscript evidence. Leibniz wrote his fifth letter, his longest and most systematic contribution, in August 1716. He died three months later, on 14 November 1716. Clarke published the complete correspondence in 1717.',
-    relatedWorks: ['monadology', 'theodicy', 'discourse-metaphysics']
+
+    modernRelevance: 'The Theodicy\'s central question — whether the existence of evil is compatible with an omniscient, omnipotent, and benevolent God — remains the most actively debated question in philosophy of religion. Plantinga\'s free will defense, Hick\'s soul-making theodicy, and the entire literature on the logical and evidential problems of evil are continuations of the debate Leibniz and Bayle staged in 1710. The word "theodicy" itself has become indispensable in every language it has entered, naming a philosophical problem that shows no sign of resolution.',
+
+    context: 'Published in Amsterdam in 1710, an immediate success that went through several editions in Leibniz\'s lifetime — the only work he published that did. Its philosophical legacy was transformed by the Lisbon earthquake of 1 November 1755 and Voltaire\'s Candide (1759), which made "best of all possible worlds" synonymous with complacent indifference to suffering. Only in the twentieth century, with the rehabilitation of Leibniz\'s metaphysics more broadly, has the Theodicy been read again as the serious philosophical work it is.',
+
+    relatedWorks: ['monadology', 'discourse-metaphysics', 'new-essays', 'correspondence-clarke']
 },
 
+/* ──────────────────────────────────────
+   2. NEW SYSTEM OF NATURE
+────────────────────────────────────── */
 {
-    id: 'correspondence-arnauld',
-    title: 'Correspondence with Arnauld',
-    greekTitle: 'Correspondance avec Arnauld',
+    id: 'new-system-nature',
+    title: 'New System of Nature',
+    greekTitle: 'Système nouveau de la nature et de la communication des substances',
     philosopher: 'leibniz',
     category: 'metaphysics',
     categoryLabel: 'Metaphysics',
-    date: '1686–1690 AD',
-    dateSort: 1687,
-    emoji: '📬',
+    date: '1695 AD',
+    dateSort: 1695,
+    emoji: '⚙',
     cardSize: 'normal',
-    readingDifficulty: 5,
-    estimatedWordCount: 60000,
-    shortDesc: 'The most rigorous philosophical correspondence of the seventeenth century — Leibniz forced to defend every doctrine of the Discourse on Metaphysics against one of the sharpest minds of the century.',
-    summary: 'The correspondence between Leibniz and Antoine Arnauld, conducted between 1686 and 1690, is the most philosophically demanding exchange in the early modern period and the primary site where Leibniz\'s mature metaphysical doctrines were tested, refined, and in some cases significantly modified. Arnauld was the greatest French theologian of the century — a Jansenist, a logician, and a polemicist of terrifying precision who had already demolished Malebranche\'s theory of seeing all things in God and had coauthored the Port-Royal Logic with Nicole. When the summary of the Discourse on Metaphysics reached him, his initial reaction — that the complete concept doctrine implied that God could not have created Adam without thereby determining all future human history, and that this fatalism destroyed human freedom and rendered sin meaningless — was not merely theological but logically acute.\n\nLeibniz\'s letters in response are the clearest and most carefully argued expositions of his metaphysics he ever produced. The correspondence covers the complete concept of individual substance and its implications for freedom; the nature of substance and its distinction from mere aggregates; the relationship between the soul and the body (Leibniz develops his theory of pre-established harmony here more clearly than in the Discourse); the nature of force and its conservation; and the distinction between what is absolutely necessary and what God freely but inevitably chooses. Arnauld never accepted Leibniz\'s responses, but his resistance sharpened Leibniz\'s formulations in ways that are visible in every subsequent statement of the system, including the Monadology.',
-    themes: ['complete concept and freedom', 'substance vs aggregate', 'soul-body relation', 'pre-established harmony', 'force and conservation', 'divine necessity and freedom', 'personal identity over time'],
-    keyCharacters: [
-        { name: 'Antoine Arnauld', role: 'Theologian, logician, and Jansenist controversialist — author of the Objections to Descartes\'s Meditations and co-author of the Port-Royal Logic; Leibniz\'s most formidable correspondent' }
-    ],
-    concepts: [
-        'The complete concept objection — if Adam\'s concept contains all future history, human history is necessary',
-        'Hypothetical vs absolute necessity — the world is hypothetically necessary (given God\'s choice) but not absolutely necessary',
-        'Substance as genuine unity — a substance must have a genuine principle of unity, unlike a heap or a machine',
-        'Force as the mark of substance — true substances are distinguished by their active force, not mere extension',
-        'Pre-established harmony defended — Arnauld\'s pressure forces Leibniz to clarify the harmony against occasionalism'
-    ],
-    structure: 'March 1686: Leibniz sends summary of the Discourse through von Hessen-Rheinfels\nMay 1686: Arnauld\'s first letter — shock at article 13\nJuly 1686: Leibniz\'s long reply — the central defence of complete concepts and hypothetical necessity\n1687–1690: Sustained exchange on substance, soul-body, force, and freedom',
-    quote: 'I maintain that the concept of an individual substance contains once and for all everything that can ever happen to it, and that in considering this concept, one can see everything that can truly be said of it, just as we can see in the nature of a circle all the properties that can be derived from it.',
-    additionalQuotes: [
-        { text: 'A being by aggregation, such as a heap of stones, is not truly one being, nor has it one true unity; it has only an accidental or external unity.', source: 'Letter to Arnauld, April 1687' }
-    ],
-    commentary: [
-        { philosopher: 'Sleigh', text: 'The Arnauld correspondence is the most important single document for understanding Leibniz\'s metaphysics — more revealing than the Monadology, more argued than the Discourse. Every major scholar of Leibniz has had to work through it.' },
-        { philosopher: 'Parkinson', text: 'Arnauld\'s objection about fatalism was not simply answered by Leibniz\'s distinction between hypothetical and absolute necessity. The tension between the complete concept doctrine and human freedom runs through Leibniz\'s entire system and is never fully resolved.' }
-    ],
-    modernRelevance: 'The debate about whether the complete concept theory of individual substance entails fatalism remains live in contemporary metaphysics of modality. The question of whether libertarian free will is compatible with divine foreknowledge — which is the theological form of Arnauld\'s objection — is one of the most active topics in philosophy of religion.',
-    context: 'The correspondence was conducted through their mutual contact Ernst von Hessen-Rheinfels. Arnauld initially refused to correspond directly with Leibniz, regarding the Discourse\'s doctrines as too dangerous. He eventually relented and the exchange became direct and substantive. It broke off in 1690 without resolution; Arnauld died in 1694. The correspondence was not published until the nineteenth century and was unknown even to most eighteenth-century readers of Leibniz, including Kant — its rediscovery transformed twentieth-century Leibniz scholarship.',
-    relatedWorks: ['discourse-metaphysics', 'monadology', 'new-essays']
-},
+    readingDifficulty: 'Intermediate',
+    estimatedWordCount: 12000,
 
-{
-    id: 'leibniz-philosophical-papers',
-    title: 'Philosophical Papers and Letters',
-    greekTitle: 'Opera Omnia (Philosophical writings)',
-    philosopher: 'leibniz',
-    category: 'method',
-    categoryLabel: 'Philosophical Writings',
-    date: '1666–1716 AD',
-    dateSort: 1690,
-    emoji: '📄',
-    cardSize: 'normal',
-    readingDifficulty: 4,
-    estimatedWordCount: 500000,
-    shortDesc: 'The vast unpublished workshop — over a hundred short essays, fragments, and drafts in which Leibniz\'s philosophy was built, tested, and sometimes contradicted, ranging from the calculus of logic to the nature of time.',
-    summary: 'Unlike Descartes or Spinoza, Leibniz published almost nothing of his philosophy during his lifetime. His philosophical system is known primarily through an enormous archive of unpublished papers, fragments, drafts, and correspondence preserved in the Hanover library — a collection estimated at over 100,000 pages that is still not fully published. The papers range from finished essays he clearly intended for publication to fragmentary jottings that capture a thought in mid-development. They span every area of philosophy — metaphysics, logic, epistemology, ethics, philosophy of mathematics, natural philosophy, and the philosophy of language — and represent the actual workshop in which Leibniz\'s system was constructed.\n\nAmong the most important are the Meditations on Knowledge, Truth, and Ideas (1684), the first published statement of his epistemology; On the Ultimate Origination of Things (1697), the most concentrated statement of his cosmological argument; On Nature Itself (1698), a defence of active force in nature against mechanism; Primary Truths (c.1689), a systematic derivation of Leibniz\'s metaphysical principles from the principle of sufficient reason and predicate-inclusion theory of truth; and the two versions of the New System of Nature (1695 and its clarifications), the first public statement of pre-established harmony. The Specimen of Dynamics and the papers on the calculus of reasoning (the characteristica universalis) represent Leibniz\'s ambitions for a universal logical language that would reduce philosophical disputes to calculation.\n\nThe unpublished papers also reveal tensions and unresolved problems that the published works conceal. Leibniz\'s views on the persistence of substances over time, on the precise relationship between monads and bodies, on whether there are genuinely extended physical substances or only collections of monads that appear extended, and on the nature of mathematical infinity were never settled in his published work and are still actively disputed among scholars.',
-    themes: ['characteristica universalis', 'logical calculus', 'predicate-inclusion truth', 'cosmological argument', 'active force in nature', 'mathematical infinity', 'philosophy of language', 'epistemology of clear and distinct ideas'],
-    keyCharacters: [],
+    shortDesc: 'The public debut of pre-established harmony — the first text in which Leibniz revealed to the world his solution to the mind-body problem, presenting his intellectual autobiography and his alternative to Cartesian dualism, occasionalism, and Spinozist monism.',
+
+    summary: 'The New System of Nature, published in the Journal des savants in June 1695, marks a turning point in the public reception of Leibniz\'s philosophy. For nearly a decade after composing the Discourse on Metaphysics and the Arnauld correspondence, Leibniz had published nothing substantial on his metaphysics. The New System broke this silence with a deliberately provocative statement of his theory of pre-established harmony — the doctrine that God has coordinated the perceptions and appetitions of all substances at creation so that they correspond perfectly to one another without any causal interaction.\n\nThe essay traces Leibniz\'s intellectual autobiography: his early enthusiasm for mechanism and the corpuscular philosophy, his growing dissatisfaction with Cartesian dualism (which could not explain how mind and body interact), his rejection of Malebranche\'s occasionalism (which required God to intervene at every moment), and his rejection of Spinoza\'s parallelism (which denied genuine individuality to substances). The pre-established harmony is presented as the solution to all these difficulties: each substance follows its own internal program, established at creation, and the perfect correspondence between substances is guaranteed by God\'s original design.\n\nThe essay generated enormous controversy. Bayle, Foucher, and others responded in print, and Leibniz published several clarifications in subsequent issues of the Journal des savants. These exchanges forced him to articulate the doctrine with a precision absent from the Discourse and the Arnauld letters.',
+
+    themes: ['Pre-established Harmony', 'Mind-Body Problem', 'Critique of Cartesian Dualism', 'Critique of Occasionalism', 'Critique of Spinozist Parallelism', 'Substantial Forms Rehabilitated', 'Intellectual Autobiography'],
+
+    keyCharacters: [
+        { name: 'Pierre Bayle', role: 'The most important critic — his brilliantly hostile analysis in the Dictionnaire forced Leibniz to develop his defence of harmony far beyond the original essay' },
+        { name: 'Simon Foucher', role: 'The first critic to respond in print — raised the problem of how God could coordinate substances without causal interaction' }
+    ],
+
     concepts: [
-        'Characteristica universalis — a universal symbolic language that would express all concepts and reduce reasoning to calculation',
-        'Calculus ratiocinator — the logical calculus that would operate on the characteristica universalis',
-        'Predicate-in-subject principle — in every true affirmative proposition, the predicate is contained in the subject',
-        'Primary matter and secondary matter — prime matter as pure passivity, secondary as the extended body of a monad',
-        'Active force (vis activa) — the immanent principle of action in substances, against purely mechanical nature',
-        'Cosmological argument — from the contingency of the world as a whole to God as sufficient reason',
-        'Clear, distinct, adequate, and intuitive ideas — the hierarchy of cognitive states'
+        'Pre-established harmony — the perfect coordination of all substances by God at creation; the world as a collection of synchronized clocks, wound once and never touched again',
+        'Substance as self-sufficient — each substance contains within itself the complete principle of all its changes; nothing can enter it from outside',
+        'Rejection of influxus physicus — there is no genuine causal flow between substances; all apparent interaction is really parallel expression',
+        'Rejection of occasionalism — God does not intervene at every moment; the harmony was established once at creation, preserving divine perfection and natural order alike',
+        'Substantial form as principle of unity — Leibniz rehabilitates Aristotelian form against Cartesian mechanism to account for the genuine unity of substances'
     ],
-    structure: 'Key texts include:\n"Meditations on Knowledge, Truth, and Ideas" (1684)\n"New System of Nature" (1695)\n"On the Ultimate Origination of Things" (1697)\n"On Nature Itself" (1698)\n"Primary Truths" (c.1689)\n"Principles of Nature and Grace" (1714)\nCalculus papers and the drafts toward the characteristica universalis',
-    quote: 'If controversies were to arise, there would be no more need of disputation between two philosophers than between two accountants. For it would suffice to take their pencils in their hands, to sit down at the abacus, and to say to each other: Let us calculate.',
+
+    structure: 'Part 1: Leibniz\'s intellectual development — from mechanism to substantial forms\nPart 2: The problem of mind-body interaction — why dualism, occasionalism, and Spinozism all fail\nPart 3: The solution: pre-established harmony\nClarifications (1695–1696): Replies to Foucher, Bayle, and other critics in the Journal des savants',
+
+    quote: 'I was forced to have recourse to what might be called a pre-established harmony. According to this system, substances were created from the beginning in such a way that, each following its own laws which it received with its being, they should nevertheless agree with each other, just as though there were mutual influence or as though God in addition to his general cooperation were forever interfering. — New System of Nature (1695)',
+
     additionalQuotes: [
-        { text: 'Why is there something rather than nothing? For nothing is simpler and easier than something. Furthermore, supposing that things must exist, we must be able to give a reason why they must exist so and not otherwise.', source: 'On the Ultimate Origination of Things (1697)' },
-        { text: 'In the least of substances, eyes as penetrating as those of God could read the whole sequence of things in the universe.', source: 'Discourse on Metaphysics §8' }
+        { text: 'Why should God not be able to give to substance from the beginning a nature or internal force that could produce in it, in due order, everything that would happen to it?', citation: 'New System of Nature (1695)' }
     ],
+
     commentary: [
-        { philosopher: 'Russell', text: 'The Leibniz of the published works is a courtier philosopher, adapting his doctrines for genteel audiences. The Leibniz of the unpublished papers is the real philosopher — rigorous, technical, and sometimes in contradiction with his public positions.' },
-        { philosopher: 'Couturat', text: 'The discovery of the logical papers transforms our understanding of Leibniz. His metaphysics is not independently motivated — it flows from his logic, from the predicate-inclusion theory of truth, which is itself a generalization of the structure of necessary propositions in the characteristica universalis.' },
-        { philosopher: 'Jolley', text: 'The sheer volume and diversity of the unpublished papers is itself a philosophical fact about Leibniz. He thought in fragments, in projects, in drafts. The system that appears complete in the Monadology was never actually closed.' }
+        {
+            philosopher: 'Pierre Bayle',
+            text: 'Bayle\'s entry on "Rorarius" in the Dictionnaire historique et critique (1697) subjected the New System to the most penetrating early critique. His central objection was that Leibniz\'s pre-established harmony was more miraculous than the occasionalism it replaced: at least Malebranche\'s God intervened moment by moment in a comprehensible sequence of acts; Leibniz\'s God performed a single act of infinite complexity at creation, pre-programming an infinite number of substances to correspond perfectly for all eternity. The hypothesis avoids ongoing miracles only by concentrating the miraculous into a single incomprehensibly complex initial act. Bayle considered this ingenious but self-defeating: the pre-established harmony is, he wrote, the most extravagant hypothesis ever conceived — "the system of occasional causes is infinitely simpler." Leibniz\'s sustained engagement with Bayle\'s objections in his clarifications and later in the Theodicy significantly advanced the precision of his own position.'
+        }
     ],
-    modernRelevance: 'Leibniz\'s dream of a characteristica universalis — a universal logical language that would represent all concepts symbolically and reduce reasoning to calculation — was the direct inspiration for Frege\'s Begriffsschrift, which founded modern mathematical logic, and for the early work of Russell and Whitehead in Principia Mathematica. Leibniz is thus a founding figure of mathematical logic, computer science (through his influence on Boole and Frege), and the theory of formal languages. His question "why is there something rather than nothing" has become the canonical formulation of the most fundamental question in metaphysics and cosmology.',
-    context: 'The Leibniz archive in Hanover contains over 100,000 manuscript pages. The Akademie edition of his collected works, begun in 1923, is still not complete. Many of the most philosophically important papers were first published only in the late nineteenth and twentieth centuries. The calculus papers — showing that Leibniz developed the differential and integral calculus independently of Newton, and almost certainly without access to Newton\'s unpublished manuscripts — were at the centre of the most bitter priority dispute in the history of science, conducted through the Royal Society (under Newton\'s presidency) with results now widely regarded as systematically biased against Leibniz.',
-    relatedWorks: ['monadology', 'new-essays', 'discourse-metaphysics', 'theodicy']
+
+    modernRelevance: 'The New System\'s argument against causal interaction between mental and physical substances prefigures the contemporary problem of mental causation — how can consciousness, if it is non-physical, cause physical effects? The pre-established harmony, stripped of its theological framework, resembles contemporary epiphenomenalist and parallelist positions in philosophy of mind. The essay\'s structure — surveying and rejecting all available solutions before presenting one\'s own — has become a standard method in philosophical argumentation.',
+
+    context: 'Published in the Journal des savants in June 1695 — the premier learned periodical in Europe. The resulting controversy, especially Bayle\'s hostile entry in the Dictionnaire, kept Leibniz\'s pre-established harmony at the centre of European philosophical debate for two decades and effectively established his reputation as a systematic metaphysician rather than merely a mathematician and diplomat.',
+
+    relatedWorks: ['monadology', 'discourse-metaphysics', 'correspondence-arnauld', 'theodicy']
 }
 
 );

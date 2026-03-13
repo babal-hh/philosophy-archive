@@ -1,3 +1,7 @@
+/* ================================================================
+   DATA PART 13a — Monadology (Leibniz)
+   ================================================================ */
+
 window.WORKS.push(
 
 {
@@ -11,84 +15,72 @@ window.WORKS.push(
     dateSort: 1714,
     emoji: '◉',
     cardSize: 'wide',
-    readingDifficulty: 5,
+    readingDifficulty: 'Advanced',
     estimatedWordCount: 8000,
-    shortDesc: 'Ninety paragraphs that contain an entire universe — Leibniz\'s final and most compressed statement of his metaphysics of simple, windowless, perception-bearing substances.',
-    summary: 'The Monadology is the most concentrated philosophical text of the early modern period. Written in French in 1714, the last year of Leibniz\'s active philosophical life, its ninety numbered paragraphs unfold an entire cosmology from a single premise: the ultimate constituents of reality are not extended material atoms but simple, indivisible, non-spatial substances called monads, each of which is a centre of perception and appetite. No monad acts on any other — they are "windowless," sealed from external influence — yet all monads perceive the entire universe from their own unique perspective, each mirroring the whole from a different point of view. This universal mirroring is not accidental: God has pre-established a perfect harmony among all monads so that the perceptions of each correspond exactly to the states of all others, without any causal interaction between them. The universe is thus an infinite collection of living mirrors, each expressing the whole, coordinated by a divine harmony that Leibniz identifies as the sufficient reason for the world\'s existence.\n\nThe Monadology builds systematically through a series of arguments: from the existence of simple substances (since composites exist and composites require simples), to their lack of windows (since simple substances have no parts through which anything could enter or leave), to their internal principle of change (appetite), to the hierarchy of monads from bare perception through animal souls to rational minds, to God as the supreme monad whose existence is demonstrated by the argument from sufficient reason and the ontological argument. The pre-established harmony is then introduced to explain apparent interaction between body and soul without the occasionalist resort to perpetual divine intervention and without the parallelism of Spinoza\'s attribute identity.\n\nThe work\'s brevity is deceptive. Every paragraph condenses arguments developed at length in the Discourse on Metaphysics, the correspondence with Arnauld, the New System of Nature, and the New Essays. Reading the Monadology without that background is like reading a proof without its lemmas. With it, the text opens into one of the most ambitious and coherent metaphysical systems in the history of philosophy — a system that influenced Kant deeply, that Hegel regarded as the necessary precursor to his own philosophy of spirit, and that Bertrand Russell devoted his first major philosophical book to attacking.',
-    themes: ['substance as perception', 'pre-established harmony', 'sufficient reason', 'possible worlds', 'the best of all possible worlds', 'God and creation', 'hierarchy of souls', 'unity and multiplicity', 'expression and mirroring', 'teleology'],
-    keyCharacters: [],
-    concepts: [
-        'Monad — simple substance without parts, without extension, without windows',
-        'Perception — the representation of the many in the one, present in all monads',
-        'Apperception — reflective self-awareness, present only in rational minds',
-        'Appetite — the internal principle of change driving each monad from state to state',
-        'Pre-established harmony — God\'s coordination of all monads at creation',
-        'Principle of sufficient reason — nothing happens without a reason why it is thus and not otherwise',
-        'Principle of contradiction — the foundation of necessary truths',
-        'Truths of reason vs truths of fact — necessary vs contingent propositions',
-        'The best of all possible worlds — God creates the world with maximum perfection',
-        'The kingdom of grace within the kingdom of nature — rational souls as citizens of God\'s republic'
-    ],
-    structure: '§1–6: The existence and nature of simple substances\n§7–16: Monads are windowless; perception and appetite as their only properties\n§17–30: The hierarchy of perception; the self-consciousness of rational minds; God\n§31–48: Principles of sufficient reason and contradiction; necessary and contingent truths\n§49–60: God as the source of monads; creation and emanation\n§61–81: The pre-established harmony of soul and body\n§82–90: The kingdom of nature and the kingdom of grace',
-    quote: 'The monad has no windows through which anything could enter or depart. Accidents cannot detach themselves from substances and wander outside of them, as the sensible species of the scholastics used to do. Thus neither substance nor accident can enter a monad from outside.',
-    additionalQuotes: [
-        { text: 'Each monad is a living mirror, or a mirror endowed with internal action, which represents the universe according to its own point of view.', source: 'Monadology §56' },
-        { text: 'God alone is the primitive unity or the original simple substance; all created or derivative monads are produced by continual fulgurations of the Divinity.', source: 'Monadology §47' },
-        { text: 'We live in the best of all possible worlds.', source: 'Monadology §55 (paraphrased)' },
-        { text: 'Nothing takes place without sufficient reason; that is, nothing happens without it being possible for someone who has enough knowledge of things to give a reason sufficient to determine why it is thus and not otherwise.', source: 'Monadology §32' },
-        { text: 'The present is pregnant with the future.', source: 'Monadology §22' }
-    ],
-    commentary: [
-        { philosopher: 'Kant', text: 'Leibniz intellectualised appearances, just as Locke sensualized concepts. Leibniz\'s error was to treat the sensible world as a confused perception of the intelligible — to make phenomena into phenomena bene fundata without properly accounting for the conditions of their appearance.' },
-        { philosopher: 'Hegel', text: 'Leibniz\'s monadology is the first genuine philosophy of individuality in modern thought. The monad as the self-specifying universal — the concrete individual that mirrors the whole — anticipates the structure of spirit. But his pre-established harmony remains external and theological where it should be internal and dialectical.' },
-        { philosopher: 'Russell', text: 'The Monadology is a system of consistent and connected metaphysical propositions, each following from premises of the most abstract and general kind. Its failure is not internal inconsistency but the falsity of its premises — above all the subject-predicate logic that generates the whole apparatus of windowless substances.' },
-        { philosopher: 'Deleuze', text: 'Leibniz is the philosopher of the fold. The monad has no windows but it has folds — it expresses the world without opening onto it. The Baroque is Leibniz: matter that folds to infinity, soul that envelops its own world, God who selects among incompossible worlds.' },
-        { philosopher: 'Heidegger', text: 'With Leibniz the question of why there is something rather than nothing becomes for the first time a genuine metaphysical question — the fundamental question of metaphysics. His answer through sufficient reason is a determination of being as ground.' }
-    ],
-    modernRelevance: 'The Monadology\'s central claim — that experience is perspectival, that each perceiving subject represents the whole world from its own unique point of view — resonates through phenomenology, philosophy of mind, and contemporary discussions of consciousness. The idea of pre-established harmony, stripped of its theological scaffolding, has been compared to psychophysical parallelism and to contemporary non-reductive physicalism. The principle of sufficient reason continues to structure debates in metaphysics and philosophy of science. Most influentially, Leibniz\'s notion of possible worlds — that God selects among an infinity of compossible world-histories — was formalized by Saul Kripke and David Lewis into possible worlds semantics, which now underlies modal logic, the logic of counterfactuals, and discussions of metaphysical necessity and contingency across analytic philosophy.',
-    context: 'Leibniz wrote the Monadology in Vienna in 1714 at the age of 68, apparently as a summary of his philosophy for Prince Eugene of Savoy. He composed it rapidly and it remained unpublished during his lifetime; it was first published in German translation in 1720 and in the original French only in 1840. By 1714 Leibniz was politically marginalized — passed over for the position of imperial librarian, excluded from accompanying the Hanoverian court to London after George I\'s accession to the British throne — and was working in increasing isolation. The Monadology was written alongside the Principles of Nature and Grace and represents the final crystallization of a metaphysical system he had been developing since the 1680s. He died in 1716, reportedly attended only by his secretary; the Berlin Academy of Sciences, which he had founded, did not mark his death.',
-    relatedWorks: ['discourse-metaphysics', 'new-essays', 'correspondence-arnauld', 'theodicy']
-},
 
-{
-    id: 'discourse-metaphysics',
-    title: 'Discourse on Metaphysics',
-    greekTitle: 'Discours de métaphysique',
-    philosopher: 'leibniz',
-    category: 'metaphysics',
-    categoryLabel: 'Metaphysics',
-    date: '1686 AD',
-    dateSort: 1686,
-    emoji: '✦',
-    cardSize: 'normal',
-    readingDifficulty: 4,
-    estimatedWordCount: 22000,
-    shortDesc: 'The first full statement of Leibniz\'s mature metaphysics — individual substance, the complete concept, truth, and the divine perfection of the world.',
-    summary: 'The Discourse on Metaphysics, written in 1686 but not published until 1846, is the earliest complete statement of Leibniz\'s mature philosophical system and one of the great documents of seventeenth-century metaphysics. Written at the age of 39 in a white heat of philosophical productivity, it was sent in summary form to the theologian Antoine Arnauld, whose devastating objections generated one of the most important philosophical correspondences in history. The Discourse proceeds through thirty-seven articles that move from the nature of God and divine perfection through the theory of individual substance to the nature of truth, causation, the soul-body relation, and the conditions of human freedom and grace.\n\nThe pivotal doctrine is the complete concept theory of individual substance: the concept of any individual substance — Caesar, for example — contains as predicates all the truths that will ever be true of that individual. From this follows the principle of the identity of indiscernibles (no two distinct substances can share all their properties), the denial of genuine causal interaction between substances, and the doctrine that God creates individuals by selecting, from among infinitely many possible individuals, the compossible set that constitutes the best possible world. The Discourse also contains Leibniz\'s first sustained engagement with Cartesian physics (he rejects conservation of quantity of motion in favour of conservation of force) and his first clear statement of the principle that perception, not extension, is the mark of genuine substance.',
-    themes: ['individual substance', 'complete concept', 'divine perfection', 'truth and predication', 'causation and occasionalism', 'soul and body', 'human freedom', 'grace and nature'],
-    keyCharacters: [],
+    shortDesc: 'Ninety paragraphs that contain an entire universe — Leibniz\'s final and most compressed statement of his metaphysics of simple, windowless, perception-bearing substances, each mirroring the whole cosmos from its own unique point of view.',
+
+    summary: 'The Monadology is the most concentrated philosophical text of the early modern period. Written in French in 1714, the last year of Leibniz\'s active philosophical life, its ninety numbered paragraphs unfold an entire cosmology from a single premise: the ultimate constituents of reality are not extended material atoms but simple, indivisible, non-spatial substances called monads, each of which is a centre of perception and appetite. No monad acts on any other — they are "windowless," sealed from external influence — yet all monads perceive the entire universe from their own unique perspective, each mirroring the whole from a different point of view. This universal mirroring is not accidental: God has pre-established a perfect harmony among all monads so that the perceptions of each correspond exactly to the states of all others, without any causal interaction between them. The universe is thus an infinite collection of living mirrors, each expressing the whole, coordinated by a divine harmony that Leibniz identifies as the sufficient reason for the world\'s existence.\n\nThe Monadology builds systematically through a series of arguments: from the existence of simple substances (since composites exist and composites require simples), to their lack of windows (since simple substances have no parts through which anything could enter or leave), to their internal principle of change (appetite), to the hierarchy of monads from bare perception through animal souls to rational minds, to God as the supreme monad whose existence is demonstrated by the argument from sufficient reason and the ontological argument. The pre-established harmony is then introduced to explain apparent interaction between body and soul without the occasionalist resort to perpetual divine intervention and without the parallelism of Spinoza\'s attribute identity.\n\nThe work\'s brevity is deceptive. Every paragraph condenses arguments developed at length in the Discourse on Metaphysics, the correspondence with Arnauld, the New System of Nature, and the New Essays. Reading the Monadology without that background is like reading a proof without its lemmas. With it, the text opens into one of the most ambitious and coherent metaphysical systems in the history of philosophy — a system that influenced Kant deeply, that Hegel regarded as the necessary precursor to his own philosophy of spirit, and that Bertrand Russell devoted his first major philosophical book to attacking.',
+
+    themes: ['Substance as Perception', 'Pre-established Harmony', 'Sufficient Reason', 'Possible Worlds', 'The Best of All Possible Worlds', 'God and Creation', 'Hierarchy of Souls', 'Unity and Multiplicity', 'Expression and Mirroring', 'Teleology'],
+
+    keyCharacters: [
+        { name: 'God', role: 'The supreme monad — the only necessary being, the ground of all contingent existence, the author of pre-established harmony, and the monarch of the kingdom of grace' },
+        { name: 'Finite Monads', role: 'Created substances ranging from bare monads (with only confused perception) through animal souls (with memory and feeling) to rational minds (with apperception and self-knowledge)' }
+    ],
+
     concepts: [
-        'Complete concept — the individual concept of a substance contains all its predicates past, present, and future',
-        'Identity of indiscernibles — no two substances are perfectly alike',
-        'Compossibility — possible individuals that can coexist in the same possible world',
-        'Vis viva — living force, the true conserved quantity in physics (mv²)',
-        'Substantial form — rehabilitated from scholasticism as the principle of unity in substances',
-        'Concomitance — apparent causation between substances is really pre-established harmony',
-        'Freedom as spontaneity — acting from one\'s own complete concept, not from external compulsion'
+        'Monad — simple substance without parts, without extension, without windows; the ultimate constituent of reality',
+        'Perception — the representation of the many in the one, present in all monads to varying degrees of clarity',
+        'Apperception — reflective self-awareness, the perception of perception; present only in rational minds',
+        'Appetite — the internal principle of change driving each monad from one perceptual state to the next',
+        'Pre-established harmony — God\'s coordination of all monads at creation so that each mirrors all others without causal interaction',
+        'Principle of sufficient reason — nothing happens without a reason why it is thus and not otherwise',
+        'Principle of contradiction — the foundation of all necessary truths; the opposite of a necessary truth is impossible',
+        'Truths of reason vs truths of fact — necessary truths (whose opposite is impossible) vs contingent truths (which require sufficient reason)',
+        'The best of all possible worlds — God selects, from among an infinity of possible worlds, the one with the greatest perfection',
+        'Kingdom of grace within the kingdom of nature — rational souls as citizens of God\'s moral republic, governed by final causes within the mechanical order'
     ],
-    structure: '§1–7: God and divine perfection; the nature of substance\n§8–16: The complete concept of individual substance; truth as predicate-inclusion\n§17–22: God as the cause of the world; occasionalism refuted\n§23–29: Soul and body; expression; perception\n§30–37: Freedom, grace, sin, and the rational soul\'s relation to God',
-    quote: 'It is the nature of an individual substance or of a complete being to have a concept so complete that it is sufficient to make us understand and deduce from it all the predicates of the subject to which this concept is attributed.',
+
+    structure: '§1–6: The existence and nature of simple substances — why there must be simples if there are composites\n§7–16: Monads are windowless; perception and appetite as their only properties; the hierarchy of perception\n§17–30: The famous mill argument against materialism; the self-consciousness of rational minds; the existence of God\n§31–48: Principles of sufficient reason and contradiction; necessary and contingent truths; God as the sufficient reason of all things\n§49–60: God as the source of monads; creation and emanation; pre-established harmony introduced\n§61–81: The pre-established harmony of soul and body; the two kingdoms\n§82–90: The kingdom of grace; God as the monarch of minds; the highest blessedness',
+
+    quote: 'The monad has no windows through which anything could enter or depart. Accidents cannot detach themselves from substances and wander outside of them, as the sensible species of the scholastics used to do. Thus neither substance nor accident can enter a monad from outside. — Monadology §7',
+
     additionalQuotes: [
-        { text: 'God has chosen the most perfect world, that is to say, the one which is at the same time the simplest in hypotheses and the richest in phenomena.', source: 'Discourse on Metaphysics §6' },
-        { text: 'Every individual substance expresses the whole universe in its own manner.', source: 'Discourse on Metaphysics §9' }
+        { text: 'Each monad is a living mirror, or a mirror endowed with internal action, which represents the universe according to its own point of view.', citation: 'Monadology §56' },
+        { text: 'God alone is the primitive unity or the original simple substance; all created or derivative monads are produced by continual fulgurations of the Divinity.', citation: 'Monadology §47' },
+        { text: 'Nothing takes place without sufficient reason; that is, nothing happens without it being possible for someone who has enough knowledge of things to give a reason sufficient to determine why it is thus and not otherwise.', citation: 'Monadology §32' },
+        { text: 'The present is pregnant with the future.', citation: 'Monadology §22' }
     ],
+
     commentary: [
-        { philosopher: 'Arnauld', text: 'I find in these thoughts so many things that frighten me, and that almost all men, if I am not mistaken, will find so shocking, that I do not see what use this writing could be of to the public.' },
-        { philosopher: 'Mates', text: 'The Discourse is Leibniz at his most transparent and most vulnerable. The complete concept doctrine says clearly what the Monadology only implies — and invites objections that Leibniz never fully answered.' }
+        {
+            philosopher: 'Immanuel Kant',
+            text: 'Kant\'s engagement with the Monadology is deep and complex. He accepted Leibniz\'s insight that simple substances must underlie all composites — his own pre-critical Monadologia Physica (1756) defended a version of monads against the Newtonians. But the critical philosophy of 1781 reversed this: Leibniz, Kant argued, had intellectualised appearances. He treated the sensible world as a confused perception of an intelligible world of monads, failing to recognise that sensibility has its own irreducible forms — space and time — that are not simply confused intellectual representations but the pure forms of outer and inner intuition. The windowless monads, each containing within itself a confused representation of the whole universe, become in Kant\'s hands a system that confuses the transcendental with the empirical: what is really a formal condition of experience is taken by Leibniz for a property of things in themselves.'
+        },
+        {
+            philosopher: 'G.W.F. Hegel',
+            text: 'Hegel regarded the Monadology as the first genuine philosophy of individuality in modern thought. The monad — as the self-specifying universal that mirrors the whole from a unique perspective — anticipates the structure of spirit: the Notion that differentiates itself into particulars while remaining identical with itself. But Hegel\'s critique is equally sharp: the pre-established harmony remains external and theological where it should be internal and dialectical. For Hegel, the correspondence between monads should not require a God who sets the clocks at creation; it should be internal to the nature of substance itself, arising through the dialectical self-development of the Notion. The Monadology gets the form of the solution right — individual substance as expression of the universal — but supplies the wrong content, replacing genuine dialectical necessity with divine mechanism.'
+        },
+        {
+            philosopher: 'Bertrand Russell',
+            text: 'Russell\'s A Critical Exposition of the Philosophy of Leibniz (1900) — his first major book — argued that the Monadology was a system of consistent and connected metaphysical propositions, each following from premises of the most abstract and general kind. Its failure is not internal inconsistency but the falsity of its premises — above all the subject-predicate logic that generates the whole apparatus of windowless substances. Because Leibniz assumed that every proposition has the form "S is P" and that the predicate must be contained in the subject, he was led to the complete concept theory and from there to monads, pre-established harmony, and the denial of genuine relations between substances. Russell\'s own logic — in which relations are irreducible and not analysable into predications about their relata — directly refutes the logical foundations of the Monadology. The book launched the analytic tradition\'s critical engagement with Leibniz that continues to this day.'
+        },
+        {
+            philosopher: 'Gilles Deleuze',
+            text: 'Deleuze\'s The Fold: Leibniz and the Baroque (1988) is the most philosophically creative twentieth-century reading of the Monadology. Deleuze argued that the key concept is not the monad but the fold: the monad has no windows but it has folds — an infinity of pleats and envelopes through which the world is expressed in each monad without being opened to it. The Baroque — the aesthetic of infinite complication, of drapery that multiplies without end, of façades that have no stable inside or outside — is the architectural expression of Leibniz\'s metaphysics. More technically, Deleuze argued that Leibniz\'s calculus and his metaphysics share the same mathematical structure: the differential, the infinitesimal, the fold are the same concept operating at different levels. The monad does not mirror the world through a window but through an internal inflection — an infinite convergent series that approaches the world without ever being identical with it.'
+        },
+        {
+            philosopher: 'Martin Heidegger',
+            text: 'Heidegger\'s lectures on Leibniz — particularly "The Metaphysical Foundations of Logic" (1928) and "The Principle of Reason" (1955-56) — treated the Monadology as the culmination of early modern metaphysics and the clearest expression of what Heidegger called the principle of reason: the demand that everything that is must have a sufficient ground for being what it is. With Leibniz, the question of why there is something rather than nothing becomes for the first time a genuine metaphysical question — the fundamental question that opens metaphysics as such. His answer through sufficient reason is a determination of being as ground: being is what provides the ratio, the account, the foundation. Heidegger saw in this the decisive step toward the modern technological world in which everything is required to justify itself, to render its ratio, to be accountable — a world in which being is nothing but the being of what has been grounded.'
+        }
     ],
-    modernRelevance: 'The Discourse\'s complete concept theory directly anticipates essentialism about individuals in contemporary metaphysics. The identity of indiscernibles remains an active topic in philosophy of physics, where quantum mechanics raises challenges to it. The vis viva controversy — Leibniz against Descartes and Newton on what is conserved in collision — prefigures the modern distinction between momentum and kinetic energy.',
-    context: 'Leibniz wrote the Discourse during an extraordinarily productive period in which he was also developing the calculus, working on dynamics, and conducting diplomatic negotiations for the reunification of the Catholic and Protestant churches. He sent a summary of its thirty-seven articles to Arnauld through their mutual contact Ernst von Hessen-Rheinfels. Arnauld\'s shock at article 13 — that Adam\'s complete concept contained all future human history — initiated a correspondence that continued until 1690 and in which Leibniz was forced to develop and defend every major doctrine of the Discourse.',
-    relatedWorks: ['monadology', 'correspondence-arnauld', 'new-essays', 'theodicy']
+
+    modernRelevance: 'The Monadology\'s central claim — that experience is perspectival, that each perceiving subject represents the whole world from its own unique point of view — resonates through phenomenology, philosophy of mind, and contemporary discussions of consciousness. The principle of sufficient reason continues to structure debates in metaphysics and philosophy of science about the demand for explanation. Most influentially, Leibniz\'s notion of possible worlds — that God selects among an infinity of compossible world-histories — was formalized by Saul Kripke and David Lewis into possible worlds semantics, which now underlies modal logic, the logic of counterfactuals, and discussions of metaphysical necessity and contingency across all of analytic philosophy. The de re / de dicto distinction, the semantics of conditionals, and the logic of belief and knowledge all operate within the formal framework Leibniz\'s possible worlds thinking made possible.',
+
+    context: 'Leibniz wrote the Monadology in Vienna in 1714 at the age of 68, apparently as a summary of his philosophy for Prince Eugene of Savoy. He composed it rapidly and it remained unpublished during his lifetime; it was first published in German translation in 1720 and in the original French only in 1840. By 1714 Leibniz was politically marginalized — passed over for the position of imperial librarian, excluded from accompanying the Hanoverian court to London after George I\'s accession to the British throne — and was working in increasing isolation. He died in 1716, reportedly attended only by his secretary; the Berlin Academy of Sciences, which he had founded, did not mark his death.',
+
+    relatedWorks: ['discourse-metaphysics', 'new-essays', 'correspondence-arnauld', 'theodicy']
 }
 
 );

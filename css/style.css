@@ -1976,3 +1976,75 @@ button{font-family:var(--font-body);cursor:pointer;border:none;background:none;c
 .locke-node .timeline-dot   { background: var(--locke) }
 .locke-node:hover .timeline-dot { box-shadow: 0 0 0 4px var(--locke-bg) }
 .locke-node .timeline-author { color: var(--locke) }
+
+
+/* ============================================================
+   LEIBNIZ — Prussian Blue / Royal Indigo
+   ============================================================ */
+
+.leibniz-tag {
+    color: #2E4057;
+    border-color: rgba(46, 64, 87, 0.35);
+}
+
+.leibniz-rule {
+    background: linear-gradient(90deg, #2E4057, #5B8BA0, transparent);
+}
+
+.leibniz-dot {
+    background: #2E4057;
+}
+
+.works-section#leibniz-section .card-philosopher-badge {
+    background: rgba(46, 64, 87, 0.1);
+    color: #2E4057;
+    border-color: rgba(46, 64, 87, 0.25);
+}
+
+.works-section#leibniz-section .card[data-philosopher="leibniz"]:hover {
+    border-top-color: #2E4057;
+    box-shadow: 0 8px 32px rgba(46, 64, 87, 0.14);
+}
+
+.modal-philosopher-leibniz {
+    border-top: 3px solid #2E4057;
+}
+
+.modal-philosopher-leibniz .modal-philosopher-name {
+    color: #2E4057;
+}
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+    .leibniz-tag {
+        color: #7BADC4;
+        border-color: rgba(123, 173, 196, 0.35);
+    }
+
+    .leibniz-rule {
+        background: linear-gradient(90deg, #7BADC4, #A8D4E6, transparent);
+    }
+
+    .leibniz-dot {
+        background: #7BADC4;
+    }
+
+    .works-section#leibniz-section .card-philosopher-badge {
+        background: rgba(123, 173, 196, 0.12);
+        color: #7BADC4;
+        border-color: rgba(123, 173, 196, 0.25);
+    }
+
+    .works-section#leibniz-section .card[data-philosopher="leibniz"]:hover {
+        border-top-color: #7BADC4;
+        box-shadow: 0 8px 32px rgba(123, 173, 196, 0.12);
+    }
+
+    .modal-philosopher-leibniz {
+        border-top: 3px solid #7BADC4;
+    }
+
+    .modal-philosopher-leibniz .modal-philosopher-name {
+        color: #7BADC4;
+    }
+}
