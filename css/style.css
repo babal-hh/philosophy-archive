@@ -2048,3 +2048,95 @@ button{font-family:var(--font-body);cursor:pointer;border:none;background:none;c
         color: #7BADC4;
     }
 }
+
+
+/* ============================================================
+   BERKELEY — Warm Amber / Irish Gold (1685–1753)
+   ============================================================ */
+
+.berkeley-tag {
+    color: #8B6914;
+    border-color: rgba(139, 105, 20, 0.25);
+}
+
+.berkeley-rule {
+    background: linear-gradient(90deg, #8B6914, #C9A84C, transparent);
+}
+
+.berkeley-dot {
+    background: #8B6914;
+}
+
+.works-section#berkeley-section .card-philosopher-badge {
+    background: rgba(139, 105, 20, 0.10);
+    color: #8B6914;
+    border-color: rgba(139, 105, 20, 0.25);
+}
+
+.works-section#berkeley-section .card[data-philosopher="berkeley"]:hover {
+    border-top-color: #8B6914;
+    box-shadow: 0 8px 32px rgba(139, 105, 20, 0.12);
+}
+
+.filter-tab[data-filter="berkeley"] .filter-dot {
+    background: #8B6914;
+}
+
+.filter-tab[data-filter="berkeley"].active,
+.filter-tab[data-filter="berkeley"]:hover {
+    color: #8B6914;
+    border-color: rgba(139, 105, 20, 0.35);
+}
+
+.modal-philosopher-berkeley {
+    border-top: 3px solid #8B6914;
+}
+
+.modal-philosopher-berkeley .modal-philosopher-name {
+    color: #8B6914;
+}
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+    .berkeley-tag {
+        color: #D4B85C;
+        border-color: rgba(212, 184, 92, 0.20);
+    }
+
+    .berkeley-rule {
+        background: linear-gradient(90deg, #D4B85C, #E8D48B, transparent);
+    }
+
+    .berkeley-dot {
+        background: #D4B85C;
+    }
+
+    .works-section#berkeley-section .card-philosopher-badge {
+        background: rgba(212, 184, 92, 0.10);
+        color: #D4B85C;
+        border-color: rgba(212, 184, 92, 0.20);
+    }
+
+    .works-section#berkeley-section .card[data-philosopher="berkeley"]:hover {
+        border-top-color: #D4B85C;
+        box-shadow: 0 8px 32px rgba(212, 184, 92, 0.10);
+    }
+
+    .filter-tab[data-filter="berkeley"] .filter-dot {
+        background: #D4B85C;
+    }
+
+    .filter-tab[data-filter="berkeley"].active,
+    .filter-tab[data-filter="berkeley"]:hover {
+        color: #D4B85C;
+        border-color: rgba(212, 184, 92, 0.35);
+    }
+
+    .modal-philosopher-berkeley {
+        border-top: 3px solid #D4B85C;
+    }
+
+    .modal-philosopher-berkeley .modal-philosopher-name {
+        color: #D4B85C;
+    }
+}
