@@ -2140,3 +2140,95 @@ button{font-family:var(--font-body);cursor:pointer;border:none;background:none;c
         color: #D4B85C;
     }
 }
+
+
+/* ============================================================
+   KANT — Prussian Steel Blue / Königsberg Slate (1724–1804)
+   ============================================================ */
+
+.kant-tag {
+    color: #2B4C6F;
+    border-color: rgba(43, 76, 111, 0.25);
+}
+
+.kant-rule {
+    background: linear-gradient(90deg, #2B4C6F, #6B9FD4, transparent);
+}
+
+.kant-dot {
+    background: #2B4C6F;
+}
+
+.works-section#kant-section .card-philosopher-badge {
+    background: rgba(43, 76, 111, 0.10);
+    color: #2B4C6F;
+    border-color: rgba(43, 76, 111, 0.25);
+}
+
+.works-section#kant-section .card[data-philosopher="kant"]:hover {
+    border-top-color: #2B4C6F;
+    box-shadow: 0 8px 32px rgba(43, 76, 111, 0.12);
+}
+
+.filter-tab[data-filter="kant"] .filter-dot {
+    background: #2B4C6F;
+}
+
+.filter-tab[data-filter="kant"].active,
+.filter-tab[data-filter="kant"]:hover {
+    color: #2B4C6F;
+    border-color: rgba(43, 76, 111, 0.35);
+}
+
+.modal-philosopher-kant {
+    border-top: 3px solid #2B4C6F;
+}
+
+.modal-philosopher-kant .modal-philosopher-name {
+    color: #2B4C6F;
+}
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+    .kant-tag {
+        color: #6B9FD4;
+        border-color: rgba(107, 159, 212, 0.20);
+    }
+
+    .kant-rule {
+        background: linear-gradient(90deg, #6B9FD4, #B8D4EF, transparent);
+    }
+
+    .kant-dot {
+        background: #6B9FD4;
+    }
+
+    .works-section#kant-section .card-philosopher-badge {
+        background: rgba(107, 159, 212, 0.10);
+        color: #6B9FD4;
+        border-color: rgba(107, 159, 212, 0.20);
+    }
+
+    .works-section#kant-section .card[data-philosopher="kant"]:hover {
+        border-top-color: #6B9FD4;
+        box-shadow: 0 8px 32px rgba(107, 159, 212, 0.10);
+    }
+
+    .filter-tab[data-filter="kant"] .filter-dot {
+        background: #6B9FD4;
+    }
+
+    .filter-tab[data-filter="kant"].active,
+    .filter-tab[data-filter="kant"]:hover {
+        color: #6B9FD4;
+        border-color: rgba(107, 159, 212, 0.35);
+    }
+
+    .modal-philosopher-kant {
+        border-top: 3px solid #6B9FD4;
+    }
+
+    .modal-philosopher-kant .modal-philosopher-name {
+        color: #6B9FD4;
+    }
+}
