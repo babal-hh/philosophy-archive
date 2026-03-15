@@ -1,29 +1,24 @@
 // ============================================================
-// UI ENHANCEMENTS — Philosophy Archive
+// UI ENHANCEMENTS — Philosophy Archive (Fixed v2)
 // ============================================================
 
 (function () {
     'use strict';
 
     if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', function () {
-            setTimeout(boot, 80);
-        });
+        document.addEventListener('DOMContentLoaded', function () { setTimeout(boot, 100); });
     } else {
-        setTimeout(boot, 80);
+        setTimeout(boot, 100);
     }
 
     function boot() {
         var el = findElements();
-        if (!el.searchInput) {
-            console.warn('[UI-Enhancements] search input not found');
-            return;
-        }
+        if (!el.searchInput) { console.warn('[UI] no search input'); return; }
         setupScrollHide(el);
         setupSearchDropdown(el);
         setupPhilosopherNavigation(el);
         setupSectionVisibility(el);
-        console.log('[UI-Enhancements] initialized');
+        console.log('[UI] initialized');
     }
 
     function findElements() {
@@ -32,27 +27,8 @@
             document.querySelector('.search-input') ||
             document.querySelector('#search-input');
 
-        var filterBar = null;
-        if (searchInput) {
-            var p = searchInput.parentElement;
-            while (p && p !== document.body) {
-                var pos = window.getComputedStyle(p).position;
-                if (pos === 'sticky' || pos === 'fixed') { filterBar = p; break; }
-                p = p.parentElement;
-            }
-            if (!filterBar) {
-                filterBar =
-                    searchInput.closest('.search-filter-bar') ||
-                    searchInput.closest('.controls-wrapper') ||
-                    searchInput.closest('.filter-bar') ||
-                    searchInput.closest('.sticky-controls');
-            }
-            if (!filterBar) filterBar = searchInput.parentElement;
-        }
-
         return {
             searchInput: searchInput,
-            filterBar: filterBar,
             philBtns: document.querySelectorAll('[data-philosopher]'),
             catBtns: document.querySelectorAll('[data-category]'),
             sections: document.querySelectorAll('.philosopher-section, section[data-philosopher]')
@@ -60,78 +36,107 @@
     }
 
     function getActivePhilosopher(el) {
-        var btns = el.philBtns;
-        for (var i = 0; i < btns.length; i++) {
-            var b = btns[i];
+        for (var i = 0; i < el.philBtns.length; i++) {
+            var b = el.philBtns[i];
             var cl = b.className || '';
-            if (
-                cl.indexOf('active') !== -1 ||
-                cl.indexOf('selected') !== -1 ||
-                cl.indexOf('is-active') !== -1 ||
-                b.getAttribute('aria-pressed') === 'true'
-            ) {
+            if (cl.indexOf('active') !== -1 || cl.indexOf('selected') !== -1 ||
+                b.getAttribute('aria-pressed') === 'true') {
                 return b.dataset.philosopher;
             }
         }
         return 'all';
     }
 
-    function capitalizeFirst(s) {
-        return s ? s.charAt(0).toUpperCase() + s.slice(1) : '';
-    }
+    function cap(s) { return s ? s.charAt(0).toUpperCase() + s.slice(1) : ''; }
+    function escHtml(s) { var d = document.createElement('div'); d.appendChild(document.createTextNode(s)); return d.innerHTML; }
 
-    function escapeHtml(s) {
-        var d = document.createElement('div');
-        d.appendChild(document.createTextNode(s));
-        return d.innerHTML;
-    }
-
-    // ═══════════════════════════════════════
-    // 1. SCROLL-HIDE FILTER BAR
-    // ═══════════════════════════════════════
+    // ═══════════════════════════════════════════════════════
+    // 1. SCROLL-HIDE — finds ALL sticky/fixed bars and hides them
+    // ═══════════════════════════════════════════════════════
     function setupScrollHide(el) {
-        if (!el.filterBar) return;
-
-        var bar = el.filterBar;
         var lastY = window.scrollY;
         var hidden = false;
 
-        bar.style.willChange = 'transform, opacity';
-        bar.style.transition = 'transform 0.35s cubic-bezier(0.4,0,0.2,1), opacity 0.3s ease';
+        // Collect every sticky/fixed element in the controls area
+        var bars = collectStickyBars(el);
+        if (!bars.length) { console.warn('[UI] no sticky bars found'); return; }
+
+        for (var i = 0; i < bars.length; i++) {
+            bars[i].style.willChange = 'transform, opacity';
+            bars[i].style.transition = 'transform 0.35s cubic-bezier(0.4,0,0.2,1), opacity 0.3s ease';
+        }
 
         window.addEventListener('scroll', function () {
             requestAnimationFrame(function () {
                 var y = window.scrollY;
-
                 var dd = document.querySelector('.search-dropdown.active');
-                if (dd) { show(); lastY = y; return; }
+                if (dd) { doShow(); lastY = y; return; }
 
-                if (y > lastY && y > 180 && !hidden) {
-                    hide();
-                } else if (y < lastY && hidden) {
-                    show();
-                }
+                if (y > lastY && y > 180 && !hidden) doHide();
+                else if (y < lastY && hidden) doShow();
                 lastY = y;
             });
         }, { passive: true });
 
-        function hide() {
-            bar.style.transform = 'translateY(-100%)';
-            bar.style.opacity = '0';
-            bar.style.pointerEvents = 'none';
+        function doHide() {
+            for (var i = 0; i < bars.length; i++) {
+                bars[i].style.transform = 'translateY(-100%)';
+                bars[i].style.opacity = '0';
+                bars[i].style.pointerEvents = 'none';
+            }
             hidden = true;
         }
-        function show() {
-            bar.style.transform = 'translateY(0)';
-            bar.style.opacity = '1';
-            bar.style.pointerEvents = '';
+        function doShow() {
+            for (var i = 0; i < bars.length; i++) {
+                bars[i].style.transform = 'translateY(0)';
+                bars[i].style.opacity = '1';
+                bars[i].style.pointerEvents = '';
+            }
             hidden = false;
         }
     }
 
-    // ═══════════════════════════════════════
+    function collectStickyBars(el) {
+        var bars = [];
+        var seen = [];
+
+        function addIfSticky(startEl) {
+            var p = startEl;
+            while (p && p !== document.body && p !== document.documentElement) {
+                var pos = window.getComputedStyle(p).position;
+                if (pos === 'sticky' || pos === 'fixed') {
+                    // Check not already added
+                    var found = false;
+                    for (var i = 0; i < seen.length; i++) { if (seen[i] === p) { found = true; break; } }
+                    if (!found) {
+                        bars.push(p);
+                        seen.push(p);
+                    }
+                }
+                p = p.parentElement;
+            }
+        }
+
+        // From search input — find its sticky ancestor
+        if (el.searchInput) addIfSticky(el.searchInput);
+
+        // From first philosopher button — may be in a different sticky container
+        if (el.philBtns && el.philBtns.length > 0) addIfSticky(el.philBtns[0]);
+
+        // From first category button — may be in yet another container
+        if (el.catBtns && el.catBtns.length > 0) addIfSticky(el.catBtns[0]);
+
+        // If we found nested sticky parents, keep only the outermost ones
+        // unless they are truly separate containers
+        // (This handles both "one big sticky wrapper" and "multiple sticky rows")
+
+        console.log('[UI] found ' + bars.length + ' sticky bar(s) to hide on scroll');
+        return bars;
+    }
+
+    // ═══════════════════════════════════════════════════════
     // 2. SEARCH DROPDOWN
-    // ═══════════════════════════════════════
+    // ═══════════════════════════════════════════════════════
     function setupSearchDropdown(el) {
         var input = el.searchInput;
         if (!input) return;
@@ -171,11 +176,11 @@
             if (e.key === 'ArrowDown') {
                 e.preventDefault();
                 activeIndex = Math.min(activeIndex + 1, items.length - 1);
-                highlightItem(items, activeIndex);
+                hlItem(items, activeIndex);
             } else if (e.key === 'ArrowUp') {
                 e.preventDefault();
                 activeIndex = Math.max(activeIndex - 1, 0);
-                highlightItem(items, activeIndex);
+                hlItem(items, activeIndex);
             } else if (e.key === 'Enter' && activeIndex >= 0 && items[activeIndex]) {
                 e.preventDefault();
                 items[activeIndex].click();
@@ -188,7 +193,6 @@
         dropdown.addEventListener('click', function (e) {
             var item = e.target.closest('.search-dropdown-item');
             if (!item) return;
-
             var workId = item.dataset.workId;
             var philosopher = item.dataset.philosopher;
 
@@ -201,9 +205,9 @@
                     card.scrollIntoView({ behavior: 'smooth', block: 'center' });
                     setTimeout(function () { card.click(); }, 400);
                 } else {
-                    var section = document.getElementById(philosopher) ||
+                    var sec = document.getElementById(philosopher) ||
                         document.querySelector('[data-philosopher="' + philosopher + '"]');
-                    if (section) section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    if (sec) sec.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
             }, 200);
 
@@ -213,46 +217,26 @@
         });
 
         document.addEventListener('click', function (e) {
-            if (!wrapper.contains(e.target)) {
-                dropdown.classList.remove('active');
-            }
+            if (!wrapper.contains(e.target)) dropdown.classList.remove('active');
         });
     }
 
     function doSearch(input, dropdown) {
-        var query = input.value.trim().toLowerCase();
-
-        if (query.length < 2) {
-            dropdown.classList.remove('active');
-            return;
-        }
+        var q = input.value.trim().toLowerCase();
+        if (q.length < 2) { dropdown.classList.remove('active'); return; }
 
         var works = window.WORKS || [];
         var matches = [];
-
         for (var i = 0; i < works.length; i++) {
             var w = works[i];
-            var haystack = [
-                w.title || '',
-                w.greekTitle || '',
-                w.philosopher || '',
-                w.shortDesc || '',
-                w.categoryLabel || '',
-                (w.themes || []).join(' '),
-                (w.concepts || []).join(' ')
-            ].join(' ').toLowerCase();
-
-            if (haystack.indexOf(query) !== -1) {
-                matches.push(w);
-                if (matches.length >= 10) break;
-            }
+            var h = [w.title||'', w.greekTitle||'', w.philosopher||'', w.shortDesc||'',
+                     w.categoryLabel||'', (w.themes||[]).join(' '), (w.concepts||[]).join(' ')
+                    ].join(' ').toLowerCase();
+            if (h.indexOf(q) !== -1) { matches.push(w); if (matches.length >= 10) break; }
         }
 
-        if (matches.length === 0) {
-            dropdown.innerHTML =
-                '<div class="search-dropdown-empty">' +
-                'No results for \u201c' + escapeHtml(input.value.trim()) + '\u201d' +
-                '</div>';
+        if (!matches.length) {
+            dropdown.innerHTML = '<div class="search-dropdown-empty">No results for \u201c' + escHtml(input.value.trim()) + '\u201d</div>';
             dropdown.classList.add('active');
             return;
         }
@@ -260,151 +244,98 @@
         var html = '';
         for (var j = 0; j < matches.length; j++) {
             var m = matches[j];
-            html +=
-                '<div class="search-dropdown-item" ' +
-                'data-work-id="' + m.id + '" data-philosopher="' + m.philosopher + '">' +
-                '<span class="sdi-emoji">' + (m.emoji || '') + '</span>' +
+            html += '<div class="search-dropdown-item" data-work-id="' + m.id + '" data-philosopher="' + m.philosopher + '">' +
+                '<span class="sdi-emoji">' + (m.emoji||'') + '</span>' +
                 '<div class="sdi-content">' +
-                '<div class="sdi-title">' + escapeHtml(m.title) + '</div>' +
-                '<div class="sdi-meta">' +
-                '<span class="sdi-philosopher">' + capitalizeFirst(m.philosopher) + '</span>' +
-                ' \u00B7 ' +
-                '<span class="sdi-date">' + (m.date || '') + '</span>' +
-                ' \u00B7 ' +
-                '<span class="sdi-cat">' + (m.categoryLabel || '') + '</span>' +
-                '</div></div>' +
-                '<span class="sdi-arrow">\u2192</span>' +
-                '</div>';
+                '<div class="sdi-title">' + escHtml(m.title) + '</div>' +
+                '<div class="sdi-meta">' + cap(m.philosopher) + ' \u00B7 ' + (m.date||'') + ' \u00B7 ' + (m.categoryLabel||'') + '</div>' +
+                '</div><span class="sdi-arrow">\u2192</span></div>';
         }
-
         dropdown.innerHTML = html;
         dropdown.classList.add('active');
     }
 
-    function highlightItem(items, idx) {
-        for (var i = 0; i < items.length; i++) {
-            items[i].classList.toggle('highlighted', i === idx);
-        }
+    function hlItem(items, idx) {
+        for (var i = 0; i < items.length; i++) items[i].classList.toggle('highlighted', i === idx);
         if (items[idx]) items[idx].scrollIntoView({ block: 'nearest' });
     }
 
-    // ═══════════════════════════════════════
-    // 3. PHILOSOPHER BUTTON → SCROLL
-    // ═══════════════════════════════════════
+    // ═══════════════════════════════════════════════════════
+    // 3. PHILOSOPHER BUTTON → SCROLL TO SECTION
+    // ═══════════════════════════════════════════════════════
     function setupPhilosopherNavigation(el) {
         for (var i = 0; i < el.philBtns.length; i++) {
             (function (btn) {
                 btn.addEventListener('click', function () {
                     var phil = btn.dataset.philosopher;
                     if (!phil || phil === 'all') return;
-
                     setTimeout(function () {
-                        var section =
-                            document.getElementById(phil) ||
+                        var sec = document.getElementById(phil) ||
                             document.querySelector('.philosopher-section[data-philosopher="' + phil + '"]');
-
-                        if (section && section.style.display !== 'none') {
-                            var barH = el.filterBar ? el.filterBar.offsetHeight : 0;
-                            var top = section.getBoundingClientRect().top + window.scrollY - barH - 24;
+                        if (sec && sec.style.display !== 'none') {
+                            var top = sec.getBoundingClientRect().top + window.scrollY - 24;
                             window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
                         }
                     }, 150);
                 });
-
                 btn.style.cursor = 'pointer';
-                if (btn.dataset.philosopher !== 'all') {
-                    btn.title = 'Jump to ' + capitalizeFirst(btn.dataset.philosopher);
-                }
+                if (btn.dataset.philosopher !== 'all') btn.title = 'Jump to ' + cap(btn.dataset.philosopher);
             })(el.philBtns[i]);
         }
     }
 
-    // ═══════════════════════════════════════
-    // 4. SECTION VISIBILITY
-    // ═══════════════════════════════════════
+    // ═══════════════════════════════════════════════════════
+    // 4. SECTION VISIBILITY — hide irrelevant sections
+    // ═══════════════════════════════════════════════════════
     function setupSectionVisibility(el) {
-        function scheduleUpdate() {
-            setTimeout(function () { updateSections(el); }, 30);
-            setTimeout(function () { updateSections(el); }, 150);
-            setTimeout(function () { updateSections(el); }, 400);
+        function sched() {
+            setTimeout(function () { upd(el); }, 30);
+            setTimeout(function () { upd(el); }, 150);
+            setTimeout(function () { upd(el); }, 400);
         }
-
-        for (var i = 0; i < el.philBtns.length; i++) {
-            el.philBtns[i].addEventListener('click', scheduleUpdate);
-        }
-        for (var j = 0; j < el.catBtns.length; j++) {
-            el.catBtns[j].addEventListener('click', scheduleUpdate);
-        }
-        if (el.searchInput) {
-            el.searchInput.addEventListener('input', function () {
-                setTimeout(function () { updateSections(el); }, 250);
-            });
-        }
-
+        for (var i = 0; i < el.philBtns.length; i++) el.philBtns[i].addEventListener('click', sched);
+        for (var j = 0; j < el.catBtns.length; j++) el.catBtns[j].addEventListener('click', sched);
+        if (el.searchInput) el.searchInput.addEventListener('input', function () { setTimeout(function(){ upd(el); }, 250); });
         document.addEventListener('click', function (e) {
-            if (e.target.textContent && e.target.textContent.toLowerCase().indexOf('clear') !== -1) {
-                scheduleUpdate();
-            }
+            if (e.target.textContent && e.target.textContent.toLowerCase().indexOf('clear') !== -1) sched();
         });
-
         if (window.MutationObserver) {
-            var mo = new MutationObserver(function () {
-                setTimeout(function () { updateSections(el); }, 50);
-            });
-            for (var k = 0; k < el.philBtns.length; k++) {
-                mo.observe(el.philBtns[k], { attributes: true, attributeFilter: ['class'] });
-            }
+            var mo = new MutationObserver(function () { setTimeout(function () { upd(el); }, 50); });
+            for (var k = 0; k < el.philBtns.length; k++) mo.observe(el.philBtns[k], { attributes: true, attributeFilter: ['class'] });
         }
-
-        scheduleUpdate();
+        sched();
     }
 
-    function updateSections(el) {
+    function upd(el) {
         var active = getActivePhilosopher(el);
-
         for (var i = 0; i < el.sections.length; i++) {
-            var section = el.sections[i];
-            var sectionPhil = section.dataset.philosopher || section.id;
-
+            var sec = el.sections[i];
+            var sp = sec.dataset.philosopher || sec.id;
             if (active && active !== 'all') {
-                if (sectionPhil === active) {
-                    section.style.display = '';
-                    section.style.opacity = '1';
-                } else {
-                    section.style.display = 'none';
-                }
+                sec.style.display = (sp === active) ? '' : 'none';
+                if (sp === active) sec.style.opacity = '1';
             } else {
-                section.style.display = '';
-                section.style.opacity = '1';
-
-                var grid = section.querySelector('.works-grid, .grid');
-                if (grid && isFilterActive(el)) {
-                    var cards = grid.children;
-                    var hasVisible = false;
+                sec.style.display = '';
+                sec.style.opacity = '1';
+                var grid = sec.querySelector('.works-grid, .grid');
+                if (grid && isFilt(el)) {
+                    var cards = grid.children, vis = false;
                     for (var c = 0; c < cards.length; c++) {
                         var cs = window.getComputedStyle(cards[c]);
-                        if (cs.display !== 'none' && !cards[c].classList.contains('hidden')) {
-                            hasVisible = true;
-                            break;
-                        }
+                        if (cs.display !== 'none' && !cards[c].classList.contains('hidden')) { vis = true; break; }
                     }
-                    if (!hasVisible) {
-                        section.style.display = 'none';
-                    }
+                    if (!vis) sec.style.display = 'none';
                 }
             }
         }
     }
 
-    function isFilterActive(el) {
+    function isFilt(el) {
         for (var i = 0; i < el.catBtns.length; i++) {
             var b = el.catBtns[i];
-            if (b.dataset.category !== 'all' && (b.className || '').indexOf('active') !== -1) {
-                return true;
-            }
+            if (b.dataset.category !== 'all' && (b.className||'').indexOf('active') !== -1) return true;
         }
-        if (el.searchInput && el.searchInput.value.trim().length > 0) return true;
-        return false;
+        return el.searchInput && el.searchInput.value.trim().length > 0;
     }
 
 })();
