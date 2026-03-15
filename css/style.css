@@ -2773,3 +2773,38 @@ mark.search-hl {
 [data-theme="dark"] .search-dropdown::-webkit-scrollbar-thumb:hover {
     background: rgba(255, 255, 255, 0.14);
 }
+
+
+/* ============================================================
+   FICHTE — Theme Colours (Volcanic Crimson / Revolutionary Red)
+   ============================================================ */
+
+.philosopher-section[data-philosopher="fichte"] {
+    --philosopher-primary: #8B2500;
+    --philosopher-primary-rgb: 139, 37, 0;
+    --philosopher-primary-light: #B8452A;
+    --philosopher-primary-dark: #5C1800;
+    --philosopher-accent: #D4603C;
+    --philosopher-glow: rgba(139, 37, 0, 0.12);
+    --philosopher-border: rgba(139, 37, 0, 0.25);
+}
+
+.filter-btn[data-philosopher="fichte"] {
+    --btn-color: #8B2500;
+    --btn-color-rgb: 139, 37, 0;
+}
+
+[data-theme="dark"] .philosopher-section[data-philosopher="fichte"] {
+    --philosopher-primary: #D4603C;
+    --philosopher-primary-rgb: 212, 96, 60;
+    --philosopher-primary-light: #E88A6C;
+    --philosopher-primary-dark: #B8452A;
+    --philosopher-accent: #F0B49E;
+    --philosopher-glow: rgba(212, 96, 60, 0.10);
+    --philosopher-border: rgba(212, 96, 60, 0.20);
+}
+
+[data-theme="dark"] .filter-btn[data-philosopher="fichte"] {
+    --btn-color: #D4603C;
+    --btn-color-rgb: 212, 96, 60;
+}
