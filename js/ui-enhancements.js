@@ -30,9 +30,9 @@
 
         return {
             searchInput: searchInput,
-            philBtns: document.querySelectorAll('[data-philosopher]'),
+            philBtns: document.querySelectorAll('[data-filter]'),
             catBtns: document.querySelectorAll('[data-category]'),
-            sections: document.querySelectorAll('.philosopher-section, section[data-philosopher]')
+            sections: document.querySelectorAll('.works-section')
         };
     }
 
@@ -42,7 +42,7 @@
             var cl = b.className || '';
             if (cl.indexOf('active') !== -1 || cl.indexOf('selected') !== -1 ||
                 b.getAttribute('aria-pressed') === 'true') {
-                return b.dataset.philosopher;
+                return (b.dataset.filter || b.dataset.philosopher);
             }
         }
         return 'all';
@@ -227,7 +227,7 @@
                     card.scrollIntoView({ behavior: 'smooth', block: 'center' });
                     setTimeout(function () { card.click(); }, 400);
                 } else {
-                    var sec = document.getElementById(philosopher) ||
+                    var sec = document.getElementById(philosopher + '-section') ||
                         document.querySelector('[data-philosopher="' + philosopher + '"]');
                     if (sec) sec.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
@@ -386,11 +386,10 @@
         for (var i = 0; i < el.philBtns.length; i++) {
             (function (btn) {
                 btn.addEventListener('click', function () {
-                    var phil = btn.dataset.philosopher;
+                    var phil = (btn.dataset.filter || btn.dataset.philosopher);
                     if (!phil || phil === 'all') return;
                     setTimeout(function () {
-                        var sec = document.getElementById(phil) ||
-                            document.querySelector('.philosopher-section[data-philosopher="' + phil + '"]');
+                        var sec = document.getElementById(phil + '-section') || document.getElementById(phil);
                         if (sec && sec.style.display !== 'none') {
                             var top = sec.getBoundingClientRect().top + window.scrollY - 24;
                             window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
@@ -398,7 +397,7 @@
                     }, 150);
                 });
                 btn.style.cursor = 'pointer';
-                if (btn.dataset.philosopher !== 'all') btn.title = 'Jump to ' + cap(btn.dataset.philosopher);
+                if ((btn.dataset.filter || btn.dataset.philosopher) !== 'all') btn.title = 'Jump to ' + cap((btn.dataset.filter || btn.dataset.philosopher));
             })(el.philBtns[i]);
         }
     }
@@ -429,7 +428,7 @@
         var active = getActivePhilosopher(el);
         for (var i = 0; i < el.sections.length; i++) {
             var sec = el.sections[i];
-            var sp = sec.dataset.philosopher || sec.id;
+            var sp = sec.id ? sec.id.replace('-section', '') : '';
             if (active && active !== 'all') {
                 sec.style.display = (sp === active) ? '' : 'none';
                 if (sp === active) sec.style.opacity = '1';
