@@ -1,157 +1,3 @@
-/* ============================================================
-   UI ENHANCEMENTS — Search Dropdown, Scroll-Hide
-   ============================================================ */
-
-.search-input-wrapper {
-    position: relative;
-    width: 100%;
-}
-
-.search-dropdown {
-    position: absolute;
-    top: calc(100% + 2px);
-    left: 0;
-    right: 0;
-    z-index: 9999;
-    background: var(--bg-primary, #FAF6F0);
-    border: 1px solid var(--border-color, rgba(0, 0, 0, 0.1));
-    border-radius: 0 0 10px 10px;
-    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.12), 0 4px 12px rgba(0, 0, 0, 0.06);
-    max-height: 440px;
-    overflow-y: auto;
-    overscroll-behavior: contain;
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(-6px);
-    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
-    pointer-events: none;
-}
-
-.search-dropdown.active {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-    pointer-events: auto;
-}
-
-.search-dropdown-item {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    padding: 13px 18px;
-    cursor: pointer;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.04);
-    transition: background-color 0.12s ease;
-}
-
-.search-dropdown-item:last-child {
-    border-bottom: none;
-}
-
-.search-dropdown-item:hover,
-.search-dropdown-item.highlighted {
-    background: rgba(0, 0, 0, 0.035);
-}
-
-.search-dropdown-item .sdi-emoji {
-    font-size: 1.35rem;
-    width: 34px;
-    text-align: center;
-    flex-shrink: 0;
-}
-
-.search-dropdown-item .sdi-content {
-    flex: 1;
-    min-width: 0;
-}
-
-.search-dropdown-item .sdi-title {
-    font-family: 'Cormorant Garamond', 'Georgia', serif;
-    font-size: 1.05rem;
-    font-weight: 600;
-    color: var(--text-primary, #1a1a1a);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    line-height: 1.3;
-}
-
-.search-dropdown-item .sdi-meta {
-    font-family: 'Inter', 'Helvetica Neue', sans-serif;
-    font-size: 0.7rem;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    color: var(--text-secondary, #777);
-    margin-top: 3px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.search-dropdown-item .sdi-arrow {
-    font-size: 0.85rem;
-    color: var(--text-tertiary, #aaa);
-    flex-shrink: 0;
-    opacity: 0;
-    transform: translateX(-5px);
-    transition: opacity 0.15s, transform 0.15s;
-}
-
-.search-dropdown-item:hover .sdi-arrow,
-.search-dropdown-item.highlighted .sdi-arrow {
-    opacity: 1;
-    transform: translateX(0);
-}
-
-.search-dropdown-empty {
-    padding: 24px 18px;
-    text-align: center;
-    font-family: 'Cormorant Garamond', 'Georgia', serif;
-    font-size: 0.95rem;
-    font-style: italic;
-    color: var(--text-secondary, #999);
-}
-
-.search-dropdown::-webkit-scrollbar {
-    width: 5px;
-}
-.search-dropdown::-webkit-scrollbar-track {
-    background: transparent;
-}
-.search-dropdown::-webkit-scrollbar-thumb {
-    background: rgba(0, 0, 0, 0.12);
-    border-radius: 3px;
-}
-
-[data-theme="dark"] .search-dropdown {
-    background: var(--bg-primary, #1a1a2e);
-    border-color: rgba(255, 255, 255, 0.08);
-    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.45);
-}
-
-[data-theme="dark"] .search-dropdown-item:hover,
-[data-theme="dark"] .search-dropdown-item.highlighted {
-    background: rgba(255, 255, 255, 0.05);
-}
-
-[data-theme="dark"] .search-dropdown-item .sdi-title {
-    color: var(--text-primary, #e8e6e3);
-}
-
-[data-theme="dark"] .search-dropdown::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.12);
-}
-
-.philosopher-section {
-    transition: opacity 0.3s ease;
-}
-
-[data-philosopher] {
-    cursor: pointer;
-}/* ================================================================
-   THE ACADEMY & THE LYCEUM
-   Refined luxury editorial — museum catalogue meets ancient manuscript.
-   ================================================================ */
 
 /* ===== RESET ===== */
 
@@ -2528,4 +2374,402 @@ button{font-family:var(--font-body);cursor:pointer;border:none;background:none;c
 /* ── Navbar: hide the nav-links on desktop once removed ── */
 .nav-links {
     display: none !important;
+}
+
+
+/* ============================================================
+   SEARCH DROPDOWN — Apple-Polished Design System
+   ============================================================ */
+
+/* ── Wrapper ── */
+.search-input-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+/* ── Dropdown Container ── */
+.search-dropdown {
+    position: absolute;
+    top: calc(100% + 6px);
+    left: -8px;
+    right: -8px;
+    z-index: 9999;
+    background: var(--bg-primary, #FFFFFF);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    border-radius: 16px;
+    box-shadow:
+        0 24px 80px rgba(0, 0, 0, 0.08),
+        0 8px 24px rgba(0, 0, 0, 0.04),
+        0 2px 6px rgba(0, 0, 0, 0.02);
+    max-height: 520px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    overscroll-behavior: contain;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px) scale(0.98);
+    transition:
+        opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+        transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+        visibility 0.2s;
+    pointer-events: none;
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+}
+
+.search-dropdown.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+}
+
+/* ── Scrollbar ── */
+.search-dropdown::-webkit-scrollbar {
+    width: 4px;
+}
+.search-dropdown::-webkit-scrollbar-track {
+    background: transparent;
+    margin: 8px 0;
+}
+.search-dropdown::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.08);
+    border-radius: 4px;
+}
+.search-dropdown::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.14);
+}
+
+/* ── Header Row ── */
+.sdr-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 20px 8px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.sdr-header-count {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-secondary, #86868B);
+}
+
+.sdr-header-hint {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.04em;
+    color: var(--text-tertiary, #AEAEB2);
+}
+
+/* ── Group Label ── */
+.sdr-group-label {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-tertiary, #86868B);
+    padding: 14px 20px 6px;
+}
+
+/* ── Result Item ── */
+.sdr-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 14px 20px;
+    cursor: pointer;
+    position: relative;
+    transition: background-color 0.15s ease;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.025);
+}
+
+.sdr-item:last-child {
+    border-bottom: none;
+}
+
+.sdr-item:hover {
+    background: rgba(0, 0, 0, 0.024);
+}
+
+.sdr-item.highlighted {
+    background: rgba(0, 0, 0, 0.04);
+}
+
+.sdr-item:active {
+    background: rgba(0, 0, 0, 0.06);
+    transition-duration: 0.05s;
+}
+
+/* ── Item Icon ── */
+.sdr-item-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.028);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+}
+
+.sdr-emoji {
+    font-size: 1.2rem;
+    line-height: 1;
+}
+
+/* ── Item Body ── */
+.sdr-item-body {
+    flex: 1;
+    min-width: 0;
+}
+
+.sdr-item-title {
+    font-family: 'Cormorant Garamond', 'Georgia', serif;
+    font-size: 1.08rem;
+    font-weight: 700;
+    color: var(--text-primary, #1D1D1F);
+    line-height: 1.3;
+    margin-bottom: 1px;
+}
+
+.sdr-item-subtitle {
+    min-height: 0;
+}
+
+.sdr-original {
+    font-family: 'Cormorant Garamond', 'Georgia', serif;
+    font-size: 0.82rem;
+    font-style: italic;
+    color: var(--text-secondary, #86868B);
+    line-height: 1.3;
+}
+
+/* ── Meta Chips ── */
+.sdr-item-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-top: 6px;
+}
+
+.sdr-meta-chip {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 0.58rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding: 2.5px 7px;
+    border-radius: 4px;
+    background: rgba(0, 0, 0, 0.04);
+    color: var(--text-secondary, #6E6E73);
+    white-space: nowrap;
+    line-height: 1.4;
+}
+
+.sdr-meta-date {
+    color: var(--text-secondary, #6E6E73);
+}
+
+.sdr-meta-cat {
+    color: #5856D6;
+    background: rgba(88, 86, 214, 0.06);
+}
+
+.sdr-meta-wc {
+    color: #34C759;
+    background: rgba(52, 199, 89, 0.06);
+}
+
+.sdr-meta-diff.diff-beginner {
+    color: #34C759;
+    background: rgba(52, 199, 89, 0.08);
+}
+
+.sdr-meta-diff.diff-intermediate {
+    color: #FF9500;
+    background: rgba(255, 149, 0, 0.08);
+}
+
+.sdr-meta-diff.diff-advanced {
+    color: #FF3B30;
+    background: rgba(255, 59, 48, 0.07);
+}
+
+/* ── Description Preview ── */
+.sdr-item-desc {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 0.75rem;
+    color: var(--text-secondary, #86868B);
+    line-height: 1.5;
+    margin-top: 5px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* ── Chevron Action ── */
+.sdr-item-action {
+    flex-shrink: 0;
+    color: var(--text-tertiary, #C7C7CC);
+    margin-top: 12px;
+    opacity: 0;
+    transform: translateX(-4px);
+    transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.sdr-item:hover .sdr-item-action,
+.sdr-item.highlighted .sdr-item-action {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* ── Search Highlight ── */
+mark.search-hl {
+    background: rgba(255, 204, 0, 0.25);
+    color: inherit;
+    padding: 0 1px;
+    border-radius: 2px;
+}
+
+/* ── Empty State ── */
+.sdr-empty {
+    padding: 40px 24px;
+    text-align: center;
+}
+
+.sdr-empty-icon {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    opacity: 0.4;
+}
+
+.sdr-empty-text {
+    font-family: 'Cormorant Garamond', 'Georgia', serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--text-primary, #1D1D1F);
+    margin-bottom: 6px;
+}
+
+.sdr-empty-hint {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 0.72rem;
+    color: var(--text-tertiary, #AEAEB2);
+}
+
+/* ── Philosopher Section Transitions ── */
+.philosopher-section {
+    transition: opacity 0.3s ease;
+}
+
+[data-philosopher] {
+    cursor: pointer;
+}
+
+/* ============================================================
+   DARK MODE — Search Dropdown
+   ============================================================ */
+
+[data-theme="dark"] .search-dropdown {
+    background: rgba(28, 28, 30, 0.92);
+    border-color: rgba(255, 255, 255, 0.06);
+    box-shadow:
+        0 24px 80px rgba(0, 0, 0, 0.5),
+        0 8px 24px rgba(0, 0, 0, 0.3),
+        0 2px 6px rgba(0, 0, 0, 0.2);
+    -webkit-backdrop-filter: blur(40px) saturate(180%);
+    backdrop-filter: blur(40px) saturate(180%);
+}
+
+[data-theme="dark"] .sdr-header {
+    border-bottom-color: rgba(255, 255, 255, 0.04);
+}
+
+[data-theme="dark"] .sdr-item {
+    border-bottom-color: rgba(255, 255, 255, 0.03);
+}
+
+[data-theme="dark"] .sdr-item:hover {
+    background: rgba(255, 255, 255, 0.04);
+}
+
+[data-theme="dark"] .sdr-item.highlighted {
+    background: rgba(255, 255, 255, 0.06);
+}
+
+[data-theme="dark"] .sdr-item:active {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+[data-theme="dark"] .sdr-item-icon {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+[data-theme="dark"] .sdr-item-title {
+    color: var(--text-primary, #F5F5F7);
+}
+
+[data-theme="dark"] .sdr-original {
+    color: var(--text-secondary, #98989D);
+}
+
+[data-theme="dark"] .sdr-meta-chip {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-secondary, #98989D);
+}
+
+[data-theme="dark"] .sdr-meta-cat {
+    color: #7D7AFF;
+    background: rgba(125, 122, 255, 0.1);
+}
+
+[data-theme="dark"] .sdr-meta-wc {
+    color: #30D158;
+    background: rgba(48, 209, 88, 0.1);
+}
+
+[data-theme="dark"] .sdr-meta-diff.diff-beginner {
+    color: #30D158;
+    background: rgba(48, 209, 88, 0.1);
+}
+
+[data-theme="dark"] .sdr-meta-diff.diff-intermediate {
+    color: #FFD60A;
+    background: rgba(255, 214, 10, 0.1);
+}
+
+[data-theme="dark"] .sdr-meta-diff.diff-advanced {
+    color: #FF453A;
+    background: rgba(255, 69, 58, 0.1);
+}
+
+[data-theme="dark"] .sdr-item-desc {
+    color: var(--text-tertiary, #636366);
+}
+
+[data-theme="dark"] .sdr-item-action {
+    color: rgba(255, 255, 255, 0.15);
+}
+
+[data-theme="dark"] .sdr-empty-text {
+    color: var(--text-primary, #F5F5F7);
+}
+
+[data-theme="dark"] mark.search-hl {
+    background: rgba(255, 214, 10, 0.2);
+}
+
+[data-theme="dark"] .search-dropdown::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+[data-theme="dark"] .search-dropdown::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.14);
 }
