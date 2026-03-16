@@ -2808,3 +2808,56 @@ mark.search-hl {
     --btn-color: #D4603C;
     --btn-color-rgb: 212, 96, 60;
 }
+
+
+/* ============================================================
+   SCHELLING — Theme Colours (Deep Forest Green / Naturphilosophie)
+   ============================================================ */
+
+.philosopher-section[data-philosopher="schelling"],
+.works-section#schelling-section {
+    --philosopher-primary: #2D5F2D;
+    --philosopher-primary-rgb: 45, 95, 45;
+    --philosopher-primary-light: #4A8B4A;
+    --philosopher-primary-dark: #1A3A1A;
+    --philosopher-accent: #6DB86D;
+    --philosopher-glow: rgba(45, 95, 45, 0.12);
+    --philosopher-border: rgba(45, 95, 45, 0.25);
+}
+
+.filter-tab[data-filter="schelling"] .filter-dot,
+.filter-dot.schelling-dot {
+    background: #2D5F2D;
+}
+
+.section-tag.schelling-tag {
+    color: #2D5F2D;
+}
+
+.section-rule.schelling-rule {
+    background: linear-gradient(90deg, transparent, #2D5F2D, transparent);
+}
+
+[data-theme="dark"] .philosopher-section[data-philosopher="schelling"],
+[data-theme="dark"] .works-section#schelling-section {
+    --philosopher-primary: #6DB86D;
+    --philosopher-primary-rgb: 109, 184, 109;
+    --philosopher-primary-light: #8FD48F;
+    --philosopher-primary-dark: #4A8B4A;
+    --philosopher-accent: #A8DCA8;
+    --philosopher-glow: rgba(109, 184, 109, 0.10);
+    --philosopher-border: rgba(109, 184, 109, 0.20);
+}
+
+[data-theme="dark"] .filter-tab[data-filter="schelling"] .filter-dot,
+[data-theme="dark"] .filter-dot.schelling-dot {
+    background: #6DB86D;
+}
+
+[data-theme="dark"] .section-tag.schelling-tag {
+    color: #6DB86D;
+}
+
+[data-theme="dark"] .section-rule.schelling-rule {
+    background: linear-gradient(90deg, transparent, #6DB86D, transparent);
+}
