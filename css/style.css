@@ -2912,3 +2912,54 @@ mark.search-hl {
 [data-theme="dark"] .section-rule.hegel-rule {
     background: linear-gradient(90deg, transparent, #7B9ED4, transparent);
 }
+
+
+/* ============================================================
+   SCHOPENHAUER — Theme Colours (Deep Burgundy / Pessimist's Wine)
+   ============================================================ */
+
+.works-section#schopenhauer-section {
+    --philosopher-primary: #6B2D3E;
+    --philosopher-primary-rgb: 107, 45, 62;
+    --philosopher-primary-light: #944B62;
+    --philosopher-primary-dark: #421C27;
+    --philosopher-accent: #C47A8E;
+    --philosopher-glow: rgba(107, 45, 62, 0.12);
+    --philosopher-border: rgba(107, 45, 62, 0.25);
+}
+
+.filter-tab[data-filter="schopenhauer"] .filter-dot,
+.filter-dot.schopenhauer-dot {
+    background: #6B2D3E;
+}
+
+.section-tag.schopenhauer-tag {
+    color: #6B2D3E;
+}
+
+.section-rule.schopenhauer-rule {
+    background: linear-gradient(90deg, transparent, #6B2D3E, transparent);
+}
+
+[data-theme="dark"] .works-section#schopenhauer-section {
+    --philosopher-primary: #C47A8E;
+    --philosopher-primary-rgb: 196, 122, 142;
+    --philosopher-primary-light: #D9A3B4;
+    --philosopher-primary-dark: #944B62;
+    --philosopher-accent: #E8C5D0;
+    --philosopher-glow: rgba(196, 122, 142, 0.10);
+    --philosopher-border: rgba(196, 122, 142, 0.20);
+}
+
+[data-theme="dark"] .filter-tab[data-filter="schopenhauer"] .filter-dot,
+[data-theme="dark"] .filter-dot.schopenhauer-dot {
+    background: #C47A8E;
+}
+
+[data-theme="dark"] .section-tag.schopenhauer-tag {
+    color: #C47A8E;
+}
+
+[data-theme="dark"] .section-rule.schopenhauer-rule {
+    background: linear-gradient(90deg, transparent, #C47A8E, transparent);
+}
