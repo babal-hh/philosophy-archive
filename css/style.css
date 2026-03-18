@@ -2861,3 +2861,54 @@ mark.search-hl {
 [data-theme="dark"] .section-rule.schelling-rule {
     background: linear-gradient(90deg, transparent, #6DB86D, transparent);
 }
+
+
+/* ============================================================
+   HEGEL — Theme Colours (Deep Prussian Indigo / Absolute Spirit)
+   ============================================================ */
+
+.works-section#hegel-section {
+    --philosopher-primary: #2C3E6B;
+    --philosopher-primary-rgb: 44, 62, 107;
+    --philosopher-primary-light: #4A6FA5;
+    --philosopher-primary-dark: #1A2544;
+    --philosopher-accent: #7B9ED4;
+    --philosopher-glow: rgba(44, 62, 107, 0.12);
+    --philosopher-border: rgba(44, 62, 107, 0.25);
+}
+
+.filter-tab[data-filter="hegel"] .filter-dot,
+.filter-dot.hegel-dot {
+    background: #2C3E6B;
+}
+
+.section-tag.hegel-tag {
+    color: #2C3E6B;
+}
+
+.section-rule.hegel-rule {
+    background: linear-gradient(90deg, transparent, #2C3E6B, transparent);
+}
+
+[data-theme="dark"] .works-section#hegel-section {
+    --philosopher-primary: #7B9ED4;
+    --philosopher-primary-rgb: 123, 158, 212;
+    --philosopher-primary-light: #A3BDE6;
+    --philosopher-primary-dark: #4A6FA5;
+    --philosopher-accent: #C5D8F0;
+    --philosopher-glow: rgba(123, 158, 212, 0.10);
+    --philosopher-border: rgba(123, 158, 212, 0.20);
+}
+
+[data-theme="dark"] .filter-tab[data-filter="hegel"] .filter-dot,
+[data-theme="dark"] .filter-dot.hegel-dot {
+    background: #7B9ED4;
+}
+
+[data-theme="dark"] .section-tag.hegel-tag {
+    color: #7B9ED4;
+}
+
+[data-theme="dark"] .section-rule.hegel-rule {
+    background: linear-gradient(90deg, transparent, #7B9ED4, transparent);
+}
