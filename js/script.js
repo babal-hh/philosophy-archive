@@ -341,8 +341,11 @@
             var badges = '';
             if (work.readingDifficulty) badges += '<span class="meta-badge">'+escHtml(work.readingDifficulty)+'</span>';
             if (work.estimatedWordCount) {
+                var _m = Math.ceil(work.estimatedWordCount/200);
+                var _rt = _m<60 ? _m+' min' : Math.floor(_m/60)+'h'+(_m%60?' '+_m%60+'m':'');
                 var wc = work.estimatedWordCount>=1000 ? Math.round(work.estimatedWordCount/1000)+'k words' : work.estimatedWordCount+' words';
-                badges += '<span class="meta-badge">~'+wc+'</span>';
+                badges += '<span class="meta-badge meta-badge-time">'+_rt+' read</span>';
+                badges += '<span class="meta-badge meta-badge-words">~'+wc+'</span>';
             }
             D.modalMetaBadges.innerHTML = badges;
         }
@@ -373,7 +376,19 @@
         if (D.modalConcepts) {
             D.modalConcepts.innerHTML = (work.concepts||[]).map(function(c){
                 var text = typeof c==='string' ? c : (c.text||'');
-                return '<span class="modal-concept-chip '+phil+'-concept">'+escHtml(text)+'</span>';
+                /* Split "Term — explanation" into headword + body */
+                var dash = text.search(/\s[—–]\s/);
+                if (dash !== -1) {
+                    var term = text.substring(0, dash).trim();
+                    var desc = text.substring(dash).replace(/^\s*[—–]\s*/, '').trim();
+                    return '<div class="concept-item">'+
+                        '<span class="concept-term">'+escHtml(term)+'</span>'+
+                        '<span class="concept-desc">'+escHtml(desc)+'</span>'+
+                    '</div>';
+                }
+                return '<div class="concept-item concept-plain">'+
+                    '<span class="concept-desc">'+escHtml(text)+'</span>'+
+                '</div>';
             }).join('');
         }
 
