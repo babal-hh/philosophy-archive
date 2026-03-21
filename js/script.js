@@ -104,6 +104,11 @@
     };
     function philName(id) { return PHIL_NAMES[id] || cap(id); }
 
+    function readingTime(wc) {
+        var m = Math.ceil(wc / 200);
+        return m < 60 ? m + ' min' : Math.floor(m/60)+'h'+(m%60?' '+m%60+'m':'');
+    }
+
     function escHtml(s) {
         return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;')
             .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
@@ -164,7 +169,10 @@
             '<p class="card-greek">'+escHtml(work.greekTitle)+'</p>'+
             '<p class="card-description">'+escHtml(work.shortDesc)+'</p>'+
             '<div class="card-footer">'+
-                '<span class="card-date">'+escHtml(work.readingDifficulty||'')+'</span>'+
+                '<div class="card-footer-left">'+
+                    '<span class="card-date">'+escHtml(work.readingDifficulty||'')+'</span>'+
+                    (work.estimatedWordCount?'<span class="card-reading-time">'+readingTime(work.estimatedWordCount)+'</span>':'')+
+                '</div>'+
                 '<div class="card-themes">'+themes+'</div>'+
             '</div>'+
         '</article>';

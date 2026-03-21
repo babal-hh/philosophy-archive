@@ -3055,3 +3055,155 @@ mark.search-hl {
         color: #E57373;
     }
 }
+
+
+/* ================================================================
+   READABILITY PATCH
+   ================================================================ */
+
+.modal { max-width: 800px; position: relative; }
+
+/* Summary: paragraph breathing */
+.modal-summary p {
+    font-size: 0.935rem;
+    color: var(--text-secondary);
+    line-height: 1.92;
+    margin-bottom: 1.15em;
+}
+.modal-summary p:last-child { margin-bottom: 0; }
+.modal-summary p:first-child { margin-top: 0; }
+
+/* Progress bar */
+.modal-progress {
+    position: absolute;
+    top: 0; left: 0;
+    height: 3px; width: 0%;
+    transition: width 0.07s linear;
+    pointer-events: none;
+    border-radius: 0 3px 0 0;
+    z-index: 20;
+    background: var(--gold);
+}
+
+/* Card description: fade not hard-cut */
+.card-description {
+    display: block !important;
+    position: relative;
+    -webkit-line-clamp: unset !important;
+    max-height: 4.9em;
+    overflow: hidden;
+    margin-bottom: 14px;
+}
+.card-description::after {
+    content: "";
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2.2em;
+    background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, var(--bg-card) 100%);
+    pointer-events: none;
+}
+
+/* Reading time badge */
+.card-reading-time {
+    font-family: var(--font-mono);
+    font-size: 0.61rem;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+    white-space: nowrap;
+    padding: 2px 7px;
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    background: var(--bg-secondary);
+    flex-shrink: 0;
+}
+.card-footer-left {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    flex-shrink: 0;
+}
+.card-footer { flex-wrap: nowrap; align-items: center; gap: 8px; }
+.card-themes { flex: 1; min-width: 0; }
+
+/* Filter tabs — unified row with bottom anchor */
+.filter-tabs {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 0;
+    row-gap: 0;
+}
+
+/* Search hint */
+#searchShortcut {
+    font-size: 10px !important;
+    opacity: 0.4;
+    right: 46px !important;
+    font-family: var(--font-mono) !important;
+    letter-spacing: 0.1em !important;
+}
+
+/* Modal header: top stripe */
+.modal-header { border-left: none !important; border-top: 3px solid var(--border); }
+.modal-header.modal-philosopher-plato        { border-top-color: var(--plato); }
+.modal-header.modal-philosopher-aristotle    { border-top-color: var(--aristotle); }
+.modal-header.modal-philosopher-descartes    { border-top-color: #2B4C8C; }
+.modal-header.modal-philosopher-spinoza      { border-top-color: #2D6A4F; }
+.modal-header.modal-philosopher-leibniz      { border-top-color: #2E4057; }
+.modal-header.modal-philosopher-locke        { border-top-color: #8B6520; }
+.modal-header.modal-philosopher-berkeley     { border-top-color: #8B6914; }
+.modal-header.modal-philosopher-kant         { border-top-color: #2B4C6F; }
+.modal-header.modal-philosopher-nietzsche    { border-top-color: #8B1A1A; }
+.modal-header.modal-philosopher-hegel        { border-top-color: #2C5F6E; }
+.modal-header.modal-philosopher-schopenhauer { border-top-color: #7B4F2E; }
+.modal-header.modal-philosopher-fichte       { border-top-color: #4A5568; }
+.modal-header.modal-philosopher-schelling    { border-top-color: #553C7B; }
+
+/* Section label style */
+.modal-section-title {
+    font-family: var(--font-mono);
+    font-size: 0.59rem;
+    font-weight: 400;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-variant: normal;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+    padding-bottom: 7px;
+    border-bottom: 1px solid var(--border);
+}
+
+/* Commentary entries */
+.commentary-entry {
+    padding: 16px 20px;
+    border-left: 2px solid var(--border);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    background: var(--bg-secondary);
+    transition: border-color var(--speed), background var(--speed);
+}
+.commentary-entry:hover { border-left-color: var(--gold); background: var(--bg); }
+.commentary-philosopher { font-size: 1rem; font-weight: 700; margin-bottom: 6px; }
+.commentary-text { font-size: 0.875rem; line-height: 1.82; }
+
+/* Structure block */
+.modal-structure {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    line-height: 1.9;
+    white-space: pre-line;
+    background: var(--bg-secondary);
+    padding: 16px 20px;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+}
+
+/* Concept chips */
+.modal-concept-chip { border-radius: 4px; font-size: 0.7rem; line-height: 1.5; }
+
+/* Related works */
+.related-link { background: var(--bg-secondary); font-size: 0.68rem; }
+.related-link:hover { background: var(--gold-bg); border-color: var(--gold); color: var(--gold); }
+
+@media (max-width: 600px) {
+    .modal { max-width: 100%; }
+    .modal-summary p { font-size: 0.9rem; line-height: 1.82; }
+    .card-reading-time { display: none; }
+}
