@@ -2963,3 +2963,95 @@ mark.search-hl {
 [data-theme="dark"] .section-rule.schopenhauer-rule {
     background: linear-gradient(90deg, transparent, #C47A8E, transparent);
 }
+
+
+/* ============================================================
+   NIETZSCHE — Dionysian Crimson / Dark Wine (1844–1900)
+   ============================================================ */
+
+.nietzsche-tag {
+    color: #8B1A1A;
+    border-color: rgba(139, 26, 26, 0.25);
+}
+
+.nietzsche-rule {
+    background: linear-gradient(90deg, #8B1A1A, #C0392B, transparent);
+}
+
+.nietzsche-dot {
+    background: #8B1A1A;
+}
+
+.works-section#nietzsche-section .card-philosopher-badge {
+    background: rgba(139, 26, 26, 0.10);
+    color: #8B1A1A;
+    border-color: rgba(139, 26, 26, 0.25);
+}
+
+.works-section#nietzsche-section .card[data-philosopher="nietzsche"]:hover {
+    border-top-color: #8B1A1A;
+    box-shadow: 0 8px 32px rgba(139, 26, 26, 0.12);
+}
+
+.filter-tab[data-filter="nietzsche"] .filter-dot {
+    background: #8B1A1A;
+}
+
+.filter-tab[data-filter="nietzsche"].active,
+.filter-tab[data-filter="nietzsche"]:hover {
+    color: #8B1A1A;
+    border-color: rgba(139, 26, 26, 0.35);
+}
+
+.modal-philosopher-nietzsche {
+    border-top: 3px solid #8B1A1A;
+}
+
+.modal-philosopher-nietzsche .modal-philosopher-name {
+    color: #8B1A1A;
+}
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+    .nietzsche-tag {
+        color: #E57373;
+        border-color: rgba(229, 115, 115, 0.20);
+    }
+
+    .nietzsche-rule {
+        background: linear-gradient(90deg, #E57373, #EF9A9A, transparent);
+    }
+
+    .nietzsche-dot {
+        background: #E57373;
+    }
+
+    .works-section#nietzsche-section .card-philosopher-badge {
+        background: rgba(229, 115, 115, 0.10);
+        color: #E57373;
+        border-color: rgba(229, 115, 115, 0.20);
+    }
+
+    .works-section#nietzsche-section .card[data-philosopher="nietzsche"]:hover {
+        border-top-color: #E57373;
+        box-shadow: 0 8px 32px rgba(229, 115, 115, 0.10);
+    }
+
+    .filter-tab[data-filter="nietzsche"] .filter-dot {
+        background: #E57373;
+    }
+
+    .filter-tab[data-filter="nietzsche"].active,
+    .filter-tab[data-filter="nietzsche"]:hover {
+        color: #E57373;
+        border-color: rgba(229, 115, 115, 0.35);
+    }
+
+    .modal-philosopher-nietzsche {
+        border-top: 3px solid #E57373;
+    }
+
+    .modal-philosopher-nietzsche .modal-philosopher-name {
+        color: #E57373;
+    }
+}
