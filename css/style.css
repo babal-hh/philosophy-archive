@@ -3258,3 +3258,44 @@ mark.search-hl {
     font-weight: 500;
 }
 .meta-badge-words { color: var(--text-muted); opacity: 0.65; }
+
+
+/* ============================================================
+   HUME — Edinburgh Grey / Scottish Enlightenment (1711–1776)
+   ============================================================ */
+
+.hume-tag {
+    color: #3E5368;
+    border-color: rgba(62, 83, 104, 0.25);
+}
+.hume-rule {
+    background: linear-gradient(90deg, #3E5368, #7A9BAF, transparent);
+}
+.hume-dot { background: #3E5368; }
+
+.works-section#hume-section .card-philosopher-badge {
+    background: rgba(62, 83, 104, 0.10);
+    color: #3E5368;
+    border-color: rgba(62, 83, 104, 0.25);
+}
+.works-section#hume-section .card[data-philosopher="hume"]:hover {
+    border-top-color: #3E5368;
+    box-shadow: 0 8px 32px rgba(62, 83, 104, 0.12);
+}
+.filter-tab[data-filter="hume"] .filter-dot { background: #3E5368; }
+.filter-tab[data-filter="hume"].active,
+.filter-tab[data-filter="hume"]:hover {
+    color: #3E5368;
+    border-color: rgba(62, 83, 104, 0.35);
+}
+.modal-header.modal-philosopher-hume { border-top-color: #3E5368; }
+
+@media (prefers-color-scheme: dark) {
+    .hume-tag { color: #8CAFC4; border-color: rgba(140, 175, 196, 0.20); }
+    .hume-rule { background: linear-gradient(90deg, #8CAFC4, #B5D0E0, transparent); }
+    .hume-dot { background: #8CAFC4; }
+    .filter-tab[data-filter="hume"] .filter-dot { background: #8CAFC4; }
+    .filter-tab[data-filter="hume"].active,
+    .filter-tab[data-filter="hume"]:hover { color: #8CAFC4; border-color: rgba(140,175,196,0.35); }
+    .modal-header.modal-philosopher-hume { border-top-color: #8CAFC4; }
+}
