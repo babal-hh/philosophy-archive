@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Concept Index \u2014 The Academy &amp; The Lyceum</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<style>
+  .ci-hero { padding:80px 0 48px; border-bottom:1px solid var(--border); }
+  .ci-hero .container { max-width:820px; }
+  .ci-back { font-family:var(--font-mono);font-size:0.7rem;letter-spacing:0.1em;color:var(--text-muted);text-decoration:none;margin-bottom:32px;display:inline-block;transition:color 0.2s; }
+  .ci-back:hover { color:var(--text); }
+  .ci-title { font-family:var(--font-heading);font-size:clamp(2rem,4vw,3.2rem);font-weight:300;color:var(--text);margin-bottom:8px; }
+  .ci-subtitle { font-family:var(--font-body);font-size:0.95rem;font-style:italic;color:var(--text-secondary);line-height:1.7;margin-bottom:28px; }
+  .ci-controls { display:flex;gap:12px;flex-wrap:wrap;align-items:center; }
+  .ci-search {
+    flex:1;min-width:200px;max-width:400px;
+    font-family:var(--font-body);font-size:0.9rem;
+    padding:10px 16px;
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    background:var(--bg);
+    color:var(--text);
+    outline:none;transition:border-color 0.2s;
+  }
+  .ci-search:focus { border-color:var(--gold); }
+  .ci-filter-phil {
+    font-family:var(--font-mono);font-size:0.68rem;letter-spacing:0.08em;
+    padding:9px 14px;
+    border:1px solid var(--border);border-radius:var(--radius);
+    background:var(--bg);color:var(--text-secondary);cursor:pointer;
+    transition:all 0.2s;
+  }
+  .ci-filter-phil.active,.ci-filter-phil:hover { border-color:var(--gold);color:var(--gold); }
+  .ci-stats { font-family:var(--font-mono);font-size:0.68rem;letter-spacing:0.06em;color:var(--text-muted);padding:4px 0; }
+  .ci-body { padding:48px 0 80px; }
+  .ci-body .container { max-width:820px; }
+  .ci-concept-list { list-style:none;padding:0;margin:0; }
+  .ci-concept-item {
+    padding:18px 0;
+    border-bottom:1px solid var(--border);
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:8px 20px;
+    align-items:start;
+    cursor:pointer;
+    transition:background 0.15s;
+  }
+  .ci-concept-item:hover { background:var(--bg-secondary);padding-left:10px;margin-left:-10px;padding-right:10px; }
+  .ci-concept-term {
+    font-family:var(--font-heading);font-size:0.98rem;font-weight:700;font-style:italic;
+    color:var(--text);line-height:1.3;
+  }
+  .ci-concept-desc {
+    font-family:var(--font-body);font-size:0.845rem;color:var(--text-secondary);
+    line-height:1.72;grid-column:1;margin-top:4px;
+  }
+  .ci-concept-works { grid-column:2;grid-row:1/3;display:flex;flex-direction:column;gap:4px;align-items:flex-end; }
+  .ci-concept-tag {
+    font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.08em;
+    padding:3px 8px;border-radius:3px;
+    border:1px solid var(--border);color:var(--text-muted);
+    white-space:nowrap;cursor:pointer;transition:all 0.15s;
+  }
+  .ci-concept-tag:hover { border-color:var(--gold);color:var(--gold); }
+  .ci-empty { padding:80px 0;text-align:center;font-family:var(--font-heading);font-size:1.2rem;font-style:italic;color:var(--text-muted); }
+  .ci-loading { padding:60px 0;text-align:center;font-family:var(--font-mono);font-size:0.8rem;color:var(--text-muted);letter-spacing:0.08em; }
+</style>
+</head>
+<body>
+<nav class="navbar" role="navigation">
+  <div class="nav-container">
+    <a href="index.html" class="nav-logo">The Academy &amp; The Lyceum</a>
+    <div class="nav-actions">
+      <button class="nav-btn theme-toggle" id="themeToggle" aria-label="Toggle theme">
+        <span class="theme-icon-dark">Moon</span>
+        <span class="theme-icon-light">Sun</span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<section class="ci-hero">
+  <div class="container">
+    <a href="index.html" class="ci-back">&larr; Back to archive</a>
+    <h1 class="ci-title">Concept Index</h1>
+    <p class="ci-subtitle">Every named concept across all works in the archive \u2014 searchable, filterable by philosopher, and linked back to the work that defines it.</p>
+    <div class="ci-controls">
+      <input type="text" class="ci-search" id="ciSearch" placeholder="Search concepts\u2026" autocomplete="off" spellcheck="false">
+      <div id="ciPhilFilters" style="display:flex;gap:8px;flex-wrap:wrap;"></div>
+    </div>
+    <p class="ci-stats" id="ciStats"></p>
+  </div>
+</section>
+
+<section class="ci-body">
+  <div class="container">
+    <div class="ci-loading" id="ciLoading">Loading concepts\u2026</div>
+    <ul class="ci-concept-list" id="ciList"></ul>
+    <div class="ci-empty" id="ciEmpty" style="display:none;">No concepts match your search.</div>
+  </div>
+</section>
+
+<!-- Load all data files -->
+<script src="js/data.js"></script>
+<script src="js/data-01.js"></script><script src="js/data-02.js"></script>
+<script src="js/data-03.js"></script><script src="js/data-04.js"></script>
+<script src="js/data-05.js"></script><script src="js/data-06.js"></script>
+<script src="js/data-07.js"></script><script src="js/data-08.js"></script>
+<script src="js/data-09.js"></script><script src="js/data-10.js"></script>
+<script src="js/data-11a.js"></script><script src="js/data-11b.js"></script>
+<script src="js/data-11c.js"></script><script src="js/data-11d.js"></script>
+<script src="js/data-11e.js"></script>
+<script src="js/data-12a.js"></script><script src="js/data-12b.js"></script>
+<script src="js/data-12c.js"></script><script src="js/data-12d.js"></script>
+<script src="js/data-12e.js"></script>
+<script src="js/data-13a.js"></script><script src="js/data-13b.js"></script>
+<script src="js/data-13c.js"></script><script src="js/data-13d.js"></script>
+<script src="js/data-13e.js"></script>
+<script src="js/data-14a.js"></script><script src="js/data-14b.js"></script>
+<script src="js/data-14c.js"></script><script src="js/data-14d.js"></script>
+<script src="js/data-14e.js"></script>
+<script src="js/data-15a.js"></script><script src="js/data-15b.js"></script>
+<script src="js/data-15c.js"></script><script src="js/data-15d.js"></script>
+<script src="js/data-15e.js"></script>
+<script src="js/data-16a.js"></script><script src="js/data-16b.js"></script>
+<script src="js/data-16c.js"></script><script src="js/data-16d.js"></script>
+<script src="js/data-16e.js"></script>
+<script src="js/data-17a.js"></script><script src="js/data-17b.js"></script>
+<script src="js/data-17c.js"></script><script src="js/data-17d.js"></script>
+<script src="js/data-18a.js"></script><script src="js/data-18b.js"></script>
+<script src="js/data-18c.js"></script><script src="js/data-18d.js"></script>
+<script src="js/data-19a.js"></script><script src="js/data-19b.js"></script>
+<script src="js/data-19c.js"></script><script src="js/data-19d.js"></script>
+<script src="js/data-19e.js"></script>
+<script src="js/data-20a.js"></script><script src="js/data-20b.js"></script>
+<script src="js/data-20c.js"></script><script src="js/data-20d.js"></script>
+<script src="js/data-20e.js"></script>
+<script src="js/data-21a.js"></script><script src="js/data-21b.js"></script>
+<script src="js/data-21c.js"></script><script src="js/data-21d.js"></script>
+<script src="js/data-21e.js"></script>
+<script src="js/data-22a.js"></script><script src="js/data-22b.js"></script>
+<script src="js/data-22c.js"></script><script src="js/data-22d.js"></script>
+<script src="js/data-22e.js"></script>
+<script src="js/philosopher-bios.js"></script>
+<script>
+(function(){
+  // Theme
+  var saved = localStorage.getItem('theme') || 'light';
+  if (saved === 'dark') document.documentElement.setAttribute('data-theme','dark');
+  document.getElementById('themeToggle').addEventListener('click', function(){
+    var c = document.documentElement.getAttribute('data-theme')||'light';
+    var n = c==='dark'?'light':'dark';
+    document.documentElement.setAttribute('data-theme',n);
+    localStorage.setItem('theme',n);
+  });
+
+  var PHIL_NAMES = {
+    plato:'Plato', aristotle:'Aristotle', descartes:'Descartes',
+    spinoza:'Spinoza', leibniz:'Leibniz', locke:'Locke',
+    berkeley:'Berkeley', hume:'Hume', kant:'Kant',
+    fichte:'Fichte', schelling:'Schelling', hegel:'Hegel',
+    schopenhauer:'Schopenhauer', kierkegaard:'Kierkegaard',
+    marx:'Marx & Engels', nietzsche:'Nietzsche'
+  };
+  function philName(p){ return PHIL_NAMES[p]||(p.charAt(0).toUpperCase()+p.slice(1)); }
+
+  var works = window.WORKS || [];
+
+  // Build concept index: [{term, desc, work, philosopher}]
+  var concepts = [];
+  works.forEach(function(work){
+    if (!work.concepts || !work.concepts.length) return;
+    work.concepts.forEach(function(c){
+      var text = typeof c === 'string' ? c : (c.text || '');
+      if (!text) return;
+      // Parse "Term \u2014 description"
+      var dash = text.search(/\s[\u2014\u2013]\s/);
+      var term = dash !== -1 ? text.substring(0, dash).trim() : text.trim();
+      var desc = dash !== -1 ? text.substring(dash).replace(/^\s*[\u2014\u2013]\s*/,'').trim() : '';
+      concepts.push({ term:term, desc:desc, full:text, workId:work.id, workTitle:work.title, philosopher:work.philosopher });
+    });
+  });
+  // Sort alphabetically by term
+  concepts.sort(function(a,b){ return a.term.toLowerCase().localeCompare(b.term.toLowerCase()); });
+
+  var activePhi = 'all';
+  var searchQ = '';
+
+  // Build philosopher filter buttons
+  var philSet = {};
+  concepts.forEach(function(c){ philSet[c.philosopher] = true; });
+  var philFilters = document.getElementById('ciPhilFilters');
+  var allBtn = document.createElement('button');
+  allBtn.className = 'ci-filter-phil active';
+  allBtn.textContent = 'All';
+  allBtn.dataset.phil = 'all';
+  philFilters.appendChild(allBtn);
+  Object.keys(philSet).sort().forEach(function(p){
+    var btn = document.createElement('button');
+    btn.className = 'ci-filter-phil';
+    btn.textContent = philName(p);
+    btn.dataset.phil = p;
+    philFilters.appendChild(btn);
+  });
+  philFilters.addEventListener('click', function(e){
+    var btn = e.target.closest('.ci-filter-phil');
+    if (!btn) return;
+    activePhi = btn.dataset.phil;
+    philFilters.querySelectorAll('.ci-filter-phil').forEach(function(b){ b.classList.remove('active'); });
+    btn.classList.add('active');
+    render();
+  });
+
+  // Search
+  document.getElementById('ciSearch').addEventListener('input', function(){
+    searchQ = this.value.toLowerCase();
+    render();
+  });
+
+  function getPhilColor(p){
+    var bios = window.PHILOSOPHER_BIOS || {};
+    return bios[p] ? bios[p].color : 'var(--gold)';
+  }
+
+  function render(){
+    var q = searchQ;
+    var filtered = concepts.filter(function(c){
+      if (activePhi !== 'all' && c.philosopher !== activePhi) return false;
+      if (q && c.full.toLowerCase().indexOf(q) === -1 && c.workTitle.toLowerCase().indexOf(q) === -1) return false;
+      return true;
+    });
+    var list = document.getElementById('ciList');
+    var empty = document.getElementById('ciEmpty');
+    var stats = document.getElementById('ciStats');
+    document.getElementById('ciLoading').style.display = 'none';
+    stats.textContent = filtered.length + ' concepts' + (concepts.length !== filtered.length ? ' of ' + concepts.length : '') + ' across ' + works.length + ' works';
+    if (filtered.length === 0){
+      list.innerHTML = '';
+      empty.style.display = 'block';
+      return;
+    }
+    empty.style.display = 'none';
+    list.innerHTML = '';
+    filtered.forEach(function(c){
+      var li = document.createElement('li');
+      li.className = 'ci-concept-item';
+      var color = getPhilColor(c.philosopher);
+      // Build work tag
+      var tagHtml = '<span class="ci-concept-tag" data-work="'+c.workId+'" style="border-color:'+color+'22;color:'+color+'">'+
+        philName(c.philosopher)+'\u00a0\u00b7\u00a0'+c.workTitle+'</span>';
+      li.innerHTML =
+        '<span class="ci-concept-term">'+escHtml(c.term)+'</span>'+
+        '<div class="ci-concept-works">'+tagHtml+'</div>'+
+        (c.desc ? '<span class="ci-concept-desc">'+escHtml(c.desc)+'</span>' : '');
+      li.querySelector('.ci-concept-tag').addEventListener('click', function(e){
+        e.stopPropagation();
+        window.location.href = 'index.html#work='+c.workId;
+      });
+      li.addEventListener('click', function(){
+        window.location.href = 'index.html#work='+c.workId;
+      });
+      list.appendChild(li);
+    });
+  }
+
+  function escHtml(s){
+    return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  // Initial render
+  setTimeout(render, 50);
+})();
+</script>
+</body>
+</html>

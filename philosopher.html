@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Philosopher — The Academy &amp; The Lyceum</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<style>
+  .bio-hero {
+    padding: 80px 0 60px;
+    border-bottom: 1px solid var(--border);
+  }
+  .bio-hero .container { max-width: 760px; }
+  .bio-school-tag {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+    display: block;
+  }
+  .bio-name {
+    font-family: var(--font-heading);
+    font-size: clamp(2.4rem, 5vw, 3.8rem);
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--text);
+    margin-bottom: 8px;
+  }
+  .bio-dates {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
+    margin-bottom: 28px;
+  }
+  .bio-tagline {
+    font-family: var(--font-body);
+    font-size: 1.08rem;
+    font-style: italic;
+    color: var(--text-secondary);
+    line-height: 1.8;
+    max-width: 640px;
+    border-left: 3px solid var(--philosopher-color, var(--gold));
+    padding-left: 20px;
+  }
+  .bio-body {
+    padding: 64px 0;
+  }
+  .bio-body .container { max-width: 760px; }
+  .bio-section { margin-bottom: 52px; }
+  .bio-section-title {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+  .bio-text {
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    line-height: 1.92;
+    color: var(--text-secondary);
+  }
+  .bio-text p { margin-bottom: 1.2em; }
+  .bio-influences {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .bio-influence-chip {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.06em;
+    padding: 5px 12px;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    color: var(--text-secondary);
+    background: var(--bg-secondary);
+    transition: border-color 0.2s;
+  }
+  .bio-influence-chip:hover { border-color: var(--philosopher-color, var(--gold)); }
+  .bio-quote {
+    border-left: 3px solid var(--philosopher-color, var(--gold));
+    padding: 16px 24px;
+    margin: 0;
+    background: var(--bg-secondary);
+    border-radius: 0 4px 4px 0;
+  }
+  .bio-quote-text {
+    font-family: var(--font-heading);
+    font-size: 1.15rem;
+    font-style: italic;
+    color: var(--text);
+    line-height: 1.6;
+    margin-bottom: 8px;
+  }
+  .bio-quote-source {
+    font-family: var(--font-mono);
+    font-size: 0.67rem;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+  }
+  .bio-works-link {
+    display: inline-block;
+    margin-top: 40px;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--philosopher-color, var(--gold));
+    border: 1px solid var(--philosopher-color, var(--gold));
+    padding: 10px 24px;
+    border-radius: 3px;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .bio-works-link:hover {
+    background: var(--philosopher-color, var(--gold));
+    color: #fff;
+  }
+  .bio-back {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    text-decoration: none;
+    margin-bottom: 32px;
+    display: inline-block;
+    transition: color 0.2s;
+  }
+  .bio-back:hover { color: var(--text); }
+  .bio-not-found {
+    padding: 120px 0;
+    text-align: center;
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    color: var(--text-muted);
+  }
+</style>
+</head>
+<body>
+<nav class="navbar" role="navigation" aria-label="Main navigation">
+  <div class="nav-container">
+    <a href="index.html" class="nav-logo">The Academy &amp; The Lyceum</a>
+    <div class="nav-actions">
+      <button class="nav-btn theme-toggle" id="themeToggle" aria-label="Toggle theme">
+        <span class="theme-icon-dark">Moon</span>
+        <span class="theme-icon-light">Sun</span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<main id="bio-main">
+  <div class="bio-not-found" id="bioNotFound" style="display:none;">
+    Philosopher not found. <a href="index.html" style="color:var(--gold);">Return to archive.</a>
+  </div>
+  <div id="bioContent" style="display:none;">
+    <section class="bio-hero">
+      <div class="container">
+        <a href="index.html" class="bio-back" id="bioBack">&larr; Back to archive</a>
+        <span class="bio-school-tag" id="bioSchool"></span>
+        <h1 class="bio-name" id="bioName"></h1>
+        <p class="bio-dates" id="bioDates"></p>
+        <p class="bio-tagline" id="bioTagline"></p>
+      </div>
+    </section>
+    <section class="bio-body">
+      <div class="container">
+        <div class="bio-section">
+          <h2 class="bio-section-title">Life</h2>
+          <div class="bio-text" id="bioText"></div>
+        </div>
+        <div class="bio-section">
+          <h2 class="bio-section-title">Quote</h2>
+          <blockquote class="bio-quote">
+            <p class="bio-quote-text" id="bioQuote"></p>
+            <cite class="bio-quote-source" id="bioQuoteSource"></cite>
+          </blockquote>
+        </div>
+        <div class="bio-section" id="bioInfluencesSection">
+          <h2 class="bio-section-title">Influenced By</h2>
+          <div class="bio-influences" id="bioInfluences"></div>
+        </div>
+        <div class="bio-section" id="bioInfluencedSection">
+          <h2 class="bio-section-title">Influence On</h2>
+          <div class="bio-influences" id="bioInfluenced"></div>
+        </div>
+        <div class="bio-section">
+          <h2 class="bio-section-title">Position in Tradition</h2>
+          <p class="bio-text" id="bioTradition"></p>
+        </div>
+        <a href="index.html" class="bio-works-link" id="bioWorksLink">&rarr; View Works</a>
+      </div>
+    </section>
+  </div>
+</main>
+
+<script src="js/philosopher-bios.js"></script>
+<script>
+(function(){
+  var params = new URLSearchParams(window.location.search);
+  var key = (params.get('p') || '').toLowerCase();
+  var bio = window.PHILOSOPHER_BIOS && window.PHILOSOPHER_BIOS[key];
+  if (!bio) {
+    document.getElementById('bioNotFound').style.display = 'block';
+    document.title = 'Not Found \u2014 The Academy & The Lyceum';
+    return;
+  }
+  document.getElementById('bioContent').style.display = 'block';
+  document.title = bio.name + ' \u2014 The Academy & The Lyceum';
+  document.documentElement.style.setProperty('--philosopher-color', bio.color);
+  document.getElementById('bioSchool').textContent = bio.school + '\u00a0\u00b7\u00a0' + bio.location;
+  document.getElementById('bioName').textContent = bio.name;
+  document.getElementById('bioDates').textContent = bio.born + '\u2013' + bio.died;
+  document.getElementById('bioTagline').textContent = bio.tagline;
+  document.getElementById('bioQuote').textContent = '\u201c' + bio.quote + '\u201d';
+  document.getElementById('bioQuoteSource').textContent = bio.quoteSource;
+  document.getElementById('bioTradition').textContent = bio.tradition;
+  var worksLink = document.getElementById('bioWorksLink');
+  worksLink.href = 'index.html#' + key + '-section';
+  worksLink.textContent = '\u2192 View ' + bio.name.split(' ')[0] + '\u2019s Works';
+  // Bio text — split on \n\n into paragraphs
+  var textEl = document.getElementById('bioText');
+  bio.bio.split('\n\n').forEach(function(p){
+    var el = document.createElement('p');
+    el.textContent = p.trim();
+    textEl.appendChild(el);
+  });
+  // Influences
+  function renderChips(ids, containerId) {
+    var c = document.getElementById(containerId);
+    ids.forEach(function(name){
+      var chip = document.createElement('span');
+      chip.className = 'bio-influence-chip';
+      chip.textContent = name;
+      c.appendChild(chip);
+    });
+  }
+  renderChips(bio.influences || [], 'bioInfluences');
+  renderChips(bio.influenced || [], 'bioInfluenced');
+  // Theme toggle
+  var saved = localStorage.getItem('theme') || 'light';
+  if (saved === 'dark') document.documentElement.setAttribute('data-theme','dark');
+  document.getElementById('themeToggle').addEventListener('click', function(){
+    var current = document.documentElement.getAttribute('data-theme') || 'light';
+    var next = current === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    localStorage.setItem('theme', next);
+  });
+})();
+</script>
+</body>
+</html>
