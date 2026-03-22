@@ -3343,3 +3343,47 @@ mark.search-hl {
     }
     .modal-header.modal-philosopher-kierkegaard { border-top-color: #D4808E; }
 }
+
+
+/* ============================================================
+   MARX & ENGELS — Revolutionary Red / Capital Crimson (1818–1895)
+   ============================================================ */
+
+.marx-tag {
+    color: #8B1A1A;
+    border-color: rgba(139, 26, 26, 0.25);
+}
+.marx-rule {
+    background: linear-gradient(90deg, #8B1A1A, #C0392B, transparent);
+}
+.marx-dot { background: #8B1A1A; }
+
+.works-section#marx-section .card-philosopher-badge {
+    background: rgba(139, 26, 26, 0.10);
+    color: #8B1A1A;
+    border-color: rgba(139, 26, 26, 0.25);
+}
+.works-section#marx-section .card[data-philosopher="marx"]:hover {
+    border-top-color: #8B1A1A;
+    box-shadow: 0 8px 32px rgba(139, 26, 26, 0.12);
+}
+.filter-tab[data-filter="marx"] .filter-dot { background: #8B1A1A; }
+.filter-tab[data-filter="marx"].active,
+.filter-tab[data-filter="marx"]:hover {
+    color: #8B1A1A;
+    border-color: rgba(139, 26, 26, 0.35);
+}
+.modal-header.modal-philosopher-marx { border-top-color: #8B1A1A; }
+
+@media (prefers-color-scheme: dark) {
+    .marx-tag { color: #E57373; border-color: rgba(229, 115, 115, 0.20); }
+    .marx-rule { background: linear-gradient(90deg, #E57373, #EF9A9A, transparent); }
+    .marx-dot { background: #E57373; }
+    .filter-tab[data-filter="marx"] .filter-dot { background: #E57373; }
+    .filter-tab[data-filter="marx"].active,
+    .filter-tab[data-filter="marx"]:hover {
+        color: #E57373;
+        border-color: rgba(229, 115, 115, 0.35);
+    }
+    .modal-header.modal-philosopher-marx { border-top-color: #E57373; }
+}
