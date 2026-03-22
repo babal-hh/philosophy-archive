@@ -3426,3 +3426,20 @@ mark.search-hl {
     --leibniz-border: rgba(123, 173, 196, 0.22);
     --leibniz-bg:     rgba(123, 173, 196, 0.06);
 }
+
+
+/* ================================================================
+   TIMELINE REDESIGN — allow script to override track layout
+   ================================================================ */
+
+/* Remove the flex that was collapsing absolutely-positioned nodes */
+.timeline-track {
+    display: block !important;
+    padding: 0 !important;
+}
+
+/* Give the container enough height for the new design */
+.timeline-container {
+    padding: 20px 0 32px !important;
+    min-height: 220px;
+}

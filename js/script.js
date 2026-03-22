@@ -474,140 +474,226 @@
     function renderTimeline() {
         if (!D.timelineTrack) return;
 
-        /* Which philosophers have works loaded? */
+        /* 1. Collect active philosophers */
         var present = {};
         W().forEach(function(w){ present[w.philosopher] = true; });
         var active = PHIL_TIMELINE.filter(function(p){ return present[p.id]; });
-        if (active.length === 0) { active = PHIL_TIMELINE; }
+        if (active.length === 0) active = PHIL_TIMELINE;
+        active = active.slice().sort(function(a,b){ return a.born - b.born; });
 
-        /* Sort chronologically by birth year */
-        active = active.slice().sort(function(a, b){ return a.born - b.born; });
-
-        /* Era bands — defined by index ranges in sorted order */
+        /* 2. Era definitions */
         var ERAS = [
-          { label:'Ancient Greece',  ids:['plato','aristotle'] },
-          { label:'Early Modern',    ids:['descartes','spinoza','locke','leibniz','berkeley'] },
-          { label:'Enlightenment',   ids:['hume','kant'] },
-          { label:'German Idealism', ids:['fichte','schelling','hegel','schopenhauer'] },
-          { label:'19th Century',    ids:['kierkegaard','marx','nietzsche'] }
+            { label:'Ancient Greece',  color:'rgba(107,76,154,0.07)',  ids:['plato','aristotle'] },
+            { label:'Early Modern',    color:'rgba(45,106,79,0.07)',   ids:['descartes','spinoza','locke','leibniz','berkeley'] },
+            { label:'Enlightenment',   color:'rgba(43,76,111,0.07)',   ids:['hume','kant'] },
+            { label:'German Idealism', color:'rgba(30,58,95,0.07)',    ids:['fichte','schelling','hegel','schopenhauer'] },
+            { label:'19th Century',    color:'rgba(107,39,55,0.07)',   ids:['kierkegaard','marx','nietzsche'] }
         ];
 
-        /* Track layout */
-        var N = active.length;
-        var PAD = 5;           /* % padding each side */
-        var USABLE = 100 - PAD * 2;
-        function nodeLeft(i){ return (PAD + (i / Math.max(N - 1, 1)) * USABLE).toFixed(2); }
+        /* 3. Reset track — override flex with block so absolute children work */
+        var track = D.timelineTrack;
+        var container = D.timelineContainer;
 
-        D.timelineTrack.style.position = 'relative';
-        D.timelineTrack.style.height   = '180px';
-        D.timelineTrack.innerHTML      = '';
+        /* Force the track to be a simple block of known width */
+        var NODE_W  = 110; /* px per philosopher slot */
+        var PAD     = 60;  /* px padding each side */
+        var totalW  = active.length * NODE_W + PAD * 2;
+        var DOT_TOP = 68;  /* px from top to dot centre */
 
-        /* Horizontal line */
-        var line = document.createElement('div');
-        line.style.cssText = 'position:absolute;top:64px;left:'+PAD+'%;right:'+PAD+'%;height:1px;background:var(--border);';
-        D.timelineTrack.appendChild(line);
+        track.innerHTML = '';
+        track.style.cssText = [
+            'display:block',
+            'position:relative',
+            'width:' + totalW + 'px',
+            'height:180px',
+            'padding:0',
+            'margin:0'
+        ].join(';');
 
-        /* Era background bands */
-        ERAS.forEach(function(era){
-            var indices = [];
-            active.forEach(function(p, i){ if (era.ids.indexOf(p.id) !== -1) indices.push(i); });
-            if (indices.length === 0) return;
-            var firstI = Math.min.apply(null, indices);
-            var lastI  = Math.max.apply(null, indices);
-            /* Extend band half a slot either side */
-            var step   = USABLE / Math.max(N - 1, 1);
-            var left   = Math.max(0, parseFloat(nodeLeft(firstI)) - step / 2);
-            var right  = Math.min(100, parseFloat(nodeLeft(lastI))  + step / 2);
-            var band   = document.createElement('div');
-            band.style.cssText = 'position:absolute;top:0;bottom:0;' +
-                'left:' + left.toFixed(2) + '%;width:' + (right - left).toFixed(2) + '%;' +
-                'background:rgba(154,120,64,0.04);pointer-events:none;' +
-                'border-left:1px solid rgba(154,120,64,0.10);';
-            var lbl = document.createElement('span');
-            lbl.style.cssText = 'position:absolute;bottom:6px;left:50%;' +
-                'transform:translateX(-50%);' +
-                'font-family:var(--font-mono);font-size:0.55rem;' +
-                'letter-spacing:0.1em;color:var(--text-muted);white-space:nowrap;';
-            lbl.textContent = era.label.toUpperCase();
-            band.appendChild(lbl);
-            D.timelineTrack.appendChild(band);
+        /* 4. Horizontal rule */
+        var rule = document.createElement('div');
+        rule.style.cssText = [
+            'position:absolute',
+            'top:' + DOT_TOP + 'px',
+            'left:' + PAD + 'px',
+            'right:' + PAD + 'px',
+            'height:1px',
+            'background:var(--border)'
+        ].join(';');
+        track.appendChild(rule);
+
+        /* 5. Era bands */
+        active.forEach(function(phil, i){
+            var era = null;
+            ERAS.forEach(function(e){ if (e.ids.indexOf(phil.id) !== -1) era = e; });
+            if (!era) return;
+
+            /* Find the span of this era */
+            var firstI = active.length, lastI = -1;
+            active.forEach(function(p2, j){
+                if (era.ids.indexOf(p2.id) !== -1){ firstI = Math.min(firstI, j); lastI = Math.max(lastI, j); }
+            });
+            if (i !== firstI) return; /* Only draw once per era */
+
+            var left  = PAD + firstI * NODE_W - NODE_W * 0.3;
+            var width = (lastI - firstI + 1) * NODE_W + NODE_W * 0.6;
+
+            var band = document.createElement('div');
+            band.style.cssText = [
+                'position:absolute',
+                'top:0',
+                'bottom:0',
+                'left:' + left + 'px',
+                'width:' + width + 'px',
+                'background:' + era.color,
+                'pointer-events:none',
+                'border-radius:4px'
+            ].join(';');
+            track.appendChild(band);
+
+            /* Era label at bottom of band */
+            var eraLbl = document.createElement('div');
+            eraLbl.textContent = era.label.toUpperCase();
+            eraLbl.style.cssText = [
+                'position:absolute',
+                'bottom:10px',
+                'left:0',
+                'right:0',
+                'text-align:center',
+                'font-family:var(--font-mono)',
+                'font-size:0.52rem',
+                'letter-spacing:0.12em',
+                'color:var(--text-muted)',
+                'opacity:0.7',
+                'pointer-events:none',
+                'white-space:nowrap'
+            ].join(';');
+            band.appendChild(eraLbl);
         });
 
-        /* Philosopher nodes — evenly spaced */
+        /* 6. Philosopher nodes */
         active.forEach(function(phil, i){
+            var cx = PAD + i * NODE_W + NODE_W / 2; /* centre x */
+
             var node = document.createElement('div');
-            node.style.cssText = 'position:absolute;left:'+nodeLeft(i)+'%;top:0;' +
-                'transform:translateX(-50%);' +
-                'display:flex;flex-direction:column;align-items:center;' +
-                'cursor:pointer;width:90px;transition:transform 0.18s;';
             node.setAttribute('role','button');
             node.setAttribute('tabindex','0');
-            node.setAttribute('aria-label', phil.name + ' ' +
-                (phil.born < 0 ? Math.abs(phil.born)+'BC' : phil.born+'AD'));
+            node.setAttribute('aria-label', phil.name);
+            node.style.cssText = [
+                'position:absolute',
+                'left:' + (cx - 50) + 'px',
+                'top:0',
+                'width:100px',
+                'height:180px',
+                'display:flex',
+                'flex-direction:column',
+                'align-items:center',
+                'cursor:pointer',
+                'transition:transform 0.18s ease'
+            ].join(';');
 
-            /* Date label */
-            var dateEl = document.createElement('span');
-            dateEl.style.cssText = 'font-family:var(--font-mono);font-size:0.58rem;' +
-                'color:var(--gold);letter-spacing:0.06em;margin-bottom:8px;white-space:nowrap;';
-            dateEl.textContent = phil.born < 0 ? Math.abs(phil.born)+' BC' : phil.born;
-            node.appendChild(dateEl);
+            /* Birth year */
+            var yr = document.createElement('div');
+            yr.textContent = phil.born < 0 ? Math.abs(phil.born) + ' BC' : phil.born + ' AD';
+            yr.style.cssText = [
+                'position:absolute',
+                'top:' + (DOT_TOP - 34) + 'px',
+                'left:0',
+                'right:0',
+                'text-align:center',
+                'font-family:var(--font-mono)',
+                'font-size:0.56rem',
+                'letter-spacing:0.08em',
+                'color:var(--gold)',
+                'white-space:nowrap'
+            ].join(';');
+            node.appendChild(yr);
+
+            /* Connector tick from rule to dot */
+            var tick = document.createElement('div');
+            tick.style.cssText = [
+                'position:absolute',
+                'top:' + (DOT_TOP - 8) + 'px',
+                'left:50%',
+                'width:1px',
+                'height:16px',
+                'background:' + phil.color,
+                'opacity:0.4',
+                'transform:translateX(-50%)'
+            ].join(';');
+            node.appendChild(tick);
 
             /* Dot */
             var dot = document.createElement('div');
-            dot.style.cssText = 'width:10px;height:10px;border-radius:50%;' +
-                'background:'+phil.color+';border:2px solid var(--bg);' +
-                'margin-bottom:8px;z-index:2;flex-shrink:0;' +
-                'transition:transform 0.18s,box-shadow 0.18s;';
+            dot.style.cssText = [
+                'position:absolute',
+                'top:' + (DOT_TOP - 5) + 'px',
+                'left:50%',
+                'width:10px',
+                'height:10px',
+                'border-radius:50%',
+                'background:' + phil.color,
+                'border:2px solid var(--bg)',
+                'transform:translateX(-50%)',
+                'transition:transform 0.18s,box-shadow 0.18s',
+                'z-index:2'
+            ].join(';');
             node.appendChild(dot);
 
             /* Name */
-            var nameEl = document.createElement('span');
-            nameEl.style.cssText = 'font-family:var(--font-heading);font-size:0.78rem;' +
-                'font-weight:600;text-align:center;color:var(--text);' +
-                'line-height:1.2;max-width:86px;';
-            nameEl.textContent = phil.name;
-            node.appendChild(nameEl);
+            var nm = document.createElement('div');
+            nm.textContent = phil.name;
+            nm.style.cssText = [
+                'position:absolute',
+                'top:' + (DOT_TOP + 14) + 'px',
+                'left:0',
+                'right:0',
+                'text-align:center',
+                'font-family:var(--font-heading)',
+                'font-size:0.8rem',
+                'font-weight:600',
+                'color:var(--text)',
+                'line-height:1.25',
+                'padding:0 4px'
+            ].join(';');
+            node.appendChild(nm);
 
             /* Hover */
             node.addEventListener('mouseenter', function(){
-                dot.style.transform  = 'scale(1.55)';
-                dot.style.boxShadow  = '0 0 0 4px '+phil.color+'28';
-                node.style.transform = 'translateX(-50%) translateY(-4px)';
+                dot.style.transform   = 'translateX(-50%) scale(1.7)';
+                dot.style.boxShadow   = '0 0 0 4px ' + phil.color + '30';
+                node.style.transform  = 'translateY(-4px)';
+                nm.style.color        = phil.color;
             });
             node.addEventListener('mouseleave', function(){
-                dot.style.transform  = '';
+                dot.style.transform  = 'translateX(-50%)';
                 dot.style.boxShadow  = '';
-                node.style.transform = 'translateX(-50%)';
+                node.style.transform = '';
+                nm.style.color       = 'var(--text)';
             });
 
-            /* Click: filter + scroll to section */
-            function goToPhil(){
-                var tab = document.querySelector('[data-filter="'+phil.id+'"]');
+            /* Click */
+            node.addEventListener('click', function(){
+                var tab = document.querySelector('[data-filter="' + phil.id + '"]');
                 if (tab) tab.click();
-                var sec = document.getElementById(phil.id+'-section');
+                var sec = document.getElementById(phil.id + '-section');
                 if (sec) sec.scrollIntoView({behavior:'smooth',block:'start'});
-            }
-            node.addEventListener('click', goToPhil);
+            });
             node.addEventListener('keydown', function(e){
-                if (e.key==='Enter'||e.key===' '){ e.preventDefault(); goToPhil(); }
+                if (e.key==='Enter'||e.key===' '){ e.preventDefault(); node.click(); }
             });
 
-            D.timelineTrack.appendChild(node);
+            track.appendChild(node);
         });
 
-        /* Era label: update to show hovered / scrolled era */
-        if (D.timelineContainer) {
-            D.timelineContainer.addEventListener('scroll', function(){
-                var ratio = D.timelineContainer.scrollLeft /
-                    (D.timelineContainer.scrollWidth - D.timelineContainer.clientWidth || 1);
-                var idx   = Math.round(ratio * (active.length - 1));
-                var phil  = active[Math.min(idx, active.length - 1)];
+        /* 7. Era label update on scroll */
+        if (container) {
+            container.addEventListener('scroll', function(){
+                var ratio = container.scrollLeft / Math.max(1, container.scrollWidth - container.clientWidth);
+                var idx   = Math.min(active.length - 1, Math.round(ratio * (active.length - 1)));
+                var phil  = active[idx];
                 var lbl   = 'Western Philosophy';
-                if (phil) {
-                    ERAS.forEach(function(e){
-                        if (e.ids.indexOf(phil.id) !== -1) lbl = e.label;
-                    });
-                }
+                ERAS.forEach(function(e){ if (e.ids.indexOf(phil.id) !== -1) lbl = e.label; });
                 if (D.timelineEra) D.timelineEra.textContent = lbl;
             });
         }
