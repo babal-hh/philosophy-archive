@@ -224,4 +224,48 @@ window.PHILOSOPHER_BIOS = {
     quote: 'God is dead. God remains dead. And we have killed him.',
     quoteSource: 'The Gay Science, \u00a7125'
   }
+  fichte: {
+    name: 'Johann Gottlieb Fichte',
+    born: '1762', died: '1814', birthYear: 1762,
+    location: 'Rammenau / Jena / Berlin',
+    school: 'German Idealism',
+    color: '#4A5568',
+    tagline: 'The philosopher who abolished the thing-in-itself, made the self the ground of all reality, and ended his career calling Germany to a national awakening — the indispensable, underrated bridge between Kant and Hegel.',
+    bio: 'Johann Gottlieb Fichte was born on 19 May 1762 in Rammenau, Saxony, the son of a ribbon-weaver. His early life was marked by poverty and intellectual precocity: a local nobleman, struck by the child’s ability to recite a Sunday sermon from memory, sponsored his education at the famous Schulpforta school and the University of Jena. He struggled for years as a private tutor, living in obscurity, until a chance encounter with Kant’s critical philosophy at twenty-six transformed the course of his life.
+
+In 1792, Fichte travelled to Königsberg to meet Kant. Finding him unavailable, he composed in five weeks a manuscript later published as the Critique of All Revelation — applying Kant’s critical method to religion so successfully that it was initially published anonymously and mistaken by reviewers for an unpublished work of Kant himself. Kant publicly corrected the error and identified the real author: Fichte’s reputation was instantly established.
+
+He was appointed to the chair of philosophy at Jena in 1794, where he developed the Wissenschaftslehre (Doctrine of Science), his systematic reformulation of Kant. The central move was radical: Kant had retained the thing-in-itself — the unknown, unknowable cause of our sensations. Fichte eliminated it entirely. If the thing-in-itself is unknowable, it does no philosophical work. The sole ground of all reality must be the absolute I — an infinite, self-positing activity of consciousness that produces both itself and its opposite (the not-I, the world of objects) as the necessary conditions for freedom and moral striving.
+
+In 1799 he was accused of atheism for an essay identifying God with the moral world-order and dismissed from Jena. He moved to Berlin, where he lived as a freelance lecturer and writer, deepening the social and political dimensions of his philosophy. His Addresses to the German Nation (1808), delivered during the French occupation of Berlin, called for a regeneration of Germany through education — one of the founding texts of German nationalism. He died on 27 January 1814, of typhus contracted from his wife, who was nursing Prussian soldiers wounded in the Wars of Liberation he had helped inspire.',
+    influences: ['Kant', 'Spinoza', 'Rousseau', 'Reinhold'],
+    influenced: ['Schelling', 'Hegel', 'Schleiermacher', 'Novalis', 'Marx', 'Gentile'],
+    keyWorks: ['wissenschaftslehre', 'vocation-of-man', 'addresses-german-nation', 'science-of-rights'],
+    tradition: 'The indispensable bridge between Kant and Hegel; originator of absolute idealism and the activist, self-positing conception of the subject that shaped existentialism and Marxism alike.',
+    quote: 'The kind of philosophy one chooses depends on the kind of person one is.',
+    quoteSource: 'First Introduction to the Wissenschaftslehre (1797)'
+  },
+  schelling: {
+    name: 'F.W.J. Schelling',
+    born: '1775', died: '1854', birthYear: 1775,
+    location: 'Württemberg / Jena / Munich / Berlin',
+    school: 'German Idealism',
+    color: '#553C7B',
+    tagline: 'The philosopher of nature and freedom — who restored the natural world to philosophical dignity, confronted the reality of evil at the ground of existence, and outlived his own fame by forty years.',
+    bio: 'Friedrich Wilhelm Joseph Schelling was born on 27 January 1775 in Leonberg, Württemberg, the son of a Lutheran minister and Orientalist. A prodigy of extraordinary precocity, he entered the Tübingen Stift at fifteen, sharing rooms with Hegel (five years his senior) and the poet Hölderlin. The three room-mates were seized by revolutionary enthusiasm for the French Revolution and planted a liberty tree together — a moment emblematic of the generation that transformed German thought.
+
+Schelling published his first major philosophical works at seventeen and eighteen, immediately establishing himself as the most audacious systematiser in Fichte’s wake. Where Fichte had reduced nature to a mere obstacle for the moral will, Schelling argued that this was philosophically intolerable: nature cannot be a mere by-product of consciousness. His Philosophy of Nature (Naturphilosophie) proposed that nature is itself unconscious Spirit, productive and self-organising — visible Spirit, just as Spirit is invisible nature. This framework anticipated the dynamic and organismic conceptions of nature that would influence Romantic science, Goethe, and the vitalist tradition.
+
+Appointed to Jena in 1798 alongside Fichte, he became the philosophical hero of the Romantic movement. His System of Transcendental Idealism (1800) and the Lectures on the Philosophy of Art made him the philosopher of Romanticism, theorising the identity of nature and spirit, the role of aesthetic intuition, and the artwork as the sensible manifestation of the infinite. His friendship with Goethe and the Romantic circle at Jena — the Schlegel brothers, Tieck, Novalis — shaped the intellectual culture of the age.
+
+The philosophical crisis that transformed him came with his Philosophical Investigations into the Essence of Human Freedom (1809), the Freiheitsschrift — the most philosophically penetrating single text he wrote. Confronting the reality of evil, he argued that God contains within himself a dark ground, an abyss of will, from which freedom and evil alike become possible. This was a rupture with the optimistic idealism of his earlier systems and an anticipation of themes in Schopenhauer, Kierkegaard, and existentialism.
+
+After 1809, Schelling largely ceased publishing, working in silence on the Ages of the World and the Positive Philosophy that would occupy his late period. He was summoned to Berlin in 1841 to counter the influence of Hegel’s left-wing disciples — Marx and Kierkegaard both attended his opening lectures. He died in Bad Ragaz, Switzerland, on 20 August 1854.',
+    influences: ['Kant', 'Fichte', 'Spinoza', 'Plato', 'Böhme', 'Hölderlin'],
+    influenced: ['Hegel', 'Coleridge', 'Schopenhauer', 'Kierkegaard', 'Heidegger', 'Tillich', 'Baader'],
+    keyWorks: ['system-transcendental-idealism', 'philosophy-of-nature', 'freiheitsschrift', 'ages-of-the-world'],
+    tradition: 'The philosopher of nature and the dark ground of existence; the thinker who most deeply influenced Romanticism and whose late philosophy anticipated existentialism and depth psychology.',
+    quote: 'Nature is visible Spirit; Spirit is invisible Nature.',
+    quoteSource: 'Ideas for a Philosophy of Nature (1797), Introduction'
+  },
 };
