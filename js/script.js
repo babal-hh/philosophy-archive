@@ -473,23 +473,127 @@
     /* ── TIMELINE ── */
     function renderTimeline() {
         if (!D.timelineTrack) return;
-        var sorted = W().slice().sort(function(a,b){ return a.dateSort-b.dateSort; });
-        D.timelineTrack.innerHTML = '<div class="timeline-line" aria-hidden="true"></div>';
-        sorted.forEach(function(work){
+
+        /* Which philosophers have works loaded? */
+        var present = {};
+        W().forEach(function(w){ present[w.philosopher] = true; });
+        var active = PHIL_TIMELINE.filter(function(p){ return present[p.id]; });
+        if (active.length === 0) { active = PHIL_TIMELINE; }
+
+        /* Year range */
+        var minY = Math.min.apply(null, active.map(function(p){ return p.born; }));
+        var maxY = Math.max.apply(null, active.map(function(p){ return p.died; }));
+        var range = maxY - minY || 1;
+        function leftPct(y){ return ((y - minY) / range * 90 + 5).toFixed(2); }
+
+        D.timelineTrack.style.position = 'relative';
+        D.timelineTrack.style.height   = '160px';
+        D.timelineTrack.innerHTML      = '';
+
+        /* Horizontal line */
+        var line = document.createElement('div');
+        line.style.cssText = 'position:absolute;top:60px;left:5%;right:5%;height:1px;background:var(--border);';
+        D.timelineTrack.appendChild(line);
+
+        /* Era bands */
+        var ERAS = [
+          { label:'Ancient Greece',  start:-470, end:-280, color:'rgba(107,76,154,0.07)' },
+          { label:'Early Modern',    start:1580, end:1760, color:'rgba(45,125,111,0.06)'  },
+          { label:'German Idealism', start:1760, end:1840, color:'rgba(30,58,95,0.06)'    },
+          { label:'19th Century',    start:1840, end:1900, color:'rgba(139,26,26,0.06)'   }
+        ];
+        ERAS.forEach(function(era){
+            var s = Math.max(era.start, minY), e = Math.min(era.end, maxY);
+            if (s >= e) return;
+            var band = document.createElement('div');
+            var lp   = ((s - minY) / range * 90 + 5).toFixed(2);
+            var wp   = ((e - s)   / range * 90      ).toFixed(2);
+            band.style.cssText = 'position:absolute;top:0;bottom:0;left:'+lp+'%;width:'+wp+'%;background:'+era.color+';pointer-events:none;';
+            var lbl = document.createElement('span');
+            lbl.style.cssText = 'position:absolute;bottom:6px;left:50%;transform:translateX(-50%);font-family:var(--font-mono);font-size:0.58rem;letter-spacing:0.1em;color:var(--text-muted);white-space:nowrap;';
+            lbl.textContent = era.label.toUpperCase();
+            band.appendChild(lbl);
+            D.timelineTrack.appendChild(band);
+        });
+
+        /* Philosopher nodes */
+        active.forEach(function(phil){
             var node = document.createElement('div');
-            node.className = 'timeline-node '+work.philosopher+'-node';
-            var gi = W().indexOf(work);
-            node.setAttribute('role','button'); node.setAttribute('tabindex','0');
-            node.innerHTML =
-                '<span class="timeline-date">'+escHtml(work.date)+'</span>'+
-                '<div class="timeline-dot"></div>'+
-                '<span class="timeline-title">'+escHtml(work.title)+'</span>'+
-                '<span class="timeline-author">'+escHtml(philName(work.philosopher))+'</span>';
-            node.addEventListener('click', function(){ openModal(gi); });
-            node.addEventListener('keydown', function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); openModal(gi); } });
+            node.style.cssText = 'position:absolute;left:'+leftPct(phil.born)+'%;top:0;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;cursor:pointer;width:110px;transition:transform 0.2s;';
+            node.setAttribute('role','button');
+            node.setAttribute('tabindex','0');
+            node.setAttribute('aria-label', phil.name);
+
+            var dateEl = document.createElement('span');
+            dateEl.style.cssText = 'font-family:var(--font-mono);font-size:0.62rem;color:var(--gold);letter-spacing:0.08em;margin-bottom:10px;';
+            dateEl.textContent = phil.born < 0 ? Math.abs(phil.born)+'BC' : phil.born;
+            node.appendChild(dateEl);
+
+            var dot = document.createElement('div');
+            dot.style.cssText = 'width:11px;height:11px;border-radius:50%;background:'+phil.color+';border:2px solid var(--bg);margin-bottom:10px;z-index:2;transition:transform 0.2s,box-shadow 0.2s;';
+            node.appendChild(dot);
+
+            var nameEl = document.createElement('span');
+            nameEl.style.cssText = 'font-family:var(--font-heading);font-size:0.82rem;font-weight:600;text-align:center;color:var(--text);line-height:1.25;max-width:100px;';
+            nameEl.textContent = phil.name;
+            node.appendChild(nameEl);
+
+            node.addEventListener('mouseenter', function(){
+                dot.style.transform   = 'scale(1.5)';
+                dot.style.boxShadow   = '0 0 0 3px '+phil.color+'33';
+                node.style.transform  = 'translateX(-50%) translateY(-3px)';
+            });
+            node.addEventListener('mouseleave', function(){
+                dot.style.transform  = '';
+                dot.style.boxShadow  = '';
+                node.style.transform = 'translateX(-50%)';
+            });
+            function goToPhil(){
+                var tab = document.querySelector('[data-filter="'+phil.id+'"]');
+                if (tab) tab.click();
+                var sec = document.getElementById(phil.id+'-section');
+                if (sec) sec.scrollIntoView({behavior:'smooth',block:'start'});
+            }
+            node.addEventListener('click', goToPhil);
+            node.addEventListener('keydown', function(e){
+                if (e.key==='Enter'||e.key===' '){ e.preventDefault(); goToPhil(); }
+            });
             D.timelineTrack.appendChild(node);
         });
+
+        /* Era label update on scroll */
+        if (D.timelineContainer) {
+            D.timelineContainer.addEventListener('scroll', function(){
+                var ratio = D.timelineContainer.scrollLeft /
+                    (D.timelineContainer.scrollWidth - D.timelineContainer.clientWidth || 1);
+                var yr    = Math.round(minY + ratio * range);
+                var lbl   = 'Western Philosophy';
+                ERAS.forEach(function(e){ if (yr >= e.start && yr <= e.end) lbl = e.label; });
+                if (D.timelineEra) D.timelineEra.textContent = lbl;
+            });
+        }
     }
+
+
+    /* ── TIMELINE PHILOSOPHER DATA ── */
+    var PHIL_TIMELINE = [
+      { id:'plato',        name:'Plato',          born:-428, died:-348, color:'#6B4C9A' },
+      { id:'aristotle',    name:'Aristotle',       born:-384, died:-322, color:'#2D7D6F' },
+      { id:'descartes',    name:'Descartes',       born:1596, died:1650, color:'#2B4C8C' },
+      { id:'spinoza',      name:'Spinoza',         born:1632, died:1677, color:'#2D6A4F' },
+      { id:'locke',        name:'Locke',           born:1632, died:1704, color:'#8B6520' },
+      { id:'leibniz',      name:'Leibniz',         born:1646, died:1716, color:'#2E4057' },
+      { id:'berkeley',     name:'Berkeley',        born:1685, died:1753, color:'#8B6914' },
+      { id:'hume',         name:'Hume',            born:1711, died:1776, color:'#3E5368' },
+      { id:'kant',         name:'Kant',            born:1724, died:1804, color:'#2B4C6F' },
+      { id:'fichte',       name:'Fichte',          born:1762, died:1814, color:'#4A5568' },
+      { id:'schelling',    name:'Schelling',       born:1775, died:1854, color:'#553C7B' },
+      { id:'hegel',        name:'Hegel',           born:1770, died:1831, color:'#1E3A5F' },
+      { id:'schopenhauer', name:'Schopenhauer',    born:1788, died:1860, color:'#7B4F2E' },
+      { id:'kierkegaard',  name:'Kierkegaard',     born:1813, died:1855, color:'#6B2737' },
+      { id:'marx',         name:'Marx & Engels',   born:1818, died:1895, color:'#8B1A1A' },
+      { id:'nietzsche',    name:'Nietzsche',       born:1844, died:1900, color:'#C0392B' }
+    ];
 
     function scrollTL(dir) {
         if (D.timelineContainer) D.timelineContainer.scrollBy({left:dir*300,behavior:'smooth'});
