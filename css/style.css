@@ -3299,3 +3299,47 @@ mark.search-hl {
     .filter-tab[data-filter="hume"]:hover { color: #8CAFC4; border-color: rgba(140,175,196,0.35); }
     .modal-header.modal-philosopher-hume { border-top-color: #8CAFC4; }
 }
+
+
+/* ============================================================
+   KIERKEGAARD — Existential Burgundy / Copenhagen Dusk (1813–1855)
+   ============================================================ */
+
+.kierkegaard-tag {
+    color: #6B2737;
+    border-color: rgba(107, 39, 55, 0.25);
+}
+.kierkegaard-rule {
+    background: linear-gradient(90deg, #6B2737, #A05060, transparent);
+}
+.kierkegaard-dot { background: #6B2737; }
+
+.works-section#kierkegaard-section .card-philosopher-badge {
+    background: rgba(107, 39, 55, 0.10);
+    color: #6B2737;
+    border-color: rgba(107, 39, 55, 0.25);
+}
+.works-section#kierkegaard-section .card[data-philosopher="kierkegaard"]:hover {
+    border-top-color: #6B2737;
+    box-shadow: 0 8px 32px rgba(107, 39, 55, 0.12);
+}
+.filter-tab[data-filter="kierkegaard"] .filter-dot { background: #6B2737; }
+.filter-tab[data-filter="kierkegaard"].active,
+.filter-tab[data-filter="kierkegaard"]:hover {
+    color: #6B2737;
+    border-color: rgba(107, 39, 55, 0.35);
+}
+.modal-header.modal-philosopher-kierkegaard { border-top-color: #6B2737; }
+
+@media (prefers-color-scheme: dark) {
+    .kierkegaard-tag { color: #D4808E; border-color: rgba(212,128,142,0.20); }
+    .kierkegaard-rule { background: linear-gradient(90deg, #D4808E, #E8B0B8, transparent); }
+    .kierkegaard-dot { background: #D4808E; }
+    .filter-tab[data-filter="kierkegaard"] .filter-dot { background: #D4808E; }
+    .filter-tab[data-filter="kierkegaard"].active,
+    .filter-tab[data-filter="kierkegaard"]:hover {
+        color: #D4808E;
+        border-color: rgba(212,128,142,0.35);
+    }
+    .modal-header.modal-philosopher-kierkegaard { border-top-color: #D4808E; }
+}
