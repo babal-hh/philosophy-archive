@@ -3403,3 +3403,26 @@ mark.search-hl {
 .filter-bio-link:hover {
     border-bottom-color: currentColor;
 }
+
+
+/* ================================================================
+   LEIBNIZ COLOUR FIX — override earlier purple block
+   Canonical colour: Prussian Blue / Royal Indigo
+   ================================================================ */
+
+:root {
+    --leibniz:        #2E4057;
+    --leibniz-light:  #E8EEF5;
+    --leibniz-mid:    #5B8BA0;
+    --leibniz-pale:   #F2F6FA;
+    --leibniz-border: rgba(46, 64, 87, 0.20);
+    --leibniz-bg:     rgba(46, 64, 87, 0.04);
+}
+[data-theme="dark"] {
+    --leibniz:        #7BADC4;
+    --leibniz-light:  #162030;
+    --leibniz-mid:    #9BBFD4;
+    --leibniz-pale:   #0F1820;
+    --leibniz-border: rgba(123, 173, 196, 0.22);
+    --leibniz-bg:     rgba(123, 173, 196, 0.06);
+}

@@ -100,7 +100,7 @@
         spinoza:'Spinoza', leibniz:'Leibniz', locke:'Locke',
         berkeley:'Berkeley', kant:'Kant', fichte:'Fichte',
         schelling:'Schelling', hegel:'Hegel', schopenhauer:'Schopenhauer',
-        nietzsche:'Nietzsche', kierkegaard:'Kierkegaard', marx:'Marx'
+        nietzsche:'Nietzsche', kierkegaard:'Kierkegaard', marx:'Marx & Engels'
     };
     function philName(id) { return PHIL_NAMES[id] || cap(id); }
 
