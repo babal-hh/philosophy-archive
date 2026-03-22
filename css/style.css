@@ -3387,3 +3387,19 @@ mark.search-hl {
     }
     .modal-header.modal-philosopher-marx { border-top-color: #E57373; }
 }
+
+
+/* ================================================================
+   POLISH PATCH — filter tab bio links
+   ================================================================ */
+
+/* Bio link inside filter tab — inherits tab colour, no underline */
+.filter-bio-link {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px dashed transparent;
+    transition: border-color 0.2s;
+}
+.filter-bio-link:hover {
+    border-bottom-color: currentColor;
+}

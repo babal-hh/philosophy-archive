@@ -744,4 +744,22 @@
     }
 
     if (document.readyState==='loading') { document.addEventListener('DOMContentLoaded',init); } else { init(); }
+
+    /* ── Deep-link handler: index.html#work=some-id opens that modal ── */
+    function handleHash() {
+        var hash = window.location.hash;
+        if (!hash) return;
+        /* Format: #work=some-work-id */
+        var workMatch = hash.match(/^#work=(.+)$/);
+        if (workMatch) {
+            var targetId = decodeURIComponent(workMatch[1]);
+            var idx = W().findIndex ? W().findIndex(function(w){ return w.id === targetId; })
+                : (function(){ for(var i=0;i<W().length;i++){ if(W()[i].id===targetId) return i; } return -1; })();
+            if (idx !== -1) {
+                setTimeout(function(){ openModal(idx); }, 300);
+            }
+        }
+        /* Format: #plato-section etc — smooth scroll (already handled, but ensure) */
+    }
+    window.addEventListener('load', handleHash);
 })();
