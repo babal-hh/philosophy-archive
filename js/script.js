@@ -699,6 +699,31 @@
         }
     }
 
+
+    /* ── TIMELINE PHILOSOPHER DATA ────────────────────────────────
+       Defined here so renderTimeline() can reference it at call
+       time inside init(). Missing this causes a ReferenceError
+       that kills init() entirely.
+    ─────────────────────────────────────────────────────────────── */
+    var PHIL_TIMELINE = [
+      { id:'plato',        name:'Plato',          born:-428, died:-348, color:'#6B4C9A' },
+      { id:'aristotle',    name:'Aristotle',       born:-384, died:-322, color:'#2D7D6F' },
+      { id:'descartes',    name:'Descartes',       born:1596, died:1650, color:'#2B4C8C' },
+      { id:'spinoza',      name:'Spinoza',         born:1632, died:1677, color:'#2D6A4F' },
+      { id:'locke',        name:'Locke',           born:1632, died:1704, color:'#8B6520' },
+      { id:'leibniz',      name:'Leibniz',         born:1646, died:1716, color:'#2E4057' },
+      { id:'berkeley',     name:'Berkeley',        born:1685, died:1753, color:'#8B6914' },
+      { id:'hume',         name:'Hume',            born:1711, died:1776, color:'#3E5368' },
+      { id:'kant',         name:'Kant',            born:1724, died:1804, color:'#2B4C6F' },
+      { id:'fichte',       name:'Fichte',          born:1762, died:1814, color:'#4A5568' },
+      { id:'schelling',    name:'Schelling',       born:1775, died:1854, color:'#553C7B' },
+      { id:'hegel',        name:'Hegel',           born:1770, died:1831, color:'#1E3A5F' },
+      { id:'schopenhauer', name:'Schopenhauer',    born:1788, died:1860, color:'#7B4F2E' },
+      { id:'kierkegaard',  name:'Kierkegaard',     born:1813, died:1855, color:'#6B2737' },
+      { id:'marx',         name:'Marx \u0026 Engels', born:1818, died:1895, color:'#8B1A1A' },
+      { id:'nietzsche',    name:'Nietzsche',       born:1844, died:1900, color:'#C0392B' }
+    ];
+
     function scrollTL(dir) {
         if (D.timelineContainer) D.timelineContainer.scrollBy({left:dir*300,behavior:'smooth'});
     }
