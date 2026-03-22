@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A reference guide to the citation abbreviations used across The Academy &amp; The Lyceum archive &mdash; standard editions, translations, and classical numbering systems.">
+    <title>Abbreviations &amp; Citations | The Academy &amp; The Lyceum</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=JetBrains+Mono:wght@300;400;500&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        *, *::before, *::after { box-sizing: border-box; }
+
+        ::selection { background-color: rgba(166,138,76,0.15); color: #1A1A1A; }
+
+        .abbr-body {
+            margin: 0; padding: 0;
+            background-color: #FAF8F4;
+            color: #2C2C2C;
+            font-family: 'Libre Baskerville','Georgia',serif;
+            font-size: 15px;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ---- NAV ---- */
+        .abbr-nav {
+            display: flex; justify-content: space-between; align-items: center;
+            max-width: 1100px; margin: 0 auto; padding: 28px 40px;
+            border-bottom: 1px solid rgba(0,0,0,0.06);
+        }
+        .abbr-nav-title {
+            font-family: 'Cormorant Garamond','Georgia',serif;
+            font-size: 1.05rem; font-weight: 600; color: #1A1A1A;
+            letter-spacing: 0.5px; text-decoration: none;
+        }
+        .abbr-nav-title:hover { color: #A68A4C; }
+        .abbr-nav-links { display: flex; gap: 32px; list-style: none; margin: 0; padding: 0; }
+        .abbr-nav-links a {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px;
+            color: #888; text-decoration: none; transition: color 0.3s;
+        }
+        .abbr-nav-links a:hover, .abbr-nav-links a.active { color: #A68A4C; }
+
+        /* ---- HEADER ---- */
+        .abbr-header {
+            max-width: 860px; margin: 0 auto;
+            padding: 80px 40px 60px; text-align: center;
+        }
+        .abbr-header-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.65rem; text-transform: uppercase;
+            letter-spacing: 4px; color: #A68A4C; margin-bottom: 20px;
+        }
+        .abbr-header h1 {
+            font-family: 'Cormorant Garamond','Georgia',serif;
+            font-size: 2.8rem; font-weight: 300; color: #1A1A1A;
+            letter-spacing: 1px; margin: 0 0 16px; line-height: 1.2;
+        }
+        .abbr-header-sub {
+            font-family: 'Libre Baskerville','Georgia',serif;
+            font-size: 0.95rem; font-style: italic; color: #777;
+            max-width: 600px; margin: 0 auto; line-height: 1.7;
+        }
+        .abbr-header-line {
+            width: 60px; height: 1px; background: #A68A4C;
+            margin: 40px auto 0; opacity: 0.4;
+        }
+
+        /* ---- SEARCH ---- */
+        .abbr-search-wrap { max-width: 860px; margin: 0 auto; padding: 0 40px 36px; }
+        .abbr-search {
+            width: 100%; padding: 14px 20px;
+            font-family: 'Libre Baskerville','Georgia',serif;
+            font-size: 0.9rem; color: #2C2C2C;
+            background: #FFFFFF; border: 1px solid rgba(0,0,0,0.08);
+            border-radius: 2px; outline: none; transition: border-color 0.3s;
+        }
+        .abbr-search::placeholder { color: #BBB; font-style: italic; }
+        .abbr-search:focus { border-color: rgba(166,138,76,0.4); }
+
+        /* ---- CONTENT ---- */
+        .abbr-content { max-width: 860px; margin: 0 auto; padding: 0 40px 80px; }
+
+        /* ---- PHILOSOPHER GROUP ---- */
+        .abbr-group { margin-bottom: 60px; }
+        .abbr-group-header {
+            display: flex; align-items: baseline; gap: 16px;
+            padding-bottom: 14px;
+            border-bottom: 1px solid rgba(166,138,76,0.12);
+            margin-bottom: 24px;
+        }
+        .abbr-philosopher-name {
+            font-family: 'Cormorant Garamond','Georgia',serif;
+            font-size: 1.6rem; font-weight: 400; color: #1A1A1A;
+        }
+        .abbr-philosopher-dates {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.65rem; color: #AAA; letter-spacing: 1px;
+        }
+
+        /* ---- ABBREVIATION ENTRY ---- */
+        .abbr-table { width: 100%; border-collapse: collapse; }
+        .abbr-table tr { border-bottom: 1px solid rgba(0,0,0,0.04); }
+        .abbr-table tr:last-child { border-bottom: none; }
+        .abbr-table tr:hover td { background: rgba(166,138,76,0.03); }
+        .abbr-table td { padding: 12px 8px; vertical-align: top; }
+        .abbr-code {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.82rem; font-weight: 500;
+            color: #A68A4C; letter-spacing: 0.5px;
+            white-space: nowrap; width: 110px; min-width: 110px;
+        }
+        .abbr-stands-for {
+            font-family: 'Libre Baskerville','Georgia',serif;
+            font-size: 0.88rem; font-style: italic; color: #1A1A1A;
+            width: 280px; min-width: 200px;
+        }
+        .abbr-explanation {
+            font-family: 'Libre Baskerville','Georgia',serif;
+            font-size: 0.85rem; color: #555; line-height: 1.65;
+        }
+        .abbr-example {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.72rem; color: #999;
+            margin-top: 4px; display: block;
+        }
+
+        /* ---- INTRO NOTE ---- */
+        .abbr-intro {
+            max-width: 860px; margin: 0 auto;
+            padding: 0 40px 36px;
+        }
+        .abbr-intro-box {
+            background: rgba(166,138,76,0.04);
+            border: 1px solid rgba(166,138,76,0.12);
+            border-radius: 2px; padding: 20px 24px;
+        }
+        .abbr-intro-box p {
+            font-size: 0.87rem; color: #555; line-height: 1.75;
+            margin: 0 0 8px;
+        }
+        .abbr-intro-box p:last-child { margin: 0; }
+
+        /* ---- SECTION DIVIDER ---- */
+        .abbr-section-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.65rem; text-transform: uppercase; letter-spacing: 3px;
+            color: #A68A4C; margin: 52px 0 28px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(166,138,76,0.15);
+        }
+
+        /* ---- NO RESULTS ---- */
+        .abbr-no-results { display: none; text-align: center; padding: 60px 20px; }
+        .abbr-no-results p {
+            font-style: italic; color: #BBB; font-size: 0.9rem;
+        }
+
+        /* ---- BACK TO TOP ---- */
+        .abbr-back-top {
+            position: fixed; bottom: 36px; right: 36px;
+            width: 40px; height: 40px; background: #FAF8F4;
+            border: 1px solid rgba(0,0,0,0.1); border-radius: 2px;
+            display: flex; align-items: center; justify-content: center;
+            text-decoration: none; opacity: 0; visibility: hidden;
+            transition: opacity 0.4s, visibility 0.4s, border-color 0.3s; z-index: 100;
+        }
+        .abbr-back-top.visible { opacity: 1; visibility: visible; }
+        .abbr-back-top:hover { border-color: rgba(166,138,76,0.4); }
+        .abbr-back-top-arrow { font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; color: #A68A4C; line-height: 1; }
+
+        /* ---- FOOTER ---- */
+        .abbr-footer {
+            max-width: 860px; margin: 0 auto; padding: 40px;
+            border-top: 1px solid rgba(0,0,0,0.06); text-align: center;
+        }
+        .abbr-footer p {
+            font-family: 'JetBrains Mono', monospace; font-size: 0.65rem;
+            color: #999; letter-spacing: 1.5px; text-transform: uppercase; margin: 0;
+        }
+
+        @media (max-width: 768px) {
+            .abbr-nav { flex-direction: column; gap: 16px; padding: 20px 24px; }
+            .abbr-header { padding: 50px 24px 40px; }
+            .abbr-header h1 { font-size: 2rem; }
+            .abbr-search-wrap, .abbr-content, .abbr-intro { padding-left: 24px; padding-right: 24px; }
+            .abbr-table .abbr-stands-for { display: none; }
+            .abbr-code { width: 80px; min-width: 80px; }
+        }
+    </style>
+</head>
+<body class="abbr-body">
+
+    <nav class="abbr-nav">
+        <a href="index.html" class="abbr-nav-title">The Academy &amp; The Lyceum</a>
+        <ul class="abbr-nav-links">
+            <li><a href="index.html">Archive</a></li>
+            <li><a href="tradition.html">Tradition</a></li>
+            <li><a href="glossary.html">Glossary</a></li>
+            <li><a href="abbreviations.html" class="active">Abbreviations</a></li>
+        </ul>
+    </nav>
+
+    <header class="abbr-header">
+        <div class="abbr-header-label">Citation Reference</div>
+        <h1>Abbreviations</h1>
+        <p class="abbr-header-sub">
+            The standard editions, translations, and classical numbering systems
+            used throughout the archive&rsquo;s summaries, quotations,
+            and commentary.
+        </p>
+        <div class="abbr-header-line"></div>
+    </header>
+
+    <div class="abbr-intro">
+        <div class="abbr-intro-box">
+            <p>Citations in this archive follow the conventions of academic philosophy:
+            classical authors (Plato, Aristotle) are cited by the traditional numerical
+            systems that remain stable across all translations; modern authors are cited
+            by the standard critical editions in the original language, with the
+            translation abbreviation where applicable.</p>
+            <p>Where a citation appears as, e.g., <span style="font-family:'JetBrains Mono',monospace;font-size:0.82rem;color:#A68A4C">AT VII, 25; CSM II, 17</span>&mdash;
+            this means: Adam-Tannery edition, volume VII, page 25; Cottingham-Stoothoff-Murdoch
+            English translation, volume II, page 17.</p>
+        </div>
+    </div>
+
+    <div class="abbr-search-wrap">
+        <input type="text" class="abbr-search" id="abbrSearch"
+               placeholder="Search abbreviations, authors, or editions&hellip;">
+    </div>
+
+    <main class="abbr-content" id="abbrContent">
+
+        <div class="abbr-no-results" id="noResults">
+            <p>No abbreviations match your search.</p>
+        </div>
+
+        <!-- ======== CLASSICAL NUMBERING SYSTEMS ======== -->
+        <div class="abbr-section-label" id="section-classical">I &middot; Classical Numbering Systems</div>
+
+        <div class="abbr-group" data-search="stephanus plato works dialogues pages classical numbering">
+            <div class="abbr-group-header">
+                <span class="abbr-philosopher-name">Plato</span>
+                <span class="abbr-philosopher-dates">428&ndash;348 BC</span>
+            </div>
+            <table class="abbr-table">
+                <tr>
+                    <td class="abbr-code">Stephanus</td>
+                    <td class="abbr-stands-for"><em>Platonis Opera</em>, ed. H. Estienne (Stephanus)</td>
+                    <td class="abbr-explanation">
+                        The standard page-and-section references for Plato, dating from Henri Estienne&rsquo;s
+                        1578 edition. Every Plato translation in any language prints Stephanus numbers in
+                        the margins. The number refers to the page and section letter (a&ndash;e) of that
+                        edition.
+                        <span class="abbr-example">Example: <em>Republic</em> 505a &mdash; <em>Meno</em> 80d &mdash; <em>Phaedo</em> 118a</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="abbr-code">Apo.</td>
+                    <td class="abbr-stands-for"><em>Apology</em></td>
+                    <td class="abbr-explanation">Standard dialogue abbreviations are used in scholarly citations alongside Stephanus numbers.
+                        <span class="abbr-example">Other common abbreviations: <em>Rep.</em> (Republic), <em>Phd.</em> (Phaedo), <em>Sym.</em> (Symposium), <em>Tim.</em> (Timaeus), <em>Men.</em> (Meno), <em>Phdr.</em> (Phaedrus), <em>Tht.</em> (Theaetetus), <em>Parm.</em> (Parmenides), <em>Soph.</em> (Sophist), <em>Pol.</em> (Statesman), <em>Laws</em></span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="abbr-group" data-search="bekker aristotle numbering works treatises classical">
+            <div class="abbr-group-header">
+                <span class="abbr-philosopher-name">Aristotle</span>
+                <span class="abbr-philosopher-dates">384&ndash;322 BC</span>
+            </div>
+            <table class="abbr-table">
+                <tr>
+                    <td class="abbr-code">Bekker</td>
+                    <td class="abbr-stands-for"><em>Aristotelis Opera</em>, ed. I. Bekker (Berlin, 1831)</td>
+                    <td class="abbr-explanation">
+                        Immanuel Bekker&rsquo;s 1831 Berlin edition established the standard page-line
+                        references for Aristotle. Every modern translation prints Bekker numbers (page,
+                        column a or b, line) in the margins.
+                        <span class="abbr-example">Example: <em>NE</em> 1098a16 &mdash; <em>Phys.</em> 192b21 &mdash; <em>Met.</em> 1028b2</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="abbr-code">NE</td>
+                    <td class="abbr-stands-for"><em>Nicomachean Ethics</em></td>
+                    <td class="abbr-explanation">Standard Aristotelian treatise abbreviations.
+                        <span class="abbr-example">Other common: <em>Met.</em> (Metaphysics), <em>Phys.</em> (Physics), <em>DA</em> (De Anima / On the Soul), <em>Pol.</em> (Politics), <em>Poet.</em> (Poetics), <em>Rhet.</em> (Rhetoric), <em>Cat.</em> (Categories), <em>APo.</em> (Posterior Analytics), <em>APr.</em> (Prior Analytics), <em>DC</em> (De Caelo), <em>GA</em> (Generation of Animals), <em>PA</em> (Parts of Animals), <em>HA</em> (History of Animals), <em>EE</em> (Eudemian Ethics), <em>Protr.</em> (Protrepticus)</span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- ======== PRE-SOCRATICS ======== -->
+        <div class="abbr-section-label" id="section-presocratics">II &middot; Pre-Socratics &amp; Hellenistic Sources</div>
+
+        <div class="abbr-group" data-search="diels kranz presocratics fragments DK testimonia">
+            <div class="abbr-group-header">
+                <span class="abbr-philosopher-name">Pre-Socratics</span>
+                <span class="abbr-philosopher-dates">c. 624&ndash;400 BC</span>
+            </div>
+            <table class="abbr-table">
+                <tr>
+                    <td class="abbr-code">DK</td>
+                    <td class="abbr-stands-for">Diels-Kranz, <em>Die Fragmente der Vorsokratiker</em></td>
+                    <td class="abbr-explanation">
+                        Hermann Diels&rsquo;s 1903 collection of Pre-Socratic fragments and testimonies,
+                        revised by Walther Kranz (6th ed., 1951). The standard reference for all
+                        Pre-Socratic philosophers. Each philosopher is assigned a number; &ldquo;A&rdquo;
+                        fragments are testimonia (reports about the philosopher by others), &ldquo;B&rdquo;
+                        fragments are direct quotations.
+                        <span class="abbr-example">Example: DK 22 B30 = Heraclitus (no. 22), direct fragment no. 30 &mdash; DK 28 B1 = Parmenides, direct fragment no. 1 &mdash; DK 12 B1 = Anaximander, fragment no. 1</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="abbr-code">DL</td>
+                    <td class="abbr-stands-for">Diogenes La&euml;rtius, <em>Lives of the Eminent Philosophers</em></td>
+                    <td class="abbr-explanation">
+                        The primary ancient biographical source for Greek philosophers, written
+                        c. 3rd century AD. Cited by book and section number.
+                        <span class="abbr-example">Example: DL 9.8 = Book IX, section 8 (on Heraclitus)</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="abbr-code">SVF</td>
+                    <td class="abbr-stands-for">Von Arnim, <em>Stoicorum Veterum Fragmenta</em> (1903&ndash;05)</td>
+                    <td class="abbr-explanation">
+                        The standard collection of early Stoic fragments (Zeno, Cleanthes,
+                        Chrysippus and their school), assembled by Hans von Arnim. Four volumes;
+                        cited by fragment number.
+                        <span class="abbr-example">Example: SVF I, 45 = Zeno fragment 45 &mdash; SVF II, 836 = Chrysippus fragment 836</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="abbr-code">LS</td>
+                    <td class="abbr-stands-for">Long &amp; Sedley, <em>The Hellenistic Philosophers</em> (1987)</td>
+                    <td class="abbr-explanation">
+                        A. A. Long and D. N. Sedley&rsquo;s authoritative two-volume sourcebook for
+                        Stoic, Epicurean, and Sceptical philosophy. Vol. I contains translations;
+                        vol. II the original texts. Cited by section letter/number.
+                        <span class="abbr-example">Example: LS 28A = section 28, passage A (on Stoic theology)</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="abbr-code">PH</td>
+                    <td class="abbr-stands-for">Sextus Empiricus, <em>Outlines of Pyrrhonism</em> (<em>Pyrrhoniae Hypotyposes</em>)</td>
+                    <td class="abbr-explanation">
+                        The most complete surviving account of Pyrrhonian scepticism. Cited by
+                        book and section number.
+                        <span class="abbr-example">Example: PH I.29 = Book I, section 29</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="abbr-code">M</td>
+                    <td class="abbr-stands-for">Sextus Empiricus, <em>Against the Mathematicians</em> (<em>Adversus Mathematicos</em>)</td>
+                    <td class="abbr-explanation">
+                        Sextus&rsquo;s critique of every branch of dogmatic philosophy. Cited by
+                        book and section. Sometimes abbreviated <em>AM</em>.
+                        <span class="abbr-example">Example: M VII.65 = Book VII (Against the Logicians), section 65</span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- ======== DESCARTES ======== -->
+        <div class="abbr-section-label" id="section-modern-editions">III &middot; Modern Philosopher Standard Editions</div>
+
+        <div class="abbr-group" data-search="descartes AT CSM adam tannery cottingham meditations discourse">
+            <div class="abbr-group-header">
+                <span class="abbr-philosopher-name">Descartes</span>
+                <span class="abbr-philosopher-dates">1596&ndash;1650</span>
+            </div>
+            <table class="abbr-table">
+                <tr>
+                    <td class="abbr-code">AT</td>
+                    <td class="abbr-stands-for">Adam &amp; Tannery, <em>&OElig;uvres de Descartes</em> (Paris, 1897&ndash;1913; rev. 1964&ndash;76)</td>
+                    <td class="abbr-explanation">
+                        The standard critical edition of Descartes&rsquo;s complete works in French and
+                        Latin, 12 volumes. The reference used by all Descartes scholars worldwide.
+                        Cited as &ldquo;AT&rdquo; followed by the volume number (Roman) and page number (Arabic).
+                        <span class="abbr-example">Example: AT VII, 25 = volume VII, page 25 (Second Meditation) &mdash; AT VI, 32 = volume VI, page 32 (<em>Discourse</em> Part IV)</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="abbr-code">CSM</td>
+                    <td class="abbr-stands-for">Cottingham, Stoothoff &amp; Murdoch, <em>The Philosophical Writings of Descartes</em> (Cambridge, 1984&ndash;85)</td>
+                    <td class="abbr-explanation">
+                        The standard English translation of Descartes, 2 volumes (a third volume
+                        covering the correspondence, with A. Kenny, appeared in 1991). When a
+                        citation gives both AT and CSM references, AT is the original-language
+                        source and CSM is the English translation location.
+                        <span class="abbr-example">Example: AT VII, 25; CSM II, 17 &mdash; i.e. the passage is in Adam-Tannery vol. VII p. 25, translated in CSM vol. II p. 17</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="abbr-code">CSMK</td>
+                    <td class="abbr-stands-for">Cottingham, Stoothoff, Murdoch &amp; Kenny, vol. III (Correspondence)</td>
+                    <td class="abbr-explanation">
+                        Used specifically for citations from Descartes&rsquo;s letters.
+                        <span class="abbr-example">Example: CSMK III, 147 = Cottingham et al., vol. III, p. 147</span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- ======== SPINOZA ======== -->
+        <div class="abbr-group" data-search="spinoza ethics geometrical propositions parts demonstration">
+            <div class="abbr-group-header">
+                <span class="abbr-philosopher-name">Spinoza</span>
+                <span class="abbr-philosopher-dates">1632&ndash;1677</span>
+            </div>
+            <table class="abbr-table">
+                <tr>
+                    <td class="abbr-code">E</td>
+                    <td class="abbr-stands-for"><em>Ethica Ordine Geometrico Demonstrata</em> (Ethics)</td>
+                    <td class="abbr-explanation">
+                        Cited by part (I&ndash;V), then by the element type and number. The geometric
+                        structure means citations are highly precise and translation-independent.
+                        <span class="abbr-example">Abbreviations: <em>D</em> = Definition, <em>A</em> = Axiom, <em>P</em> = Proposition, <em>Dem.</em> = Demonstration, <em>C</em> = Corollary, <em>S</em> = Scholium, <em>Pref.</em> = Preface, <em>App.</em> = Appendix</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="abbr-code">E I P11</td>
+                    <td class="abbr-stands-for">Ethics, Part I, Proposition 11</td>
+                    <td class="abbr-explanation">
+                        Full citation format: Part number (Roman) + element type + element number.
+                        <span class="abbr-example">Example: E II P13S = Ethics II, Proposition 13, Scholium (on the body) &mdash; E IV Pref. = Ethics IV, Preface (&ldquo;Deus sive Natura&rdquo;)</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="abbr-code">TTP</td>
+                    <td class="abbr-stands-for"><em>Tractatus Theologico-Politicus</em> (1670)</td>
+                    <td class="abbr-explanation">
+                        Cited by chapter and paragraph, or by page in the Gebhardt critical edition
+                        (<em>Spinoza Opera</em>, Heidelberg, 1925), abbreviated <em>G</em>.
+                        <span class="abbr-example">Example: TTP ch. 7 &mdash; G III, 98</span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- ======== LEIBNIZ ======== -->
+        <div class="abbr-group" data-search="leibniz monadology GP gerhardt pbilosophischen schriften discourse">
+            <div class="abbr-group-header">
+                <span class="abbr-philosopher-name">Leibniz</span>
+                <span class="abbr-philosopher-dates">1646&ndash;1716</span>
+            </div>
+            <table class="abbr-table">
+                <tr>
+                    <td class="abbr-code">GP</td>
+                    <td class="abbr-stands-for">Gerhardt, <em>Die philosophischen Schriften von G. W. Leibniz</em> (Berlin, 1875&ndash;90)</td>
+                    <td class="abbr-explanation">
+                        The standard edition of Leibniz&rsquo;s philosophical writings, 7 volumes.
+                        Cited by volume (Roman) and page (Arabic).
+                        <span class="abbr-example">Example: GP II, 269 = volume II, page 269 (letter to De Volder)</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="abbr-code">A</td>
+                    <td class="abbr-stands-for"><em>Gottfried Wilhelm Leibniz: S&auml;mtliche Schriften und Briefe</em> (Akademie-Ausgabe)</td>
+                    <td class="abbr-explanation">
+                        The ongoing critical edition of all Leibniz&rsquo;s writings, published by the
+                        Berlin-Brandenburg and G&ouml;ttingen Academies of Sciences. Cited by series
+                        (Roman), volume (Roman), and page.
+                        <span class="abbr-example">Example: A VI, iv, 1529 = Series VI (philosophical writings), vol. iv, p. 1529</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="abbr-code">Mon.</td>
+                    <td class="abbr-stands-for"><em>Monadologie</em> (Monadology, 1714)</td>
+                    <td class="abbr-explanation">
+                        Cited by section number (&sect;). Other short Leibniz texts similarly cited.
+                        <span class="abbr-example">Example: Mon. &sect;7 &mdash; <em>DM</em> &sect;8 (Discourse on Metaphysics, section 8) &mdash; <em>PNG</em> &sect;3 (Principles of Nature and Grace)</span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- ======== LOCKE ======== -->
+        <div class="abbr-group" data-search="locke essay human understanding two treatises government nidditch">
+            <div class="abbr-group-header">
+                <span class="abbr-philosopher-name">Locke</span>
+                <span class="abbr-philosopher-dates">1632&ndash;1704</span>
+            </div>
+            <table class="abbr-table">
+                <tr>
+                    <td class="abbr-code">Essay</td>
+                    <td class="abbr-stands-for"><em>An Essay Concerning Human Understanding</em> (1689)</td>
+                    <td class="abbr-explanation">
+                        Cited by book (Roman numeral), chapter, and section. The standard critical
+                        edition is edited by P. H. Nidditch (Oxford, 1975).
+                        <span class="abbr-example">Example: Essay II.i.2 = Book II, chapter i, section 2 (on the mind as white paper)</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="abbr-code">TT</td>
+                    <td class="abbr-stands-for"><em>Two Treatises of Government</em> (1689)</td>
+                    <td class="abbr-explanation">
+                        Cited by treatise number (I or II) and section. The standard edition is by
+                        P. Laslett (Cambridge, 1960).
+                        <span class="abbr-example">Example: TT II.6 = Second Treatise, section 6 (on the law of nature)</span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- ======== HUME ======== -->
+        <div class="abbr-group" data-search="hume treatise enquiry dialogues SBN Selby-Bigge Nidditch">
+            <div class="abbr-group-header">
+                <span class="abbr-philosopher-name">Hume</span>
+                <span class="abbr-philosopher-dates">1711&ndash;1776</span>
+            </div>
+            <table class="abbr-table">
+                <tr>
+                    <td class="abbr-code">T</td>
+                    <td class="abbr-stands-for"><em>A Treatise of Human Nature</em> (1739&ndash;40)</td>
+                    <td class="abbr-explanation">
+                        Cited by book, part, and section (e.g., T 1.4.6) or by page in the
+                        Selby-Bigge/Nidditch edition (Oxford, 1978), abbreviated SBN.
+                        <span class="abbr-example">Example: T 1.4.6 / SBN 252 = Book I, Part 4, Section 6 (bundle theory of self), Selby-Bigge p. 252</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="abbr-code">EHU</td>
+                    <td class="abbr-stands-for"><em>An Enquiry Concerning Human Understanding</em> (1748)</td>
+                    <td class="abbr-explanation">
+                        Cited by section and part, or by Selby-Bigge/Nidditch page number. Sometimes abbreviated simply <em>Enquiry</em>.
+                        <span class="abbr-example">Example: EHU 4.2 = Section IV, Part 2 (on the problem of induction)</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="abbr-code">DNR</td>
+                    <td class="abbr-stands-for"><em>Dialogues Concerning Natural Religion</em> (1779)</td>
+                    <td class="abbr-explanation">
+                        Cited by part number. Published posthumously.
+                        <span class="abbr-example">Example: DNR IX = Part IX (Cleanthes on the cosmological argument)</span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- ======== KANT ======== -->
+        <div class="abbr-group" data-search="kant critique pure reason A B Guyer Wood GW KrV groundwork practical">
+            <div class="abbr-group-header">
+                <span class="abbr-philosopher-name">Kant</span>
+                <span class="abbr-philosopher-dates">1724&ndash;1804</span>
+            </div>
+            <table class="abbr-table">
+                <tr>
+                    <td class="abbr-code">A / B</td>
+                    <td class="abbr-stands-for"><em>Critique of Pure Reason</em>, first (A) and second (B) editions</td>
+                    <td class="abbr-explanation">
+                        The <em>Critique of Pure Reason</em> appeared in two editions (1781, 1787) with significant revisions.
+                        Passages are cited by the pagination of the original editions, printed in the
+                        margins of all translations. &ldquo;A&rdquo; = first edition; &ldquo;B&rdquo; = second edition;
+                        passages in both editions give both references.
+                        <span class="abbr-example">Example: A444/B472 = the Third Antinomy, found at p. 444 in A edition and p. 472 in B edition &mdash; Bxxx = B edition, preface page xxx</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="abbr-code">KrV</td>
+                    <td class="abbr-stands-for"><em>Kritik der reinen Vernunft</em> (Critique of Pure Reason)</td>
+                    <td class="abbr-explanation">
+                        The German abbreviation, used in German-language scholarship and occasionally
+                        in English. Followed by A or B pagination.
+                    </td>
+                </tr>
+                <tr>
+                    <td class="abbr-code">KpV</td>
+                    <td class="abbr-stands-for"><em>Kritik der praktischen Vernunft</em> (Critique of Practical Reason, 1788)</td>
+                    <td class="abbr-explanation">
+                        Cited by page in the Akademie-Ausgabe (see Ak. below).
+                        <span class="abbr-example">Example: KpV 5:30 = Akademie-Ausgabe volume 5, page 30</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="abbr-code">KU</td>
+                    <td class="abbr-stands-for"><em>Kritik der Urteilskraft</em> (Critique of Judgment, 1790)</td>
+                    <td class="abbr-explanation">
+                        Cited by section number (&sect;) and Akademie-Ausgabe page.
+                        <span class="abbr-example">Example: KU &sect;49 / Ak. 5:314</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="abbr-code">GMS</td>
+                    <td class="abbr-stands-for"><em>Grundlegung zur Metaphysik der Sitten</em> (Groundwork of the Metaphysics of Morals, 1785)</td>
+                    <td class="abbr-explanation">
+                        Often abbreviated in English as <em>Groundwork</em> or <em>G</em>. Cited by Akademie-Ausgabe page.
+                        <span class="abbr-example">Example: GMS 4:421 = Akademie-Ausgabe volume 4, page 421 (the Formula of Universal Law)</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="abbr-code">Ak.</td>
+                    <td class="abbr-stands-for"><em>Kant&rsquo;s gesammelte Schriften</em> (Akademie-Ausgabe, Berlin, 1900&ndash;)</td>
+                    <td class="abbr-explanation">
+                        The standard critical edition of Kant&rsquo;s complete works, published by the
+                        Prussian (now Berlin-Brandenburg) Academy of Sciences. All major Kant translations
+                        print Akademie page numbers in the margins. Cited as volume:page.
+                        <span class="abbr-example">Example: Ak. 4:421 = volume 4 (Groundwork), page 421</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="abbr-code">GW</td>
+                    <td class="abbr-stands-for">Guyer &amp; Wood, <em>Cambridge Edition of the Works of Immanuel Kant</em></td>
+                    <td class="abbr-explanation">
+                        The standard English-language edition of Kant, published by Cambridge
+                        University Press from 1992. Multiple volumes, each translated by different
+                        scholars under the editorship of Paul Guyer and Allen Wood.
+                        <span class="abbr-example">Example: GW 117 = page 117 in the relevant Guyer-Wood volume</span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- ======== HEGEL ======== -->
+        <div class="abbr-group" data-search="hegel phenomenology science logic GW gesammelte werke">
+            <div class="abbr-group-header">
+                <span class="abbr-philosopher-name">Hegel</span>
+                <span class="abbr-philosopher-dates">1770&ndash;1831</span>
+            </div>
+            <table class="abbr-table">
+                <tr>
+                    <td class="abbr-code">GW</td>
+                    <td class="abbr-stands-for"><em>Gesammelte Werke</em> (Hamburg, 1968&ndash;)</td>
+                    <td class="abbr-explanation">
+                        The critical edition of Hegel&rsquo;s works, published by the Nordrhein-Westf&auml;lische
+                        Akademie der Wissenschaften. The authoritative scholarly reference.
+                        Cited by volume:page.
+                        <span class="abbr-example">Example: GW 9:14 = Phenomenology of Spirit, page 14</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="abbr-code">TWA</td>
+                    <td class="abbr-stands-for">Theorie Werkausgabe, ed. E. Moldenhauer &amp; K. M. Michel (Frankfurt, 1969&ndash;71)</td>
+                    <td class="abbr-explanation">
+                        The 20-volume edition of Hegel most commonly used in German-language
+                        scholarship and widely accessible. Cited by volume:page.
+                    </td>
+                </tr>
+                <tr>
+                    <td class="abbr-code">PhS</td>
+                    <td class="abbr-stands-for"><em>Ph&auml;nomenologie des Geistes</em> (Phenomenology of Spirit, 1807)</td>
+                    <td class="abbr-explanation">
+                        The standard English translation is by A. V. Miller (Oxford, 1977); the
+                        Pinkard translation (Cambridge, 2018) is widely used in current scholarship.
+                        Cited by &sect; (Miller&rsquo;s paragraph numbers) or by GW/TWA page.
+                        <span class="abbr-example">Example: PhS &sect;166 = Miller paragraph 166 (Master-Slave dialectic)</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="abbr-code">SL</td>
+                    <td class="abbr-stands-for"><em>Wissenschaft der Logik</em> (Science of Logic, 1812&ndash;16, rev. 1832)</td>
+                    <td class="abbr-explanation">
+                        Cited by GW volume:page or by Miller translation page.
+                        The di Giovanni translation (Cambridge, 2010) is the current scholarly standard.
+                    </td>
+                </tr>
+                <tr>
+                    <td class="abbr-code">PR</td>
+                    <td class="abbr-stands-for"><em>Grundlinien der Philosophie des Rechts</em> (Philosophy of Right, 1820)</td>
+                    <td class="abbr-explanation">
+                        Cited by &sect; (section number, which is stable across editions and translations)
+                        or by Remark (R) and Addition (A) attached to each paragraph.
+                        <span class="abbr-example">Example: PR &sect;257 = section 257 (on the state) &mdash; PR &sect;3R = section 3, Remark</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="abbr-code">Enc.</td>
+                    <td class="abbr-stands-for"><em>Enzyklop&auml;die der philosophischen Wissenschaften</em> (Encyclopedia, 1817; 3rd ed. 1830)</td>
+                    <td class="abbr-explanation">
+                        Cited by section (&sect;). The three parts: Logic (&sect;&sect;1&ndash;244), Philosophy of Nature
+                        (&sect;&sect;245&ndash;376), Philosophy of Spirit (&sect;&sect;377&ndash;577).
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- ======== SCHOPENHAUER ======== -->
+        <div class="abbr-group" data-search="schopenhauer world will representation parerga WWR Zürcher">
+            <div class="abbr-group-header">
+                <span class="abbr-philosopher-name">Schopenhauer</span>
+                <span class="abbr-philosopher-dates">1788&ndash;1860</span>
+            </div>
+            <table class="abbr-table">
+                <tr>
+                    <td class="abbr-code">WWR</td>
+                    <td class="abbr-stands-for"><em>The World as Will and Representation</em> (<em>Die Welt als Wille und Vorstellung</em>)</td>
+                    <td class="abbr-explanation">
+                        Vol. I (1818, rev. 1844), Vol. II (1844). Cited by volume and &sect; (section number).
+                        The standard English translations are by E. F. J. Payne (Dover, 1969) and
+                        by Norman, Welchman &amp; Janaway (Cambridge, 2010).
+                        <span class="abbr-example">Example: WWR I &sect;57 &mdash; WWR II ch. 17</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="abbr-code">PP</td>
+                    <td class="abbr-stands-for"><em>Parerga and Paralipomena</em> (1851)</td>
+                    <td class="abbr-explanation">
+                        Two volumes of essays and aphorisms. The work that made Schopenhauer famous.
+                        Cited by volume and essay/section.
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- ======== NIETZSCHE ======== -->
+        <div class="abbr-group" data-search="nietzsche KSA kritische studienausgabe section aphorism zarathustra genealogy">
+            <div class="abbr-group-header">
+                <span class="abbr-philosopher-name">Nietzsche</span>
+                <span class="abbr-philosopher-dates">1844&ndash;1900</span>
+            </div>
+            <table class="abbr-table">
+                <tr>
+                    <td class="abbr-code">KSA</td>
+                    <td class="abbr-stands-for"><em>S&auml;mtliche Werke: Kritische Studienausgabe</em>, ed. G. Colli &amp; M. Montinari (Berlin/Munich, 1980)</td>
+                    <td class="abbr-explanation">
+                        The standard critical edition of Nietzsche&rsquo;s published works and notebooks,
+                        15 volumes. Cited by volume:page or by work abbreviation and section number.
+                        <span class="abbr-example">Example: KSA 5:75 = volume 5 (Beyond Good and Evil), page 75</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="abbr-code">&sect; (aphorism/section no.)</td>
+                    <td class="abbr-stands-for">Section or aphorism number</td>
+                    <td class="abbr-explanation">
+                        Nietzsche&rsquo;s works are most reliably cited by section number (&sect;), which is
+                        stable across all translations and editions.
+                        <span class="abbr-example">Standard abbreviations: <em>BT</em> (Birth of Tragedy) &mdash; <em>HAH</em> (Human All Too Human) &mdash; <em>GS</em> (Gay Science) &mdash; <em>Z</em> (Zarathustra) &mdash; <em>BGE</em> (Beyond Good and Evil) &mdash; <em>GM</em> (Genealogy of Morality) &mdash; <em>TI</em> (Twilight of the Idols) &mdash; <em>AC</em> (The Anti-Christ) &mdash; <em>EH</em> (Ecce Homo)</span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- ======== KIERKEGAARD ======== -->
+        <div class="abbr-group" data-search="kierkegaard SKS samlede vaerker pseudonymous hong CUP anxiety">
+            <div class="abbr-group-header">
+                <span class="abbr-philosopher-name">Kierkegaard</span>
+                <span class="abbr-philosopher-dates">1813&ndash;1855</span>
+            </div>
+            <table class="abbr-table">
+                <tr>
+                    <td class="abbr-code">SKS</td>
+                    <td class="abbr-stands-for"><em>S&oslash;ren Kierkegaards Skrifter</em> (Copenhagen, 1997&ndash;2013)</td>
+                    <td class="abbr-explanation">
+                        The definitive critical edition of Kierkegaard&rsquo;s complete writings in Danish,
+                        28 volumes. Cited by volume:page. The online edition (sks.dk) is freely accessible.
+                    </td>
+                </tr>
+                <tr>
+                    <td class="abbr-code">KW</td>
+                    <td class="abbr-stands-for">Hong &amp; Hong, <em>Kierkegaard&rsquo;s Writings</em> (Princeton, 1978&ndash;2000)</td>
+                    <td class="abbr-explanation">
+                        The standard English translation of Kierkegaard&rsquo;s complete works, 26 volumes,
+                        translated and edited by Howard and Edna Hong. Each volume includes Hong&rsquo;s
+                        Danish pagination in the margins.
+                        <span class="abbr-example">Standard work abbreviations: <em>EO</em> (Either/Or) &mdash; <em>FT</em> (Fear and Trembling) &mdash; <em>R</em> (Repetition) &mdash; <em>CA</em> (Concept of Anxiety) &mdash; <em>CUP</em> (Concluding Unscientific Postscript) &mdash; <em>SUD</em> (Sickness Unto Death)</span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- ======== MARX & ENGELS ======== -->
+        <div class="abbr-group" data-search="marx engels MEW MECW capital manifesto werke collected works">
+            <div class="abbr-group-header">
+                <span class="abbr-philosopher-name">Marx &amp; Engels</span>
+                <span class="abbr-philosopher-dates">1818&ndash;1895</span>
+            </div>
+            <table class="abbr-table">
+                <tr>
+                    <td class="abbr-code">MEW</td>
+                    <td class="abbr-stands-for"><em>Marx-Engels-Werke</em> (Berlin: Dietz Verlag, 1956&ndash;90)</td>
+                    <td class="abbr-explanation">
+                        The standard German-language edition of the complete works of Marx and Engels,
+                        43 volumes. The reference used in German and continental European scholarship.
+                        Cited by volume:page.
+                        <span class="abbr-example">Example: MEW 23:189 = volume 23 (Capital Vol. I), page 189</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="abbr-code">MECW</td>
+                    <td class="abbr-stands-for"><em>Marx Engels Collected Works</em> (Moscow/London/New York, 1975&ndash;2005)</td>
+                    <td class="abbr-explanation">
+                        The standard English translation of the complete works, 50 volumes.
+                        Cited by volume:page.
+                        <span class="abbr-example">Example: MECW 35:189 = volume 35 (Capital Vol. I in English), page 189</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="abbr-code">MEGA</td>
+                    <td class="abbr-stands-for"><em>Marx-Engels-Gesamtausgabe</em> (1975&ndash;ongoing)</td>
+                    <td class="abbr-explanation">
+                        The critical historical-critical edition of Marx and Engels&rsquo;s complete writings,
+                        manuscripts, and correspondence in the original languages. Currently in
+                        progress, projected at ~120 volumes. The authoritative scholarly reference.
+                    </td>
+                </tr>
+                <tr>
+                    <td class="abbr-code">Capital</td>
+                    <td class="abbr-stands-for"><em>Das Kapital</em>, 3 vols. (1867, 1885, 1894)</td>
+                    <td class="abbr-explanation">
+                        Cited by volume and chapter, or by MEW/MECW page.
+                        <span class="abbr-example">Example: Capital I, ch. 1 &mdash; Capital I MEW 23:49</span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- ======== GENERAL SCHOLARLY ======== -->
+        <div class="abbr-section-label" id="section-general">IV &middot; General Scholarly Conventions</div>
+
+        <div class="abbr-group" data-search="general scholarly conventions ibid op cit cf passim">
+            <div class="abbr-group-header">
+                <span class="abbr-philosopher-name">General Latin &amp; Scholarly Abbreviations</span>
+                <span class="abbr-philosopher-dates">Used across all periods</span>
+            </div>
+            <table class="abbr-table">
+                <tr>
+                    <td class="abbr-code">cf.</td>
+                    <td class="abbr-stands-for"><em>confer</em> &mdash; &ldquo;compare&rdquo;</td>
+                    <td class="abbr-explanation">Directs the reader to a related passage for comparison, not as direct support.</td>
+                </tr>
+                <tr>
+                    <td class="abbr-code">ibid.</td>
+                    <td class="abbr-stands-for"><em>ibidem</em> &mdash; &ldquo;in the same place&rdquo;</td>
+                    <td class="abbr-explanation">Refers to the same work and passage cited immediately before.</td>
+                </tr>
+                <tr>
+                    <td class="abbr-code">op. cit.</td>
+                    <td class="abbr-stands-for"><em>opere citato</em> &mdash; &ldquo;in the work cited&rdquo;</td>
+                    <td class="abbr-explanation">Refers to a work cited earlier by the same author.</td>
+                </tr>
+                <tr>
+                    <td class="abbr-code">passim</td>
+                    <td class="abbr-stands-for"><em>passim</em> &mdash; &ldquo;here and there&rdquo;</td>
+                    <td class="abbr-explanation">Indicates a concept or theme runs throughout a work, not in a single location.</td>
+                </tr>
+                <tr>
+                    <td class="abbr-code">trans.</td>
+                    <td class="abbr-stands-for">Translation / translated by</td>
+                    <td class="abbr-explanation">Indicates a specific English translation is being quoted or cited.</td>
+                </tr>
+                <tr>
+                    <td class="abbr-code">ed. / eds.</td>
+                    <td class="abbr-stands-for">Editor / editors</td>
+                    <td class="abbr-explanation">Indicates the editor of a collected volume or critical edition.</td>
+                </tr>
+                <tr>
+                    <td class="abbr-code">rev.</td>
+                    <td class="abbr-stands-for">Revised / revised edition</td>
+                    <td class="abbr-explanation">Indicates a revised edition of a work or translation.</td>
+                </tr>
+                <tr>
+                    <td class="abbr-code">fr. / frg.</td>
+                    <td class="abbr-stands-for">Fragment</td>
+                    <td class="abbr-explanation">Used for passages surviving only as quotations in other ancient authors.
+                        <span class="abbr-example">Example: Heraclitus fr. 30 (= DK 22 B30)</span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+    </main>
+
+    <a href="#" class="abbr-back-top" id="backToTop" aria-label="Back to top">
+        <span class="abbr-back-top-arrow">&uarr;</span>
+    </a>
+
+    <footer class="abbr-footer">
+        <p>The Academy &amp; The Lyceum &middot; Complete Works Archive</p>
+    </footer>
+
+    <script>
+        // Search
+        (function() {
+            var searchInput = document.getElementById('abbrSearch');
+            var groups = document.querySelectorAll('.abbr-group, .abbr-section-label');
+            var noResults = document.getElementById('noResults');
+
+            if (!searchInput) return;
+
+            searchInput.addEventListener('input', function() {
+                var q = this.value.toLowerCase().trim();
+                var anyVisible = false;
+
+                document.querySelectorAll('.abbr-group').forEach(function(group) {
+                    var text = (group.getAttribute('data-search') || '') +
+                               ' ' + group.textContent;
+                    text = text.toLowerCase();
+                    var visible = q === '' || text.indexOf(q) !== -1;
+                    group.style.display = visible ? '' : 'none';
+                    if (visible) anyVisible = true;
+                });
+
+                // Show/hide section labels based on whether any group in that section is visible
+                document.querySelectorAll('.abbr-section-label').forEach(function(label) {
+                    var next = label.nextElementSibling;
+                    var sectionHasVisible = false;
+                    while (next && !next.classList.contains('abbr-section-label')) {
+                        if (next.classList.contains('abbr-group') && next.style.display !== 'none') {
+                            sectionHasVisible = true;
+                        }
+                        next = next.nextElementSibling;
+                    }
+                    label.style.display = (q === '' || sectionHasVisible) ? '' : 'none';
+                });
+
+                noResults.style.display = (!anyVisible && q !== '') ? 'block' : 'none';
+            });
+        })();
+
+        // Back to top
+        (function() {
+            var btn = document.getElementById('backToTop');
+            if (!btn) return;
+            window.addEventListener('scroll', function() {
+                btn.classList.toggle('visible', window.scrollY > 400);
+            });
+        })();
+
+        // Theme persistence
+        (function() {
+            var saved = localStorage.getItem('theme');
+            if (saved) document.documentElement.setAttribute('data-theme', saved);
+        })();
+    </script>
+
+</body>
+</html>

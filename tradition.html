@@ -407,6 +407,58 @@
             margin: 0;
         }
 
+
+        /* ---- MODERN TRADITION SECTION ---- */
+        .tradition-modern-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 40px 80px;
+            border-top: 1px solid rgba(166,138,76,0.15);
+        }
+        .tradition-modern-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        .tradition-modern-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: #A68A4C;
+            margin-bottom: 16px;
+        }
+        .tradition-modern-title {
+            font-family: 'Cormorant Garamond', 'Georgia', serif;
+            font-size: 2.2rem;
+            font-weight: 300;
+            color: #1A1A1A;
+            margin: 0 0 12px 0;
+        }
+        .tradition-modern-sub {
+            font-family: 'Libre Baskerville', 'Georgia', serif;
+            font-size: 0.9rem;
+            font-style: italic;
+            color: #888;
+            max-width: 680px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+        .tradition-modern-rule {
+            width: 40px; height: 1px;
+            background: #A68A4C;
+            margin: 32px auto 0;
+            opacity: 0.3;
+        }
+        .tradition-modern-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px 80px;
+        }
+        @media (max-width: 900px) {
+            .tradition-modern-grid { grid-template-columns: 1fr; gap: 40px; }
+            .tradition-modern-section { padding: 40px 24px 60px; }
+        }
+
         @media (max-width: 768px) {
             .tradition-nav {
                 flex-direction: column;
@@ -443,10 +495,9 @@
         <div class="tradition-header-label">Philosophical Lineage</div>
         <h1>The Tradition Map</h1>
         <p class="tradition-header-sub">
-            From the first cosmologists of Miletus to the closing of
-            the schools in late antiquity&mdash;the intellectual lineage
-            that produced, sustained, and transformed the works of
-            Plato and Aristotle.
+            From the first cosmologists of Miletus to Marx&rsquo;s Capital&mdash;
+            the intellectual lineage of the Western philosophical tradition
+            across 2,400 years, traced from its origins to the modern period.
         </p>
         <div class="tradition-header-line"></div>
     </header>
@@ -897,6 +948,147 @@
         </div>
 
     </main>
+
+    <div class="tradition-modern-section" id="tradition-modern-section">
+        <div class="tradition-modern-header">
+            <div class="tradition-modern-label">The Modern Period</div>
+            <h2 class="tradition-modern-title">From Descartes to Marx</h2>
+            <p class="tradition-modern-sub">
+                The philosophical tradition that built the modern world &mdash; from
+                Descartes&rsquo;s systematic doubt to Kant&rsquo;s Copernican revolution,
+                German Idealism&rsquo;s absolute ambitions, and the revolutionary materialism
+                of the nineteenth century.
+            </p>
+            <div class="tradition-modern-rule"></div>
+        </div>
+
+        <div class="tradition-modern-grid">
+
+            <!-- ======== LEFT COLUMN ======== -->
+            <div>
+                <div class="tradition-part-label">Part V &middot; The Rationalists</div>
+
+                <details class="tradition-block">
+                    <summary>
+                        <div class="tradition-era">Descartes &amp; the Cartesian Revolution</div>
+                        <div class="tradition-era-note">1596&ndash;1716 &middot; France, Netherlands, Germany</div>
+                    </summary>
+                    <div class="tradition-block-content">
+                        <ul class="tradition-ul">
+                            <li><span>Ren&eacute; Descartes (1596&ndash;1650)</span> &mdash; The Meditations on First Philosophy (1641) inaugurated modern philosophy by deploying a method of systematic doubt to strip away every belief that could conceivably be false &mdash; the testimony of the senses, the external world, even mathematics &mdash; until reaching a single incorrigible certainty: <em>cogito ergo sum</em>. From this foundation Descartes attempted to reconstruct all knowledge, establishing the existence of God by the ontological argument (a non-deceiving God guarantees clear and distinct perceptions) and the existence of the external world by God&rsquo;s veracity. His mind-body dualism &mdash; the strict separation of thinking substance (<em>res cogitans</em>) from extended substance (<em>res extensa</em>) &mdash; generated the &ldquo;mind-body problem&rdquo; that has preoccupied philosophy of mind ever since. His mechanistic physics eliminated Aristotelian forms and final causes from the natural world, reducing everything material to matter-in-motion governed by mathematical laws.</li>
+                            <li><span>Nicolas Malebranche (1638&ndash;1715)</span> &mdash; A French Oratorian priest who fused Cartesian philosophy with Augustinian theology into the doctrine of occasionalism: mind and body cannot causally interact (since they are categorically different substances), so God directly causes every apparent interaction &mdash; the mind&rsquo;s willing to move the arm is merely the occasion for God&rsquo;s intervention. His doctrine that we see all things in God (<em>vision en Dieu</em>) &mdash; that finite minds apprehend the eternal ideas in the divine intellect &mdash; directly influenced Berkeley&rsquo;s idealism and Leibniz&rsquo;s critique of the Cartesian tradition.</li>
+                            <li><span>Baruch Spinoza (1632&ndash;1677)</span> &mdash; Spinoza drew the consequences that Descartes had evaded. If there is an infinite God and God is self-caused substance, then there can only be one substance &mdash; God or Nature (<em>Deus sive Natura</em>). Mind and body are not two substances but two attributes of the single infinite substance. The Ethics (1677), composed <em>more geometrico</em> &mdash; in the manner of Euclid, with definitions, axioms, propositions, and demonstrations &mdash; is the most rigorously systematic work in the modern tradition. Its metaphysics of the one substance, its psychology of the passions (bondage) and reason (freedom), and its ethics of the intellectual love of God constitute one of the most coherent and most radical philosophical systems ever constructed. Excommunicated at twenty-three, refused a university chair, banned in his lifetime, Spinoza was the most dangerous philosopher of the seventeenth century and arguably the most honest.</li>
+                            <li><span>Gottfried Wilhelm Leibniz (1646&ndash;1716)</span> &mdash; Where Spinoza had resolved Cartesian dualism by identifying mind and body as attributes of one substance, Leibniz resolved it by infinite multiplication: reality consists of an infinite number of simple, indivisible, non-extended, non-interacting substances called monads, each a self-contained mirror of the entire universe from its own perspective. The apparent causal interaction between mind and body (and between all substances) is explained by pre-established harmony: God programmed every monad from the beginning so that their internal developments unfold in perfect synchrony without genuine causal contact. His claim that this is the best of all possible worlds &mdash; that God chose this world from infinite alternatives because it maximizes the variety of phenomena compatible with the simplest laws &mdash; was the supreme expression of philosophical optimism and the target of Voltaire&rsquo;s Candide (1759). Leibniz also co-invented calculus (independently of Newton), designed the first calculator capable of multiplication, and anticipated modern symbolic logic.</li>
+                        </ul>
+                    </div>
+                </details>
+
+                <div class="tradition-part-label">Part VI &middot; The British Empiricists</div>
+
+                <details class="tradition-block">
+                    <summary>
+                        <div class="tradition-era">Locke, Berkeley, &amp; Hume</div>
+                        <div class="tradition-era-note">1632&ndash;1776 &middot; England, Ireland, Scotland</div>
+                    </summary>
+                    <div class="tradition-block-content">
+                        <ul class="tradition-ul">
+                            <li><span>John Locke (1632&ndash;1704)</span> &mdash; The Essay Concerning Human Understanding (1689) launched the empiricist tradition by arguing that the mind at birth is a <em>tabula rasa</em> (blank tablet): there are no innate ideas, no principles written into the soul before experience. All knowledge derives ultimately from sensation (outer experience) and reflection (inner experience). Locke analysed the distinction between primary qualities (size, shape, motion &mdash; real properties of objects) and secondary qualities (colour, taste, smell &mdash; powers to produce ideas in perceivers), a distinction Descartes had initiated but Locke developed into a systematic epistemology. His political philosophy &mdash; natural rights, government by consent, the right of revolution against tyranny &mdash; provided the philosophical foundation for the Glorious Revolution (1688), the American Declaration of Independence (1776), and liberal constitutionalism generally.</li>
+                            <li><span>George Berkeley (1685&ndash;1753)</span> &mdash; An Irish Anglican bishop who accepted Locke&rsquo;s epistemology and drew from it the conclusion Locke had resisted: if all we know is ideas, then matter &mdash; defined as something existing independently of any mind &mdash; is both unknowable and philosophically useless. His central thesis, <em>esse est percipi</em> (to be is to be perceived), holds that physical objects are collections of ideas in minds; they exist continuously because they are always perceived by God, the infinite mind in which all things subsist. This immaterialism was not madness but the rigorous working-out of Lockean premises. His three major works (New Theory of Vision, 1709; Principles of Human Knowledge, 1710; Three Dialogues, 1713) were all written before he was twenty-eight. Samuel Johnson&rsquo;s famous &ldquo;refutation&rdquo; by kicking a stone missed the point entirely: Berkeley would have agreed that the stone produces an idea of resistance &mdash; that is precisely what &ldquo;the stone&rdquo; is.</li>
+                            <li><span>David Hume (1711&ndash;1776)</span> &mdash; Hume brought the empiricist tradition to its logical culmination and, in doing so, turned it into the most powerful instrument of philosophical scepticism in the modern period. The Treatise of Human Nature (1739&ndash;40) argued that causation is not a relation we observe in the world but a habit of expectation formed by repeated experience: we see event A followed by event B repeatedly and come to expect B when we see A, but we never perceive the necessary connection itself. The self is not a substance or a unified entity but &ldquo;a bundle of perceptions&rdquo; &mdash; a succession of impressions and ideas with no discoverable subject that has them. Reason alone is impotent: it cannot motivate action (which belongs to passion), it cannot establish the foundations of morality (which rest on sentiment), and it cannot vindicate belief in the external world or in God. Kant famously credited Hume with awakening him from his &ldquo;dogmatic slumber.&rdquo;</li>
+                        </ul>
+                    </div>
+                </details>
+
+                <div class="tradition-part-label">Part VII &middot; The Critical Turn</div>
+
+                <details class="tradition-block">
+                    <summary>
+                        <div class="tradition-era">Kant &amp; the Critical Philosophy</div>
+                        <div class="tradition-era-note">1724&ndash;1804 &middot; K&ouml;nigsberg, Prussia</div>
+                    </summary>
+                    <div class="tradition-block-content">
+                        <ul class="tradition-ul">
+                            <li><span>Immanuel Kant (1724&ndash;1804)</span> &mdash; Kant&rsquo;s Copernican revolution in philosophy reversed the traditional question. Instead of asking how our knowledge conforms to objects, Kant asked: how do objects conform to our knowledge? His answer was transcendental idealism: the forms of intuition (space and time) and the categories of the understanding (causality, substance, necessity) are not derived from experience but are the structures the mind imposes on experience. They constitute the objects of possible experience; they do not reveal things as they are in themselves (<em>Dinge an sich</em>). This simultaneously vindicates the necessity of scientific knowledge (Hume was wrong that causation is merely habitual: it is a condition of experience) and limits knowledge to the realm of possible experience (metaphysics &mdash; God, freedom, immortality &mdash; transcends what reason can legitimately know).</li>
+                            <li>The three Critiques distribute his project: the Critique of Pure Reason (1781/1787) maps the powers and limits of theoretical reason; the Critique of Practical Reason (1788) establishes the foundations of moral philosophy in the categorical imperative &mdash; &ldquo;act only according to that maxim by which you can at the same time will that it should become a universal law&rdquo; &mdash; grounded in the autonomy of the rational will; the Critique of Judgment (1790) analyses aesthetic judgment and teleological explanation in nature, bridging the gap between the natural and moral domains.</li>
+                            <li><span>The Kantian Legacy</span> &mdash; Kant&rsquo;s philosophy generated the most productive and most disputatious tradition in modern philosophy. Fichte argued that Kant had not gone far enough: the thing-in-itself was an incoherent remnant that needed to be eliminated. Schelling argued that Kant had sundered nature and mind in a way that made their relation unintelligible. Hegel argued that the critical philosophy had treated the categories of reason as fixed and finite when they are in fact dynamic and self-developing. From another direction, Reinhold, Schulze, and Jacobi exposed unresolved tensions within the critical system that the German Idealists would spend forty years attempting to resolve. In England, Coleridge introduced Kant to the Romantic poets; in France, the critical philosophy arrived through Cousin and Renouvier; in America, through Emerson and Peirce. Every significant philosophical movement since &mdash; phenomenology, analytic philosophy, pragmatism, neo-Kantianism, existentialism &mdash; defined itself in relation to Kant.</li>
+                        </ul>
+                    </div>
+                </details>
+
+            </div>
+
+            <!-- ======== RIGHT COLUMN ======== -->
+            <div>
+                <div class="tradition-part-label">Part VIII &middot; German Idealism</div>
+
+                <details class="tradition-block">
+                    <summary>
+                        <div class="tradition-era">Fichte, Schelling, &amp; Hegel</div>
+                        <div class="tradition-era-note">1762&ndash;1831 &middot; Jena, Nuremberg, Berlin</div>
+                    </summary>
+                    <div class="tradition-block-content">
+                        <ul class="tradition-ul">
+                            <li><span>Johann Gottlieb Fichte (1762&ndash;1814)</span> &mdash; Fichte drew what he took to be the necessary consequence of Kant&rsquo;s critical philosophy: the elimination of the thing-in-itself. If the categories of the understanding constitute the objects of experience, then the very notion of a thing existing independently of the constituting subject is self-contradictory. The Wissenschaftslehre (Doctrine of Science, 1794) grounded all reality in the absolute I &mdash; an infinite, self-positing activity of consciousness that produces the not-I (the world of objects) as the necessary resistance against which freedom, moral striving, and selfhood become possible. Kant was appalled; Hegel dismissed this as &ldquo;the night in which all cows are black.&rdquo; Yet Fichte&rsquo;s radicalization of the Kantian subject set the terms for the entire subsequent debate. His later philosophy of national identity &mdash; the Addresses to the German Nation (1808), delivered in occupied Berlin &mdash; became one of the founding documents of German nationalism.</li>
+                            <li><span>Friedrich Wilhelm Joseph Schelling (1775&ndash;1854)</span> &mdash; Where Fichte had reduced nature to a mere obstacle for the moral will, Schelling restored it to philosophical dignity. His Naturphilosophie (Philosophy of Nature) argued that nature is not the product of consciousness but its unconscious precondition &mdash; visible Spirit, just as Spirit is invisible nature. The system of Transcendental Idealism (1800) mapped the parallel development of nature (from mechanism to organism) and consciousness (from sensation to self-consciousness), with artistic genius at the point of their convergence. The Philosophical Investigations into the Essence of Human Freedom (1809) &mdash; the Freiheitsschrift &mdash; marks his decisive break with systematic idealism and his confrontation with the reality of evil: God himself contains a dark ground, an abyss of will, without which freedom and evil are both impossible. This was a philosophical depth that neither Fichte nor Hegel ever matched, and it anticipated themes that would not be developed until Schopenhauer, Kierkegaard, and Heidegger.</li>
+                            <li><span>Georg Wilhelm Friedrich Hegel (1770&ndash;1831)</span> &mdash; Hegel constructed the most comprehensive philosophical system in the Western tradition since Aristotle: a dialectical logic in which every concept generates its own negation and is reconciled in a higher synthesis (<em>Aufhebung</em>); a phenomenology in which consciousness ascends through successive shapes &mdash; sense-certainty, perception, force and understanding, self-consciousness, reason, spirit, religion &mdash; to absolute knowing; a logic of the three spheres of the absolute idea; a philosophy of right in which freedom is realized progressively through family, civil society, and the state; and a philosophy of history in which Spirit (<em>Geist</em>) comes to know itself through the world&rsquo;s cultures. His influence on the subsequent two centuries &mdash; on Marx and Kierkegaard, on Crocean idealism and British neo-Hegelianism, on Koj&egrave;ve&rsquo;s Marxist reading and Gadamer&rsquo;s hermeneutics, on critical theory and poststructuralism &mdash; is incalculable.</li>
+                        </ul>
+                    </div>
+                </details>
+
+                <details class="tradition-block">
+                    <summary>
+                        <div class="tradition-era">Schopenhauer &amp; the Pessimist Tradition</div>
+                        <div class="tradition-era-note">1788&ndash;1860 &middot; Danzig, Frankfurt</div>
+                    </summary>
+                    <div class="tradition-block-content">
+                        <ul class="tradition-ul">
+                            <li><span>Arthur Schopenhauer (1788&ndash;1860)</span> &mdash; Schopenhauer took Kant&rsquo;s framework and drove it in a direction Kant had never intended. The phenomenal world &mdash; the world as representation (<em>Vorstellung</em>) &mdash; is the product of the mind&rsquo;s own forms. But the thing-in-itself, the hidden nature of reality accessible not through theoretical reason but through the body and its drives, is Will (<em>Wille</em>): a blind, purposeless, ceaseless striving that is the inner nature of everything that exists. Human life is a pendulum swinging between suffering (unsatisfied desire) and boredom (satiated desire); existence as such is characterized by frustration and lack. Three partial escapes are possible: aesthetic contemplation (temporary suspension of willing), moral compassion (recognition of oneself in others), and the ascetic denial of the will-to-live. His synthesis of Kantian epistemology with Indian philosophy (the Upanishads and early Buddhism) &mdash; achieved before Western scholars had properly studied those traditions &mdash; was remarkable, and his influence on Nietzsche, Wagner, Freud, Wittgenstein, Mann, Beckett, and Borges constitutes one of the most consequential philosophical legacies of the modern period.</li>
+                        </ul>
+                    </div>
+                </details>
+
+                <div class="tradition-part-label">Part IX &middot; The Nineteenth Century</div>
+
+                <details class="tradition-block">
+                    <summary>
+                        <div class="tradition-era">Kierkegaard &amp; the Birth of Existentialism</div>
+                        <div class="tradition-era-note">1813&ndash;1855 &middot; Copenhagen</div>
+                    </summary>
+                    <div class="tradition-block-content">
+                        <ul class="tradition-ul">
+                            <li><span>S&oslash;ren Kierkegaard (1813&ndash;1855)</span> &mdash; Kierkegaard&rsquo;s entire philosophical career was a sustained protest against Hegel&rsquo;s system: the claim that existence can be comprehended by pure thought. Existence &mdash; particularly the existence of a single, concrete, historically situated individual facing irreducible choices in the presence of God &mdash; resists every conceptual system. The three stages of existence &mdash; the aesthetic (the life of immediacy and pleasure), the ethical (the life of duty and commitment), and the religious (the life of faith, which involves the suspension of the ethical for the absolute) &mdash; are not dialectical phases that lead into each other but genuine alternatives between which the individual must choose without objective justification. His pseudonymous works (Either/Or, Fear and Trembling, the Concept of Anxiety, the Concluding Unscientific Postscript) developed this existential analysis with literary genius and philosophical precision. His influence on Heidegger&rsquo;s Being and Time (1927), Sartre&rsquo;s existentialism, Buber&rsquo;s personalism, and Barth&rsquo;s dialectical theology was profound and direct.</li>
+                        </ul>
+                    </div>
+                </details>
+
+                <details class="tradition-block">
+                    <summary>
+                        <div class="tradition-era">Marx, Engels, &amp; Historical Materialism</div>
+                        <div class="tradition-era-note">1818&ndash;1895 &middot; Germany, Belgium, France, England</div>
+                    </summary>
+                    <div class="tradition-block-content">
+                        <ul class="tradition-ul">
+                            <li><span>Karl Marx (1818&ndash;1883) &amp; Friedrich Engels (1820&ndash;1895)</span> &mdash; Marx and Engels turned Hegel right-side up. Where Hegel had argued that the development of history is the progressive self-realization of Spirit, Marx argued that the primary reality is material &mdash; the forces and relations of production that determine the social, political, and intellectual superstructure. Philosophy had hitherto only interpreted the world; the point was to change it. The Economic and Philosophical Manuscripts (1844) developed the concept of alienation (<em>Entfremdung</em>): under capitalism, the worker is alienated from the product of her labour, from the process of production, from her species-being, and from other workers. The German Ideology (1845&ndash;46, with Engels) developed the materialist conception of history: &ldquo;It is not the consciousness of men that determines their existence, but their social existence that determines their consciousness.&rdquo; The Communist Manifesto (1848) diagnosed the entire history of civilization as the history of class struggle. Capital Vol. I (1867) provided the systematic analysis of the capitalist mode of production &mdash; the labour theory of value, surplus value, the tendential fall of the rate of profit, the inevitable crises of accumulation.</li>
+                            <li><span>Marx and the Tradition</span> &mdash; Marx&rsquo;s relationship to his predecessors was simultaneously indebted and transformative. He absorbed Hegel&rsquo;s dialectic but materialized it. He engaged with Smith and Ricardo but showed that their political economy rested on unexamined social assumptions. He engaged with the Utopian socialists (Owen, Saint-Simon, Fourier) but replaced their moral appeals with what he claimed was a scientific analysis of capitalism&rsquo;s internal contradictions. The tradition he founded &mdash; Western Marxism, through Luxemburg, Gramsci, Lukács, the Frankfurt School, Althusser, and beyond &mdash; remains the most consequential tradition of critical social thought in the modern world. Whatever one&rsquo;s assessment of the political regimes conducted in his name, the philosophical tools Marx developed for analysing capitalism, ideology, class, and alienation remain indispensable instruments of social analysis.</li>
+                        </ul>
+                    </div>
+                </details>
+
+                <details class="tradition-block">
+                    <summary>
+                        <div class="tradition-era">Nietzsche &amp; the Revaluation of Values</div>
+                        <div class="tradition-era-note">1844&ndash;1900 &middot; Prussia, Switzerland, Italy</div>
+                    </summary>
+                    <div class="tradition-block-content">
+                        <ul class="tradition-ul">
+                            <li><span>Friedrich Nietzsche (1844&ndash;1900)</span> &mdash; Nietzsche was the most consequential diagnostician of the modern philosophical crisis: the crisis of nihilism that follows from the &ldquo;death of God&rdquo; &mdash; the collapse of the Christian-Platonic framework that had given Western civilization its values, its sense of purpose, and its metaphysical consolations. The announcement was not a celebration but a warning: with the death of God, the horizon of meaning disappears and everything is permitted and therefore worthless. The task was a revaluation of all values (<em>Umwertung aller Werte</em>): not a replacement of Christian values with secular alternatives (democracy, progress, utilitarianism) but a genealogical critique of valuation itself and the creation of new values adequate to a godless world. His philosophical tools &mdash; the genealogical method, the distinction between master and slave morality, the will to power (<em>Wille zur Macht</em>), the eternal recurrence of the same (<em>ewige Wiederkehr des Gleichen</em>), the &Uuml;bermensch &mdash; were explosive. Their subsequent influence &mdash; on Mann and Rilke, on Heidegger and Sartre, on Foucault and Derrida, on Leo Strauss and Alasdair MacIntyre &mdash; ranges across the entire intellectual spectrum of the twentieth century, demonstrating both the extraordinary fertility and the extraordinary danger of his thought.</li>
+                        </ul>
+                    </div>
+                </details>
+
+            </div>
+        </div>
+    </div>
 
     <section class="tradition-colophon">
         <div class="tradition-colophon-rule"></div>
